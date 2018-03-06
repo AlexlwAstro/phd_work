@@ -1,0 +1,19 @@
+21/01/18
+Improved franec_stampe_plots to include functions for isolating nuclear fusion regions (ENUC > 1)
+Checked that all data are represented for all relevant mesh points.
+Wrote out nuclear data to new files.
+Plotted ln(mu) and dln(mu)/dlnP versus P, sent plots, together with nuclear data, to Maurizio
+
+22/01/18
+Discussed viability of thermohaline mixing conditions in nuclear plots/data with Maurizio - conditions appear to be viable.
+Resolved burning data file writing issues - was missing command for newline and abundance data was being written to both abundance and model files
+Sent resolved files to Maurizio
+This mistake did not change previous conclusions, as these were based on correct data arrays.
+Met with Stellar Pops group.
+Met with Steve - recommendation to reduce the scale of plot to show the mu-gradient inversion - this was done in franec_stampe_plots.
+Received email for Maurizio for next stages.
+
+23/01/18
+Read observational paper about rotation & magnetic fields in one B-type star
+Started work on outputting dX/dr for C12, N12, Li7 - compare the output from a new FRANEC run with python data crunching to see which data is hidden or lost
+This could lead to shortcuts later.

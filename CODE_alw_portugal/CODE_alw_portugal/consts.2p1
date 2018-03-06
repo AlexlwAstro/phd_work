@@ -1,0 +1,84 @@
+!############################################
+!
+!     @(#) $Revision: 2.5 $
+!     @(#) $Date: 2002/11/21 08:35:48 $
+!     @(#) $Author: hs $
+!     @(#) $Name:  $
+!
+!############################################
+
+!
+!     Some named nature constants
+!     Jul 1997  nature constants from GONG-project adapted
+!
+      DOUBLE PRECISION SECANNI, PI, HPlanck, GRAVC0, ECharg
+      DOUBLE PRECISION kb, Clight, Umass, Mel, Mp, Mn, ERGEV
+      DOUBLE PRECISION FineStr,STB10,STBSUN,CRAD,REIMAS
+
+      DOUBLE PRECISION SUNMg, SUNLe, SUNRcm, Auni,SUNMg33
+
+      DOUBLE PRECISION R4PI, STBOLZ, NAvo, CN3, Rgas 
+      DOUBLE PRECISION NaMeV, NaMeVRC2
+      DOUBLE PRECISION mch, mc2     ! some consts for SUBROUTINE DEG3
+      DOUBLE PRECISION TCHEMC,COND,CONV
+
+      DOUBLE PRECISION AMH, AMHe, AMC, AMN, AMO, AMZ
+      DOUBLE PRECISION EY, EC, EO, EH,NGATCOST,OVERCOST
+
+!      NOTE: Implied units here are centimetre-gram-sec (CGS) units
+!      also uses erg = 10**(-7) J
+!      ESU = electrostatic unit of charge, a.k.a. statCoulomb, statC
+!      1 statC = 3.335E-10 C
+! ---- Basic constants
+
+      PARAMETER (SECANNI = 60 * 60 * 24 * 365.243) ! = 3.1557D7
+      PARAMETER (PI = 3.1415926535898d0)
+      PARAMETER (HPlanck = 6.6260755D-27)  ! Planck's constant
+      PARAMETER (GRAVC0 = 6.672320D-8)     ! in cgs
+      PARAMETER (ECharg = 4.8032068D-10)   ! electron charge in ESU
+      PARAMETER (kb = 1.380658d-16)        ! k_Boltzmann [erg / K]
+      PARAMETER (Clight = 2.99792458D10)   ! light speed in cm/s
+      PARAMETER (Umass = 1.6605402D-24)    ! atomic mass unit in g
+      PARAMETER (Mel = 9.1093897D-28)      ! electron mass in g
+      PARAMETER (Mp = 1.6726231d-24)       ! m_p (proton)
+      PARAMETER (Mn = 1.6749286d-24)       ! m_n (neutron)
+      PARAMETER (ERGEV = 1.60217733D-6)    ! 1 MeV in cgs (erg)
+      PARAMETER (FineStr = 1.d0/137.0359895d0)  ! fine-structure const.
+      PARAMETER (COND = 2.302585093D0)     !ln(10)
+      PARAMETER (CONV = 0.434294481D0)     !Log(NEPERO) = log(e) 
+      
+! ---- solar and astronomical units
+
+      PARAMETER (SUNMg = 1.9891D+33) ! Solar mass in g
+      PARAMETER (SUNMg33 = SUNMg*1.D-33) ! Sun mass in Solar Unit ????
+      PARAMETER (SUNLe = 3.842D+33)  ! Sun luminosity in erg/s
+      PARAMETER (SUNRcm = 6.9599D10) ! Sun radius in cm
+      PARAMETER (Auni = 1.4959787d13)  ! astronomical unit
+
+! ---- derived values (shortcuts)
+
+      
+      PARAMETER (R4PI = 1.d0 / (4.d0 * PI))     
+      PARAMETER (STBOLZ = 2.d0 * PI**5 * kb**4/                  
+     &      (15.d0 * Clight**2 * HPlanck**3) )   !  Stefan-Boltzmann's 
+      PARAMETER (NAvo = 1.d0/Umass)        ! ...
+!      PARAMETER (STB10=37461405.1681943D0)
+!      PARAMETER (STBSUN=33362588.9108046D0)
+!      PARAMETER (REIMAS = 66361524.9152332D0)
+      PARAMETER (STB10=(1.D0/DSQRT(4.D0*PI*STBOLZ))*1.D6)
+      PARAMETER (STBSUN=(1.D0/(DSQRT(4.D0*PI*STBOLZ)*SUNRcm)*
+     #           DSQRT(SUNLe)))
+      PARAMETER (REIMAS = (DSQRT(SUNLe/(4.D0*PI*STBOLZ)))*
+     #           SUNMg33/SUNRcm)
+      PARAMETER (NGATCOST=GRAVC0*4.D0*PI*STBOLZ*SUNMg/SUNLe)
+      PARAMETER (OVERCOST=(1.D0/GRAVC0)*1.D-6)
+      PARAMETER (Rgas = kb*NAvo)      ! k(Boltzmann)*N(Avogadro) in cgs
+      PARAMETER (CN3 = 4.d0*StBolz / (3.d0*Clight)) ! = a/3
+      PARAMETER (CRAD = (3.d0/(64.d0*PI*STBOLZ*GRAVC0))*1.D-8)
+      PARAMETER (NaMeV = NAvo * ERGEV) ! N_Avogardo * erg / MeV
+      PARAMETER (NaMeVRC2 = NaMeV/Clight**2) ! MeV -> g/mol
+      PARAMETER (mch = Mel*Clight/HPlanck) ! m_e c / h
+      PARAMETER (mc2 = Mel*Clight**2)      ! m_e  c**2
+      PARAMETER (TCHEMC = 1.2D+52)
+
+

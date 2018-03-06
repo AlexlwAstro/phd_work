@@ -1,0 +1,95 @@
+FILE=energy.f
+
+energy - this routine associates to each nuclear process involved in the burning the corresponding Q value
+epsi - calculates epsilon_i, where i are the different nuclear energy production mechanisms (CNO-cycle, pp-chain, etc.)
+epsig - calculates epsilon_g, the energy production per unit mass per unit time due to gravitation
+evolut - calculates the evolution with time of the chemical abundances as a consequence of the nuclear burning
+ncross - calculates nuclear reaction cross-sections
+indicizza - on the basis of the nuclear processes specified in the file network it defines various indices that are used by the routines facing with the nuclear processes
+rap - carries out the Newton-Raphson iterative method
+readnet - reads in and writes out data on nuclear reactions
+plasma - calculates properties of the plasma that are used by the function sc for evaluating the electron screening
+sc - it is not a subroutine but a function! it is used for evaluating the electron screening for the various nuclear processes
+smallrap - this routine is similar to the subroutine "rap" and it is used to evaluate the abundance at equilibrium of those
+elements that have reached this configuration
+
+
+FILE=diffus.f
+
+diffus - carries out diffusion effect modelling
+tbl - this routine computes the atomic diffusion coefficients according to the prescriptions by Thoul et al.
+polino - carries out polynomial regression by constructing matrices
+xmatr - calculates the matrix product, AA, of matrices X and Y
+coedif - inverses the Burgers equations using Numerical Recipes' lubksp and ludcmp subroutines (listed below)
+ludcmp- lower-upper (LU) decomposition of a square matrix M into 2 triangular matrices (system is now easier to solve)
+(see http://vis.lbl.gov/NERSC/Software/pvwave/docs/pvwavehtmlhelp/waveref/files/chb36.htm)
+lubksb - uses the results of ludcmp to solve the matrix equation involving M
+(see http://vis.lbl.gov/NERSC/Software/pvwave/docs/pvwavehtmlhelp/waveref/files/chb37.htm#660818)
+
+
+FILE=fisica.f
+
+EOS - takes input from 'eos1ext.dat', calculates the EOS output and sets the output destinations
+neutr - simulates production of neutrinos via different (weak nuclear) mechanisms
+nkappa - chooses whether to employ subroutine 'nkappadiff' or subroutine 'nkappanodiff', using COMMON/INDICI/INDIFF
+nkappa(no)diff - this routine computes the total opacity for any given T and density. In case diffusion is activated the routine
+nkappadif - performs also an interpolation in metallicity in order to account for the changes in the element abundances due to diffusion
+nsupera - this routine compute the superadiabatic gradient in the superadiabatic region following the formalism of Bohm-Vitense
+sigmanew - calculates nuclear reaction cross-sections ("new" stands for new routine)
+
+
+FILE=math.f
+
+kernel - calculates the kernel function at any time it has to solve a set of equations
+ncub - appears to construct a cubic polynomial in parameter B1
+parab - appears to construct a parabola in parameter X1
+polint - it performs a polinomial interpolation
+splink - it performs a spline interpolation
+
+
+FILE=natmos.f
+
+condcon - compute the outer boundary conditions for a given Teff and gravity by using suitable input tables of boundary conditions
+leggi - reads data from 'boundallah.dat'
+natmos - uses stellar parameters to output P, T, R at the base of the atmosphere (= at the stellar surface -> boundary conditions)
+
+
+FILE=optima.f
+
+levmes - removes a mesh
+newmes - adds a new mesh
+optim - alters/optimises the mesh number
+pastem - this fixes the time step during the evolution
+quatm - this is used to compute the grid of 16 atmospheres required to evaluate the outer boundary conditions
+
+
+FILE=mixing.f
+
+bconv - it defines the location (boundary) of the convective zones
+mixingall - general mixing of elements in layers once  their location has been fixed by the routine bconv
+mixinghe - mixing of elements during helium combustion
+oversh - calculates parameters, using the EOS, for convective overshooting
+undersh - calculates parameters, using the EOS, for convective undershooting
+
+
+FILE=main.f
+
+main - This is the equivalent of the "program Franec" it is the core of the program
+deja - it evaluates the mass loss rate in case the De Jager' mass loss prescription is accounted for
+fato - It called by INNES routine for computing the convergency of the first model
+fitta - adopt the "fitting method" for the first model converge checking the quality of the convergency at the fitting mesh
+gtime - records the date and time of computation, as well as the model used
+hbrezo - This routine is used only for "building" the first model for ZAHB structure starting from a modstart - It defines 
+the chemical stratification of the initial model on the basis of the specified envelope He abundance/ core C abundance / He core mass and total mass
+henyey - it solves the stellar structure equations according to the Henyey method
+innes - this is used only for the very first model: it controls the initial distribution of mesh and call the routines for the fitting procedure.
+maslos - it accounts for mass loss it is is switched ON
+newbval - it provides an error message during the fitting procedure for the first model convergence
+plotta - it is used in the stampa routine to make the plot of same structures in the file stampe
+resnuc - I think that it writes the "convergency quantities" for the Henyey method during the evolutionary run
+rwmod - it reads or write the modant file that can be used to restart an evolutionary sequence
+skipfase - it controls the temperature at any given mesh and decides if burning is occurring or not in that mesh
+stampa - main/final printing subroutine
+stoperr - defines the errors that stop the code running (with output messages)
+veiove - it is used for the fitting method for the convergency of the first model
+rstam - it writes the fgong files that are used for asteroseismic studies

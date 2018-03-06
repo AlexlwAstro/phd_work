@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>FORTRAN 77 - Input/Output</title>
+<meta charset="UTF-8">
+<meta name="author" content="David Harper and L.M. Stockman">
+<meta name="description" content="Input and output in FORTRAN 77.">
+<meta name="generator" content="Handcrafted by Obliquity">
+<meta name="keywords" content="computer, computing, fortran, Fortran, FORTRAN, FORTRAN 77, programming, reference, scientific programming, tutorial">
+<meta name="robots" content="index, nofollow">
+<link rel="icon" href="https://www.obliquity.com/iconz/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="https://www.obliquity.com/iconz/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="FORTRAN%2077%20-%20Input_Output_files/fortran.css" type="text/css" media="screen">
+<link rel="stylesheet" href="FORTRAN%2077%20-%20Input_Output_files/fortranprint.css" type="text/css" media="print">
+</head>
+
+<body>
+<h1>Input/Output</h1>
+<p>
+Almost all FORTRAN&nbsp;77 programs read data from external sources such as 
+files or the user's terminal, perform calculations on that data, and then 
+write the results to other files or the terminal.  FORTRAN&nbsp;77 provides 
+a powerful and flexible set of features for reading and writing data which 
+are independent of the underlying operating system.
+</p>
+
+<h2>Unit Numbers</h2>
+<p>
+Every input or output device is identified by a small, positive integer known 
+as the unit number.  These unit numbers are used in <code>READ</code> and 
+<code>WRITE</code> statements to indicates the source or destination for the 
+operation.  Two of these numbers are always pre-defined at the start of every 
+FORTRAN&nbsp;77 program: unit 5 corresponds to standard input, which is often 
+the user's terminal, and unit 6 corresponds to standard output, which is also 
+often the terminal but may be another device, such as a printer.
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+This example reads a single integer value from standard input and writes it 
+to standard output:
+</p>
+<pre>      READ(5,100)I
+      WRITE(6,200)I
+</pre>
+<p>
+Unit numbers must be used when reading from or writing to external files.  
+However, when using the standard pre-connected 
+<abbr title="input/output">I/O</abbr> devices, the unit number may be 
+replaced by an asterisk <code>*</code>.
+</p>
+<pre>      READ(*,100)I
+      WRITE(*,200)I
+</pre>
+</div>
+
+<h2>READ and WRITE Statements</h2>
+<p>
+The <code>READ</code> statement reads information from one or more records in 
+a file or standard pre-connected input device (like the terminal) into a 
+<em>data-transfer-list</em> of variables, array elements, etc.  Its general 
+form is
+</p>
+<pre>READ(UNIT=<em class="encode">integer-expression</em>, <em class="encode">control-list</em>) <em class="encode">data-transfer-list</em></pre>
+<p>
+Correspondingly, the <code>WRITE</code> statement prints information to one or 
+more records in a file or standard pre-connected output device (like the 
+terminal) from a <em>data-transfer-list</em> of variables, array elements, 
+expressions, etc.  Its general form is
+</p>
+<pre>WRITE(UNIT=<em class="encode">integer-expression</em>, <em class="encode">control-list</em>) <em class="encode">data-transfer-list</em></pre>
+<p>
+The <em>control-list</em> is a set of keyword/value pairs which define the 
+characteristics of the <abbr title="input/output">I/O</abbr>.  The unit number 
+must always be given. The following table lists the standard specifiers in 
+FORTRAN&nbsp;77.
+</p>
+
+<table class="layout">
+<tbody><tr>
+<th>Keyword</th>
+<th>Description</th>
+<th>Permitted&nbsp;Values</th>
+</tr>
+<tr>
+<td><code>UNIT</code></td>
+<td>The unit number associates the <code>READ</code> or <code>WRITE</code> 
+statement with the input or output device.  The unit number is traditionally 
+listed first and if it is, the <code>UNIT=</code> part of the keyword/value 
+pair may be omitted.</td>
+<td>Any small positive integer expression when referring to an external file 
+or an asterisk <code>*</code> when referring to the standard pre-connected 
+<abbr title="input/output">I/O</abbr> device.</td>
+</tr>
+<tr>
+<td><code>FMT</code></td>
+<td>The format specifies how the data in the <em>data-transfer-list</em> is 
+to be arranged. The format value is traditionally listed second after the 
+unit number.  If the unit number is listed first and <code>UNIT=</code> is 
+omitted, then the <code>FMT=</code> part of the keyword value pair may also 
+be omitted provided it is listed second.</td>
+<td>The label of a statement within the same program unit, a character 
+expression or array containing the complete format specification, or an 
+asterisk <code>*</code> for list-directed formatting.</td>
+</tr>
+<tr>
+<td><code>END</code></td>
+<td>If a <code>READ</code> statement attempts to input a record beyond 
+the end of the file, an end-of-file condition will be triggered and the 
+program will jump to the statement with the specified label.</td>
+<td>The label of a statement within the same program unit.</td>
+</tr>
+<tr>
+<td><code>ERR</code></td>
+<td>If an error occurs during input or output, the program will jump to 
+the statement with the specified label.</td>
+<td>The label of a statement within the same program unit.</td>
+</tr>
+<tr>
+<td><code>IOSTAT</code></td>
+<td>After the <code>READ</code> or <code>WRITE</code> statement has been 
+executed, the specified variable will contain a status value.  This will be 
+zero if the record was input or output successfully.  Otherwise, it will be 
+a non-zero value whose meaning is dependent on the operating system.</td>
+<td>The name of an integer variable or array element with the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>REC</code></td>
+<td>A record number identifier must be used only with direct-access files.</td>
+<td>An integer expression greater than zero.</td>
+</tr>
+</tbody></table>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<pre>      DO 10, I = 1,100
+         READ(3,*,END=20,ERR=900)COUNT(I),A(I),NAME(I)
+         FILENO = I
+   10 CONTINUE
+   20 WRITE(*,*)'Input complete. Number of records: ',FILENO
+…  
+  900 STOP 'Error in input file'
+      END
+</pre>
+<p>
+The <code>READ</code> statement is reading in three values from a file 
+associated with the unit number 7 into array elements <code>COUNT(I)</code>, 
+<code>A(I)</code> and <code>NAME(I)</code> where <code>I</code> is the 
+<em>loop-control-variable</em> of the enclosing <code>DO</code>&nbsp;loop.
+If an error occurs during the <code>READ</code> statement, control will be 
+transferred to the statement labelled 900 (which is a <code>STOP</code> 
+statement in this case.)  If the end of the file is reached before 300 values
+are read in, then control will be transferred to the statement labelled 20 
+which writes a message to the standard output device and the program 
+continues from there.
+</p>
+</div>
+
+<h3>Formatting</h3>
+<p>
+When no specific formatting is specified by the programmer, the computer uses 
+a system-dependent system called <strong>list-directed formatting</strong>.
+For output, the formatting depends on the data type of the item and varies 
+from system to system.  In general, however, the following rules apply:
+</p>
+<ul>
+<li>each <code>WRITE</code> statement starts a new record or line;</li>
+<li>arithmetic data types are given to the number of digits appropriate 
+for the internal precision;</li>
+<li>the system will choose decimal or exponential form for floating point 
+numbers, according to the magnitude of the value;</li>
+<li><code>COMPLEX</code> data types are output as 
+<code>(</code><em>real</em><code>,</code><em>imaginary</em><code>)</code>;</li>
+<li><code>LOGICAL</code> data types are output as a single <em>T</em> or 
+<em>F</em>;</li>
+<li><code>CHARACTER</code> data types are output as a string without 
+enclosing apostrophes;</li>
+<li>except for <code>CHARACTER</code> values, all items are followed by a 
+blank or comma to separate it from the next value.</li>
+</ul>
+<p>
+As for input, list-directed formatting allows free-format entry for numerical 
+data.  The following rules are generally applicable:
+</p>
+<ul>
+<li>each <code>READ</code> statement starts with a new record or line, and 
+reads as many records as is necessary to complete its data-transfer list;</li>
+<li>when expecting a <code>DOUBLE&nbsp;PRECISION</code> or <code>REAL</code> 
+data type, an <code>INTEGER</code> will be accepted;</li>
+<li>when expecting a <code>COMPLEX</code> data type, the number must be in 
+the form 
+<code>(</code><em>real</em><code>,</code><em>imaginary</em><code>)</code>;</li>
+<li>when expecting a <code>LOGICAL</code> data type, only a <em>T</em> or 
+<em>F</em> is neceesary;</li>
+<li>when expecting a <code>CHARACTER</code> data type, the string must be 
+enclosed in apostrophes;</li>
+<li>the input values must consist of a sequence of values and separators 
+(which are blanks or commas or both);</li>
+<li>two successive commas represent a null value;</li>
+<li>a slash <code>/</code> in place of a separate terminates the current 
+<code>READ</code> statement.</li>
+</ul>
+<p>
+Except for <code>CHARACTER</code> data, list-directed input and output files 
+are usually compatible.
+</p>
+<p>
+It is also possible for the programmer to specify the formatting.  The 
+format specification consists of a list of 
+<a href="https://www.obliquity.com/computer/fortran/format.html">edit descriptors</a> enclosed by a pair of parentheses.
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+This statement
+</p>
+<pre>      WRITE(*,'(1X,3A,F12.2,A)')'The distance to ',STAR(I),' is ',
+     $                          DIST(I),' ly'
+</pre>
+<p>
+is equivalent to
+</p>
+<pre>      CHARACTER*(*) FORM
+      PARAMETER(FORM='(1X,3A,F12.2,A)')
+      WRITE(*,FMT=FORM)'The distance to ',STAR(I),' is ',DIST(I),' ly'
+</pre>
+<p>
+which in turn is equivalent to
+</p>
+<pre>      WRITE(*,100)'The distance to ',STAR(I),' is ',DIST(I),' ly'
+  100 FORMAT(1X,3A,F12.2,A)
+</pre>
+<p>
+If multiple <code>READ</code> or <code>WRITE</code> statements all use the 
+same format, then it is more efficient to use one <code>FORMAT</code> 
+statement for all of them.  It is permissible for more than one 
+<code>READ</code> or <code>WRITE</code> statement to reference the same 
+<code>FORMAT</code> statement.
+</p>
+</div>
+
+<h3>Implied DO loop</h3>
+<p>
+The simplest way to input or output all the elements of an array is to simply 
+put the unsubscripted array name in the data transfer list.  An 
+implied&nbsp;<code>DO</code>&nbsp;loop allows selective access to array 
+elements and is used in <code>DATA</code> statements as well as 
+<code>READ</code> and <code>WRITE</code> statements.  The general form of the 
+implied&nbsp;<code>DO</code>&nbsp;loop is
+</p>
+<pre>(<em class="encode">data-list</em>,&nbsp;<em class="encode">loop-control-variable</em>&nbsp;=&nbsp;<em class="encode">initial-value</em>,&nbsp;<em class="encode">final-value</em>,&nbsp;<em class="encode">step-size</em>)</pre>
+<p>
+The rules for the <em>initial-value</em>, <em>final-value</em> and 
+<em>step-size</em> are exactly the same as for a <code>DO</code>&nbsp;loop. 
+An implied&nbsp;<code>DO</code>&nbsp;loop may contain other 
+implied&nbsp;<code>DO</code>&nbsp;loops nested within.
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<pre>      INTEGER   NMAX
+      PARAMETER(NMAX=10)
+      REAL      TEMPC(NMAX)
+
+      WRITE(*,*)'Enter ',NMAX,' temperatures in Celsius'
+      READ(*,*)(TEMPC(I),I=1,NMAX)
+      WRITE(*,100)(TEMPC(I),I=1,NMAX)
+  100 FORMAT(' ',5F8.2)
+      STOP 'End of program'
+      END
+</pre>
+<p>
+After printing out a message telling the user to input <code>NMAX</code> 
+values, the program uses an implied&nbsp;<code>DO</code>&nbsp;loop to read 
+those values into the array <code>TEMPC</code>.  Then the values are output 
+to the standard output device using an implied&nbsp;<code>DO</code>&nbsp;loop 
+in a formatted <code>WRITE</code> statement.
+</p>
+</div>
+
+<p>
+Nested implied&nbsp;<code>DO</code>&nbsp;loops are particularly useful when 
+dealing with multi-dimensional arrays.
+</p>
+<div class="example">
+<h4 class="printX">Example</h4>
+<pre>      WRITE(*,100)((MATRIX(I,J),J=1,8),I=1,5)
+</pre>
+<p>
+Using a <code>FORMAT</code> statement labelled <code>100</code>, the 
+<code>WRITE</code> statement prints out 40 array elements in the order 
+<code>MATRIX(1,1)</code>, <code>MATRIX(1,2)</code>, …, 
+<code>MATRIX(1,8)</code>, 
+<code>MATRIX(2,1)</code>, <code>MATRIX(2,2)</code>, …, 
+<code>MATRIX(2,8)</code>, 
+…, 
+<code>MATRIX(5,1)</code>, <code>MATRIX(5,2)</code>, …, 
+<code>MATRIX(5,8)</code>
+</p>
+</div>
+
+<h3>Simplified READ and PRINT Statements</h3>
+<p>
+The simplified <code>READ</code> statement
+</p>
+<pre>READ&nbsp;<em class="encode">format</em>, <em>data-transfer-list</em></pre>
+<p>
+reads in list-directed or formatted input from the standard input device and 
+is directly equivalent to
+</p>
+<pre>READ(*,<em class="encode">format</em>)<em>data-transfer-list</em></pre>
+<p>
+The equivalent statement for <code>WRITE</code> is
+</p>
+<pre>PRINT&nbsp;<em class="encode">format</em>, <em>data-transfer-list</em></pre>
+<p>
+which writes out list-directed or formatted output to the standard output 
+device.  It is directly equivalent to
+</p>
+<pre>WRITE(*,<em class="encode">format</em>)<em>data-transfer-list</em></pre>
+<p class="bang">
+There is nothing to recommend the simplified versions of <code>READ</code> 
+and <code>PRINT</code>.  Use the standard READ and WRITE statements in their 
+place.
+</p>
+
+<h2>Opening a File</h2>
+<p>
+Files are associated with specific unit numbers using the <code>OPEN</code> 
+statement.  The general form of this statement is:
+</p>
+<pre>OPEN(UNIT=<em class="encode">integer-expression</em>, <em class="encode">control-list</em>)</pre>
+<p>
+The <em>control-list</em> is a set of keyword/value pairs which define the 
+characteristics of the file to be opened.  The unit number must always be 
+given.  The file name also must be given except in the case of scratch files.
+The following table lists the standard specifiers in FORTRAN&nbsp;77.
+</p>
+
+<table class="layout">
+<tbody><tr>
+<th>Keyword</th>
+<th>Description</th>
+<th>Permitted&nbsp;Values</th>
+</tr>
+<tr>
+<td><code>UNIT</code></td>
+<td>The unit number is associated with the file from the time it is opened 
+until it is closed.  The unit number is traditionally listed first and if it 
+is, the <code>UNIT=</code> part of the keyword/value pair may be omitted.</td>
+<td>Any small positive integer expression.</td>
+</tr>
+<tr>
+<td><code>FILE</code></td>
+<td>The name of the file which is to be associated with this unit.</td>
+<td>Any valid file name, as a character string.</td>
+</tr>
+<tr>
+<td><code>STATUS</code></td>
+<td>This is used to specify whether the file must already exist, or must not 
+exist, or whether it is a temporary (scratch) file.</td>
+<td><code>'OLD'</code> (the file must already exist), 
+<code>'NEW'</code> (the file must not exist), 
+<code>'UNKNOWN'</code> (the file may or may not exist), or 
+<code>'SCRATCH'</code> (the file is a scratch file).  
+No other values are allowed.<br>
+The default is <code>'UNKNOWN'</code>.</td>
+</tr>
+<tr>
+<td><code>ERR</code></td>
+<td>If an error occurs whilst opening the file, the program will jump to the 
+statement with the specified label.</td>
+<td>The label of a statement within the same program unit.</td>
+</tr>
+<tr>
+<td><code>IOSTAT</code></td>
+<td>After the <code>OPEN</code> statement has been executed, the specified 
+variable will contain a status value.  This will be zero if the file was 
+opened successfully.  Otherwise, it will be a non-zero value whose meaning
+is dependent on the operating system.</td>
+<td>The name of an integer variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>FORM</code></td>
+<td>Whether the file is to be used for formatted (plain text) or unformatted 
+(binary) <abbr title="input/output">I/O</abbr>.</td>
+<td><code>'FORMATTED'</code> or <code>'UNFORMATTED'</code>.  
+No other values are allowed.<br>
+The default is <code>'FORMATTED'</code>.</td>
+</tr>
+<tr>
+<td><code>ACCESS</code></td>
+<td>Whether the file is to be used for sequential or random 
+<abbr title="input/output">I/O</abbr>.</td>
+<td><code>'SEQUENTIAL'</code> or <code>'DIRECT'</code>.  
+No other values are allowed.
+<br>The default is <code>'SEQUENTIAL'</code>.</td>
+</tr>
+<tr>
+<td><code>RECL</code></td>
+<td>The record length for direct access files.</td>
+<td>An integer which defines the record length.</td>
+</tr>
+<tr>
+<td><code>BLANK</code></td>
+<td>Controls how blanks are to be interpreted in formatted numeric fields.</td>
+<td><code>'NULL'</code> (blanks are to be ignored) or<br>
+<code>'ZERO'</code> (blanks are to be treated as if they were zeros).  
+No other values are allowed. <br>
+The default is <code>'NULL'</code>.</td>
+</tr>
+</tbody></table>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<pre>  100 WRITE(*,*)'Enter the input file name'
+      READ(*,'(A)',END=999)FNAME
+      OPEN(13,FILE=FNAME,STATUS='OLD',BLANK='ZERO',ERR=100)
+</pre>
+<p>
+Unit number 13 will be associated with the file whose name is input by the 
+user.  If there is an error opening the file (perhaps it doesn't exist or 
+there is some other problem), then control will transfer to the statement 
+labelled 100, prompting the user to input a different name.  If the file is 
+opened successfully, blanks will treated as if they were zeros.  Note that 
+if the user enters the (system-dependent) end-of-file character during the 
+<code>READ</code> statement, control will transfer to a statement labelled 999.
+</p>
+</div>
+
+<h3>Scratch Files</h3>
+<p>
+FORTRAN&nbsp;77 provides an easy way to open a temporary file to act as scratch 
+storage for a program.  Consider the following example:
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<pre>      OPEN(8,STATUS='SCRATCH')
+</pre>
+<p>
+Unit number 8 will be associated with a temporary unnamed file which can be 
+used for <abbr title="input/output">I/O</abbr> in exactly the same way as 
+any other file.  However, after the file is closed, or if the program 
+terminates without explicitly closing the file, the scratch file will be 
+deleted automatically by the FORTRAN&nbsp;77 
+<abbr title="input/output">I/O</abbr> subsystem.
+</p>
+<p>
+Note that no name is specified for the file in the <code>OPEN</code> 
+statement.  Indeed, it is forbidden to specify a file name for a scratch file.
+</p>
+</div>
+
+<h2>Closing a File</h2>
+<p>
+When a file is no longer required by the program, it should be closed.  This 
+breaks the association between the file and its unit number.  The general 
+form of this statement is 
+</p>
+<pre>CLOSE(UNIT=<em class="encode">integer-expression</em>, <em class="encode">control-list</em>)</pre>
+<p>
+The <em>control-list</em> is a set of keyword/value pairs which define the 
+how the file is to be closed.  The unit number must always be given. 
+The following table lists the standard specifiers in FORTRAN&nbsp;77.
+</p>
+
+<table class="layout">
+<tbody><tr>
+<th>Keyword</th>
+<th>Description</th>
+<th>Permitted&nbsp;Values</th>
+</tr>
+<tr>
+<td><code>UNIT</code></td>
+<td>The unit number is associated with the file from the time it is opened 
+until it is closed.  The unit number is traditionally listed first and if it 
+is, the <code>UNIT=</code> part of the keyword/value pair may be omitted.</td>
+<td>Any small positive integer expression.</td>
+</tr>
+<tr>
+<td><code>STATUS</code></td>
+<td>This is used to specify whether the file should be kept or deleted after 
+being closed.</td>
+<td><code>'KEEP'</code> (the file should be kept after closing) or 
+<code>'DELETE'</code> (the file should be deleted).  
+No other values are allowed.<br>
+The default is <code>'KEEP'</code>, except for scratch files, which are 
+always deleted after being closed.</td>
+</tr>
+<tr>
+<td><code>ERR</code></td>
+<td>If an error occurs whilst closing the file, the program will jump to the 
+statement with the specified label.</td>
+<td>The label of a statement within the same program unit.</td>
+</tr>
+<tr>
+<td><code>IOSTAT</code></td>
+<td>After the CLOSE statement has been executed, the specified variable will 
+contain a status value.  This will be zero if the file was closed 
+successfully.  Otherwise, it will be a non-zero value whose meaning is 
+dependent on the operating system.</td>
+<td>The name of an integer variable or array element within the same
+ program unit.</td>
+</tr>
+</tbody></table>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<pre>      CLOSE(27,STATUS='DELETE')
+      CLOSE(39)
+</pre>
+<p>
+The file associated with unit number 27 is deleted after being closed.  
+The file associated with unit number 39 is kept after being closed unless it 
+was opened as a scratch file in which case it is automatically deleted.
+</p>
+</div>
+
+<h2>INQUIRE Statement</h2>
+<p>
+The <code>INQUIRE</code> statement is useful when you wish to learn more 
+about a file, such as whether it exists or if it is already connected.  This
+statement takes on two slightly different forms.  If you wish to determine 
+whether a unit number is already in use and the characteristics of the file 
+associated with it, then you use the <strong>inquire&nbsp;by&nbsp;unit</strong> 
+form for the statement:
+</p>
+<pre>INQUIRE(UNIT=<em class="encode">integer-expression</em>, <em class="encode">inquire-list</em>)</pre>
+<p>
+If no file is connected to the specified unit number, then most of the 
+arguments in the <em>inquire-list</em> will be undefined or return 
+<code>'UNKNOWN'</code> as their values.
+</p>
+<p>
+The <strong>inquire&nbsp;by&nbsp;file</strong> form of the statement can be 
+used to find out whether or not a named file exists.
+</p>
+<pre>INQUIRE(FILE=<em class="encode">character-expression</em>, <em class="encode">inquire-list</em>)</pre>
+<p>
+You may inquire&nbsp;by&nbsp;unit or inquire&nbsp;by&nbsp;file but not both 
+in the same <code>INQUIRE</code> command.
+</p>
+<p>
+The <em>inquire-list</em> is a set of keyword/value pairs which return 
+values to the named variables or array elements.  (The only exception is
+<code>ERR=</code><em>label</em> where <em>label</em> is the label of a 
+statement within the same program unit.)  The following table lists the 
+standard specifiers in FORTRAN&nbsp;77.
+</p>
+
+<table class="layout">
+<tbody><tr>
+<th>Keyword</th>
+<th>Description</th>
+<th>Permitted&nbsp;Values</th>
+</tr>
+<tr>
+<td><code>UNIT</code></td>
+<td>The unit number is associated with the file from the time it is opened 
+until it is closed.  The <code>UNIT=</code> part of the keyword/value pair 
+may be omitted in the inquire&nbsp;by&nbsp;unit statement.<br>
+Either <code>UNIT</code> or <code>FILE</code> must be used but not both.</td>
+<td>Any small positive integer expression.</td>
+</tr>
+<tr>
+<td><code>FILE</code></td>
+<td>The name of the file which is to be associated with this unit.  Trailing 
+blanks in the file name are ignored and the file need not be connected to a 
+unit in the program.<br>
+Either <code>UNIT</code> or <code>FILE</code> must be used but not both.</td>
+<td>The name of a character variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>ERR</code></td>
+<td>If an error occurs whilst executing the <code>INQUIRE</code> command, the 
+program will jump to the statement with the specified label.  This does not 
+infer that there is an error with the unit number or file.</td>
+<td>The label of a statement within the same program unit.</td>
+</tr>
+<tr>
+<td><code>IOSTAT</code></td>
+<td>After the <code>INQUIRE</code> statement has been executed, the specified 
+variable will contain a status value.  This will be zero if the command was 
+executed successfully.  Otherwise, it will be a non-zero value whose meaning
+is dependent on the operating system.  This does not infer that there is an 
+error with the unit number or file.</td>
+<td>The name of an integer variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>EXIST</code></td>
+<td>The variable is set to <code>.TRUE.</code> if the specified unit|file 
+exists and <code>.FALSE.</code> otherwise.</td>
+<td>The name of a logical variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>OPENED</code></td>
+<td>The variable is set to <code>.TRUE.</code> if the specified unit|file 
+is connected to a file|unit in the program and <code>.FALSE.</code> 
+otherwise.</td>
+<td>The name of a logical variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>NAMED</code></td>
+<td>The variable is set to <code>.TRUE.</code> if the file has a name
+and <code>.FALSE.</code> otherwise.</td>
+<td>The name of a logical variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>NAME</code></td>
+<td>The variable returns the file name if the file has a name; otherwise it 
+is undefined.  If a name is returned, it is suitable for use in the 
+<code>OPEN</code> statement.</td>
+<td>The name of a character variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>NUMBER</code></td>
+<td>The variable returns the unit number of the file which is connected.  If
+no file is connected, the variable is undefined.  This specifier cannot be 
+used in the inquire&nbsp;by&nbsp;unit statement.</td>
+<td>The name of an integer variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>ACCESS</code></td>
+<td>The variable returns <code>'SEQUENTIAL'</code> if the connection is for 
+sequential <abbr title="input/output">I/O</abbr> or <code>'DIRECT'</code> if 
+the connection is for direct <abbr title="input/output">I/O</abbr>.  The 
+value is undefined if there is no connection.</td>
+<td>The name of a character variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>DIRECT</code></td>
+<td>The variable returns <code>'YES'</code> if the file can be connected for 
+direct <abbr title="input/output">I/O</abbr>, <code>'NO'</code> if it can't, 
+and <code>'UNKNOWN'</code> if the system can't tell.</td>
+<td>The name of a character variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>SEQUENTIAL</code></td>
+<td>The variable returns <code>'YES'</code> if the file can be connected for 
+sequential <abbr title="input/output">I/O</abbr>, <code>'NO'</code> if it 
+can't, and <code>'UNKNOWN'</code> if the system can't tell.</td>
+<td>The name of a character variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>FORM</code></td>
+<td>The variable returns <code>'FORMATTED'</code> if the connection is for 
+formatted <abbr title="input/output">I/O</abbr> or <code>'UNFORMATTED'</code> 
+if the connection is for unformatted <abbr title="input/output">I/O</abbr>.  
+The value is undefined if there is no connection.</td>
+<td>The name of a character variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>FORMATTED</code></td>
+<td>The variable returns <code>'YES'</code> if the file can be connected for 
+formatted <abbr title="input/output">I/O</abbr>, <code>'NO'</code> if it 
+can't, and <code>'UNKNOWN'</code> if the system can't tell.</td>
+<td>The name of a character variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>UNFORMATTED</code></td>
+<td>The variable returns <code>'YES'</code> if the file can be connected for 
+unformatted <abbr title="input/output">I/O</abbr>, <code>'NO'</code> if it 
+can't, and <code>'UNKNOWN'</code> if the system can't tell.</td>
+<td>The name of a character variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>RECL</code></td>
+<td>The variable returns the record length if the file is connected for 
+direct-access and is undefined otherwise.  The record length is the number 
+of characters in a formatted file but the units are system-dependent for 
+unformatted files.</td>
+<td>The name of an integer variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>NEXTREC</code></td>
+<td>The variable returns the value <em>n&nbsp;+&nbsp;1</em> where <em>n</em> 
+is the record number of the last record transferred to/from a direct-access 
+file.  If no records have been transferred, then the value 1 is returned.  
+The value is undefined otherwise.</td>
+<td>The name of an integer variable or array element within the same 
+program unit.</td>
+</tr>
+<tr>
+<td><code>BLANK</code></td>
+<td>The variable returns <code>'NULL'</code> if null blank control is in 
+effect for the file connected for formatted 
+<abbr title="input/output">I/O</abbr> or <code>'ZERO'</code> if blanks are 
+being converted to zeros.  The value is undefined if there is no 
+connection.</td>
+<td>The name of a character variable or array element within the same 
+program unit.</td>
+</tr>
+</tbody></table>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+Suppose we need to open a named file within a subroutine, but do not know
+which unit numbers are available.  We can use <code>INQUIRE</code> to find
+the smallest unit number that is not currently in use.  This simple function
+searches all unit numbers within a specified range, and returns the smallest
+number which does not already have an open file associated with it.  If all
+unit numbers in the range are in use, the function returns the special value
+-1.
+</p>
+<pre>      INTEGER FUNCTION IFREE(IFIRST,ILAST)
+      INTEGER IFIRST,ILAST,IUNIT
+      LOGICAL ISOPEN
+
+      DO 10, IUNIT=IFIRST,ILAST
+         INQUIRE(UNIT=IUNIT, OPENED=ISOPEN)
+         IF (.NOT.ISOPEN) THEN
+            IFREE = IUNIT
+            RETURN
+         END IF
+   10 CONTINUE
+      IFREE = -1
+      END
+</pre>
+</div>
+
+<h2>Unformatted <abbr title="input/output">I/O</abbr></h2>
+<p>
+When reading or writing very large data sets, it is often more efficient to 
+store the data in the host machine's native binary format rather than in 
+human-readable format.  FORTRAN&nbsp;77 provides unformatted 
+<abbr title="input/output">I/O</abbr> for this purpose.  Unformatted files 
+are generally more compact and can be read and written much more quickly, 
+because there is no need for the computer to convert between human-readable 
+text and its native binary format.
+</p>
+<p>
+However, unformatted files cannot be opened with a text editor.  They can 
+only be read by a FORTRAN&nbsp;77 program.
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+Suppose we run the following short program:
+</p>
+<pre>      PROGRAM XAMPLE
+      DOUBLE PRECISION D
+      INTEGER          I,J
+
+      I = 1024*1024
+      J = -1
+      D = 10.0D0
+
+      OPEN(8,FILE='xample.out',STATUS='NEW',FORM='UNFORMATTED')
+      WRITE(8)I,J,D
+      CLOSE(8,STATUS='KEEP')
+      STOP 'End of program'
+      END
+</pre>
+<p>
+On an Intel-based Linux machine, this produces a file named 
+<em>xample.out</em> which is 24&nbsp;bytes long.  When we examine its contents 
+using the hd (hexadecimal dump) utility, we see this:
+</p>
+<pre>00000000  10 00 00 00 00 00 10 00  ff ff ff ff 00 00 00 00  |................|
+00000010  00 00 24 40 10 00 00 00                           |..$@....|
+</pre>
+<p>
+The first four bytes are a record length, generated automatically by the 
+FORTRAN&nbsp;77 <abbr title="input/output">I/O</abbr> subsystem.  It is in 
+little-endian byte order, so the value in decimal is 16.  Then follow the 
+actual data which the program wrote: the two 32-bit integers in 
+little-endian byte order, and the IEEE754 double-precision (64-bit) number.  
+Finally, the record length is written again by the FORTRAN&nbsp;77 
+<abbr title="input/output">I/O</abbr> subsystem as a safeguard.
+</p>
+</div>
+
+<h2>Sequential <abbr title="input/output">I/O</abbr></h2>
+<p>
+Most programs use sequential <abbr title="input/output">I/O</abbr>.  They 
+open a data file, and read its contents from start to finish, processing the 
+values as they are read, and writing results to an output file.
+</p>
+
+<h3>REWIND Statement</h3>
+<p>
+It is possible to re-read a sequential input file from the first record by 
+using the <code>REWIND</code> command.  The name is a reminder that FORTRAN 
+originates from an era when magnetic tapes were the most common mass-storage 
+medium.  The <code>REWIND</code> command once did exactly what its name 
+implies: it caused a magnetic tape to be rewound to the start, so that the 
+data on it could be re-read.
+</p>
+<p>
+The general form of this statement is
+</p>
+<pre>REWIND(UNIT=<em class="encode">integer-expression</em>, <em class="encode">control-list</em>)</pre>
+<p>
+The <em>control-list</em> must contain the <code>UNIT</code> specifier and may 
+contain the <code>ERR</code> and <code>IOSTAT</code> specifiers, which have 
+exactly the same syntax and meaning as their counterparts in the 
+<code>OPEN</code> and <code>CLOSE</code> statements.  As always, if the 
+unit number is listed first in the <em>control-list</em>, the 
+<code>UNIT=</code> part of the keyword/value pair may be omitted.
+</p>
+
+<h3>BACKSPACE Statement</h3>
+<p>
+If the program needs to re-read only the most recently read (or written) 
+record, then the <code>BACKSPACE</code> statement can be used.  The general 
+form of this statement is
+</p>
+<pre>BACKSPACE(UNIT=<em class="encode">integer-expression</em>, <em class="encode">control list</em>)</pre>
+<p>
+The control list may contain the same specifiers as the <code>REWIND</code> 
+statement.
+</p>
+
+<h2>Direct <abbr title="input/output">I/O</abbr></h2>
+<p>
+Some programs may need to access records in a data file in a non-sequential 
+manner.  Consider, for example, a data file which contains customer 
+information, with one record per customer.  It would be inefficient to read 
+the entire file in order to obtain the data on a single customer.  Instead, 
+the program should be able to skip all of the intervening records, and read
+only the record for that customer.  FORTRAN&nbsp;77 provides direct-access 
+<abbr title="input/output">I/O</abbr> for this purpose.
+</p>
+<p>
+In order to make direct-access <abbr title="input/output">I/O</abbr> efficient, 
+FORTRAN&nbsp;77 mandates that all records in a direct-access file must be 
+exactly the same length.  This allows the FORTRAN&nbsp;77 
+<abbr title="input/output">I/O</abbr> subsystem to determine the offset of the 
+desired record in the file by performing a simple arithmetic calculation.  It 
+is the programmer's responsibility to specify the correct record length when 
+opening the file.
+</p>
+<p>
+Direct-access <abbr title="input/output">I/O</abbr> is normally carried out 
+on unformatted files, although it can also be used with formatted files, if 
+sufficient caution is used.
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+Suppose we run the following short program:
+</p>
+<pre>      PROGRAM XAMPLE
+      DOUBLE PRECISION D
+      INTEGER          I,J
+
+      I = 1024*1024
+      J = -1
+      D = 10.0D0
+
+      OPEN(8,FILE='xample.out',STATUS='NEW',FORM='UNFORMATTED',
+     $     ACCESS='DIRECT',RECL=16)
+      WRITE(8,REC=1)I,J,D
+      CLOSE(8,STATUS='KEEP')
+      STOP 'End of program'
+      END
+</pre>
+<p>
+On an Intel-based Linux machine, this produces a file named 
+<em>xample.out</em> which is 16&nbsp;bytes long.  When we examine its contents 
+using the hd (hexadecimal dump) utility, we see this:
+</p>
+<pre>00000000  00 00 10 00 ff ff ff ff  00 00 00 00 00 00 24 40  |..............$@|
+</pre>
+<p>
+The file contains a single 16-byte record comprising the two 32-bit integers 
+and the 64-bit floating point number.
+</p>
+</div>
+
+<p>
+FORTRAN&nbsp;77 allows us to write to any record in a direct-access file.  We 
+do not have to write the records sequentially.  We can open a new file and 
+write record number 3 without having to write records 1 and 2.
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+If we modify the previous program slightly, changing the <code>WRITE</code> 
+statement to
+</p>
+<pre>WRITE(8,REC=3)I,J,D</pre>
+<p>
+and then re-compile and re-run the program, the output file is now 
+48&nbsp;bytes long, and its contents, displayed by the hd utility, look 
+like this:
+</p>
+<pre>00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+00000010  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+00000020  00 00 10 00 ff ff ff ff  00 00 00 00 00 00 24 40  |..............$@|
+</pre>
+<p>
+Notice that there are three 16-byte records in the file, but the first two 
+are filled with nulls.  Only record number 3 contains valid data.
+</p>
+</div>
+
+<h2>Internal Files</h2>
+<p>
+The files discussed above are all external files.  FORTRAN&nbsp;77 also 
+allows computer memory to be used as if it was an external file.  This 
+<em>internal file</em> exists only whilst the program is executing and 
+behaves like a formatted sequential file.
+</p>
+<p>
+An internal file is a <code>CHARACTER</code> object such as a constant, 
+variable, substring, array or array element, and is most often used for 
+converting between <code>CHARACTER</code> and other data types.  It is 
+accessed only with <code>READ</code> and <code>WRITE</code> statements with 
+explicit format specifications.  However, instead of a number, the unit in 
+the <code>READ</code> or <code>WRITE</code> statement must be an object of 
+type <code>CHARACTER</code>.
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+Consider the following program fragment.  We wish to use an internal file 
+to assign a value to the <code>CHARACTER</code> variable <code>TITLE</code>.
+</p>
+<pre>      CHARACTER*40 TITLE
+      REAL         STIME
+ 
+   10 CONTINUE
+         WRITE(*,*)'Enter the decimal sidereal time'
+         READ(*,*,END=999)STIME
+      IF (STIME .LT. 0.0 .OR. STIME .GT. 24.0) GOTO 10
+      WRITE(TITLE,100)INT(STIME),NINT((STIME-INT(STIME))*60)
+  100 FORMAT('The sidereal time is ',I2,' hours ',I2,' minutes')
+</pre>
+<p>
+The second <code>WRITE</code> statement uses the <code>FORMAT</code> statement 
+labelled <code>100</code> to write text and integers to the 
+<code>CHARACTER</code> variable <code>TITLE</code>.  If <code>STIME</code> 
+is initialised to <code>15.6</code>, the <code>TITLE</code> contains the
+value
+</p>
+<pre>The<span class="blank">␣</span>sidereal<span class="blank">␣</span>time<span class="blank">␣</span>is<span class="blank">␣</span>15<span class="blank">␣</span>hours<span class="blank">␣</span>36<span class="blank">␣</span>minutes
+</pre>
+<p>
+where <code class="blank">␣</code> is a blank.
+</p>
+</div>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+Consider the following program fragment where we have information stored in 
+a <code>CHARACTER</code> variable but wish to convert it to another type (in 
+this case <code>INTEGER</code>) by means of an internal file.
+</p>
+<pre>      CHARACTER*10 NUMBER
+      INTEGER      I,J
+
+      NUMBER = '1 2 3 4 5 '
+      READ(NUMBER,'(2I5)')I,J      
+</pre>
+<p>
+The <code>CHARACTER</code> variable contains the value 
+<code>1<span class="blank">␣</span>2<span class="blank">␣</span>3<span class="blank">␣</span>4<span class="blank">␣</span>5<span class="blank">␣</span></code> 
+where <code class="blank">␣</code> is a blank.  The 
+<code>READ</code> statement uses an internal file to convert this value using
+the format specification <code>(2I5)</code> into two variables of type 
+<code>INTEGER</code>.  The first 5 places are placed in the variable 
+<code>I</code> and the second 5 places are placed in <code>J</code>.  As a 
+result, <code>I</code> contains the value <code>123</code> and <code>J</code> 
+contains <code>45</code>.  (The blanks are ignored.)
+</p>
+<p>
+However, if we change the <code>READ</code> statement to 
+</p>
+<pre>      READ(NUMBER,'(BZ,2I5)')I,J      
+</pre>
+<p>
+<code>I</code> takes the value <code>10203</code> and <code>J</code> becomes
+<code>04050</code>.  This is because the descriptor <code>BZ</code> forces 
+blanks to be treated as zeros.
+</p>
+</div>
+
+<p>
+The statements <code>BACKSPACE</code> and <code>REWIND</code> may be used 
+with internal files but no other <abbr title="input/output">I/O</abbr> 
+commands are permitted.
+</p>
+
+<p class="menu">
+<a href="https://www.obliquity.com/computer/fortran/" class="button">Table&nbsp;of&nbsp;Contents</a>
+<a href="https://www.obliquity.com/computer/fortran/keywords.html" class="button">Index</a>
+<a href="https://www.obliquity.com/computer/fortran/format.html" class="button">Format&nbsp;Descriptors</a>
+</p>
+<p class="footer">
+<a href="http://www.obliquity.com/"><img src="FORTRAN%2077%20-%20Input_Output_files/logo.png" alt="Obliquity" class="logo" width="100" height="100"></a>
+Copyright © 1995-2014 by David Harper and L.M. Stockman<br>
+All Rights Reserved<br>
+Designed and maintained by 
+<a href="https://www.obliquity.com/cgi-bin/contact.cgi?subject=computing">Obliquity</a><br>
+<span class="printURL">http://www.obliquity.com/computer/fortran/io.html</span>
+</p>
+
+
+
+</body></html>

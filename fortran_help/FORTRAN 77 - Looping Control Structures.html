@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>FORTRAN 77 - Looping Control Structures</title>
+<meta charset="UTF-8">
+<meta name="author" content="David Harper and L.M. Stockman">
+<meta name="description" content="Looping control structures in a FORTRAN 77 program.">
+<meta name="generator" content="Handcrafted by Obliquity">
+<meta name="keywords" content="computer, computing, fortran, Fortran, FORTRAN, FORTRAN 77, programming, reference, scientific programming, tutorial">
+<meta name="robots" content="index, nofollow">
+<link rel="icon" href="https://www.obliquity.com/iconz/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="https://www.obliquity.com/iconz/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="FORTRAN%2077%20-%20Looping%20Control%20Structures_files/fortran.css" type="text/css" media="screen">
+<link rel="stylesheet" href="FORTRAN%2077%20-%20Looping%20Control%20Structures_files/fortranprint.css" type="text/css" media="print">
+</head>
+
+<body>
+<h1>Looping Control Structures</h1>
+<p>
+Control structures alter the normal sequential flow of a statement execution.
+Loops allow the a block of statements to be executed repeatedly without 
+actually writing them down numerous times.
+</p>
+
+<h2>DO Loop</h2>
+<p>
+A <code>DO</code> loop allows a block of statements to be executed repeatedly.
+</p>
+<pre>      DO <em class="encode">label</em>, <em class="encode">loop-control-variable</em> = <em class="encode">initial-value</em>, <em class="encode">final-value</em>, <em class="encode">step-size</em>
+         <em class="encode">statement<sub>1</sub></em>
+         <em class="encode">statement<sub>2</sub></em>
+…
+         <em class="encode">statement<sub>n</sub></em>
+<em class="encode">label</em>   CONTINUE
+</pre>
+<p>
+The <em>label</em> is any number between 1 and 99999 which is attached to
+the final statement in the <code>DO</code>&nbsp;loop.  This final statement
+may be any executable statement but is usually a <code>CONTINUE</code>
+statement.  The <code>CONTINUE</code> statement is just a dummy statement 
+traditionally used at the end of a loop.
+</p>
+<p>
+The <em>loop-control-variable</em> may be a variable (but not an array 
+element) of type <code>INTEGER</code>, <code>REAL</code> or 
+<code>DOUBLE&nbsp;PRECISION</code>.
+</p>
+<p>
+The <em>initial-value</em>, <em>final-value</em> and <em>step-size</em> 
+control the number of iterations.  They may be any expression that evaluates 
+to an <code>INTEGER</code>, <code>REAL</code> or 
+<code>DOUBLE&nbsp;PRECISION</code>, but the <em>step-size</em> must be 
+nonzero.  The <em>step-size</em> may be omitted entirely in which case it 
+is taken to be 1.
+</p>
+<p>
+The number of iterations is fixed at the beginning of the 
+<code>DO</code>&nbsp;loop according to the formula
+</p>
+<pre><em class="encode">iterations</em> = MAX(0,INT((<em class="encode">final-value</em> - <em class="encode">initial-value</em> + <em class="encode">step-size</em>)/<em class="encode">step-size</em>)
+</pre>
+<p>
+so altering the values of the <em>initial-value</em>, <em>final-value</em> 
+and <em>step-size</em> inside the loop will not affect the number of times 
+the loop is executed.  The <em>loop-control-variable</em> may be (and often 
+is) used in statements within the loop but it may not be assigned a new value 
+there.
+</p>
+<p>
+It is possible for the number of iterations to be zero, in which case the
+loop is not executed and control passes to the next executable statement 
+following the labelled statement delimiting the end of the <code>DO</code> 
+loop.
+</p>
+<p>
+Upon encountering a <code>DO</code> statement, the 
+<em>loop-control-variable</em> is assigned the <em>initial-value</em>.
+When a <code>DO</code>&nbsp;loop finishes normally, the 
+<em>loop-control-variable</em> contains the value of the last iteration 
+(which is not necessarily the <em>final-value</em>) plus the 
+<em>step-size</em>.
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+Adding up the numbers between 1 and 100 is simple with a 
+<code>DO</code>&nbsp;loop.  If the <em>step-size</em> is equal to 1, 
+then it may be omitted from the <code>DO</code> statement.
+</p>
+<pre>      SUM = 0
+      DO 10, I = 1,100
+         SUM = SUM + I
+   10 CONTINUE
+</pre>
+<p>
+The <em>loop-control-variable</em> <code>I</code> has the value 
+<code>101</code> when the loop exits.
+</p>
+</div>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+Suppose we wish to print out only the multiples of 3 between 0 and 100.
+This can be accomplished by setting the <em>initial-value</em> to 0 and 
+the <em>step-size</em> to 3.
+</p>
+<pre>      DO 20, I = 0,100,3
+         WRITE(*,*)I
+   20 CONTINUE
+</pre>
+<p>
+Obviously, the number 100 itself is not a multiple of 3.  We could have 
+used 99 as the <em>final-value</em> instead and it would have given the 
+same result.  The <em>loop-control-variable</em> <code>I</code> has the value 
+<code>102</code> when the loop exits.
+</p>
+</div>
+
+<h3>General Considerations</h3>
+<p>
+As with block&nbsp;<code>IF</code> statements, control may pass out of the 
+loop (for instance, with a <code>GO&nbsp;TO</code> statement) but it is illegal 
+to transfer into the middle of a <code>DO</code>&nbsp;loop.  If the loop is 
+exited prematurely, the <em>loop-control-variable</em> keeps the value
+that it had at that point.
+</p>
+<p>
+Be aware that rounding errors may cause unintended effects when a 
+non-<code>INTEGER</code> variable is used as the 
+<em>loop-control-variable</em>.  Also, the number of iterations may not be
+what you expect if non-<code>INTEGER</code> values are used as the 
+<em>initial-value</em>, <em>final-value</em> or <em>step-size</em>.
+</p>
+<p>
+In each of the examples, the statement blocks are indented slightly from
+the left.  This is not a requirement but makes the structure of the 
+program much more immediately obvious, particularly when there is deep
+nesting of control structures.
+</p>
+
+<h2>Nesting</h2>
+<p>
+Nesting <code>DO</code>&nbsp;loops is common, particularly when 
+manipulating multi-dimensional arrays.
+</p>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<p>
+Consider this program fragment which performs matrix-vector multiplication:
+</p>
+<pre>      DO 20, I = 1,M
+         SUM = 0.0
+         DO 10, J = 1,N
+            SUM = SUM + MATRIX(I,J)*VECTOR(J)
+   10    CONTINUE
+         PRDCT(I) = SUM
+   20 CONTINUE
+</pre>
+<p>
+Note that the inner <code>DO&nbsp;10</code> loop is completely contained 
+within the body of the outer <code>DO&nbsp;20</code> loop.  Indentation 
+helps distinguish the nesting occurring in the code.
+</p>
+</div>
+
+<p>
+It is also permissable to nest block&nbsp;<code>IF</code> statements 
+within a <code>DO</code>&nbsp;loop.  Nesting is also possible with the 
+loop structures described below.
+</p>
+
+<h2>do-while Loop</h2>
+<p>
+A <code>DO</code>&nbsp;loop iterates a fixed number of times but sometimes it
+is necessary to loop based on some kind of testable criterion which does not
+depend on the number of iterations.  One such loop is called a do-while loop 
+which iterates zero or more times.  FORTRAN&nbsp;77 does not have a formal 
+do-while loop structure but it is easy to construct one using <code>IF</code> 
+and <code>GO&nbsp;TO</code> statements.
+</p>
+<pre><em class="encode">label</em>   IF (<em class="encode">logical-expression</em>) THEN
+         <em class="encode">statement block</em>
+         GO TO <em class="encode">label</em>
+      END IF
+</pre>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<pre>   10 IF (Z .GE. 0D0) THEN
+         Z = Z - SQRT(Z)
+         GO TO 10
+      END IF
+</pre>
+<p>
+The statement labelled <code>10</code> is a block&nbsp;<code>IF</code>.
+If the value stored in the variable <code>Z</code> is non-negative, then
+the statement block in the block&nbsp;<code>IF</code> is executed.  In 
+this case, the value of <code>Z&nbsp;-&nbsp;SQRT(Z)</code> is calculated
+and assigned to the variable <code>Z</code>.  Then the 
+unconditional&nbsp;<code>GO&nbsp;TO</code> statement is encountered and control 
+is passed out of the body of block&nbsp;<code>IF</code> and back to the 
+statement labelled with the number <code>10</code> which is the beginning 
+of the block&nbsp;<code>IF</code>.  This loop continues until the 
+logical expression <code>Z&nbsp;.GE.&nbsp;0D0</code> is 
+<code>.FALSE.</code> at which time the loop is finished and control 
+passes on to the next executable statement past the <code>END&nbsp;IF</code>.
+</p>
+</div>
+
+<p>
+A do-while loop tests at the beginning of the loop.  If the criterion is 
+not satisfied, then the program does not enter the loop.  Thus it is 
+possible for the loop to be skipped completely.
+</p>
+
+<h2>repeat-until Loop</h2>
+<p>
+Another type of loop is the repeat-until loop.  This loop iterates one or 
+more times.  Unlike the do-while loop, the repeat-until loop tests at the 
+bottom of the loop so it always executes at least once.  Again, 
+FORTRAN&nbsp;77 does not have a formal repeat-until loop but it is easy to 
+construct one using <code>IF</code> and <code>GO&nbsp;TO</code> statements.
+</p>
+<pre><em class="encode">label</em>   CONTINUE
+         <em class="encode">statement block</em>
+      IF (<em class="encode">logical-expression</em>) GO TO <em class="encode">label</em>
+</pre>
+
+<div class="example">
+<h4 class="printX">Example</h4>
+<pre>   10 CONTINUE
+         WRITE(*,*)'Enter a value 1-12 for the month'
+         READ(*,*)MONTH
+      IF (MONTH .LT. 1 .OR. MONTH .GT. 12) GO TO 10
+</pre>
+<p>
+The statement labelled <code>10</code> is a <code>CONTINUE</code> statement
+which is often used at the beginning or end of a loop structure.  This 
+program fragment executes the <code>CONTINUE</code> statement (which does
+nothing) and then prints out the statement 
+<code>Enter&nbsp;a&nbsp;value&nbsp;1-12&nbsp;for&nbsp;the&nbsp;month</code>.  
+The program then reads in a value from the standard input device and stores 
+it in the variable <code>MONTH</code>.  At this point <code>MONTH</code> is 
+tested to see if it is between the values of 1 and 12 inclusive.  If it is, 
+then control passes to the next executable statement, but if it isn't, then 
+the <code>GO&nbsp;TO&nbsp;10</code> statement is executed and the program 
+returns to the <code>CONTINUE</code> statement.  The program then goes 
+through the <code>WRITE</code> and <code>READ</code> statements again and 
+tests the new value of <code>MONTH</code>.  The program will not break out 
+of this loop until <code>MONTH</code> has a legal value.
+</p>
+</div>
+
+<p class="menu">
+<a href="https://www.obliquity.com/computer/fortran/" class="button">Table&nbsp;of&nbsp;Contents</a>
+<a href="https://www.obliquity.com/computer/fortran/keywords.html" class="button">Index</a>
+</p>
+<p class="footer">
+<a href="http://www.obliquity.com/"><img src="FORTRAN%2077%20-%20Looping%20Control%20Structures_files/logo.png" alt="Obliquity" class="logo" width="100" height="100"></a>
+Copyright © 1995-2014 by David Harper and L.M. Stockman<br>
+All Rights Reserved<br>
+Designed and maintained by 
+<a href="https://www.obliquity.com/cgi-bin/contact.cgi?subject=computing">Obliquity</a><br>
+<span class="printURL">http://www.obliquity.com/computer/fortran/do.html</span>
+</p>
+
+
+
+</body></html>
