@@ -250,19 +250,13 @@ C If loop comes from Lattanzio et al. (2015): D = 0 unless del_mu < 0
 
       if (k .eq. MAXME) then
 	write(*,*) 'km = (MAXME-1) = ', km
-C       else
-c	write(*,*) 'km = ',km
         
       end if
-c       WRITE(*,*) 'WRITING K'
-C       write(*,*) XXX( 1 , K )
       write(38,102) x1mas(K),FINAL_MU_K,DMU_DR_2,DLNMU_DR_2,DEL_MU_2,
      # DXLi7_DR_2,DXC_DR_2,DXN_DR_2,DXHE3_DR_2,DXHE4_DR_2,Dthl,Dthl_0,K
  100  FORMAT(1X,F12.9,14D14.7,105X,I5)
  101  FORMAT(F12.9,F10.7,F10.6,F8.5,F8.4,D13.5,3D11.3,D9.2,
      &D11.3,F6.3,D12.4,D12.4,D9.2,I5)
-C 101  FORMAT(F12.9,F10.7,F8.4,F7.4,F8.4,1P,D13.5,1P,3D11.3,1P,D9.2,1P,
-C     &D11.3,0P,F6.3,1P,D12.4,D12.4,D9.2,I5)
  102  FORMAT(1X,F12.9,9D15.7,2D12.4,I5)
 
 c ,XI(kP),XI(kM),KP ,2D15.7,I5 ,DR_2,DLNP_2
