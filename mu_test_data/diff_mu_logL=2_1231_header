@@ -11,6 +11,11 @@
 
    M/MTOT      R/RTOT  LOG(P)  LOG(T)  LOG(RO)   L/LSUP     ENUC      EGRAV     ENEU      DELTA     RADIAT    ADIAB  OPACITY   C_P    V-SOUND   MESH
 
+line 307
+line 738         ********** BORDO CONVEZIONE SUPERFICIALE **********
+line 739         ********** BORDO INTERNO SHELL CONVETTIVA **********
+line 1410         ********** BORDO ESTERNO SHELL CONVETTIVA **********
+
 1
       Mr         H        D        HE3     HE4      Li7      Be7     C12      C13       N14      N15      O16      O17     O18      Fe56    MESH
 
@@ -18,6 +23,6 @@
       Mr            MU           d(mu)/dr       dln(mu)/dr   dln(mu)/dln(p)  d(X_Li7)/dr   d(X_C)/dr      d(X_N)/dr      d(X_He3)/dr     d(X_He4)/dr    Dthm_0   MESH
 =======================================================================================================================================================================================
 
-Dthm =  0.1457D+06, dt =  0.4524D+10
-      Mr        R/R*        dT_rf            dT_rb           dr          d2T/dr        d2T/dr2        dT/dt       MESH
-=======================================================================================================================
+Dthm =  0.1457D+06, normalisation time =  0.5146D+12
+      Mr         R/R*         X_N          d2X_N/dr2      drho_N_rf       drho_N_rb        dr          d2rho_N/dr    d2rho_N/dr2    drho_N/dt   MESH
+=====================================================================================================================================================
