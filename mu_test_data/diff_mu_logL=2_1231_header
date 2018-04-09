@@ -20,9 +20,9 @@ line 1410         ********** BORDO ESTERNO SHELL CONVETTIVA **********
       Mr         H        D        HE3     HE4      Li7      Be7     C12      C13       N14      N15      O16      O17     O18      Fe56    MESH
 
 1
-      Mr            MU           d(mu)/dr       dln(mu)/dr   dln(mu)/dln(p)  d(X_Li7)/dr   d(X_C)/dr      d(X_N)/dr      d(X_He3)/dr     d(X_He4)/dr    Dthm_0   MESH
+      Mr            MU           d(mu)/dr       dln(mu)/dr   dln(mu)/dln(p)  d(X_Li7)/dr   d(X_C)/dr      d(X_N)/dr      d(X_He3)/dr     d(X_He4)/dr    Dthl     MESH
 =======================================================================================================================================================================================
 
-Dthm =  0.1457D+06, normalisation time =  0.5146D+12
-      Mr         R/R*         X_N          d2X_N/dr2      drho_N_rf       drho_N_rb        dr          d2rho_N/dr    d2rho_N/dr2    drho_N/dt   MESH
-=====================================================================================================================================================
+fixed Dthl =  0.1457D+06, normalisation time = 0.5146D+12 yr, time step = 0.4524D+09 sec = 0.1434D+02 yr
+      Mr         R/R*         X_N          d2X_N/dr2      drho_N_rf       drho_N_rb        dr        d2rho_N/dr     d2rho_N/dr2    rho_N(t)       rho_N(t+dt)   rho_N(t+dt)_var   MESH
+=======================================================================================================================================================================================
