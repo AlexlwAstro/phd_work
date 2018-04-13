@@ -359,11 +359,11 @@ C use non-fixed coefficients
       XN_K_tpdt_var = XN(K) + dt_s*dXN_dt_var
 
       if ((XN_K_tpdt_var .ne. XN(K)) .and. Dthl .eq. 0) then
-       write(*,*) 'equation output errors'
+       write(*,*) 'equation output errors',k
       endif
 
       if (k .eq. MAXME) then
-	write(*,*) 'k = MAXME- = ', k
+	write(*,*) 'k = MAXME = ', k
       end if
 
       if (k .eq. 1) then
@@ -388,6 +388,11 @@ C first step already done above: introduce iterating (array) variable
       do n = 2,nsteps
        XN_KT_OUT(N) = XN_KT_OUT(N-1) + dt_s*dXN_dt
        XN_KT_OUT_var(N) = XN_KT_OUT_var(N-1) + dt_s*dXN_dt_var
+       if (XN_KT_OUT_var(N) .le. 0) then
+        XN_KT_OUT_var(N) = 0
+       elseif (XN_KT_OUT(N) .le. 0) then
+        XN_KT_OUT(N) = 0
+       endif
       enddo
 C write
 C FORMAT FROM BGT2P1.F: NMOD , AGE , ( A(L) , L =  1 , 3 )
