@@ -25,8 +25,9 @@ C **********************************************************************
       IMPLICIT REAL*8(A-H,O-Z)
 C      include 'CODE_alw/maincom.2p1'
       include 'consts.2p1'
-      character*30 abund_in,model_in,head_in,file_out,eq_out,time_out
-      integer*4 kcount,MAXME,NMODEL,KMESH,MESH
+      character*30 abund_in,model_in,head_in,grads_out,eq_out,
+     # time_Dfix_out,time_Dvar_out
+      integer*4 kcount,MAXME,NMODEL,KMESH,MESH,gmesh
       PARAMETER (MAXME=1424)
       PARAMETER (NSTEPS = 100)
       real*8 Kthm
@@ -36,8 +37,9 @@ C      include 'CODE_alw/maincom.2p1'
      # MFRAC(MAXME),rfrac(MAXME),logP(MAXME),logT(MAXME),
      # logDens(MAXME),lum(MAXME),enuc(MAXME),egrav(MAXME),
      # eneu(MAXME),DELTA(MAXME),RADIAT(MAXME),ADIAB(MAXME),
-     # VSOUND(MAXME),opac(maxme),cp(maxme),DXN_DR_K(MAXME)
-     # ,DEL_MU_K(MAXME), XN_KT_OUT(NSTEPS),XN_KT_OUT_VAR(NSTEPS)
+     # VSOUND(MAXME),opac(maxme),cp(maxme),DXN_DR_K(MAXME),
+     # DEL_MU_K(MAXME), XN_KT_OUT(NSTEPS),XN_KT_OUT_VAR(NSTEPS),
+     # PHI_DELTA_K(MAXME),final_mu_arr(maxme)
 
 C NOTE ABOUT READING:
 C For '_model' files, copy from NoMachine FIRST, then delete all
@@ -47,29 +49,38 @@ c    CHARACTER(*),PARAMETER :: fileplace = "FeHp006_alw/mu_test_data/"
       abund_in = 'diff_mu_logL=2_1231_abund'
       model_in = 'diff_mu_logL=2_1231_model'
 C      head_in = 'diff_mu_logL=2_1231_header'
-      file_out = 'diff_mu_logL=2_1231_grads'
+      grads_out = 'diff_mu_logL=2_1231_grads'
       eq_out = 'diff_mu_logL=2_1231_eq'
-      time_out = 'diff_mu_logL=2_1231_time'
+      time_Dfix_out = 'diff_mu_logL=2_1231_time_Dfix'
+      time_Dvar_out = 'diff_mu_logL=2_1231_time_Dvar'
+      
+C initialise counters
+c      counter_minus = 0
+c      counter_phi = 0
+c      counter_delta = 0
+
 C fileplace//      
 c      OPEN(UNIT=21,FILE=head_in,status='OLD')
       OPEN(UNIT=28,FILE=abund_in,status='OLD')
       OPEN(UNIT=29,FILE=model_in,status='OLD')
-      OPEN(UNIT=38,FILE=file_out,status='REPLACE')
+      OPEN(UNIT=38,FILE=grads_out,status='REPLACE')
       OPEN(UNIT=44,FILE=eq_out,status='REPLACE')
-      OPEN(UNIT=45,FILE=time_out,status='REPLACE')
+      OPEN(UNIT=45,FILE=time_Dfix_out,status='REPLACE')
+      OPEN(UNIT=46,FILE=time_Dvar_out,status='REPLACE')
+
       
-      WRITE(*,*) file_out
-      write(38,110)
-      write(38,120)
- 110  FORMAT(1H1,/,'      Mr            MU           d(mu)/dr       dln(
-     &mu)/dr   dln(mu)/dln(p)  d(X_Li7)/dr   d(X_C)/dr      d(X_N)/dr  
-     &   d(X_He3)/dr     d(X_He4)/dr    Dthl     MESH')
+      WRITE(*,*) grads_out
+c      write(38,110)
+c      write(38,120)
+c 110  FORMAT(1H1,/,'      Mr            MU           d(mu)/dr       dln(
+c     &mu)/dr   dln(mu)/dln(p)  d(X_Li7)/dr   d(X_C)/dr      d(X_N)/dr  
+c     &   d(X_He3)/dr     d(X_He4)/dr    MESH')
 
 Cx1mas,MU,DMU_DR ,DLNMU_DR ,DEL_MU ,
 C     # DXLi7_DR ,DXC_DR ,DXN_DR ,KM
- 120  FORMAT('==========================================================
-     #==================================================================
-     #===========================================================')
+c 120  FORMAT('==========================================================
+c     #==================================================================
+c     #=======================================')
 
       kcount = 0
 C READING DO-LOOP
@@ -146,6 +157,10 @@ C BY GETTING THE KTH-LAYER WIDTHS FOR DIFFERENT PARAMETERS
       DLOGP = logP(kp)-logP(k)
       DLNT = DLOG(10**logT(KP)) - DLOG(10**logT(K))
       DLOGT = logT(kp)-logT(k)
+C DEFINE PHI = PART(DLN(RHO)/DLN(MU))_F,T
+c AND DELTA = PART(DLN(RHO)/DLN(T))_F,MU
+      DLNRHO = DLOG(10**logDens(KP)) - DLOG(10**logDens(K))
+      DLOGRHO = logDens(KP) - logDens(K)
 C      DMASS = ()
 
       elseif (k .eq. MAXME) then
@@ -165,6 +180,8 @@ C BY GETTING THE KTH-LAYER WIDTHS FOR DIFFERENT PARAMETERS
       DLOGP = logP(k)-logP(km)
       DLNT = DLOG(10**logT(K)) - DLOG(10**logT(KM))
       DLOGT = logT(k)-logT(km)
+      DLNRHO = DLOG(10**logDens(K)) - DLOG(10**logDens(KM))
+      DLOGRHO = logDens(K) - logDens(KM)
 
       else
 C CENTRAL DERIVATIVE METHOD FOR REST
@@ -183,6 +200,8 @@ C BY GETTING THE KTH-LAYER WIDTHS FOR DIFFERENT PARAMETERS
       DLOGP = logP(kp)-logP(km)
       DLNT = DLOG(10**logT(KP)) - DLOG(10**logT(KM))
       DLOGT = logT(kp)-logT(km)
+      DLNRHO = DLOG(10**logDens(KP)) - DLOG(10**logDens(KM))
+      DLOGRHO = logDens(KP) - logDens(KM)
 C      DMASS = ()
       endif
 
@@ -195,7 +214,7 @@ C      DLNMU_F = DLOG(FINAL_MU_F) - DLOG(FINAL_MU_K)
 C      DLOGMU_F = DLOG10(FINAL_MU_F) - DLOG10(FINAL_MU_K)
 C CENTRAL DERIVATIVE METHOD
       DLNMU = DLOG(FINAL_MU_F) - DLOG(FINAL_MU_B)
-      DLOGMU = DLOG10(FINAL_MU_F) - DLOG10(FINAL_MU_B)
+C      DLOGMU = DLOG10(FINAL_MU_F) - DLOG10(FINAL_MU_B)
 
 C DEFINE RELEVANT LINEAR GRADIENTS
 C CENTRAL DERIVATIVE METHOD
@@ -208,28 +227,67 @@ C      CALL AVOIDNAN(DMU_DM,DMU,DMASS) ! d(mu)/dm
       CALL AVOIDNAN(DXLi7_DR,DXLi7,DR) ! Li7
       CALL AVOIDNAN(DXHE3_DR,DXHE3,DR) ! He3
       CALL AVOIDNAN(DXHE4_DR,DXHE4,DR) ! He4
-c assign thermohaline-relevant numbers to arrays
-      DXN_DR_K(K) = (DXN_DR/SUNRcm)
-      DEL_MU_K(K) = DEL_MU
+c      CALL AVOIDNAN(PHI,DLNrho,DLNMU)
+c      CALL AVOIDNAN(DELTA_LC,(-1)*(DLNrho),DLNT)
+c      CALL AVOIDNAN(PHI_DELTA,PHI,DELTA_LC)
+c PHI/DELTA CHECK
+c      IF (PHI_DELTA .LT. 0) THEN
+c       WRITE(*,*) 'Phi/delta < 0! Value = ', PHI_DELTA,k
+c       counter_minus = counter_minus + 1
+c       if (phi .lt. 0) then
+c        write(*,*) 'phi is negative'
+c        counter_phi = counter_phi + 1
+c       elseif (DELTA_LC .lt. 0) then
+c        write(*,*) 'delta is negative'
+c       counter_delta = counter_delta + 1
+c       else
+c        write(*,*) 'maths issue!'
+c       endif
+c      ENDIF
+
+
 C write out numerical results to files
 
       write(38,102) x1mas(K),FINAL_MU_K,DMU_DR,DLNMU_DR,DEL_MU,
-     # DXLi7_DR,DXC_DR,DXN_DR,DXHE3_DR,DXHE4_DR,Dthl,K
+     # DXLi7_DR,DXC_DR,DXN_DR,DXHE3_DR,DXHE4_DR,K
       
  100  FORMAT(1X,F12.9,14D14.7,105X,I5)
  101  FORMAT(F12.9,F10.7,F10.6,F8.5,F8.4,D13.5,3D11.3,D9.2,
      &D11.3,F6.3,D12.4,D12.4,D9.2,I5)
- 102  FORMAT(1X,F12.9,9D15.7,D12.4,I5)
+ 102  FORMAT(1X,F12.9,9D15.7,I5)
 
 c ,XI(kP),XI(kM),KP ,2D15.7,I5 ,DR ,DLNP_2
       enddo
-   
+
+      close(38)
+      OPEN(UNIT=48,FILE=grads_out,status='old')
+
+c      write(*,*) 'number of phi/delta negatives:', counter_minus
+c      write(*,*) 'number of phi negatives = ', counter_phi
+c      write(*,*) 'number of delta negatives = ', counter_delta
+      kcount2 = 0
+c read 2nd time
+      do k = 1,maxme
+c      if (k .ne. maxme) then
+       read(48,102,end=41) x1mas(K),final_mu_arr(k),DMU_DR,DLNMU_DR,
+     # DEL_MU_k(k),DXLi7_DR,DXC_DR,DXN_DR_K(K),DXHE3_DR,DXHE4_DR,gmesh
+c      endif
+       kcount2 = kcount2 + 1
+      enddo
+   41 WRITE(*,*) 'Reading finished grads: number of lines: ', kcount2
+
 C Thermohaline mixing loop
       do k = 1,MAXME
 c       write(*,*) 'XN(1),XN(2) = ',XN(1),',',XN(2)
        km = k - 1
        kp = k + 1
 C THERMOHALINE MIXING IMPLEMENTATION
+
+c assign thermohaline-relevant numbers to arrays
+c      DXN_DR_K(K) = (DXN_DR/SUNRcm)
+c      DEL_MU_K(K) = DEL_MU
+c      final_mu_arr(k) = final_mu_k
+c      PHI_DELTA_K(K) = PHI_DELTA
 
 C get extant parameters into loop 
 c physical radius in cgs
@@ -242,9 +300,9 @@ c density
       dens_k = 10**logDens(K)
       dens_p = 10**logDens(KP)
 
-      th_dxn_dr_m = DXN_DR_K(KM)
-      th_dxn_dr_k = DXN_DR_K(K)
-      th_dxn_dr_p = DXN_DR_K(KP)
+      th_dxn_dr_m = (DXN_DR_K(KM)/SUNRcm)
+      th_dxn_dr_k = (DXN_DR_K(K)/SUNRcm)
+      th_dxn_dr_p = (DXN_DR_K(KP)/SUNRcm)
 
 
 C Special cases for boundary conditions: dx/dr = 0 at rfrac = 0,1
@@ -278,14 +336,16 @@ C with (phi/delta) = 1 (must always be +ve from first principles)
 
 
 C LEDOUX CRITERION (CANTIELLO, LANGER, 2010):
-C  0 >= DEL-DEL_AD >= (PHI/DELTA)*DEL_MU
+C  0 > DEL-DEL_AD > (PHI/DELTA)*DEL_MU
 C WITH PHI = PART(DLN(RHO)/DLN(MU))_F,T
 c AND DELTA = PART(DLN(RHO)/DLN(T))_F,MU
 C If loop comes from Lattanzio et al. (2015): D = 0 unless del_MU < 0
+c add in condition : |DEL_MU_K(K)/final_mu_arr(k)| > 10^-5
+
       if ((DEL_MU_K(K) .LT. 0) .AND. (DEL_MU_K(K) .GT.
-     # (RADIAT(K)-ADIAB(K)))) then
+     # (RADIAT(K)-ADIAB(K))) .and. (abs(DEL_MU_K(K)/final_mu_arr(k)).ge.
+     # 0.10D-3)) then
         Dthl = Cthl*Kthm*(DEL_MU_K(K))/(RADIAT(K)-ADIAB(K))
-c        write(*,*) 
       else
         Dthl = 0.0
       end if
@@ -351,8 +411,8 @@ C timestep size in years, then seconds
 
 C Diffusion equation - gives change in mass fraction
 c due to time only, in cgs
-      dXN_dt = dbrprod_dr/((rphys_k**2)*dens_k)
-      dXN_dt_var = dbrprod_dr_var/((rphys_k**2)*dens_k)
+      call avoidnan(dXN_dt, dbrprod_dr, ((rphys_k**2)*dens_k))
+      call avoidnan(dXN_dt_var, dbrprod_dr_var, ((rphys_k**2)*dens_k))
 C density of N in layer at time dt later
       XN_K_tpdt = XN(K) + dt_s*dXN_dt
 C use non-fixed coefficients
@@ -373,10 +433,13 @@ C use non-fixed coefficients
 
        write(45,130)
        write(45,131)
+       write(46,130)
+       write(46,131)
       end if
 C write '_eq' data to file
-      write(44,106) x1mas(K),rfrac(k),Dthl,BR_PROD_M,BR_PROD_M_var,
-     # BR_PROD_P,BR_PROD_P_var,XN(k),XN_K_tpdt,XN_K_tpdt_var,K
+      write(44,106) x1mas(K),rfrac(k),Dthl,BR_PROD_M,
+     # BR_PROD_M_var,BR_PROD_P,BR_PROD_P_var,XN(k),XN_K_tpdt,
+     # XN_K_tpdt_var,K
 
 
 C Write header to '_time' file
@@ -390,14 +453,17 @@ C first step already done above: introduce iterating (array) variable
        XN_KT_OUT_var(N) = XN_KT_OUT_var(N-1) + dt_s*dXN_dt_var
        if (XN_KT_OUT_var(N) .le. 0) then
         XN_KT_OUT_var(N) = 0
-       elseif (XN_KT_OUT(N) .le. 0) then
+       endif
+       if (XN_KT_OUT(N) .le. 0) then
         XN_KT_OUT(N) = 0
        endif
       enddo
 C write
 C FORMAT FROM BGT2P1.F: NMOD , AGE , ( A(L) , L =  1 , 3 )
-      WRITE(45,132) x1mas(K),XN(K),XN_KT_OUT(1),(XN_KT_OUT(L), L =  10,
-     #100,10 ),K
+      WRITE(45,132) x1mas(K),XN(K),XN_KT_OUT(1),(XN_KT_OUT(L), 
+     #L = 10,100,10),K
+      WRITE(46,132) x1mas(K),XN(K),XN_KT_OUT_var(1),(XN_KT_OUT_var(L), 
+     #L = 10,100,10),K
 
 C '_eq' file format statements
  103  FORMAT('fixed Dthl =',D11.4,' yr, number of steps = ',I4,', step s
@@ -423,6 +489,13 @@ C '_time' file format statements
 
       enddo
       
+C Check precision of mu
+      do k = 1,20
+       if (k .eq. 1) then
+        write(*,*) 'Check precision of mu'
+       endif
+       write(*,*) final_mu_arr(k),del_mu_k(k),logDens(k),k
+      enddo
 
       WRITE(*,*) 'END OF WRITING'
 c      close(38)
