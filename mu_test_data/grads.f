@@ -39,7 +39,7 @@ C      include 'CODE_alw/maincom.2p1'
      # eneu(MAXME),DELTA(MAXME),RADIAT(MAXME),ADIAB(MAXME),
      # VSOUND(MAXME),opac(maxme),cp(maxme),DXN_DR_K(MAXME),
      # DEL_MU_K(MAXME), XN_KT_OUT(NSTEPS),XN_KT_OUT_VAR(NSTEPS),
-     # PHI_DELTA_K(MAXME),final_mu_arr(maxme)
+     # final_mu_arr(maxme),DMU_K(MAXME)
 
 C NOTE ABOUT READING:
 C For '_model' files, copy from NoMachine FIRST, then delete all
@@ -162,6 +162,7 @@ c AND DELTA = PART(DLN(RHO)/DLN(T))_F,MU
       DLNRHO = DLOG(10**logDens(KP)) - DLOG(10**logDens(K))
       DLOGRHO = logDens(KP) - logDens(K)
 C      DMASS = ()
+      DMU_K(K) = DMU
 
       elseif (k .eq. MAXME) then
 C backward derivatives for k = MAXME
@@ -182,6 +183,8 @@ C BY GETTING THE KTH-LAYER WIDTHS FOR DIFFERENT PARAMETERS
       DLOGT = logT(k)-logT(km)
       DLNRHO = DLOG(10**logDens(K)) - DLOG(10**logDens(KM))
       DLOGRHO = logDens(K) - logDens(KM)
+C      DMASS = ()
+      DMU_K(K) = DMU
 
       else
 C CENTRAL DERIVATIVE METHOD FOR REST
@@ -203,6 +206,7 @@ C BY GETTING THE KTH-LAYER WIDTHS FOR DIFFERENT PARAMETERS
       DLNRHO = DLOG(10**logDens(KP)) - DLOG(10**logDens(KM))
       DLOGRHO = logDens(KP) - logDens(KM)
 C      DMASS = ()
+      DMU_K(K) = DMU/2
       endif
 
 C TAKE DIFFERENCE OF NATURAL LOG OF THE MU'S
@@ -343,8 +347,8 @@ C If loop comes from Lattanzio et al. (2015): D = 0 unless del_MU < 0
 c add in condition : |DEL_MU_K(K)/final_mu_arr(k)| > 10^-5
 
       if ((DEL_MU_K(K) .LT. 0) .AND. (DEL_MU_K(K) .GT.
-     # (RADIAT(K)-ADIAB(K))) .and. (abs(DEL_MU_K(K)/final_mu_arr(k)).ge.
-     # 0.10D-3)) then
+     # (RADIAT(K)-ADIAB(K))) .and. (abs(DMU_K(K)/final_mu_arr(k)).ge.
+     # 0.10D-4)) then
         Dthl = Cthl*Kthm*(DEL_MU_K(K))/(RADIAT(K)-ADIAB(K))
       else
         Dthl = 0.0
