@@ -1,58 +1,60 @@
 Fitting results for G_rp filter, with log(g) = 1.0
 Function type:  Exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -3.26221901e+00  -1.12433380e-03   6.51411621e-01]
+[ -3.26227830e+00  -1.12433885e-03   6.51411578e-01]
     Covariance matrix:
-[[  1.74212117e+00   1.46717485e-04   1.16405993e-03]
- [  1.46717485e-04   1.24962520e-08   1.05752358e-07]
- [  1.16405993e-03   1.05752358e-07   1.76185870e-06]]
+[[  1.74219562e+00   1.46721099e-04   1.16407837e-03]
+ [  1.46721099e-04   1.24963328e-08   1.05752103e-07]
+ [  1.16407837e-03   1.05752103e-07   1.76184651e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.163701299874	
-row 2		0.0400012434842	0.0098852860735	
-row 3		0.000547780697411	0.000144390722681	4.15202605949e-06	
+row 1		0.163702345057	
+row 2		0.0400013223566	0.00988526119698	
+row 3		0.00054777945175	0.000144389735668	4.15199788564e-06	
 
-Average fractional error = 0.0357140254796
+Average fractional error = 0.0357142082993
 
 Fitting results for G_rp filter, with log(g) = 1.0
 Function type:  Power law of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -1.48130695e+14  -4.32936286e+00   6.53562144e-01]
+[ -9.99999927e+03  -1.43502655e+00   6.82245904e-01]
     Covariance matrix:
-[[  1.26570077e-35  -1.53073497e-20  -1.93949019e-21]
- [ -1.53073497e-20   1.85126697e-05   2.34439732e-06]
- [ -1.93949019e-21   2.34439732e-06   6.76718116e-07]]
+[[  2.68610757e+09   3.42894472e+04   1.07458540e+03]
+ [  3.42894472e+04   4.37815681e-01   1.37529769e-02]
+ [  1.07458540e+03   1.37529769e-02   4.44784862e-04]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		5.76820810258e-64	
-row 2		2.38688202353e-35	9.8769095936e-07	
-row 3		2.0033444976e-35	8.28553086128e-07	1.58428760711e-06	
+row 1		26.8610795532	
+row 2		2.38946447429	0.212604002928	
+row 3		0.157507062071	0.0140473963914	0.000955582359185	
 
-Average fractional error = 5.66755275434e-07
+Average fractional error = 4.9392763452
 
 Fitting results for G_rp filter, with log(g) = 1.0
-Function type:  Logarithmic function of Teff, fitted
+Function type:  Power law + exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[  1.43997482e-01   4.77068753e+00   2.42506729e-06]
+[ -1.38925169e+03  -2.96544560e-03  -6.32799564e-01   2.81281833e-02]
     Covariance matrix:
-[[  2.95932920e-04  -1.05854356e+04   1.38759541e+02]
- [ -1.05854356e+04   3.89029068e+12  -5.09964427e+10]
- [  1.38759541e+02  -5.09964427e+10   6.68494306e+08]]
+[[  2.35245242e+05   4.89515891e-02   1.91877829e+00  -1.69051973e-01]
+ [  4.89515891e-02   1.02047841e-08   4.12160315e-07  -3.63200460e-08]
+ [  1.91877829e+00   4.12160315e-07   3.39457510e-05  -3.01845258e-06]
+ [ -1.69051973e-01  -3.63200460e-08  -3.01845258e-06   2.68540017e-07]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.0142719556213	
-row 2		15408.94355	170930714833.0	
-row 3		397360016.438	4.40793433874e+15	1.13671116123e+20	
+row 1		0.121887447923	
+row 2		0.0118821738295	0.0011604432256	
+row 3		0.00218261779596	0.000219639294811	8.47721265866e-05	
+row 4		0.00432611070455	0.000435426388659	0.00016958073055	0.000339410790495	
 
-Average fractional error = 1.89459207047e+19
+Average fractional error = 0.014268762281
 
 RANKED MEAN FRACTIONAL ERRORS (best to worst) :   
-Power law of Teff, fitted               		5.66755275434e-07
-Exponential function of Teff, fitted    		0.0357140254796
-Logarithmic function of Teff, fitted    		1.89459207047e+19
+Power law + exponential function of Teff, fitted		0.014268762281
+Exponential function of Teff, fitted    		0.0357142082993
+Power law of Teff, fitted               		4.9392763452

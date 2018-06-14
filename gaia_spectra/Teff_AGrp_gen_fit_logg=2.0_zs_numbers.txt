@@ -1,58 +1,60 @@
 Fitting results for G_rp filter, with log(g) = 2.0
 Function type:  Exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -7.76712547e-01  -6.94143156e-04   6.60065675e-01]
+[ -7.76735686e-01  -6.94151071e-04   6.60065575e-01]
     Covariance matrix:
-[[  2.92653007e-02   9.72957145e-06   1.10030526e-04]
- [  9.72957145e-06   3.32903771e-09   4.21180983e-08]
- [  1.10030526e-04   4.21180983e-08   1.15971893e-06]]
+[[  2.92675428e-02   9.73003025e-06   1.10033193e-04]
+ [  9.73003025e-06   3.32909497e-09   4.21178454e-08]
+ [  1.10033193e-04   4.21178454e-08   1.15969999e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.0485101200078	
-row 2		0.0180461409251	0.00690908637373	
-row 3		0.000214617791072	9.19247714593e-05	2.66181856399e-06	
+row 1		0.0485109460509	
+row 2		0.0180462485014	0.00690904765084	
+row 3		0.000214616630891	9.19231851726e-05	2.66177589479e-06	
 
-Average fractional error = 0.0122957586146
+Average fractional error = 0.0122959072992
 
 Fitting results for G_rp filter, with log(g) = 2.0
 Function type:  Power law of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -1.53574137e+09  -2.91038223e+00   6.63039501e-01]
+[ -1.00000000e+05  -1.72815413e+00   6.73405621e-01]
     Covariance matrix:
-[[  6.85714224e+18   5.45267419e+08   2.79848576e+06]
- [  5.45267419e+08   4.33708304e-02   2.24107740e-04]
- [  2.79848576e+06   2.24107740e-04   1.60070469e-06]]
+[[  4.05347515e+10   5.02752196e+04   7.75644645e+02]
+ [  5.02752196e+04   6.23813123e-02   9.67572080e-04]
+ [  7.75644645e+02   9.67572080e-04   1.65613226e-05]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		2.90741474891	
-row 2		0.121994832223	0.00512032677837	
-row 3		0.0027483093453	0.000116136149861	3.64109837759e-06	
+row 1		4.05347515187	
+row 2		0.290918609111	0.0208876488844	
+row 3		0.0115182383512	0.000831426986672	3.65209059158e-05	
 
-Average fractional error = 0.506232999085
+Average fractional error = 0.729611266018
 
 Fitting results for G_rp filter, with log(g) = 2.0
-Function type:  Logarithmic function of Teff, fitted
+Function type:  Power law + exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ 0.1026006   7.21996264  0.16313398]
+[ -9.85284457e+01  -2.16523076e-03  -5.69958928e-01   2.24505250e-02]
     Covariance matrix:
-[[  7.79881369e-05   2.75407868e+03  -1.69974985e+01]
- [  2.75407868e+03   4.64620456e+12  -2.86746271e+10]
- [ -1.69974985e+01  -2.86746271e+10   1.76969013e+08]]
+[[  2.01030493e+03   5.82059550e-03   2.04926454e-01  -1.82148084e-02]
+ [  5.82059550e-03   1.69180040e-08   6.25403587e-07  -5.56081490e-08]
+ [  2.04926454e-01   6.25403587e-07   5.69302573e-05  -5.12783790e-06]
+ [ -1.82148084e-02  -5.56081490e-08  -5.12783790e-06   4.62370714e-07]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.00740847432589	
-row 2		3717.84696983	89130927560.9	
-row 3		1015.52518149	24345483090.7	6649796688.39	
+row 1		0.207080246631	
+row 2		0.0272835953116	0.00360861664258	
+row 3		0.00364915938996	0.000506772009012	0.00017524919229	
+row 4		0.00823448559274	0.00114395186322	0.000400741413848	0.000917354755171	
 
-Average fractional error = 20021035345.6
+Average fractional error = 0.0253000172802
 
 RANKED MEAN FRACTIONAL ERRORS (best to worst) :   
-Exponential function of Teff, fitted    		0.0122957586146
-Power law of Teff, fitted               		0.506232999085
-Logarithmic function of Teff, fitted    		20021035345.6
+Exponential function of Teff, fitted    		0.0122959072992
+Power law + exponential function of Teff, fitted		0.0253000172802
+Power law of Teff, fitted               		0.729611266018
