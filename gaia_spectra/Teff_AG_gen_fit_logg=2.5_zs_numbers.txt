@@ -1,58 +1,60 @@
 Fitting results for G filter, with log(g) = 2.5
 Function type:  Exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -1.09118779e+00  -3.54959839e-04   9.94104775e-01]
+[ -1.09118781e+00  -3.54959846e-04   9.94104774e-01]
     Covariance matrix:
-[[  1.55888698e-03   3.50523609e-07   5.24341317e-05]
- [  3.50523609e-07   8.62240685e-11   1.53237237e-08]
- [  5.24341317e-05   1.53237237e-08   4.24735073e-06]]
+[[  1.55888698e-03   3.50523599e-07   5.24341246e-05]
+ [  3.50523599e-07   8.62240639e-11   1.53237216e-08]
+ [  5.24341246e-05   1.53237216e-08   4.24735017e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.00130922905548	
-row 2		0.000904979118264	0.000684337080798	
-row 3		4.83373040219e-05	4.34263104182e-05	4.29787524345e-06	
+row 1		0.0013092289957	
+row 2		0.000904979055544	0.000684337020354	
+row 3		4.83372964031e-05	4.34263039598e-05	4.2978746939e-06	
 
-Average fractional error = 0.000499101124037
+Average fractional error = 0.000499101091109
 
 Fitting results for G filter, with log(g) = 2.5
 Function type:  Power law of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -6.75664507e+04  -1.48417652e+00   1.03578240e+00]
+[ -6.75656293e+04  -1.48417501e+00   1.03578253e+00]
     Covariance matrix:
-[[  1.56884330e+09   2.87729295e+03   2.45669416e+02]
- [  2.87729295e+03   5.28029681e-03   4.54071562e-04]
- [  2.45669416e+02   4.54071562e-04   4.37319794e-05]]
+[[  1.56880461e+09   2.87725716e+03   2.45666923e+02]
+ [  2.87725716e+03   5.28029571e-03   4.54072504e-04]
+ [  2.45666923e+02   4.54072504e-04   4.37321562e-05]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.343650797816	
-row 2		0.0286924358359	0.00239710591336	
-row 3		0.00351035840942	0.000295372609484	4.07626190625e-05	
+row 1		0.343650676709	
+row 2		0.0286924569264	0.00239711028262	
+row 3		0.00351036502622	0.000295373485447	4.07627737032e-05	
 
-Average fractional error = 0.0630978055339
+Average fractional error = 0.0630977908672
 
 Fitting results for G filter, with log(g) = 2.5
-Function type:  Logarithmic function of Teff, fitted
+Function type:  Power law + exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ 0.42002755  0.01741302  0.00124869]
+[ -1.09210209e+00  -3.57955401e-04  -2.62694657e-02   2.08183391e-03]
     Covariance matrix:
-[[  5.69119671e-04  -1.07534778e+02   1.12651310e+03]
- [ -1.07534778e+02   5.51291554e+11  -5.77522782e+12]
- [  1.12651310e+03  -5.77522782e+12   6.05002128e+13]]
+[[  1.72144097e-03   5.49510670e-07   1.22778855e-03  -1.18719460e-04]
+ [  5.49510670e-07   5.64252225e-10   3.13548477e-06  -3.15567291e-07]
+ [  1.22778855e-03   3.13548477e-06   2.05764154e-02  -2.08092339e-03]
+ [ -1.18719460e-04  -3.15567291e-07  -2.08092339e-03   2.10490630e-04]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.00322587873205	
-row 2		14702.6980777	1.81816415637e+15	
-row 3		2147842.22487	2.65606626218e+17	3.88011608543e+19	
+row 1		0.00144333006496	
+row 2		0.00140567192794	0.00440367685118	
+row 3		0.0427965837039	0.333445251068	29.8172261277	
+row 4		0.052217081517	0.423464476556	38.050360476	48.5669256215	
 
-Average fractional error = 6.51143094078e+18
+Average fractional error = 11.7293688297
 
 RANKED MEAN FRACTIONAL ERRORS (best to worst) :   
-Exponential function of Teff, fitted    		0.000499101124037
-Power law of Teff, fitted               		0.0630978055339
-Logarithmic function of Teff, fitted    		6.51143094078e+18
+Exponential function of Teff, fitted    		0.000499101091109
+Power law of Teff, fitted               		0.0630977908672
+Power law + exponential function of Teff, fitted		11.7293688297

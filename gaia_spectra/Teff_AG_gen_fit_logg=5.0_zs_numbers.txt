@@ -1,58 +1,60 @@
 Fitting results for G filter, with log(g) = 5.0
 Function type:  Exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -7.26541784e-01  -2.39458919e-04   1.02037802e+00]
+[ -7.26537176e-01  -2.39457696e-04   1.02037816e+00]
     Covariance matrix:
-[[  3.71615341e-04   9.41818696e-08   8.32493835e-06]
- [  9.41818696e-08   2.84918456e-11   4.17125630e-09]
- [  8.32493835e-06   4.17125630e-09   1.91613228e-06]]
+[[  3.71608814e-04   9.41806363e-08   8.32485358e-06]
+ [  9.41806363e-08   2.84916354e-11   4.17124976e-09]
+ [  8.32485358e-06   4.17124976e-09   1.91613755e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.000703999648381	
-row 2		0.000541346948628	0.00049688804341	
-row 3		1.12294719456e-05	1.70716210611e-05	1.84036216777e-06	
+row 1		0.000703996212117	
+row 2		0.000541346057782	0.000496889452143	
+row 3		1.12294273316e-05	1.70716792368e-05	1.84036674087e-06	
 
-Average fractional error = 0.000295396015932
+Average fractional error = 0.000295395532559
 
 Fitting results for G filter, with log(g) = 5.0
 Function type:  Power law of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -1.28137781e+04  -1.28185336e+00   1.04432504e+00]
+[ -1.28137730e+04  -1.28185331e+00   1.04432504e+00]
     Covariance matrix:
-[[  4.83011518e+06   4.56905120e+01   2.88985695e+00]
- [  4.56905120e+01   4.32845897e-04   2.78480714e-05]
- [  2.88985695e+00   2.78480714e-05   2.44852316e-06]]
+[[  4.83011507e+06   4.56905294e+01   2.88985877e+00]
+ [  4.56905294e+01   4.32846235e-04   2.78480996e-05]
+ [  2.88985877e+00   2.78480996e-05   2.44852541e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.0294173189428	
-row 2		0.00278170120648	0.000263424771007	
-row 3		0.000215955095169	2.08027660738e-05	2.24508523624e-06	
+row 1		0.0294173416758	
+row 2		0.00278170347374	0.000263424996553	
+row 3		0.00021595531629	2.08027878757e-05	2.24508728308e-06	
 
-Average fractional error = 0.00545024131113
+Average fractional error = 0.00545024555625
 
 Fitting results for G filter, with log(g) = 5.0
-Function type:  Logarithmic function of Teff, fitted
+Function type:  Power law + exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[  2.27445332e-01   1.05026094e+00   4.89431773e-05]
+[ -8.26149828e-01  -3.33296360e-04  -2.79215421e-01   2.52357618e-02]
     Covariance matrix:
-[[  1.63116142e-04  -1.16259254e+03   1.09342486e+02]
- [ -1.16259254e+03   4.67689854e+11  -4.39867657e+10]
- [  1.09342486e+02  -4.39867657e+10   4.13700562e+09]]
+[[  2.03361030e-04   6.98258319e-08   6.77005732e-05  -4.91938695e-06]
+ [  6.98258319e-08   3.09263820e-11   4.35113071e-08  -3.19876645e-09]
+ [  6.77005732e-05   4.35113071e-08   9.10233215e-05  -6.79736097e-06]
+ [ -4.91938695e-06  -3.19876645e-09  -6.79736097e-06   5.08646283e-07]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.00315313732087	
-row 2		4866.90972265	423997717793.0	
-row 3		9822448.41267	8.55721917644e+14	1.72703759857e+18	
+row 1		0.000297954602932	
+row 2		0.000253586851381	0.000278399195347	
+row 3		0.000293490553982	0.000467554410619	0.00116754566953	
+row 4		0.00023595856633	0.000380308071212	0.000964682752857	0.000798698809984	
 
-Average fractional error = 2.87982290749e+17
+Average fractional error = 0.000513817948417
 
 RANKED MEAN FRACTIONAL ERRORS (best to worst) :   
-Exponential function of Teff, fitted    		0.000295396015932
-Power law of Teff, fitted               		0.00545024131113
-Logarithmic function of Teff, fitted    		2.87982290749e+17
+Exponential function of Teff, fitted    		0.000295395532559
+Power law + exponential function of Teff, fitted		0.000513817948417
+Power law of Teff, fitted               		0.00545024555625

@@ -1,58 +1,60 @@
 Fitting results for G_bp filter, with log(g) = 5.0
 Function type:  Exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -3.87953782e-01  -1.57184783e-04   1.21039290e+00]
+[ -3.87954066e-01  -1.57184940e-04   1.21039287e+00]
     Covariance matrix:
-[[  1.04182107e-04   4.24772334e-08   4.06803597e-06]
- [  4.24772334e-08   2.34748356e-11   4.73068612e-09]
- [  4.06803597e-06   4.73068612e-09   2.47853789e-06]]
+[[  1.04182372e-04   4.24773246e-08   4.06804062e-06]
+ [  4.24773246e-08   2.34748677e-11   4.73068559e-09]
+ [  4.06804062e-06   4.73068559e-09   2.47853564e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.000692202488931	
-row 2		0.000696571552175	0.000950126787641	
-row 3		8.66320173088e-06	2.48649315534e-05	1.69177587839e-06	
+row 1		0.000692203233204	
+row 2		0.000696571839409	0.000950126183565	
+row 3		8.66320551541e-06	2.48649044984e-05	1.69177443317e-06	
 
-Average fractional error = 0.000395686789651
+Average fractional error = 0.000395686856771
 
 Fitting results for G_bp filter, with log(g) = 5.0
 Function type:  Power law of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[-195.58065748   -0.7979171     1.25625805]
+[-195.58071371   -0.79791713    1.25625805]
     Covariance matrix:
-[[  1.09018063e+03   6.98202304e-01   9.04920284e-02]
- [  6.98202304e-01   4.48010915e-04   5.88092952e-05]
- [  9.04920284e-02   5.88092952e-05   8.60612416e-06]]
+[[  1.09018258e+03   6.98203345e-01   9.04921543e-02]
+ [  6.98203345e-01   4.48011450e-04   5.88093587e-05]
+ [  9.04921543e-02   5.88093587e-05   8.60613157e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.0285001180413	
-row 2		0.00447401675216	0.000703676511848	
-row 3		0.000368303259363	5.86690890747e-05	5.45318070091e-06	
+row 1		0.0285001525243	
+row 2		0.00447402193507	0.000703677289187	
+row 3		0.000368303667491	5.86691500839e-05	5.4531854394e-06	
 
-Average fractional error = 0.00568503947242
+Average fractional error = 0.00568504629192
 
 Fitting results for G_bp filter, with log(g) = 5.0
-Function type:  Logarithmic function of Teff, fitted
+Function type:  Power law + exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ 0.18926321  4.34695614  0.23559449]
+[ -3.76603357e-01  -2.83921616e-04  -1.83367242e-01   3.16029234e-02]
     Covariance matrix:
-[[  4.27862182e-05  -4.73843108e+02   8.95962545e+00]
- [ -4.73843108e+02   1.11315414e+12  -2.10484697e+10]
- [  8.95962545e+00  -2.10484697e+10   3.98002453e+08]]
+[[  1.81956395e-04   1.33338736e-07   7.61560628e-05  -5.10931852e-06]
+ [  1.33338736e-07   1.59120345e-10   1.60561938e-07  -1.09999742e-08]
+ [  7.61560628e-05   1.60561938e-07   2.27558614e-04  -1.58029075e-05]
+ [ -5.10931852e-06  -1.09999742e-08  -1.58029075e-05   1.09936737e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.00119445964506	
-row 2		575.947768547	58909425602.9	
-row 3		200.936349017	20552759049.4	7170599614.9	
+row 1		0.0012829181498	
+row 2		0.00124702077562	0.00197391658183	
+row 3		0.0011028045317	0.0030840569486	0.00676783514903	
+row 4		0.000429290751279	0.00122593078465	0.00272701788459	0.00110074905846	
 
-Average fractional error = 14438797507.3
+Average fractional error = 0.00209415406156
 
 RANKED MEAN FRACTIONAL ERRORS (best to worst) :   
-Exponential function of Teff, fitted    		0.000395686789651
-Power law of Teff, fitted               		0.00568503947242
-Logarithmic function of Teff, fitted    		14438797507.3
+Exponential function of Teff, fitted    		0.000395686856771
+Power law + exponential function of Teff, fitted		0.00209415406156
+Power law of Teff, fitted               		0.00568504629192

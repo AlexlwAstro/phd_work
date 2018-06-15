@@ -1,58 +1,60 @@
 Fitting results for G_bp filter, with log(g) = 4.0
 Function type:  Exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ -4.04895931e-01  -1.73200540e-04   1.20555918e+00]
+[ -4.04896056e-01  -1.73200614e-04   1.20555916e+00]
     Covariance matrix:
-[[  1.11868094e-04   4.82650027e-08   6.02869882e-06]
- [  4.82650027e-08   2.83284514e-11   6.49368174e-09]
- [  6.02869882e-06   6.49368174e-09   3.07990668e-06]]
+[[  1.11868224e-04   4.82650497e-08   6.02870182e-06]
+ [  4.82650497e-08   2.83284680e-11   6.49368119e-09]
+ [  6.02870182e-06   6.49368119e-09   3.07990514e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.000682369200801	
-row 2		0.000688239636504	0.000944331220492	
-row 3		1.23507019488e-05	3.10994867858e-05	2.11914409422e-06	
+row 1		0.000682369569997	
+row 2		0.000688239799108	0.00094433097056	
+row 3		1.23507044443e-05	3.10994713582e-05	2.11914309346e-06	
 
-Average fractional error = 0.000393418231771
+Average fractional error = 0.000393418276427
 
 Fitting results for G_bp filter, with log(g) = 4.0
 Function type:  Power law of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[-193.33343573   -0.79660081    1.25859356]
+[-193.33338394   -0.79660078    1.25859357]
     Covariance matrix:
-[[  2.49726733e+03   1.63792311e+00   2.39109419e-01]
- [  1.63792311e+00   1.07612598e-03   1.58859212e-04]
- [  2.39109419e-01   1.58859212e-04   2.56073680e-05]]
+[[  2.49726439e+03   1.63792160e+00   2.39109185e-01]
+ [  1.63792160e+00   1.07612526e-03   1.58859098e-04]
+ [  2.39109185e-01   1.58859098e-04   2.56073503e-05]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.0668114808539	
-row 2		0.0106352033364	0.00169582731777	
-row 3		0.000982662107606	0.00015844777806	1.61656782767e-05	
+row 1		0.0668114381129	
+row 2		0.0106351968437	0.00169582633399	
+row 3		0.000982661406091	0.000158447671134	1.61656669984e-05	
 
-Average fractional error = 0.0133832978453
+Average fractional error = 0.0133832893391
 
 Fitting results for G_bp filter, with log(g) = 4.0
-Function type:  Logarithmic function of Teff, fitted
+Function type:  Power law + exponential function of Teff, fitted
     Fit coefficients (in order of functions arguments):
-[ 0.20943707  5.72745466  0.12046832]
+[ -3.71514921e-01  -2.83700486e-04  -1.89200119e-01   3.22278747e-02]
     Covariance matrix:
-[[  5.84362406e-05   5.36885937e+02  -8.52653667e+00]
- [  5.36885937e+02   9.77535308e+11  -1.55241817e+10]
- [ -8.52653667e+00  -1.55241817e+10   2.46538633e+08]]
+[[  2.53913095e-04   1.99850011e-07   1.30640346e-04  -8.83546924e-06]
+ [  1.99850011e-07   3.13959412e-10   4.02215880e-07  -2.80396251e-08]
+ [  1.30640346e-04   4.02215880e-07   6.73644135e-04  -4.74958901e-05]
+ [ -8.83546924e-06  -2.80396251e-08  -4.74958901e-05   3.35276008e-06]]
 Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
 i.e., covariance(i,j)/{coef(i)*coef(j)}
 
 Fractional error output:  
-row 1		0.00133221762691	
-row 2		447.576032052	29799510653.3	
-row 3		337.945180163	22499568902.2	16987883011.8	
+row 1		0.00183963887279	
+row 2		0.00189612881	0.0039007969904	
+row 3		0.00185857314321	0.0074933795022	0.0188186177821	
+row 4		0.00073794108749	0.00306676471174	0.00778938120587	0.00322804175041	
 
-Average fractional error = 11547827225.5
+Average fractional error = 0.00506292638562
 
 RANKED MEAN FRACTIONAL ERRORS (best to worst) :   
-Exponential function of Teff, fitted    		0.000393418231771
-Power law of Teff, fitted               		0.0133832978453
-Logarithmic function of Teff, fitted    		11547827225.5
+Exponential function of Teff, fitted    		0.000393418276427
+Power law + exponential function of Teff, fitted		0.00506292638562
+Power law of Teff, fitted               		0.0133832893391
