@@ -9,7 +9,7 @@ c
 c************** units *******************************
 c      open(unit=1, file='WFPC2widefilters.dat')
 c      open(unit=2, file='INPUT')
-      open(unit=2, file='fm10ak2odfnew.pck')
+      open(unit=2, file='fp00k2odfnew.pck')
       open(unit=3, file='check')
       open(unit=4, file='spettroVega')
       open(unit=9, file='OUTPUT')

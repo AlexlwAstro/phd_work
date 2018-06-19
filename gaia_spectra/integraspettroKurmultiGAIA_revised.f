@@ -9,8 +9,8 @@ c Output table: Teff,logg,G,G_bp,G_rp
 c************** units *******************************
 c      open(unit=1, file='WFPC2widefilters.dat')
 c      open(unit=2, file='INPUT')
-      open(unit=2, file='fp00k2odfnew.pck')
-C fp00k2odfnew.pck = solar metallicity, fm20k2odfnew.pck = Z = 10^-2
+      open(unit=2, file='fm20k2odfnew.pck')
+C fp00k2odfnew.pck = solar metallicity, fm20k2odfnew.pck = Z = 10^-2 * solar
 c      open(unit=3, file='check')
       open(unit=4, file='spettroVega')
       open(unit=9, file='OUTPUT')
@@ -163,6 +163,7 @@ c***********************************************
 c
 c******************* Extinction law*************
 c  Cardelli et al. (1989) with Rv=3.1 ***********
+C from Fitzpatrick & Massa (1988)
 c   
       do 3211 i=1, 1221
       wavemicr(i)=1.e3/waves(i) ! (1/lambda in micron)
@@ -182,6 +183,7 @@ c
       bpp=1.41338e0*yw(i)+2.28305e0*yw(i)**2.e0+1.07233e0*yw(i)**
      #3.e0-5.38434e0*yw(i)**4.e0-0.62251e0*yw(i)**5.e0
      #+5.3026*yw(i)**6.e0-2.09002e0*yw(i)**7.e0
+C equation below is the same if (1000/wavelength) >= 1.1 microns^-1
       ratio(i)=app+(bpp/rv)
       end if
 c
@@ -213,6 +215,7 @@ c
      #+0.374e0*((wavemicr(i)-8.0e0)**3.e0)
       ratio(i)=app+(bpp/rv)
       end if
+C 'ratio' is now multiplied by avl, the 'A(V)' raw input value from terminal
       ratio(i)=ratio(i)*avl
  3211 continue
 
@@ -220,16 +223,18 @@ c**********************************************************
 c
 c***************** start Girardi et al. (2000) formulas ********
       aa1=4.75e0 
+C = Mbol(Sun), solar absolute bolometric magnitude
       aa2a=alog10(4.e0*3.1415e0*100.e0)
-C = log(400*pi)
+C = log(4*pi)
       aa2c=alog10(5.67051e-5*(teff**4.e0)/(3.844e33))
 C = log((sigma(SB) * T**4)/Lsun) in physical cgs units
       aa2b=2.e0*(alog10(3.0857e0)+18.e0)
 C = 2 * log(1pc in cgs units)
       aa3=-2.5e0*(aa2a+aa2b+aa2c)
+C = -2.5log((4*pi*sigma(SB)*T**4*)/Lsun)
       aa4=0.03e0  ! all Vega magnitudes=0.03 GAIA 
 c      write(*,*) aa2a,aa2b,aa2c
-c************* calcolo flusso totale (not necessary for stellar BCs
+c************* calcolo flusso totale (not necessary for stellar BCs)
 c
 c      flussotot=0.0e0
 c      do 7 i=2, 1221
@@ -248,20 +253,28 @@ c
       flussotot2=0.0e0
       flussotot2vega=0.0e0
 
-
+C this loop is the INTEGRATION of stuff inside the logarithm
       do 8 i=2, 1221
       flussomedio=(fs(i-1)+fs(i))/2.e0 
+C risposta = response -> is response function S_lambda
       rispostamedia=(ff2(ikj,i-1)+ff2(ikj,i))/2.e0
+c mean wavelength
       wavemedia=(waves(i)+waves(i-1))/2.0e0
 c     flussotot2=flussotot2+flussomedio
 c    #*(10.e0**(-0.4e0*ratio(i)))*
-c    #rispostamedia*(waves(i)-waves(i-1))  ! energy int    
+c    #rispostamedia*(waves(i)-waves(i-1))  ! energy int   
+
+C First use of 'ratio' after involvement of avl - also the last overall
+C flussotot2 (log's numerator) iteratively increases by (basically):
+C lambda(i)*flux(i)*S_lambda(i)*dlambda(i)*(10^-0.4*ratio)
+C Ratio (in this final guise) is therefore the actual extinction
       flussotot2=flussotot2+waves(i)*flussomedio
      #*(10.e0**(-0.4e0*ratio(i)))*
      #rispostamedia*(waves(i)-waves(i-1))   ! QE int  photon counting 
       flussomedio2=(fvega(i-1)+fvega(i))/2.e0
 c     flussotot2vega=flussotot2vega+flussomedio2*
 c    #rispostamedia*(waves(i)-waves(i-1))  ! energy int 
+C reference (Vega) flux - this is the log's denominator
       flussotot2vega=flussotot2vega+waves(i)*flussomedio2*
      #rispostamedia*(waves(i)-waves(i-1))  ! QE int  photon counting
  8    continue
