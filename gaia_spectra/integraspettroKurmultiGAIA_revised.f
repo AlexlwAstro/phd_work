@@ -1,20 +1,25 @@
       program integra
 c****************** declarations ******************
       dimension ff(21,19000), fs(2000), wavef(19000), waves(2000)
-      dimension ff2(21,19000), fvega(2000), bcV(21)
+      dimension ff2(21,19000), fvega(2000), bcV(21),bcV_cas(21)
       dimension wavemicr(2000), ratio(2000), yw(2000)
+      dimension ratio_casa(3,2000),flussotot2_cas(3),r_cas(3)
 c      dimension ndat(21)
       character namein(49)*100
+      character*30 pck_in
+      integer*4 a
 c Output table: Teff,logg,G,G_bp,G_rp
 c************** units *******************************
 c      open(unit=1, file='WFPC2widefilters.dat')
 c      open(unit=2, file='INPUT')
-      open(unit=2, file='fm20k2odfnew.pck')
+      pck_in = 'fp00k2odfnew.pck'
+      open(unit=2, file=pck_in)
 C fp00k2odfnew.pck = solar metallicity, fm20k2odfnew.pck = Z = 10^-2 * solar
 c      open(unit=3, file='check')
       open(unit=4, file='spettroVega')
       open(unit=9, file='OUTPUT')
-      open (unit=11, file='INPUTfilters', status='old' )
+      open(unit=13, file='casaR_output')
+      open (unit=11, file='INPUTfilters', status='old')
 c****************** insert extinction A(V)*************
       write(*,*) 'Insert A(V) and Rv=A(V)/E(B-V) (standard value 3.1)'
       read(*,*) avl, rv
@@ -26,6 +31,14 @@ c*********** read number and names filters
 
        ndat=0
        nfilt=3   ! numero filtri
+C casagrande R_X metallicity - assume metals have same relative abundances
+c as sun
+       if(pck_in .eq. 'fm20k2odfnew.pck') then
+         FeH = -2.0e0
+       elseif(pck_in .eq. 'fp00k2odfnew.pck') then
+         FeH = 0.0e0
+       endif
+       
 
       do 2 i=1, 7200
 c       read(1,*, end=21) wavef(ik, i),ff(ik,i)
@@ -161,13 +174,24 @@ c******** convert to Flambda for integration
  703  continue 
 c***********************************************
 c
+C Casagrande R_X equations
+      if (teff .ge. 5250.e0 .and. teff .le. 7000.e0) then
+       t4 = teff*(1.0e-4)
+       r_cas(1) = 1.4013e0+t4*(3.1406e0+(-1.5626e0*t4))+(-0.0101e0*FeH)
+       r_cas(2) = 1.7895e0+t4*(4.2355e0+(-2.7071e0*t4))+(-0.0253e0*FeH)
+       r_cas(3) = 1.8593e0+t4*(0.3985e0+(-0.1771e0*t4))+(0.0026e0*FeH)
+      else
+       r_cas(1) = rv
+       r_cas(2) = rv
+       r_cas(3) = rv
+      endif
 c******************* Extinction law*************
 c  Cardelli et al. (1989) with Rv=3.1 ***********
 C from Fitzpatrick & Massa (1988)
 c   
       do 3211 i=1, 1221
       wavemicr(i)=1.e3/waves(i) ! (1/lambda in micron)
-c
+c 
       if (wavemicr(i).lt.0.3e0) ratio(i)=0.0e0 
 c
       if(wavemicr(i).ge.0.3e0.and.wavemicr(i).le.1.1e0) then 
@@ -184,7 +208,14 @@ c
      #3.e0-5.38434e0*yw(i)**4.e0-0.62251e0*yw(i)**5.e0
      #+5.3026*yw(i)**6.e0-2.09002e0*yw(i)**7.e0
 C equation below is the same if (1000/wavelength) >= 1.1 microns^-1
+C Rv used
       ratio(i)=app+(bpp/rv)
+C ALW STARTS HERE
+C Casagrande, Vandenberg RV ratios
+      ratio_casa(1,i)= app+(bpp/r_cas(1))
+      ratio_casa(2,i)= app+(bpp/r_cas(2))
+      ratio_casa(3,i)= app+(bpp/r_cas(3))
+C ALW ENDS HERE
       end if
 c
       if(wavemicr(i).ge.3.3e0.and.wavemicr(i).le.8.0e0) then
@@ -203,7 +234,14 @@ c
      #(((wavemicr(i)-4.67e0)**2.e0)+0.341e0)
       bpp=zfb-3.090e0+1.825e0*wavemicr(i)+1.206e0/
      #(((wavemicr(i)-4.62e0)**2.e0)+0.263e0)
+C Rv used
       ratio(i)=app+(bpp/rv)
+C ALW STARTS HERE
+C Casagrande, Vandenberg RV ratios
+      ratio_casa(1,i)= app+(bpp/r_cas(1))
+      ratio_casa(2,i)= app+(bpp/r_cas(2))
+      ratio_casa(3,i)= app+(bpp/r_cas(3))
+C ALW ENDS HERE
       end if
 c
       if(wavemicr(i).ge.8.0e0.and.wavemicr(i).le.10.0e0) then 
@@ -213,10 +251,22 @@ c
       bpp=13.67e0+4.257e0*(wavemicr(i)-8.0e0)
      #-0.42e0*((wavemicr(i)-8.0e0)**2.e0)
      #+0.374e0*((wavemicr(i)-8.0e0)**3.e0)
+C Rv used
       ratio(i)=app+(bpp/rv)
+C ALW STARTS HERE
+C Casagrande, Vandenberg RV ratios
+      ratio_casa(1,i)= app+(bpp/r_cas(1))
+      ratio_casa(2,i)= app+(bpp/r_cas(2))
+      ratio_casa(3,i)= app+(bpp/r_cas(3))
+C ALW ENDS HERE
       end if
+C end of 'if' statements
 C 'ratio' is now multiplied by avl, the 'A(V)' raw input value from terminal
       ratio(i)=ratio(i)*avl
+C finish casagrande ratios
+      ratio_casa(1,i)= ratio_casa(1,i)*avl
+      ratio_casa(2,i)= ratio_casa(2,i)*avl
+      ratio_casa(3,i)= ratio_casa(3,i)*avl
  3211 continue
 
 c**********************************************************
@@ -225,13 +275,13 @@ c***************** start Girardi et al. (2000) formulas ********
       aa1=4.75e0 
 C = Mbol(Sun), solar absolute bolometric magnitude
       aa2a=alog10(4.e0*3.1415e0*100.e0)
-C = log(4*pi)
+C = log(400*pi)
       aa2c=alog10(5.67051e-5*(teff**4.e0)/(3.844e33))
 C = log((sigma(SB) * T**4)/Lsun) in physical cgs units
       aa2b=2.e0*(alog10(3.0857e0)+18.e0)
 C = 2 * log(1pc in cgs units)
       aa3=-2.5e0*(aa2a+aa2b+aa2c)
-C = -2.5log((4*pi*sigma(SB)*T**4*)/Lsun)
+C = -2.5log((4*pi*sigma(SB)*T**4*)/Lsun * (10pc)^2)
       aa4=0.03e0  ! all Vega magnitudes=0.03 GAIA 
 c      write(*,*) aa2a,aa2b,aa2c
 c************* calcolo flusso totale (not necessary for stellar BCs)
@@ -258,7 +308,7 @@ C this loop is the INTEGRATION of stuff inside the logarithm
       flussomedio=(fs(i-1)+fs(i))/2.e0 
 C risposta = response -> is response function S_lambda
       rispostamedia=(ff2(ikj,i-1)+ff2(ikj,i))/2.e0
-c mean wavelength
+c median wavelength
       wavemedia=(waves(i)+waves(i-1))/2.0e0
 c     flussotot2=flussotot2+flussomedio
 c    #*(10.e0**(-0.4e0*ratio(i)))*
@@ -277,9 +327,19 @@ c    #rispostamedia*(waves(i)-waves(i-1))  ! energy int
 C reference (Vega) flux - this is the log's denominator
       flussotot2vega=flussotot2vega+waves(i)*flussomedio2*
      #rispostamedia*(waves(i)-waves(i-1))  ! QE int  photon counting
+C Casagrande flux
+      do 71 a = 1,nfilt
+       flussotot2_cas(a)=flussotot2+waves(i)*flussomedio
+     #*(10.e0**(-0.4e0*ratio_casa(a,i)))*
+     #rispostamedia*(waves(i)-waves(i-1))   ! QE int  photon counting
+ 71   continue
+
  8    continue
-c**********
+c********** Bolometric correction
       bcV(ikj)=aa1+aa3+aa4+2.5e0*alog10(flussotot2/flussotot2vega)
+C Casagrande flux
+      bcV_cas(ikj)=aa1+aa3+aa4+2.5e0*alog10(flussotot2_cas(ikj)/
+     #flussotot2vega)
 c      write(5,*) teff, zlogg, bcV
 c**********
 c     write(*,*) -2.5e0*alog10(flussotot2)
@@ -289,7 +349,10 @@ c      write(*,*) iz, 'correzione bolometrica=',bcV(ikj)
  2224 continue
 
       write(9,444) teff, zlogg, (bcV(ikj), ikj=1,nfilt)
-
+C casagrande write
+      if (teff .ge. 5250.e0 .and. teff .le. 7000.e0) then
+       write(13,444) teff, zlogg, (bcV_cas(ikj), ikj=1,nfilt)
+      endif
  700  continue
 
  444  format(f8.0, f6.2, 51f8.3)
