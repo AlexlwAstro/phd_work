@@ -12,13 +12,14 @@ c Output table: Teff,logg,G,G_bp,G_rp
 c************** units *******************************
 c      open(unit=1, file='WFPC2widefilters.dat')
 c      open(unit=2, file='INPUT')
-      pck_in = 'fp00k2odfnew.pck'
+      pck_in = 'fm20k2odfnew.pck'
       open(unit=2, file=pck_in)
 C fp00k2odfnew.pck = solar metallicity, fm20k2odfnew.pck = Z = 10^-2 * solar
 c      open(unit=3, file='check')
       open(unit=4, file='spettroVega')
       open(unit=9, file='OUTPUT')
-      open(unit=13, file='casaR_output')
+      open(unit=43, file='casa_output')
+      open(unit=44, file='casa_Rvals')
       open (unit=11, file='INPUTfilters', status='old')
 c****************** insert extinction A(V)*************
       write(*,*) 'Insert A(V) and Rv=A(V)/E(B-V) (standard value 3.1)'
@@ -351,7 +352,8 @@ c      write(*,*) iz, 'correzione bolometrica=',bcV(ikj)
       write(9,444) teff, zlogg, (bcV(ikj), ikj=1,nfilt)
 C casagrande write
       if (teff .ge. 5250.e0 .and. teff .le. 7000.e0) then
-       write(13,444) teff, zlogg, (bcV_cas(ikj), ikj=1,nfilt)
+       write(43,444) teff, zlogg, (bcV_cas(ikj), ikj=1,nfilt)
+       write(44,444) teff, zlogg, (r_cas(ikj), ikj=1,nfilt)
       endif
  700  continue
 
