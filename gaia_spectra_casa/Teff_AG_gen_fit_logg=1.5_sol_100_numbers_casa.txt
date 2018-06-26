@@ -1,0 +1,60 @@
+Fitting results for G filter, with log(g) = 1.5
+Function type:  Exponential function of Teff, fitted
+    Fit coefficients (in order of functions arguments):
+[ -8.55079186e-01  -2.78601037e-04   1.02958569e+00]
+    Covariance matrix:
+[[  1.26241788e-03   6.40764542e-07   3.42334258e-04]
+ [  6.40764542e-07   3.62121894e-10   2.07611317e-07]
+ [  3.42334258e-04   2.07611317e-07   1.24895650e-04]]
+Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
+i.e., covariance(i,j)/{coef(i)*coef(j)}
+
+Fractional error output:  
+row 1		0.00172659494935	
+row 2		0.00268973445873	0.00466540471852	
+row 3		0.000388849487334	0.000723778701027	0.000117820896167	
+
+Average fractional error = 0.00171869720185
+
+Fitting results for G filter, with log(g) = 1.5
+Function type:  Power law of Teff, fitted
+    Fit coefficients (in order of functions arguments):
+[-55.31255351  -0.54684441   1.34310567]
+    Covariance matrix:
+[[  2.31426682e+03   6.15930088e+00   5.51583305e+00]
+ [  6.15930088e+00   1.63985539e-02   1.47045993e-02]
+ [  5.51583305e+00   1.47045993e-02   1.32497967e-02]]
+Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
+i.e., covariance(i,j)/{coef(i)*coef(j)}
+
+Fractional error output:  
+row 1		0.756425241421	
+row 2		0.203631020759	0.0548375450692	
+row 3		0.0742467116197	0.0200206992074	0.00734495014589	
+
+Average fractional error = 0.186084361371
+
+Fitting results for G filter, with log(g) = 1.5
+Function type:  Power law + exponential function of Teff, fitted
+    Fit coefficients (in order of functions arguments):
+[ -9.68363657e-01  -2.67596954e-04   6.98367075e-01  -1.15843917e-01]
+    Covariance matrix:
+[[  1.49306078e+00   8.12373219e-04  -1.01844756e+02   3.22751045e+01]
+ [  8.12373219e-04   4.42047699e-07  -5.54189665e-02   1.75625460e-02]
+ [ -1.01844756e+02  -5.54189665e-02   6.95200431e+03  -2.20311713e+03]
+ [  3.22751045e+01   1.75625460e-02  -2.20311713e+03   6.98176379e+02]]
+Fractional errors in fit coefficients = {E[(X(i)-E[X(i)])*(X(j)-E[X(j)])]}/{|E[X(i)]*E[X(j)]|}
+i.e., covariance(i,j)/{coef(i)*coef(j)}
+
+Fractional error output:  
+row 1		1.59221064265	
+row 2		3.13498849158	6.17314963945	
+row 3		150.597040059	296.546976742	14254.1892508	
+row 4		287.710652384	566.543260243	27232.0664532	52025.7901405	
+
+Average fractional error = 9482.43441226
+
+RANKED MEAN FRACTIONAL ERRORS (best to worst) :   
+Exponential function of Teff, fitted    		0.00171869720185
+Power law of Teff, fitted               		0.186084361371
+Power law + exponential function of Teff, fitted		9482.43441226

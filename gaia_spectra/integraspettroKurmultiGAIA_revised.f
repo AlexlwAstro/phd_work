@@ -3,7 +3,7 @@ c****************** declarations ******************
       dimension ff(21,19000), fs(2000), wavef(19000), waves(2000)
       dimension ff2(21,19000), fvega(2000), bcV(21),bcV_cas(21)
       dimension wavemicr(2000), ratio(2000), yw(2000)
-      dimension ratio_casa(3,2000),flussotot2_cas(3),r_cas(3)
+      dimension ratio_casa(3,2000),flussototcas2(3),r_cas(3)
 c      dimension ndat(21)
       character namein(49)*100
       character*30 pck_in
@@ -12,7 +12,7 @@ c Output table: Teff,logg,G,G_bp,G_rp
 c************** units *******************************
 c      open(unit=1, file='WFPC2widefilters.dat')
 c      open(unit=2, file='INPUT')
-      pck_in = 'fm20k2odfnew.pck'
+      pck_in = 'fp00k2odfnew.pck'
       open(unit=2, file=pck_in)
 C fp00k2odfnew.pck = solar metallicity, fm20k2odfnew.pck = Z = 10^-2 * solar
 c      open(unit=3, file='check')
@@ -20,6 +20,7 @@ c      open(unit=3, file='check')
       open(unit=9, file='OUTPUT')
       open(unit=43, file='casa_output')
       open(unit=44, file='casa_Rvals')
+c      open(unit=45, file='casa_extinction')
       open (unit=11, file='INPUTfilters', status='old')
 c****************** insert extinction A(V)*************
       write(*,*) 'Insert A(V) and Rv=A(V)/E(B-V) (standard value 3.1)'
@@ -303,6 +304,9 @@ c
 
       flussotot2=0.0e0
       flussotot2vega=0.0e0
+      flussototcas2(1)=0.0e0
+      flussototcas2(2)=0.0e0
+      flussototcas2(3)=0.0e0
 
 C this loop is the INTEGRATION of stuff inside the logarithm
       do 8 i=2, 1221
@@ -330,16 +334,17 @@ C reference (Vega) flux - this is the log's denominator
      #rispostamedia*(waves(i)-waves(i-1))  ! QE int  photon counting
 C Casagrande flux
       do 71 a = 1,nfilt
-       flussotot2_cas(a)=flussotot2+waves(i)*flussomedio
+C Sort the flussotot2 bit out - this is not integrating!!!
+       flussototcas2(a)=flussototcas2(a)+waves(i)*flussomedio
      #*(10.e0**(-0.4e0*ratio_casa(a,i)))*
      #rispostamedia*(waves(i)-waves(i-1))   ! QE int  photon counting
  71   continue
-
+c      write(45,444) teff, zlogg, (ratio_casa(a,i), a=1,nfilt)
  8    continue
 c********** Bolometric correction
       bcV(ikj)=aa1+aa3+aa4+2.5e0*alog10(flussotot2/flussotot2vega)
 C Casagrande flux
-      bcV_cas(ikj)=aa1+aa3+aa4+2.5e0*alog10(flussotot2_cas(ikj)/
+      bcV_cas(ikj)=aa1+aa3+aa4+2.5e0*alog10(flussototcas2(ikj)/
      #flussotot2vega)
 c      write(5,*) teff, zlogg, bcV
 c**********
@@ -353,8 +358,8 @@ c      write(*,*) iz, 'correzione bolometrica=',bcV(ikj)
 C casagrande write
       if (teff .ge. 5250.e0 .and. teff .le. 7000.e0) then
        write(43,444) teff, zlogg, (bcV_cas(ikj), ikj=1,nfilt)
-       write(44,444) teff, zlogg, (r_cas(ikj), ikj=1,nfilt)
       endif
+      write(44,444) teff, zlogg, (r_cas(ikj), ikj=1,nfilt)
  700  continue
 
  444  format(f8.0, f6.2, 51f8.3)
