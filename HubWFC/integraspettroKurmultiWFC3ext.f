@@ -9,10 +9,15 @@ c
 c************** units *******************************
 c      open(unit=1, file='WFPC2widefilters.dat')
 c      open(unit=2, file='INPUT')
-      open(unit=2, file='fp00k2odfnew.pck')
+      open(unit=2, file='fm10k2odfnew.pck')
+C fp00k2odfnew.pck = solar metallicity, Zs
+C fp05k2odfnew.pck = Z = 10^0.5 * Zs (~3 (3.162))
+C fm10k2odfnew.pck = Z = 10^-1 * Zs (1/10)
+C fm20k2odfnew.pck = Z = 10^-2 * Zs (1/100)
+
       open(unit=3, file='check')
       open(unit=4, file='spettroVega')
-      open(unit=9, file='OUTPUT')
+      open(unit=9, file='H_OUTPUT')
       open (unit=11, file='INPUTfilters', status='old' )
 c****************** insert extinction A(V)*************
       write(*,*) 'Insert A(V) and Rv=A(V)/E(B-V) (standard value 3.1)'
@@ -198,6 +203,8 @@ c
      #3.e0-5.38434e0*yw(i)**4.e0-0.62251e0*yw(i)**5.e0
      #+5.3026*yw(i)**6.e0-2.09002e0*yw(i)**7.e0
       ratio(i)=app+(bpp/rv)
+
+
       end if
 c
       if(wavemicr(i).ge.3.3e0.and.wavemicr(i).le.8.0e0) then
