@@ -1,4 +1,5 @@
 \documentclass{mnras}
+% for guidance, see phd_work/mnras_guide.pdf
 \setlength\parindent{0pt}
 
 \usepackage[english]{babel}
@@ -11,22 +12,146 @@
 
 \par
 \begin{document}
+
+\begin{abstract}
+The abstract of the paper.
+\end{abstract}
+
 \section{Introduction}
 \subsection{Motivation}
 The fundamental parameters of stars, such as their effective temperatures and metallicities, dictate their observed apparent properties, such as their luminosities and spectra. Hence, a full accounting of the effects of these parameters, and any physical stellar processes that impact on them, directly or indirectly, must be sought.
 
 \subsection{Thermohaline mixing}
-The first months of the project were dedicated to the study of thermohaline mixing. This effect was proposed by ****Ulrich (1972) and ****Kippenhahn et al. (1982) to explain anomalous chemical abundances at the surface of mature, ****low-mass red giant branch (RGB) stars. Specifically, the anomalies consist of an over-abundance of 12C, 16O and 14N, together with a paucity of 7Li and 1H, in the stellar spectra. Taken together, these particular changes in these particular species indicate an interaction between the RGB star's fusion shell and the surface, i.e. a mixing effect.
+The first months of the project were dedicated to the study of thermohaline mixing. This effect was proposed by ****Ulrich (1972) and ****Kippenhahn et al. (1982) to explain anomalous chemical abundances at the surface of mature, ****low-mass red giant branch (RGB) stars. Specifically, the anomalies consist of an over-abundance of $^{12}$C, $^{16}$O and $^{14}$N, together with a paucity of $^{7}$Li and $^{1}$H, in the stellar spectra. Taken together, these particular changes in these particular species indicate an interaction between the RGB star's fusion shell and the surface, i.e. a mixing effect.
+
+\begin{equation}
+^{3}\textnormal{He} + ^{3}\textnormal{He} \longrightarrow ^{4}\textnormal{He} + 2^{1}\textnormal{H}
+\label{He3_fusion}
+\end{equation}
+
+\begin{equation}
+\frac{\partial X_{i}}{\partial t} = \frac{1}{\rho r^{2}}\frac{\partial}{\partial r} \left( \rho r^{2} D_{\textnormal{thl}} \frac{\partial X_{i}}{\partial r} \right)
+\label{diffusion_eq}
+\end{equation}
+
+\begin{equation}
+D_{\textnormal{thl}} = C_{\textnormal{thl}} K \left( \frac{\phi}{\delta} \right) \frac{\nabla _{\mu}}{\nabla _{\textnormal{rad}} - \nabla _{\textnormal{ad}}}
+\label{Dthl_def}
+\end{equation}
+
+\begin{equation}
+K = \frac{4acT^{3}}{3\kappa\rho ^{2}c_{P}}
+\label{diffusivity_def}
+\end{equation}
+
+\begin{equation}
+X_{i,n} = X_{i,n-1} + \delta t \left( \frac{\partial X_{i}}{\partial t}\right)
+\label{iter_timeind}
+\end{equation}
+
+\begin{equation}
+\nabla _{\mu} = \frac{d\ln\mu}{d\ln P}
+\label{del_mu_def}
+\end{equation}
+
+
+$\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$
+
+$\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$
+
+\begin{equation}
+\mu = \frac{1}{\sum_{i=1}^{i=N} (Z_{i}+1) \frac{X_{i}}{A_{i}}}
+\label{mol_weight_def}
+\end{equation}
+
+
 
 \subsection{Differential extinction}
 Extinction of light between a source object, such as a star, and a remote observer is subject to various quantities, such as the density and metallicity of the interstellar medium along the emission travel path.
+
+Bolometric corrections
+
+After accounting for a general extinction effect on an object's emission, its apparent magnitude in a given filter $X$ (i.e. wavelength range, which we define as increasing from $\lambda _{1}$ to $\lambda _{2}$) is given by:
+
+\begin{equation}
+m_{X} = -2.5 \log_{10} \left(\frac{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda} \left( 10^{-0.4 A_{\lambda}} \right) S_{\lambda} d\lambda }{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda}^{0} S_{\lambda} d\lambda }\right) + m_{X}^{0}
+\label{app_mag_def}
+\end{equation}
+
+where $f_{\lambda}$ represents the monochromatic flux at a given wavelength $\lambda$ at the observer distance, $A_{\lambda}$ is the extinction value as a function of wavelength, $S_{\lambda}$ is the response function and $f_{\lambda}^{0}$ and $m_{X}^{0}$ represent the monochromatic flux and apparent magnitude, respectively, of a known reference object in $X$. In this project,the star Vega was used as the reference.
+
+Since our goal, ultimately, is to document potential effects of fundamental stellar properties upon observables, we need to connect the observational and idealised scenarios, for which we use bolometric corrections. For a filter $X$, the extinction parameter $A$ must be ****calibrated relative to a known value. For this reference, in this work we will input a value of the extinction in the well-studied Johnson-$V$ filter.
+To derive the equation linking a bolometric correction with the extinction parameter, we start with the definition of a bolometric correction in $X$, $BC_{X}$:
+
+\begin{equation}
+BC_{X} \equiv M_{\textnormal{bol}} - M_{X}
+\label{BC_def}
+\end{equation}
+
+where $M_{X}$ is the absolute magnitude of the object in $X$ and $M_{\textnormal{bol}}$ is its (predicted) absolute bolometric magnitude, defined relative to the Sun using:
+
+\begin{equation}
+M_{\textnormal{bol}} = M_{\textnormal{bol},\sun} - 2.5 \log_{10} \left( \frac{4\pi R^{2}F_{\textnormal{bol}}}{L_{\sun}} \right)
+\label{mbol_sun}
+\end{equation}
+
+where  $F_{\textnormal{bol}}$ is the bolometric stellar flux at its surface, $R$ is the stellar radius, $M_{\textnormal{bol},\sun}$ is the solar absolute bolometric magnitude, ****which is assumed in this work to have a value of 4.75 and $L_{\sun}$ is the solar luminosity, for which we use a value of $3.844 \times 10^{33}$ erg s$^{-1}$ (****Girardi et al. (2000)). Bolometric corrections can be expressed as a function of extinction using the universal definition of $M_{X}$ in terms of $m_{X}$ and the distance $d$ to the source:
+
+\begin{equation}
+M_{X} = m_{X} - 2.5 \log_{10}\left( \left( \frac{d}{10 \textnormal{pc}} \right)^{2} \right),
+\label{BC_def}
+\end{equation}
+
+together with the equation $f_{\lambda}d^{2}=F_{\lambda}R^{2}$, where $F_{\lambda}$ is the monochromatic flux at $\lambda$ at the stellar surface. This gives the final function for a bolometric correction:
+
+\begin{multline}
+BC_{X} = M_{\textnormal{bol},\sun} - m_{X}^{0} - 2.5 \log_{10} \left( \frac{4\pi R^{2}F_{\textnormal{bol}}}{L_{\sun}} \right) \\ + 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lambda_{2}} F_{\lambda} \left( 10^{-0.4 A_{\lambda}} \right) S_{\lambda} d\lambda}{\int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda}^{0} S_{\lambda} d\lambda} \right)
+\label{BC_extinc}
+\end{multline}
+
+%With the effects of extinction included, the bolometric correction with a given extinction reference, $A_{r}$, is given by:
+
+To extract the extinction parameter $A$****, use the simple relation:
+
+\begin{equation}
+A_{X} = \left( \frac{A_{X}}{A_{V}} \right) A_{V}
+\label{raio_eq}
+\end{equation}
+
+together with the chosen value of $A_{V}$ (for this project the values were $A_{V} =$ 0, 1 - note that $BC_{X}(A_{V}=0)$  effectively assumes no extinction).
 
 \section{Current state of the field}
 \subsection{Thermohaline mixing}
 
 \subsection{Differential extinction}
 
+\section{Methodology}
+When calculating the bolometric corrections, the reference values taken by the parameters for Vega were:
+\begin{enumerate}
+\item $m_{X}^{0} = 0.03$ for the Gaia filters
+\item $m_{X}^{0} = 0.00$ for the Hubble WFC3 filters
+\end{enumerate}
+
+together with $M_{\textnormal{bol},\sun} = 4.75$. It should be noted that, during the final subtraction to obtain values of $A_{X}/A_{V}$, the $m_{X}^{0}$ and $M_{\textnormal{bol},\sun}$ values at both $A_{V}$ calibration values are the same, so the final results are unaffected by any calibration errors.
+
 \section{Results so far}
+
+\begin{table}
+\begin{tabular}{ccc}
+
+cell1 & cell2 & cell3 \\ 
+cell4 & cell5 & cell6 \\  
+cell7 & cell8 & cell9 
+
+\end{tabular}
+\label{coeffs_table}
+\end{table}
+
+% ****FORMAT FOR INCLUDING PDF IMAGES!!!
+% for guidance, see phd_work/grfguide.pdf
+%\includegraphics[<options>]{filename.pdf}
+
+
 
 \section{Discussion}
 
