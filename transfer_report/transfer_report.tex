@@ -23,29 +23,53 @@ The abstract of the paper.
 The fundamental parameters of stars, such as their effective temperatures and metallicities, dictate their observed apparent properties, such as their luminosities and spectra. Hence, a full accounting of the effects of these parameters, and any physical stellar processes that impact on them, directly or indirectly, must be sought.
 
 \subsection{Thermohaline mixing}
-The first months of the project were dedicated to the study of thermohaline mixing. This effect was proposed by ****Ulrich (1972) and ****Kippenhahn et al. (1982) to explain anomalous chemical abundances at the surface of mature (i.e post-first-dredge-up), ****low-mass red giant branch (RGB) stars. Specifically, the anomalies consist of an over-abundance of $^{12}$C, $^{16}$O and $^{14}$N, together with a paucity of $^{7}$Li and $^{1}$H, in the stellar spectra. Taken together, these particular changes in these particular species indicate an interaction between the RGB star's fusion shell and the surface, i.e. a mixing effect.
+The first months of the project were dedicated to the study of thermohaline mixing. This effect was proposed by ****Ulrich (1972) and ****Kippenhahn et al. (1982) to explain anomalous chemical abundances at the surface of mature (i.e post-first-dredge-up (FDU)), ****low-mass ($\la$ red giant branch (RGB) stars. Specifically, the anomalies consist of an over-abundance of $^{12}$C, $^{16}$O and $^{14}$N, together with a paucity of $^{7}$Li and $^{1}$H, in the stellar spectra. Taken together, these particular changes in these particular species indicate an interaction between the RGB star's fusion shell and the surface, i.e. a mixing effect. Thermohaline mixing is proposed as a solution to this problem in the post-FDU phase in low-mass (< 1.5$M_{\sun}$) RGB stars****.
 
-The basic structure of low-mass (< ***Msun) RGB stars, starting from the physical centre of the star, can be summarised as follows:
+Mixing of material occurs due to local thermodynamic instabilities. For stars, this requires consideration of 4 thermodynamic quantities: pressure $P$, temperature $T$, density $\rho$ and molecular weight, $\mu$, as well as a coordinate system in which to operate. For simple stellar models, radial symmetry is assumed, allowing the system to be reduced to the radial coordinate $r$, measured from the stellar centre. If we assume a fully-ionized plasma containing $N$ atomic species, the local mean molecular weight
+
+\begin{equation}
+\mu = \frac{1}{\sum_{i=1}^{i=N} (Z_{i}+1) \frac{X_{i}}{A_{i}}} \textnormal{,}
+\label{mol_weight_def}
+\end{equation}
+
+
+Most interior mixing in low-mass stars, including the FDU and main sequence phase mixing, occurs via convection. For convection of a bubble of material, of differing tempera chemical composition to its surroundings, to occur in a given stellar region, the local physical conditions, must satisfy the Schwartzschild criterion for instability:
+
+\begin{equation}
+\nabla _{\textnormal{rad}} > \nabla _{\textnormal{ad}}
+\end{equation}
+
+where $\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$ and $\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$ are the temperature-pressure gradients for the local environment (dominated by radiation pressure) and the bubble (treated as an adiabatic ideal gas), respectively.
+
+However, there is also the possibility of instability due to 
+
+The basic structure of low-mass  RGB stars, starting from the physical centre of the star, can be summarised as follows:
 
 \begin{enumerate}
 \item Inert, electron-degenerate $^{4}$He-dominated core (98$\%$ by mass), generally extending out to a coordinate fractional mass of ~0.28$M_{\star}$.
 \item Fusion shell, in which the fusion reactions which previously occurred in the main-sequence core occur now in the RGB phase. The main reactions are the pp-chain and CNO cycle.
-\item Radiative zone, consisting of layers for which the Schwartzschild criterion for instability $\nabla _{\textnormal{rad}} > \nabla _{\textnormal{ad}}$ is NOT fulfilled, thus ensuring stability against convection. ****mass For a solar mass RGB star, this extends out to ~0.29***$M_{\star}$
-\item Convective zone, where the Schwartzschild criterion is fulfilled, and mixing is modelled using the mixing-length theory (MLT)
-\item Atmosphere
-\end{enumerate} 
+\item Radiative zone, consisting of layers for which the Schwartzschild criterion is NOT fulfilled, thus ensuring stability against convection. ****mass For a solar mass RGB star, this extends out to ~0.29***$M_{\star}$
+\item Convective zone, where the Schwartzschild criterion is fulfilled, and mixing is modelled using the mixing-length theory (MLT), with the free parameter modelled such that, given solar input parameters, the model produces solar outputs.
+\item Atmosphere, where the radiation is emitted from the star - this layer consequently dominates the nature of the emission ($T_{\textnormal{eff}}$, emission lines, etc.)
+\end{enumerate}
 
-$^{3}\textnormal{He}$ + $^{3}\textnormal{He} \longrightarrow$ $^{4}\textnormal{He}$ + $2^{1}\textnormal{H}$
+
+
+$^{3}\textnormal{He}(^{3}\textnormal{He},2^{1}\textnormal{H})^{4}\textnormal{He}$
 
 \begin{equation}
-\frac{\partial X_{i}}{\partial t} = \frac{1}{\rho r^{2}}\frac{\partial}{\partial r} \left( \rho r^{2} D_{\textnormal{thl}} \frac{\partial X_{i}}{\partial r} \right)
+\frac{\partial X_{i}}{\partial t} = \frac{1}{\rho r^{2}}\frac{\partial}{\partial r} \left( \rho r^{2} D \frac{\partial X_{i}}{\partial r} \right)
 \label{diffusion_eq}
 \end{equation}
+
+The strength of different diffusive effects in Equation \ref{diffusion_eq} is dictated by their respective diffusion coefficient $D$. In the case of thermohaline mixing, the coefficient is defined \cite{2010A&A...521A...9C} as:
 
 \begin{equation}
 D_{\textnormal{thl}} = C_{\textnormal{thl}} K \left( \frac{\phi}{\delta} \right) \frac{\nabla _{\mu}}{\nabla _{\textnormal{rad}} - \nabla _{\textnormal{ad}}}
 \label{Dthl_def}
 \end{equation}
+
+where $C_{\textnormal{thl}}$ is a free parameter, which is set in this work to a value of $C_{\textnormal{thl}} = 1000$, $\nabla _{\mu} = \frac{d\ln\mu}{d\ln P}$  $K$ is the thermal diffusivity\citet{2017RSOS....470192S}, defined as:
 
 \begin{equation}
 K = \frac{4acT^{3}}{3\kappa\rho ^{2}c_{P}}
@@ -57,21 +81,10 @@ X_{i,n} = X_{i,n-1} + \delta t \left( \frac{\partial X_{i}}{\partial t}\right)
 \label{iter_timeind}
 \end{equation}
 
-\begin{equation}
-\nabla _{\mu} = \frac{d\ln\mu}{d\ln P}
-\label{del_mu_def}
-\end{equation}
-
-
-$\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$
-
-$\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$
-
-\begin{equation}
-\mu = \frac{1}{\sum_{i=1}^{i=N} (Z_{i}+1) \frac{X_{i}}{A_{i}}}
-\label{mol_weight_def}
-\end{equation}
-
+%\begin{equation}
+%
+%\label{del_mu_def}
+%\end{equation}
 
 
 \subsection{Differential extinction}
@@ -241,7 +254,7 @@ As shown in Figure****, for some filters, there are significant changes in the e
 %\includegraphics[<options>]{filename.pdf}
 
 
-\citet{2017RSOS....470192S}
+
 \citet{2004astro.ph..5087C}
 \citet{2004ApJ...612..168P}
 
