@@ -38,7 +38,7 @@ c************** read filter response curves*******************
       do 2222 ik=1,nfilt
 
       open(unit=1, file=namein(ik), status='old' ) 
-
+C loop below goes through header lines
       do 1 i=1, 5
         read(1,*)
  1    continue  
@@ -47,6 +47,7 @@ c************** read filter response curves*******************
 
       do 2 i=1, 19000
 c       read(1,*, end=21) wavef(ik, i),ff(ik,i)
+c reads row number, wavelength in angstroms, throughput
         read(1,*, end=21) indp, wavef(ik, i),ff(ik,i)
 c        write(*,*) 'arrivo qui', indp
         wavef(ik,i)=wavef(ik,i)/10.e0        ! lambda in nm
@@ -82,21 +83,24 @@ c103  format (4x,f8.0,9x,f8.5)
 c
 c*******
 c******interpolo S(filtro) sugli stessi lambda dello spettro
-c*******
+c***interpolate S(filter) (= ff2) over the same lambda of the spectrum
       do 2223 ilj=1,nfilt
 
       do 5 i=1, 1221
         do 6 j=1, ndat(ilj)
+C if wavelength < filter minimum
           if(waves(i).lt.wavef(ilj,1)) then 
              ff2(ilj,i)=0.0e0
              write(3,*) waves(i), ff2(ilj,i)
           goto 5
           end if
+C if wavelength > filter maximum = ndat(ilj)
           if(waves(i).gt.wavef(ilj,ndat(ilj))) then 
              ff2(ilj,i)=0.0e0
              write(3,*) waves(i), ff2(ilj,i)
           goto 5
           end if
+
           if(waves(i).eq.wavef(ilj,j)) then
            ff2(ilj,i)=ff(ilj,j)     
            write(3,*) waves(i), ff2(ilj,i)
@@ -132,6 +136,7 @@ c      write(*,*) 'leggo'
 c      read(2,*) 
 c 699  continue
 c
+C read header info (first 175 lines)
       do 698 i=1,175
       read(2,*) 
  698  continue
@@ -152,7 +157,8 @@ c********** read fluxes *****************
  
 c       write(*,*) 'arrivo qui', iz
 c       write(*,*), iz
-      
+
+C number of values = (152 x 8) + 5 = 1221      
        do 701 j=1,152
 
 c      write(*,*) 'leggo'
@@ -185,7 +191,7 @@ c******************* Extinction law*************
 c  Cardelli et al. (1989) with Rv=3.1 ***********
 c   
       do 3211 i=1, 1221
-      wavemicr(i)=1.e3/waves(i) ! (1/lambda in micron)
+      wavemicr(i)=1.e3/waves(i) ! =(1/(lambda in micron))
 c
       if (wavemicr(i).lt.0.3e0) ratio(i)=0.0e0 
 c
@@ -242,6 +248,9 @@ c**********************************************************
 c
 c***************** start Girardi et al. (2000) formulas ********
       aa1=4.77e0 
+C originally, had aa1=4.77e0 - changed to 4.75 because this is the
+C value in the Gaia .f file
+C 23/08/2018 changed back to 4.77
       aa2a=alog10(4.e0*3.1415e0*100.e0)
       aa2c=alog10(5.67051e-5*(teff**4.e0)/(3.844e33))
       aa2b=2.e0*(alog10(3.0857e0)+18.e0)
@@ -270,6 +279,7 @@ c
 
       do 8 i=2, 1221
       flussomedio=(fs(i-1)+fs(i))/2.e0 
+C ff2-median-valued response function S_lambda
       rispostamedia=(ff2(ikj,i-1)+ff2(ikj,i))/2.e0
       wavemedia=(waves(i)+waves(i-1))/2.0e0
       flussotot2=flussotot2+waves(i)*flussomedio

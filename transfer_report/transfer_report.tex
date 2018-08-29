@@ -25,15 +25,16 @@ The fundamental parameters of stars, such as their effective temperatures and me
 \subsection{Thermohaline mixing}
 The first months of the project were dedicated to the study of thermohaline mixing. This effect was proposed by ****Ulrich (1972) and ****Kippenhahn et al. (1982) to explain anomalous chemical abundances at the surface of mature (i.e post-first-dredge-up (FDU)), ****low-mass ($\la$ red giant branch (RGB) stars. Specifically, the anomalies consist of an over-abundance of $^{12}$C, $^{16}$O and $^{14}$N, together with a paucity of $^{7}$Li and $^{1}$H, in the stellar spectra. Taken together, these particular changes in these particular species indicate an interaction between the RGB star's fusion shell and the surface, i.e. a mixing effect. Thermohaline mixing is proposed as a solution to this problem in the post-FDU phase in low-mass (< 1.5$M_{\sun}$) RGB stars****.
 
-Mixing of material occurs due to local thermodynamic instabilities. For stars, this requires consideration of 4 thermodynamic quantities: pressure $P$, temperature $T$, density $\rho$ and molecular weight, $\mu$, as well as a coordinate system in which to operate. For simple stellar models, radial symmetry is assumed, allowing the system to be reduced to the radial coordinate $r$, measured from the stellar centre. If we assume a fully-ionized plasma containing $N$ atomic species, the local mean molecular weight
+Mixing of material occurs due to local thermodynamic instabilities. For stars, this requires consideration of 4 thermodynamic quantities: pressure $P$, temperature $T$, density $\rho$ and molecular weight, $\mu$, as well as a coordinate system in which to operate. For simple stellar models, radial symmetry is assumed, allowing the system to be reduced to the radial coordinate $r$, measured from the stellar centre. If we assume a fully-ionized plasma containing $N$ atomic species, the local mean molecular weight can be calculated as:
 
 \begin{equation}
 \mu = \frac{1}{\sum_{i=1}^{i=N} (Z_{i}+1) \frac{X_{i}}{A_{i}}} \textnormal{,}
 \label{mol_weight_def}
 \end{equation}
 
+where, for each species $i$, $Z_{i}$ is its proton number, $A_{i}$ its atomic mass number and $X_{i}$ its fraction by mass in the local region.
 
-Most interior mixing in low-mass stars, including the FDU and main sequence phase mixing, occurs via convection. For convection of a bubble of material, of differing tempera chemical composition to its surroundings, to occur in a given stellar region, the local physical conditions, must satisfy the Schwartzschild criterion for instability:
+Most interior mixing in low-mass stars, including the FDU and main sequence phase mixing, occurs via convection. For convection of a bubble of material, of differing tempera chemical composition to its surroundings, to occur in a given stellar region, the local physical conditions, must satisfy the Schwarzschild criterion for instability:
 
 \begin{equation}
 \nabla _{\textnormal{rad}} > \nabla _{\textnormal{ad}}
@@ -48,8 +49,8 @@ The basic structure of low-mass  RGB stars, starting from the physical centre of
 \begin{enumerate}
 \item Inert, electron-degenerate $^{4}$He-dominated core (98$\%$ by mass), generally extending out to a coordinate fractional mass of ~0.28$M_{\star}$.
 \item Fusion shell, in which the fusion reactions which previously occurred in the main-sequence core occur now in the RGB phase. The main reactions are the pp-chain and CNO cycle.
-\item Radiative zone, consisting of layers for which the Schwartzschild criterion is NOT fulfilled, thus ensuring stability against convection. ****mass For a solar mass RGB star, this extends out to ~0.29***$M_{\star}$
-\item Convective zone, where the Schwartzschild criterion is fulfilled, and mixing is modelled using the mixing-length theory (MLT), with the free parameter modelled such that, given solar input parameters, the model produces solar outputs.
+\item Radiative zone, consisting of layers for which the Schwarzschild criterion is NOT fulfilled, thus ensuring stability against convection. For a solar mass RGB star, this extends out to ~0.29***$M_{\sun}$, ****as calculated both in the model generated for this work by BaSTI and in \citep{2006Sci...314.1580E}, which, employed a fully-3D hydrodynamic approach.
+\item Convective zone, where the Schwarzschild criterion is fulfilled, and mixing is modelled using the mixing-length theory (MLT), with the free parameter modelled such that, given solar input parameters, the model produces solar outputs.
 \item Atmosphere, where the radiation is emitted from the star - this layer consequently dominates the nature of the emission ($T_{\textnormal{eff}}$, emission lines, etc.)
 \end{enumerate}
 
@@ -69,12 +70,14 @@ D_{\textnormal{thl}} = C_{\textnormal{thl}} K \left( \frac{\phi}{\delta} \right)
 \label{Dthl_def}
 \end{equation}
 
-where $C_{\textnormal{thl}}$ is a free parameter, which is set in this work to a value of $C_{\textnormal{thl}} = 1000$, $\nabla _{\mu} = \frac{d\ln\mu}{d\ln P}$  $K$ is the thermal diffusivity\citet{2017RSOS....470192S}, defined as:
+where $C_{\textnormal{thl}}$ is a free parameter, which is set in this work to a value of $C_{\textnormal{thl}} = 1000$, $\nabla _{\mu} = d\ln\mu / d\ln P$,  ****and $K$ is the thermal diffusivity \citep{2017RSOS....470192S}, defined as:
 
 \begin{equation}
 K = \frac{4acT^{3}}{3\kappa\rho ^{2}c_{P}}
 \label{diffusivity_def}
 \end{equation}
+
+where $a$ is the radiation constant, $c$ the speed of light, $\kappa$ the Rosseland mean opacity and $c_{P}$ the specific heat at constant pressure.
 
 \begin{equation}
 X_{i,n} = X_{i,n-1} + \delta t \left( \frac{\partial X_{i}}{\partial t}\right)
@@ -153,7 +156,7 @@ ATLAS9****
 
 \section{Current state of the field}
 \subsection{Thermohaline mixing}
-
+Multiple**** studies have established the feasibility of thermohaline mixing in low-mass RGB stars from molecular mass gradient inversions as small as $(\delta\mu / \mu) \sim$ 10$^{-4}$
 \subsection{Differential extinction}
 Many papers ****(such as ?) have examined the effects of extinction from multiple perspectives, many by examining ratios of reddening (a.k.a. colour excess) values as functions of wavelength primarily. The seminal work in this field is \cite{1989ApJ...345..245C}, hereafter CCM, which avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by fitting average ratios of the extinction parameter itself to observational data from stars taken in the IR, optical and UV spectral regions, as a**** function of wavelength $\lambda$. They produced a basic universal equation of the form:
 
@@ -162,8 +165,13 @@ A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
 \label{CCM_general}
 \end{equation}
 
-where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The total wavelength range was divided into 4 subranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). The CCM model underpins more recent studies of intrinsic effects on extinction (\citet{2018MNRAS.479L.102C},\citet{2008PASP..120..583G}), and provides the basis for the synthetic  $A_{X}/A_{V}$ dataset in this project. ATLAS9****
+where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The total wavelength range was divided into 4 subranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). The CCM model underpins more recent studies of intrinsic effects on extinction (\citet{2018MNRAS.479L.102C},\citet{2008PASP..120..583G}), and provides the basis for the synthetic  $A_{X}/A_{V}$ dataset in this project.
+
+ATLAS9 model atmosphere predictions, calculated for a given value of stellar metallicity $Z$ and a grid of 476 combinations of $T_{\textnormal{eff}}$ and log($g$) values \citep{2004astro.ph..5087C} were used as synthetic stellar observation events
 \section{Methodology}
+
+For modelling thermohaline mixing, the BaSTI (\citet{2004ApJ...612..168P}) 1D full-star, full-lifespan stellar evolution code was used and modified to calculate the impact, on both the local radial layer and the overall star, of adding the effect of thermohaline mixing, on both short- and long-term time-scales.
+
 When calculating the bolometric corrections, the reference values taken by the parameters for Vega were:
 \begin{enumerate}
 \item $m_{X}^{0} = 0.03$ for the Gaia filters
@@ -173,6 +181,8 @@ When calculating the bolometric corrections, the reference values taken by the p
 together with $M_{\textnormal{bol},\sun} = 4.75$. It should be noted that, during the final subtraction to obtain values of $A_{X}/A_{V}$, the $m_{X}^{0}$ and $M_{\textnormal{bol},\sun}$ values at both $A_{V}$ calibration values are the same, so the final results are unaffected by any calibration errors.
 
 \section{Results so far}
+
+
 
 Initially, ****the values of $A_{X}/A_{V}$ were fitted using a simple function of $T_{\textnormal{eff}}$ only, containing 3 free parameters, denoted by $a$,$b$ and $c$. The results of this stage are stored in the function $A_{1} = A_{X}/A_{V}(T_{\textnormal{eff}})$. $A_{1}$ took on one of two function forms, depending on the relative performance of both in each filter. The first case, referred to in Table \ref{R1_coeffs_table} by the abbreviation `pow', models a fit of the following power-law form:
 
@@ -256,11 +266,25 @@ As shown in Figure****, for some filters, there are significant changes in the e
 
 
 \citet{2004astro.ph..5087C}
-\citet{2004ApJ...612..168P}
+
 
 \section{Discussion}
+\subsection{Thermohaline mixing}
+As shown in Figure \ref{dXN14/dt_colour}, the conditions for thermohaline mixing are reproduced in the BaSTI code. The location of the regions for which these conditions apply is located in the upper, and therefore cooler, layers of the hydrogen fusion shell,
+
+So far, by measuring abundances of species which both are hydrogen fusion products and are not involved in $^3$He burning, such as $^{14}$N, it has been established that the existing BaSTI stellar evolution model creates the conditions for thermohaline mixing to occur in the radiative zone of a low-mass, post-FDU RGB star. It has also been shown that, as expected, the conditions are created by molecular weight inversions arising from $^{3}$He burning.
+
+While the physical process and impacts of thermohaline mixing have been successfully implemented in other stellar evolution codes, such as MESA and STAREVOL, BaSTI has not yet been modified to include these in the iterative calculations. Achieving this is a significant goal because, as demonstrated by \citet{2015MNRAS.446.2673L} in the particular case of lithium abundances, there can be significant differences in predictions of abundances between different stellar evolution codes. Adding BaSTI to the list of codes available for future comparative studies would provide more scope to study potential sources of error, such as the model time-step and $C_{thl}$ value effects on abundances noted by \citet{2015MNRAS.446.2673L}. Of particular interest is the $C_{thl}$ free-parameter value, as there are many proposed values, from authors using different approaches and models, which differ in some cases by at least an order of magnitude.
+
+**** modelling/integrating other effects into BaSTI
+
+
+
+\subsection{Differential extinction}
 
 \section{Future work}
+
+This work, although confirming feasibility of thermohaline mixing in BaSTI, has yet to implement the effects of the resultant chemical mixing on the models of the star at times following the initial mixing.
 
 \bibliographystyle{mnras} % unsrtnat
 \bibliography{transfer_report}
