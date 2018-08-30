@@ -34,15 +34,19 @@ Mixing of material occurs due to local thermodynamic instabilities. For stars, t
 
 where, for each species $i$, $Z_{i}$ is its proton number, $A_{i}$ its atomic mass number and $X_{i}$ its fraction by mass in the local region.
 
-Most interior mixing in low-mass stars, including the FDU and main sequence phase mixing, occurs via convection. For convection of a bubble of material, of differing tempera chemical composition to its surroundings, to occur in a given stellar region, the local physical conditions, must satisfy the Schwarzschild criterion for instability:
+Let us consider a bubble of gaseous material in pressure-equilibrium with its surroundings and represent mixing as a significant change in the bubble's (radial) position on a significant time-scale, arising from small differences in the remaining 3 thermodynamic quantities between the bubble and its surroundings. For a non-rotating star, using a simple linear approach, together with the Archimedes principle, gives a set of 4 homogeneous differential equations for the (small) differences in $P$,$T$,$\mu$ and $r$ (Equations (3.1)-(3.4) in \citet{2017RSOS....470192S}. If $\Delta x_{i}$ are the differences in the 4 parameters, taking the ansatz form $\Delta x_{i} = B_{i} e^{nt}$ allows for a solution as a 3rd-order polynomial in $n$, if the determinant of the relevant matrix (dependent of the values of the B_{i}) is zero. The Routh-Hurwitz stability criterion can then be applied to this polynomial. For a physical solution
+
+%, but of different temperature and chemical composition,
+
+****to occur in a given stellar region, the local physical conditions, must satisfy the Schwarzschild criterion for instability:
+
+****Most interior mixing in low-mass stars, including the FDU and main sequence phase mixing, occurs via convection. However, there is also the possibility of instability other than convection once molecular weight****
 
 \begin{equation}
 \nabla _{\textnormal{rad}} > \nabla _{\textnormal{ad}}
 \end{equation}
 
 where $\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$ and $\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$ are the temperature-pressure gradients for the local environment (dominated by radiation pressure) and the bubble (treated as an adiabatic ideal gas), respectively.
-
-However, there is also the possibility of instability due to 
 
 The basic structure of low-mass  RGB stars, starting from the physical centre of the star, can be summarised as follows:
 
@@ -70,7 +74,7 @@ D_{\textnormal{thl}} = C_{\textnormal{thl}} K \left( \frac{\phi}{\delta} \right)
 \label{Dthl_def}
 \end{equation}
 
-where $C_{\textnormal{thl}}$ is a free parameter, which is set in this work to a value of $C_{\textnormal{thl}} = 1000$, $\nabla _{\mu} = d\ln\mu / d\ln P$,  ****and $K$ is the thermal diffusivity \citep{2017RSOS....470192S}, defined as:
+where $C_{\textnormal{thl}}$ is a free parameter, which is set in this work to a value of $C_{\textnormal{thl}} = 1000$****refs, $\nabla _{\mu} = d\ln\mu / d\ln P$, $\phi = \left( \partial \ln\rho / \partial \ln\mu \right)_{P,T}$, $\delta = -\left( \partial \ln\rho / \partial \ln T \right)_{P,\mu}$ \citep{1980A&A....91..175K} and $K$ is the thermal diffusivity \citep{2017RSOS....470192S}, defined as:
 
 \begin{equation}
 K = \frac{4acT^{3}}{3\kappa\rho ^{2}c_{P}}
@@ -79,10 +83,7 @@ K = \frac{4acT^{3}}{3\kappa\rho ^{2}c_{P}}
 
 where $a$ is the radiation constant, $c$ the speed of light, $\kappa$ the Rosseland mean opacity and $c_{P}$ the specific heat at constant pressure.
 
-\begin{equation}
-X_{i,n} = X_{i,n-1} + \delta t \left( \frac{\partial X_{i}}{\partial t}\right)
-\label{iter_timeind}
-\end{equation}
+
 
 %\begin{equation}
 %
@@ -169,9 +170,15 @@ where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The total wavelength 
 
 ATLAS9 model atmosphere predictions, calculated for a given value of stellar metallicity $Z$ and a grid of 476 combinations of $T_{\textnormal{eff}}$ and log($g$) values \citep{2004astro.ph..5087C} were used as synthetic stellar observation events
 \section{Methodology}
-
+\subsection{Thermohaline mixing}
 For modelling thermohaline mixing, the BaSTI (\citet{2004ApJ...612..168P}) 1D full-star, full-lifespan stellar evolution code was used and modified to calculate the impact, on both the local radial layer and the overall star, of adding the effect of thermohaline mixing, on both short- and long-term time-scales.
 
+\begin{equation}
+X_{i,n} = X_{i,n-1} + \delta t \left( \frac{\partial X_{i}}{\partial t}\right)
+\label{iter_timeind}
+\end{equation}
+
+\subsection{Differential extinction}
 When calculating the bolometric corrections, the reference values taken by the parameters for Vega were:
 \begin{enumerate}
 \item $m_{X}^{0} = 0.03$ for the Gaia filters
@@ -245,7 +252,7 @@ As shown in Figure****, for some filters, there are significant changes in the e
 
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.4]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_He3_radius_gradient_Dthl_color.png}
+\includegraphics[scale=0.6]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_He3_radius_gradient_Dthl_color.png}
 \caption{$^{3}$He abundance gradient for model with $Z = Z_{\sun}$, $M = 1M_{\sun}$ and diffusion effects included, at a point $\log(L/L_{\sun}) = 2.1231$}
 \label{dHe3/dr_colour}
 \end{center}
