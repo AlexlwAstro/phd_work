@@ -39,7 +39,7 @@ Let us consider a bubble of gaseous material in pressure-equilibrium with its su
 \begin{align}
 \nabla _{\mu} &< 0 \label{mu_inv_ineq} \\
 \nabla _{\textnormal{rad}} &> \nabla _{\textnormal{ad}} \label{schwarz_ineq} \\
-\nabla _{\textnormal{rad}} &> \nabla _{\textnormal{ad}} + \frac{\phi}{\delta}\nabla _{\mu} \label{ledoux_ineq}
+\nabla _{\textnormal{rad}} &> \nabla _{\textnormal{ad}} + \left( \frac{\phi}{\delta} \right) \nabla _{\mu} \label{ledoux_ineq}
 \end{align}
 
 where $\nabla _{\mu} = d\ln\mu / d\ln P$, $\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$ and $\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$ are the temperature-pressure gradients for the local environment (dominated by radiation pressure) and the bubble (treated as an adiabatic ideal gas), respectively, $\phi = \left( \partial \ln\rho / \partial \ln\mu \right)_{P,T}$ and $\delta = -\left( \partial \ln\rho / \partial \ln T \right)_{P,\mu}$  \citep{1980A&A....91..175K}. For the case of this project, $(\phi/\delta)$ is always positive, and has been assigned a value of 1.
@@ -48,21 +48,17 @@ where $\nabla _{\mu} = d\ln\mu / d\ln P$, $\nabla _{\textnormal{rad}} = \left(\p
 
 For convection to occur in a given stellar region, only Equation \ref{schwarz_ineq}, known as the Schwarzschild criterion for instability, needs to be true, as convection merely requires a non-zero $\Delta\mu$. Equation \ref{ledoux_ineq} is known as the Ledoux criterion, and combines attributes of the other equations - if only Equation \ref{schwarz_ineq} is 
 
-****Most interior mixing in low-mass stars, including the FDU and main sequence phase mixing, occurs via convection. However, there is also the possibility of instability other than convection once molecular weight****
-
-
-
 The basic structure of low-mass  RGB stars, starting from the physical centre of the star, can be summarised as follows:
 
 \begin{enumerate}
 \item Inert, electron-degenerate $^{4}$He-dominated core (98$\%$ by mass), generally extending out to a coordinate fractional mass of ~0.28$M_{\star}$.
 \item Fusion shell, in which the fusion reactions which previously occurred in the main-sequence core occur now in the RGB phase. The main reactions are the pp-chain and CNO cycle.
-\item Radiative zone, consisting of layers for which the Schwarzschild criterion is NOT fulfilled, thus ensuring stability against convection. For a solar mass RGB star, this extends out to ~0.29***$M_{\sun}$, ****as calculated both in the model generated for this work by BaSTI and in \citep{2006Sci...314.1580E}, which, employed a fully-3D hydrodynamic approach.
-\item Convective zone, where the Schwarzschild criterion is fulfilled, and mixing is modelled using the mixing-length theory (MLT), with the free parameter modelled such that, given solar input parameters, the model produces solar outputs.
+\item Radiative zone, consisting of layers for which the Schwarzschild criterion is NOT fulfilled, thus ensuring stability against convection. For a solar-mass RGB star, this extends out to ~0.29$M_{\sun}$, as calculated both in the model generated for this work by BaSTI and by \citet{2006Sci...314.1580E}, who employed a fully-3D hydrodynamic approach.
+\item Convective zone, where the Schwarzschild criterion is fulfilled, and mixing is modelled using the mixing-length theory (MLT)****ref, with the free parameter modelled such that, given solar input parameters, the model produces solar outputs.
 \item Atmosphere, where the radiation is emitted from the star - this layer consequently dominates the nature of the emission ($T_{\textnormal{eff}}$, emission lines, etc.)
 \end{enumerate}
 
-
+Thermohaline mixing can be defined as a diffusive process \citep{1980A&A....91..175K}, so it can be constructed in models to obey the diffusion equation for the mass fraction of atomic species $i$, $X_{i}$, as follows:
 
 $^{3}\textnormal{He}(^{3}\textnormal{He},2^{1}\textnormal{H})^{4}\textnormal{He}$
 
@@ -78,7 +74,7 @@ D_{\textnormal{thl}} = C_{\textnormal{thl}} K \left( \frac{\phi}{\delta} \right)
 \label{Dthl_def}
 \end{equation}
 
-where $C_{\textnormal{thl}}$ is a free parameter, which is set in this work to a value of $C_{\textnormal{thl}} = 1000$, a value which gives consistency between the results of modelling the diffusion equation and observations of field \citep{2007A&A...467L..15C} and globular cluster (\citet{2011ApJ...728...79A},\citet{2012ApJ...749..128A}) stars and $K$ is the thermal diffusivity \citep{2017RSOS....470192S}, defined as:
+where $C_{\textnormal{thl}}$ is a free parameter, which is set in this work to a value of $C_{\textnormal{thl}} = 1000$, a value which gives consistency between the results of modelling the diffusion equation and observations of field \citep{2007A&A...467L..15C} and globular cluster (\citet{2011ApJ...728...79A}, \citet{2012ApJ...749..128A}) stars and $K$ is the thermal diffusivity \citep{2017RSOS....470192S}, defined as:
 
 \begin{equation}
 K = \frac{4acT^{3}}{3\kappa\rho ^{2}c_{P}}
@@ -162,7 +158,14 @@ ATLAS9****
 
 \section{Current state of the field}
 \subsection{Thermohaline mixing}
-Multiple**** studies have established the feasibility of thermohaline mixing in low-mass RGB stars from molecular mass gradient inversions as small as $(\delta\mu / \mu) \sim$ 10$^{-4}$
+Multiple**** studies have established the feasibility of thermohaline mixing in low-mass RGB stars from molecular mass gradient inversions as small as $(\Delta\mu / \mu) \sim$ 10$^{-4}$ (\cite{2006Sci...314.1580E}, \cite{2010ApJ...723..563D}). There were 2 different approaches put forward for modelling thermohaline mixing:
+\begin{enumerate}
+\item Linear theory \citep{1972ApJ...172..165U} - in a similar vein to the convection MLT, a simple linear model is assumed, one of the core assumptions being that the mixing occurs via radial movement of very thin regions (i.e. high aspect ratios). This allows the models of the mixing to remain one-dimensional and thus simplifies the calculation. The associated free parameter ($C_{thl}$) constrained by observation examples.
+\item Blob theory \citep{1980A&A....91..175K} - the same as the linear theory, with the exception of the elimination of the assumption that the blob of chemically-different material is narrow. This allows for non-linear effects to be considered, including flow patterns which cause the moving blob to mix into its surroundings, reducing and eventually removing the blob as a distinct object.
+\end{enumerate}
+
+The difference between these two approaches, despite their identical underlying physical origin, was illustrated by \citet{2010ApJ...723..563D}, in which 
+
 \subsection{Differential extinction}
 Many papers ****(such as ?) have examined the effects of extinction from multiple perspectives, many by examining ratios of reddening (a.k.a. colour excess) values as functions of wavelength primarily. The seminal work in this field is \cite{1989ApJ...345..245C}, hereafter CCM, which avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by fitting average ratios of the extinction parameter itself to observational data from stars taken in the IR, optical and UV spectral regions, as a**** function of wavelength $\lambda$. They produced a basic universal equation of the form:
 
@@ -174,20 +177,22 @@ A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
 where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The total wavelength range was divided into 4 subranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). The CCM model underpins more recent studies of intrinsic effects on extinction (\citet{2018MNRAS.479L.102C},\citet{2008PASP..120..583G}), and provides the basis for the synthetic  $A_{X}/A_{V}$ dataset in this project.
 
 ATLAS9 model atmosphere predictions, calculated for a given value of stellar metallicity $Z$ and a grid of 476 combinations of $T_{\textnormal{eff}}$ and log($g$) values \citep{2004astro.ph..5087C} were used as synthetic stellar observation events
-\section{Methodology}
+\section{Methodology} \label{Methodology}
 \subsection{Thermohaline mixing}
 
-For modelling thermohaline mixing, the BaSTI (\citet{2004ApJ...612..168P}) 1D full-star, full-lifespan stellar evolution code was used and modified to calculate the impact, on both the local radial layer and the overall star, of adding the effect of thermohaline mixing, on both short- and long-term time-scales. The software iterates through a series of variable time-steps between different model stellar objects, starting at a pre-determined phase of the stellar evolution sequence. The software reads in a file containing a pre-determined set of initial conditions, including initial stellar mass, He mass-fraction and metallicity, as well as global settings, such as the total number of time-steps for which to generate models and whether to include different mixing effects. In this project, the initial model was placed at the zero-age main-sequence (ZAMS).****
-The object at each point in simulated time compromises a series of spherical layers, representing the detailed physical structure of the stellar interior.
+For modelling thermohaline mixing, the BaSTI (\citet{2004ApJ...612..168P}) 1D full-star, full-lifespan stellar evolution FORTRAN code was used and modified to calculate the impact, on both local radial layers and the overall star, of adding the effect of thermohaline mixing, on both short- and long-term time-scales. The software iterates through a series of variable time-steps between different model stellar objects, starting at a pre-determined phase of the stellar evolution sequence. The software reads in a file containing a pre-determined set of initial conditions, including initial stellar mass, helium mass-fraction $Y$ and metallicity, as well as global settings, such as the total number of time-steps for which to generate models and whether to include different mixing effects. The mass fractions of the atomic species for the initial model (age, $t = 0$) were pre-calculated and stored in a separate file.
+The object at each point in simulated time compromises a series of spherical layers, each with a local value of various physical parameters and of the mass fraction of all species being considered, representing the detailed physical and chemical structure of the stellar interior at that time.
 
-In this project, all single differentials in a given layer $n$ were calculated as follows:
+So far in this project, the thermohaline mixing-related quantities were calculated using a routine separate from the main BaSTI code, which was run in its entirety prior to employing the thermohaline routine. In this routine, all single differentials in a given layer $k$ were calculated linearly as follows:
 
 \begin{equation}
-\frac{dy}{dx} = \frac{y_{n+1} - y_{n-1}}{x_{n+1} - x_{n-1}}
+\frac{dy}{dx} = \frac{y_{k+1} - y_{k-1}}{x_{k+1} - x_{k-1}} \textnormal{,}
 \label{dy/dx_iter}
 \end{equation}
 
-To determine the potential for thermohaline mixing, the abundances for all species in each layer, which are also read in for the initial model, were combined into a molecular weight value using Equation \ref{mol_weight_def}, then combined with the pressure of the same layer to produce the layer value of $\nabla_{\mu}$ via Equation \ref{dy/dx_iter}.
+a form known as the central difference method.
+To determine the potential for thermohaline mixing at a given model age, the abundances for all species in each layer were combined into a molecular weight value using Equation \ref{mol_weight_def}, then combined with the pressure of the same layer to produce the $k$th-layer value of $\nabla_{\mu}$ via Equation \ref{dy/dx_iter}. $D_{thl}$ was then calculated using Equation \ref{Dthl_def}, with a fixed value of $(\phi/\delta) = 1$ and the other parameters obtained directly from the BaSTI model output tables. Equation \ref{diffusion_eq} was then used, together with Equation \ref{dy/dx_iter} using the right-hand bracketed terms collectively as $y$, to give the time differential of the mass fraction.****
+%****Since this is a first-approximation test of the feasibility for thermohaline mixing and since the central difference method throws up the possibility of 
 
 \begin{equation}
 X_{i,n} = X_{i,n-1} + \delta t \left( \frac{\partial X_{i}}{\partial t}\right)
@@ -204,9 +209,42 @@ When calculating the bolometric corrections, the reference values taken by the p
 together with $M_{\textnormal{bol},\sun} = 4.75$. It should be noted that, during the final subtraction to obtain values of $A_{X}/A_{V}$, the $m_{X}^{0}$ and $M_{\textnormal{bol},\sun}$ values at both $A_{V}$ calibration values are the same, so the final results are unaffected by any calibration errors.
 
 \section{Results so far}
+\subsection{Thermohaline mixing}
+Using the methodology described in Section \ref{Methodology} and the BaSTI model described in Table \ref{basti_params}, the thermohaline routine was applied to the output physical and chemical data at a model age of $\log_{10}(t/\textnormal{yr}) = 10.10616695$ in simulated time, for which $\log_{10}(L/L_{\sun}) = 2.1231$, at which point this star is in the RGB phase and has settled into equilibrium following the FDU. ****The species selected to trace the location and evolution of any thermohaline mixing event was $^{14}$N. The radial gradients of all chemical species, the mean molecular weight, $\nabla_{\mu}$,  $D_{thl}$ and the time-evolution data for $X_{^{14}\textnormal{N}}$ were calculated for each layer. Focussing on the region of the hydrogen-burning shell, the $^{3}$He gradient is plotted against stellar radius in Figure \ref{dHe3/dr_colour}, with the line colour corresponding to the local value of $D_{thl}$. For the same region, the mass fraction for $^{14}$N is shown in Figure \ref{dXN14/dt_colour}, with each line representing the mass-fraction profile at a different time
 
+\begin{table}
+\begin{tabular}{cc}
+\hline
+Input (initial) parameter & Value \\
+\hline
+Start time, ($t=0$) & pre-MS \\
+Mass & 1$M_{\sun}$ \\
+$Y$ & 0.248 \\
+$Z$ & 0.0172 ($=Z_{\sun}$) \\
+Diffusion & Enabled \\
+\hline
+\end{tabular}
+\caption{BaSTI initial setup}
+\label{basti_params}
+\end{table}
 
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_He3_radius_gradient_Dthl_color.png}
+\caption{$^{3}$He abundance gradient for model with $Z = Z_{\sun}$, $M = 1M_{\sun}$ and diffusion effects included, at a point $\log(L/L_{\sun}) = 2.1231$}
+\label{dHe3/dr_colour}
+\end{center}
+\end{figure}
 
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_time_diff_eq_Dvar_10dt_dmu_k_lim.png}
+\caption{$^{14}$N abundance time derivative for model with $Z = Z_{\sun}$, $M = 1M_{\sun}$ and diffusion effects included, at a point $\log(L/L_{\sun}) = 2.1231$}
+\label{dXN14/dt_colour}
+\end{center}
+\end{figure}
+
+\subsection{Differential extinction}
 Initially, ****the values of $A_{X}/A_{V}$ were fitted using a simple function of $T_{\textnormal{eff}}$ only, containing 3 free parameters, denoted by $a$,$b$ and $c$. The results of this stage are stored in the function $A_{1} = A_{X}/A_{V}(T_{\textnormal{eff}})$. $A_{1}$ took on one of two function forms, depending on the relative performance of both in each filter. The first case, referred to in Table \ref{R1_coeffs_table} by the abbreviation `pow', models a fit of the following power-law form:
 
 \begin{equation}
@@ -264,22 +302,6 @@ As shown in Figure****, for some filters, there are significant changes in the e
 \includegraphics[scale=0.4]{../wfc3_16_23Myr_10Gyr_complex_solar/wfc3_ATLAS9_grid_BaSTI_coverage_c16_complex_Zsol_4500.pdf}
 \caption{$T_{\textnormal{eff}}$-log($g$) grid coverage by a 16 Myr, $Z_{\sun}$ BaSTI isochrone ****including mass-loss, core overshooting and }
 \label{BaSTI_coverage}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.6]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_He3_radius_gradient_Dthl_color.png}
-\caption{$^{3}$He abundance gradient for model with $Z = Z_{\sun}$, $M = 1M_{\sun}$ and diffusion effects included, at a point $\log(L/L_{\sun}) = 2.1231$}
-\label{dHe3/dr_colour}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.4]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_time_diff_eq_Dvar_10dt_dmu_k_lim.png}
-\caption{$^{14}$N abundance time derivative for model with $Z = Z_{\sun}$, $M = 1M_{\sun}$ and diffusion effects included, at a point $\log(L/L_{\sun}) = 2.1231$}
-\label{dXN14/dt_colour}
-\end{center}
 \end{figure}
 
 % ****FORMAT FOR INCLUDING PDF IMAGES!!!
