@@ -18,7 +18,7 @@
 The abstract of the paper.
 \end{abstract}
 
-\section{Introduction & background}
+\section{Introduction and background}
 \subsection{Motivation}
 The fundamental parameters of stars, such as their effective temperatures and metallicities, dictate their observed apparent properties, such as their luminosities and spectra. Hence, a full accounting of the effects of these parameters, and any physical stellar processes that impact on them, directly or indirectly, must be sought.
 
@@ -209,9 +209,20 @@ When calculating the bolometric corrections, the reference values taken by the p
 
 together with $M_{\textnormal{bol},\sun} = 4.75$. It should be noted that, during the final subtraction to obtain values of $A_{X}/A_{V}$, the $m_{X}^{0}$ and $M_{\textnormal{bol},\sun}$ values at both $A_{V}$ calibration values are the same, so the final results are unaffected by any calibration errors. The non-zero calibration value of $A_{V} = 1$ was chosen, as this allows for significant changes in $A_{X}/A_{V}$ from Equation (\ref{BCs_diff}), while also being close enough to zero to avoid significant changes in $A_{X}/A_{V}$ due to the Forbes effect \citep{2008PASP..120..583G}.
 
+This first fitting step was carried out with no anchor points, for  extinction data at one fixed value of stellar surface gravity (log($g$/cm s$^{-1}$) = 5.0) and metallicity ($Z = Z_{\sun}$). Due to a low-$T_{\textnormal{eff}}$ artefact present in the data for several filters in both the WFC3 and Gaia systems, this project only analysed data for $T_{\textnormal{eff}} \geq 4500$K. Coincidentally, this also avoid any impact of the aforementioned Forbes effect due to low-$T_{\textnormal{eff}}$ values (less than 4000K, becoming especially prominent at 2500K, according to \citet{2008PASP..120..583G}).
+
 \section{Results so far}
 \subsection{Thermohaline mixing}
-Using the methodology described in Section \ref{Methodology} and the BaSTI model described in Table \ref{basti_params}, the thermohaline routine was applied to the output physical and chemical data at a model age of $\log_{10}(t/\textnormal{yr}) = 10.10616695$ in simulated time, for which $\log_{10}(L/L_{\sun}) = 2.1231$, at which point this star is in the RGB phase and has settled into equilibrium following the FDU. ****The species selected to trace the location and evolution of any thermohaline mixing event was $^{14}$N. The radial gradients of all chemical species, the mean molecular weight, $\nabla_{\mu}$,  $D_{thl}$ and the time-evolution data for $X_{^{14}\textnormal{N}}$ were calculated for each layer. Focussing on the region of the hydrogen-burning shell, the $^{3}$He gradient is plotted against stellar radius in Figure \ref{dHe3/dr_colour}, with the line colour corresponding to the local value of $D_{thl}$. For the same region, the mass fraction for $^{14}$N is shown in Figure \ref{dXN14/dt_colour}, with each line representing the mass-fraction profile at a different time
+Using the methodology described in Section \ref{Methodology} and the BaSTI model described in Table \ref{basti_params}, the thermohaline routine was applied to the output physical and chemical data at a model age of $\log_{10}(t/\textnormal{yr}) = 10.10616695$ in simulated time, for which $\log_{10}(L/L_{\sun}) = 2.1231$, at which point this star is in the RGB phase and has settled into equilibrium following the FDU. The species selected to trace the location and evolution of any thermohaline mixing event was $^{14}$N. This selection was made on the basis of known changes in $^{14}$N abundance as a function of temperature, and hence radius, within the fusion shell
+
+The radial gradients of all chemical species, the mean molecular weight, $\nabla_{\mu}$,  $D_{thl}$ and the time-evolution data for $X_{^{14}\textnormal{N}}$ were calculated for each layer. Focussing on the region of the hydrogen-burning shell, the $^{3}$He gradient is plotted against stellar radius in Figure \ref{dHe3/dr_colour}, with the line colour corresponding to the local value of $D_{thl}$, as shown in the colour bar. For a known fusion region, the positive value of $dX/dr$ for a given species indicates the burning of that species in one or more fusion mechanisms. The conclusion that can be drawn from Figure \ref{dHe3/dr_colour} is that the conditions required for thermohaline mixing (indicated by non-zero $D_{\textnormal{thl}}$) exist in the outer part of the $^{3}$He fusion region.
+
+For the same radial region, the mass fraction for $^{14}$N is shown in Figure \ref{dXN14/dt_colour}, with each line representing the mass-fraction profile at a different time, with specific times listed in the legend. The behaviour of the mass fraction in the left-hand side of the figure ($R \la 0.055R_{\sun}$) matches the behaviour shown in ****FigureX of ****paperY. The explanation for this two-step series is the domination of the CNO cycle in burning hydrogen in RGB fusion shells over the pp-chain, which dominates in MS core hydrogen burning. 
+
+The CNO cycle in low-mass stars consists of two separate cyclic branches, which create**** $^{4}$He from $^{1}$H via two different series of proton captures and $\beta ^{+}$ decays involving isotopes of C, N and O as catalysts. Focussing specifically on $^{14}$N, which is a stable isotope, the difference in its interactions between the cycles is its parent nuclei. In the CN cycle-branch, it is produced via the $^{13}$C($^{1}$H,$\gamma$)$^{14}$N reaction. In the NO cycle-branch, it is produced via the $^{17}$O($^{1}$H,$^{4}$He)$^{14}$N. For each branch of the CNO cycle to be completed, it requires a temperature sufficiently high to support all its constituent fusion reaction steps. When this condition is no longer fulfilled, the production and destruction of the C, N and O isotopes is no longer in equilibrium. As temperature decreases moving radially outwards, the first branch to reach this stage is the NO cycle, followed by the CN cycle. Once this stage is reached, reaction rates dictate how elemental abundances change. The NO cycle, which produces $^{14}N$ overall, stops, such that $^{14}N$ abundance drops at lower temperatures. At temperatures too low to sustain the CN cycle, the $^{12}$C stops being fused**** and hence the production of nitrogen is halted.
+
+This is an important observation as it establishes the location of $^{3}$He burning as being in the outer part of the H-burning shell, which agrees with the predictions of other models and is closest to the radiation zone, where thermohaline mixing is hypothesised to take effect. Figure \ref{dXN14/dt_colour} shows that, in a timespan of ~500yr, much shorter than the intervals between the ages of individual BaSTI models (~10$^{4}$yr around the model considered in the plots), the projected effect of thermohaline mixing on the local mass fraction of $^{14}$N is highly significant.
+
 
 \begin{table}
 \begin{tabular}{cc}
@@ -260,7 +271,7 @@ A_{1,\textnormal{exp}} (T_{\textnormal{eff}}) = a \exp{(b T_{\textnormal{eff}})}
 \label{Teff_exp}
 \end{equation}
 
-This first fitting step was carried out with no anchor points, for  extinction data at one fixed value of stellar surface gravity (log($g$/cm s$^{-1}$) = 5.0) and metallicity ($Z = Z_{\sun}$). Due to a low-$T_{\textnormal{eff}}$ artefact present in the data for several filters in both the WFC3 and Gaia systems, this project only analysed data for $T_{\textnormal{eff}} \geq 4500$K. Coincidentally, this also avoid any impact of the aforementioned Forbes effect due to low-$T_{\textnormal{eff}}$ values (less than 4000K, becoming especially prominent at 2500K, according to \citet{2008PASP..120..583G}).
+
 
 \begin{table*}
 \begin{tabular}{ccccccccc}
@@ -338,9 +349,12 @@ When fitting the $A_{1}$ functions, with the exception of ****, most fitting res
 
 \section{Future work}
 
-This work, although confirming feasibility of thermohaline mixing in BaSTI, has yet to implement the effects of the resultant chemical mixing on the models of the star at times following the initial mixing.
+This work, although confirming feasibility of thermohaline mixing in BaSTI, has yet to implement the effects of the resultant chemical mixing on the models of the star at times following the initial mixing. The next step should be to integrate the conditions for thermohaline mixing into the relevant BaSTI routines allow local chemical compositions to change in response to thermohaline mixing, which in turn allows the mixing effect to propagate into the radiative zone, the first step that must be taken if the mixing is to have any impact on observable chemical abundances (i.e. at the stellar surface).
 
 Isochrones****
+
+\section{Conclusion}
+
 
 \bibliographystyle{mnras} % unsrtnat
 \bibliography{transfer_report}
