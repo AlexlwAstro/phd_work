@@ -209,7 +209,7 @@ When calculating the bolometric corrections, the reference values taken by the p
 
 together with $M_{\textnormal{bol},\sun} = 4.75$. It should be noted that, during the final subtraction to obtain values of $A_{X}/A_{V}$, the $m_{X}^{0}$ and $M_{\textnormal{bol},\sun}$ values at both $A_{V}$ calibration values are the same, so the final results are unaffected by any calibration errors. The non-zero calibration value of $A_{V} = 1$ was chosen, as this allows for significant changes in $A_{X}/A_{V}$ from Equation (\ref{BCs_diff}), while also being close enough to zero to avoid significant changes in $A_{X}/A_{V}$ due to the Forbes effect \citep{2008PASP..120..583G}.
 
-This first fitting step was carried out with no anchor points, for  extinction data at one fixed value of stellar surface gravity (log($g$/cm s$^{-1}$) = 5.0) and metallicity ($Z = Z_{\sun}$). Due to a low-$T_{\textnormal{eff}}$ artefact present in the data for several filters in both the WFC3 and Gaia systems, this project only analysed data for $T_{\textnormal{eff}} \geq 4500$K. Coincidentally, this also avoid any impact of the aforementioned Forbes effect due to low-$T_{\textnormal{eff}}$ values (less than 4000K, becoming especially prominent at 2500K, according to \citet{2008PASP..120..583G}).
+This first fitting step was carried out with no anchor points, for  extinction data at one fixed value of stellar surface gravity (log($g$/cm s$^{-1}$) = 5.0) and metallicity ($Z = Z_{\sun}$). Due to a low-$T_{\textnormal{eff}}$ artefact present in the data for several filters in both the WFC3 and Gaia systems, this project only analysed data for $T_{\textnormal{eff}} \geq 4500$K. Coincidentally, this also avoid any impact of the aforementioned Forbes effect due to low-$T_{\textnormal{eff}}$ values (less than 4000K, becoming especially prominent at 2500K, according to \citet{2008PASP..120..583G}). The errors on the resulting values for the coefficients of $A{1}$ were computed as a covariance matrix. The $\sigma$ values for the coefficients displayed in Table \ref{R1_coeffs_table} were extracted from the variances, which together form the leading diagonal of the covariance matrix.
 
 \section{Results so far}
 \subsection{Thermohaline mixing}
@@ -250,6 +250,14 @@ Diffusion & Enabled \\
 
 \begin{figure}
 \begin{center}
+\includegraphics[scale=0.5]{../mu_test_data/mu_test_graphs/burning_logL=2p1231_5species.pdf}
+\caption{Mass fractions, with values normalised to those for $^{3}$He, for 5 species for model with $Z = Z_{\sun}$, $M = 1M_{\sun}$ and diffusion effects included, at a point $\log(L/L_{\sun}) = 2.1231$}
+\label{5specs_norm}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
 \includegraphics[scale=0.4]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_time_diff_eq_Dvar_10dt_dmu_k_lim.png}
 \caption{$^{14}$N abundance time derivative for model with $Z = Z_{\sun}$, $M = 1M_{\sun}$ and diffusion effects included, at a point $\log(L/L_{\sun}) = 2.1231$}
 \label{dXN14/dt_colour}
@@ -271,43 +279,95 @@ A_{1,\textnormal{exp}} (T_{\textnormal{eff}}) = a \exp{(b T_{\textnormal{eff}})}
 \label{Teff_exp}
 \end{equation}
 
-
+Table \ref{R1_coeffs_table} shows the best results obtained for $A_{1,\textnormal{exp}} (T_{\textnormal{eff}})$ for all filters. All coefficient values are presented with a precision of 4 significant figures. 
 
 \begin{table*}
-\begin{tabular}{ccccccccc}
+\begin{tabular}{cccccc}
 \hline
-\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{6}{c}{$A_{1}$ coefficients} \\ \cline{4-9} % & \multicolumn{3}{c}{$A_{2}$ coefficients} \\ \cline{2-7}
-%\textbf{Filter} & \textbf{AUC value for FRB data} \\
-& & & $a$ & $\sigma_{a}$ & $b$ & $\sigma_{b}$ & $c$ & $\sigma_{c}$ \\ \hline
-& f218w & exp & cell1 & cell2 & cell3 & cell1 & cell2 & cell3 \\
-& f225w & exp & cell4 & cell5 & cell6 & cell1 & cell2 & cell3 \\
-& f275w & exp & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-& f300x & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-& f336w & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-& f390w & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-WFC3 & f438w & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-& f475w & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-& f555w & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-& f606w & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-& f625w & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-& f775w & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-& f814w & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\ \hline
-& G & pow & cell7 & cell8 & cell9 & cell1 & cell2 & cell3 \\
-Gaia & G\textsubscript{bp} & pow & cell7 & cell8 & cell9 & cell7 & cell8 & cell9 \\
-& G\textsubscript{rp} & pow & cell7 & cell8 & cell9 & cell7 & cell8 & cell9 \\
+\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{3}{c}{$A_{1}$ coefficients} \\ \cline{4-6}
+%\textbf{Filter} \\
+& & & $a$ & $b$ & $c$ \\ \hline
+% -2.32428259e+02  -1.07634845e-03   2.93338391e+00
+% -1.28482746e+02  -1.03094181e-03   2.61038997e+00
+% -9.72567775e-01  -3.51770388e-04   2.06004238e+00
+% -5.33470924e+05  -1.66350652e+00   2.05158490e+00
+% -1.51556105e+04  -1.58229494e+00   1.64765130e+00
+% -0.59910717 -0.08070638  1.73786479
+% -9.99999999e+04  -1.78304457e+00   1.35186267e+00
+% -1.20707226e+05  -1.70657822e+00   1.22045256e+00
+% -4.59655266e+05  -1.88059297e+00   1.07985380e+00
+% -3.13655088e+05  -1.82928924e+00   9.64793923e-01
+% -5.47562323e+05  -2.02950259e+00   8.78683006e-01
+% -6.32767059e+03  -1.57627077e+00   6.56703339e-01
+% -3.72711692e+03  -1.43145264e+00   6.15752594e-01
+% -3.38142759e+04  -1.39444200e+00   1.03998507e+00
+% -457.55192948   -0.89995256    1.24675509
+% -4.38278161e+03  -1.36062232e+00   6.77129794e-01
+& f218w & exp & -232.4$\pm$48.1 & -(1.076$\pm$0.043)$\times 10^{-3}$ & 2.933$\pm$0.007 \\
+& f225w & exp & -128.5$\pm$13.8 & -(1.031$\pm$0.022)$\times 10^{-3}$ & 2.610$\pm$0.003 \\
+& f275w & exp & 0.9726$\pm$0.0581 & -(3.518$\pm$0.109)$\times 10^{-4}$ & 2.060$\pm$0.001 \\
+& f300x & pow & -(5.335$\pm$0.936)$\times 10^{5}$ & -1.664$\pm$0.021 & 2.052$\pm$0.001 \\
+& f336w & pow & -(1.516$\pm$0.723)$\times 10^{4}$ & -1.582$\pm$0.056 & 1.648$\pm$0.001 \\
+& f390w & pow & -0.5991$\pm$0.1494 & -0.08071$\pm$0.09090 & 1.738$\pm$0.309 \\
+WFC3 & f438w & pow & -(1.000$\pm$0.463)$\times 10^{5}$ & -1.783$\pm$0.054 & 1.352$\pm$0.001 \\
+& f475w & pow & -(1.207$\pm$0.379)$\times 10^{5}$ & -1.707$\pm$0.037 & 1.220$\pm$0.001 \\
+& f555w & pow & -(4.560$\pm$1.490)$\times 10^{5}$ & -1.881$\pm$0.038 & 1.080$\pm$0.001 \\
+& f606w & pow & -(3.137$\pm$0.911)$\times 10^{5}$ & -1.829$\pm$0.034 & 0.9648$\pm$0.0003 \\
+& f625w & pow & -(5.476$\pm$3.709)$\times 10^{5}$ & -2.030$\pm$0.079 & 0.8787$\pm$0.0002 \\
+& f775w & pow & -(6.328$\pm$4.571)$\times 10^{3}$ & -1.576$\pm$0.085 & 0.6567$\pm$0.0001 \\
+& f814w & pow & -(3.727$\pm$1.381)$\times 10^{3}$ & -1.431$\pm$0.044 & 0.6158$\pm$0.0002 \\ \hline
+& G & pow & -(3.381$\pm$0.733)$\times 10^{4}$ & -1.394$\pm$0.026 & 1.040$\pm$0.001 \\
+Gaia & G\textsubscript{bp} & pow & -457.6$\pm$64.9 & -0.9000$\pm$0.0172 & 1.247$\pm$0.002 \\
+& G\textsubscript{rp} & pow & -(4.383$\pm$0.871)$\times 10^{3}$ & -1.361$\pm$0.023 & 0.6771$\pm$0.0002 \\ \hline
 
 \end{tabular}
 \caption{tgfdidgdi****}
 \label{R1_coeffs_table}
 \end{table*}
 
-As shown in Figure****, for some filters, there are significant changes in the extinction ratio values at fixed $T_{\textnormal{eff}}$ ($|\delta A| > 0.02$), due to changes in log($g$), $Z$ or both.
+\begin{table*}
+\begin{tabular}{ccc}
+\hline
+System & Filter & $A_{2}$ required? \\
+\hline
+& f218w & Y \\
+& f225w & Y \\
+& f275w & Y \\
+& f300x & Y \\
+& f336w & N \\
+& f390w & N \\
+WFC3 & f438w & N \\
+& f475w & N \\
+& f555w & N \\
+& f606w & N \\
+& f625w & N \\
+& f775w & N \\
+& f814w & N \\
+\hline
+& G & N \\
+Gaia & G\textsubscript{bp} & N \\
+& G\textsubscript{rp} & N \\ \hline
+
+\end{tabular}
+\caption{tgfdidgdi****}
+\label{R2_yn_table}
+\end{table*}
+
+As shown in Figure****, for some filters, there are significant changes in the extinction ratio values at fixed $T_{\textnormal{eff}}$ ($|\delta A| > 0.02$), due to changes in log($g$), $Z$ or both. However, since the main effect the 
 
 \begin{figure*}
 \begin{center}
 \includegraphics[scale=0.3]{../Aall_ratio_Zs_div_Z2_effect_high_logg_zoom_15000.pdf}
 \caption{****psrsoft image output for a simulated pulsar data file}
 \label{all_Z_Z2_ratio}
+\end{center}
+\end{figure*}
+
+\begin{figure*}
+\begin{center}
+\includegraphics[scale=0.3]{../Aall_ratio_all_logg_div_5p0_effect.pdf}
+\caption{****psrsoft image output for a simulated pulsar data file}
+\label{all_logg_logg5_ratio}
 \end{center}
 \end{figure*}
 
