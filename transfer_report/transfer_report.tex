@@ -83,7 +83,8 @@
 \begin{center}
 \hrule
 \vspace*{0.5cm}
-{\Huge \sc Title \par}
+{\Huge \sc Thermohaline mixing \par}
+% & differential extinction in stars
 \vspace*{0.5cm}
 \hrule
 
@@ -111,7 +112,8 @@ The abstract of the paper.
 
 \chapter{Introduction and background}
 \section{Motivation}
-The fundamental parameters of stars, such as their effective temperatures and metallicities, dictate their observed apparent properties, such as their luminosities and spectra. Hence, a full accounting of the effects of these parameters, and any physical stellar processes that impact on them, directly or indirectly, must be sought. ****Interior mixing is known to alter their 
+The fundamental parameters of stars, such as their effective temperatures and metallicities, dictate their observed apparent properties, such as their luminosities and spectra. Hence, a full accounting of the effects of these parameters, and any physical stellar processes that impact on them, directly or indirectly, must be sought. Interior mixing is known to alter stars' observed (surface) chemical abundances, and extinction alters their apparent magnitude. The extinction, as the physical value of lost flux between the source and an observer, is known to be affected by properties specific to the source itself, such as the dominant emission wavelengths, independent of the observer path.
+Together, these effects on observed stellar properties, if not properly accounted for, can cause significant errors in any quantities derived from these properties, including stars' distance, age, luminosity and mass. 
 
 \section{Thermohaline mixing}
 The first months of the project were dedicated to the study of thermohaline mixing. The detailed study of this effect was begun by \cite{1972ApJ...172..165U} and \cite{1980A&A....91..175K}, to explain anomalous chemical abundances at the surface of mature (i.e., post-first-dredge-up (FDU)), ****low-mass ($\lesssim$ reld giant branch (RGB) stars. Specifically, the anomalies consist of an over-abundance of $^{12}$C, $^{16}$O and $^{14}$N, together with a paucity of $^{7}$Li and $^{1}$H, in the stellar spectra. Taken together, these particular changes in these particular species indicate an interaction between the RGB star's fusion shell and the surface, i.e. a mixing effect. Thermohaline mixing is proposed as a solution to this problem in the post-FDU phase in low-mass (< 1.5$M_{\odot}$) RGB stars****. The goal of this project is, ultimately, to implement a routine for calculating and propagating the effects of thermohaline mixing in BaSTI (\cite{2004ApJ...612..168P},\cite{2008ASPC..394..285P}), a 1D spherically-symmetric stellar interior model which produces both a detailed layered structural representation of a particular star at a series of ages in its lifetime and a summary of the most important fundamental properties, such as stellar mass, luminosity and radius, which are used to compare the models to observed properties of stars. The software can also use these models to produce isochrones at fixed metallicity \citep{2013A&A...558A..46P} with predicted magnitudes of stars of different masses in various filter systems.****
@@ -191,13 +193,13 @@ Extinction of light between a source object, such as a star, and a remote observ
 After accounting for a general extinction effect on an object's emission, its apparent magnitude in a given filter $X$ (i.e. wavelength range, which we define as increasing from $\lambda _{1}$ to $\lambda _{2}$) is given by:
 
 \begin{equation}
-m_{X} = -2.5 \log_{10} \left(\frac{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda} \left( 10^{-0.4 A_{\lambda}} \right) S_{\lambda} d\lambda }{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda}^{0} S_{\lambda} d\lambda }\right) + m_{X}^{0}
+m_{X} = -2.5 \log_{10} \left(\frac{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda} \left( 10^{-0.4 A_{X,\lambda}} \right) S_{\lambda} d\lambda }{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda}^{0} S_{\lambda} d\lambda }\right) + m_{X}^{0}
 \label{app_mag_def}
 \end{equation}
 
 where $f_{\lambda}$ represents the monochromatic flux at a given wavelength $\lambda$ at the observer distance, $A_{\lambda}$ is the extinction value as a function of wavelength, $S_{\lambda}$ is the response function and $f_{\lambda}^{0}$ and $m_{X}^{0}$ represent the monochromatic flux and apparent magnitude, respectively, of a known reference object in $X$. In this project,the star Vega was used as the reference.
 
-Since our goal, ultimately, is to document potential effects of fundamental stellar properties upon observables, we need to connect the observational and idealised scenarios, for which we use bolometric corrections. For a filter $X$, the extinction parameter $A$ must be ****calibrated relative to a known value. For this reference, in this work we will input a value of the extinction in the well-studied Johnson-$V$ filter.
+Since our goal, ultimately, is to document potential effects of fundamental stellar properties upon observables, we need to connect the observational and idealised scenarios, for which we use bolometric corrections. For a filter $X$, the extinction parameter $A_{X}$ must be calibrated relative to a known value. For this reference, in this work we will input a value of the extinction in the well-studied Johnson-$V$ filter, $A_{V}$.
 To derive the equation linking a bolometric correction with the extinction parameter, we start with the definition of a bolometric correction in $X$, $BC_{X}$:
 
 \begin{equation}
@@ -212,23 +214,26 @@ M_{\textnormal{bol}} = M_{\textnormal{bol},\odot} - 2.5 \log_{10} \left( \frac{4
 \label{mbol_sun}
 \end{equation}
 
-where  $F_{\textnormal{bol}}$ is the bolometric stellar flux at its surface, $R$ is the stellar radius, $M_{\textnormal{bol},\odot}$ is the solar absolute bolometric magnitude, ****which is assumed in this work to have a value of 4.75 and $L_{\odot}$ is the solar luminosity, for which a value of $3.844 \times 10^{33}$ erg s$^{-1}$ is used. Bolometric corrections can be expressed as a function of extinction using the universal definition of $M_{X}$ in terms of $m_{X}$ and the distance $d$ to the source:
+where  $F_{\textnormal{bol}}$ is the bolometric stellar flux at its surface, $R$ is the stellar radius, $M_{\textnormal{bol},\odot}$ is the solar absolute bolometric magnitude, which is assumed in this work to have a value of 4.75 and $L_{\odot}$ is the solar luminosity, for which a value of $3.844 \times 10^{33}$ erg s$^{-1}$ is used. Bolometric corrections can be expressed as a function of extinction using the universal definition of $M_{X}$ in terms of $m_{X}$ and the distance $d$ to the source:
 
 \begin{equation}
 M_{X} = m_{X} - 2.5 \log_{10}\left( \left( \frac{d}{10 \textnormal{pc}} \right)^{2} \right),
 \label{abs_mag_def}
 \end{equation}
 
-together with the equation $f_{\lambda}d^{2}=F_{\lambda}R^{2}$, where $F_{\lambda}$ is the monochromatic flux at $\lambda$ at the stellar surface. This gives the final function for a bolometric correction:
+together with the equation $f_{\lambda}d^{2}=F_{\lambda}R^{2}$, where $F_{\lambda}$ is the monochromatic flux at $\lambda$ at the stellar surface. This gives the final function for a bolometric correction for filter $X$:
 
 \begin{align}
-BC_{X} &= M_{\textnormal{bol},\odot} - m_{X}^{0} - 2.5 \log_{10} \left( \frac{4\pi R^{2}F_{\textnormal{bol}}}{L_{\odot}} \right) \\ &+ 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lambda_{2}} F_{\lambda} \left( 10^{-0.4 A_{\lambda}} \right) S_{\lambda} d\lambda}{\int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda}^{0} S_{\lambda} d\lambda} \right)
+\begin{split}
+BC_{X} &= M_{\textnormal{bol},\odot} - m_{X}^{0} - 2.5 \log_{10} \left( \frac{4\pi R^{2}F_{\textnormal{bol}}}{L_{\odot}} \right) \\
+&+ 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lambda_{2}} F_{\lambda} \left( 10^{-0.4 A_{X,\lambda}} \right) S_{\lambda} d\lambda}{\int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda}^{0} S_{\lambda} d\lambda} \right)
 \label{BC_extinc}
+\end{split}
 \end{align}
 
 %With the effects of extinction included, the bolometric correction with a given extinction reference, $A_{r}$, is given by:
 
-To extract the extinction parameter $A$****, we use the simple relation:
+To extract the extinction parameter $A_{X}$, we use the simple relation:
 
 \begin{equation}
 A_{X} = \left( \frac{A_{X}}{A_{V}} \right) A_{V}
@@ -238,39 +243,41 @@ A_{X} = \left( \frac{A_{X}}{A_{V}} \right) A_{V}
 together with the chosen value of $A_{V}$ (for this project the values were $A_{V} =$ 0, 1 - note that $BC_{X}(A_{V}=0)$  effectively assumes no extinction), before taking the difference between the two $BC_{X}(A_{V})$, giving the following equation:
 
 \begin{align}
-BC_{X}(0) - BC_{X}(A_{V}) &= \\ 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lambda_{2}} F_{\lambda}  S_{\lambda} d\lambda}{\int_{\lambda_{1}}^{\lambda_{2}} F_{\lambda}\left( 10^{-0.4 \left(A_{X,\lambda}/A_{V}\right)A_{V}} \right) S_{\lambda} d\lambda} \right)
-\\ &= \left(A_{X}/A_{V}\right)A_{V}
+\begin{split}
+BC_{X}(0) - BC_{X}(A_{V}) &= 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lambda_{2}} F_{\lambda}  S_{\lambda} d\lambda}{\int_{\lambda_{1}}^{\lambda_{2}} F_{\lambda}\left( 10^{-0.4 \left(A_{X,\lambda}/A_{V}\right)A_{V}} \right) S_{\lambda} d\lambda} \right)
+\\ &\approx \left(A_{X}/A_{V}\right)A_{V}
 \label{BCs_diff}
+\end{split}
 \end{align}
 
-**** if $A_{X,\lambda}$ is assumed to constant within the wavelength range of each filter $X$, which is a valid assumption, even for the (wide-field) Hubble filters being studied in this work (Girardi****).
-
-ATLAS9****
+if $A_{X} = A_{X,\lambda}$ is assumed to be constant within the wavelength range of each filter $X$, which is a valid assumption \citep{2008PASP..120..583G}, even for the wide-field Hubble filters being studied in this work.
 
 \chapter{Current state of the field}
 \section{Thermohaline mixing}
-Multiple**** studies have established the feasibility of thermohaline mixing in low-mass RGB stars from molecular mass gradient inversions as small as $(\Delta\mu / \mu) \sim$ 10$^{-4}$ (\cite{2006Sci...314.1580E}, \cite{2010ApJ...723..563D}). There were 2 slightly different approaches put forward for modelling thermohaline mixing:****
+Multiple studies have established the feasibility of thermohaline mixing in low-mass RGB stars from molecular mass gradient inversions as small as $(\Delta\mu / \mu) \sim$ 10$^{-4}$ (\cite{2006Sci...314.1580E}, \cite{2010ApJ...723..563D}). There were 2 slightly different approaches put forward for modelling thermohaline mixing:****
 \begin{enumerate}
 
-\item Linear theory \citep{1972ApJ...172..165U} - in a similar vein to the convection MLT, a simple linear model is assumed, one of the core assumptions being that the mixing occurs via radial movement of very thin regions (i.e. high aspect ratios). This allows the models of the mixing to remain one-dimensional and thus simplifies the calculation. The associated free parameter ($C_{thl}$) constrained by observation examples.
+\item Linear theory \citep{1972ApJ...172..165U} - in a similar vein to the convection MLT, a simple linear model is assumed, one of the core assumptions being that the mixing occurs via radial movement of very thin regions (i.e. high aspect ratios). This allows the models of the mixing to remain one-dimensional and thus simplifies the calculation. The associated free parameter ($C_{thl}$) is constrained by observation examples.
 \item Blob theory \citep{1980A&A....91..175K} - the same as the linear theory, with the exception of the elimination of the assumption that the blob of chemically-different material is narrow. This allows for non-linear effects to be considered, including flow patterns which cause the moving blob to mix into its surroundings, reducing and eventually removing the blob as a distinct object.
 \end{enumerate}
 
-The difference between these two approaches, despite their identical underlying physical origin, was illustrated by \cite{2010ApJ...723..563D}, in which 
+The difference between these two approaches, despite their identical underlying physical origin, was illustrated by \cite{2010ApJ...723..563D}, in which ****
+
+More generally, the theoretical approach to stellar interior mixing, including rotation, radiative levitation and thermohaline mixing, among other effects, is still a work in progress, with some disagreement regarding the implementation (\cite{2010ApJ...723..563D}, \cite{2013A&A...553A...1M}) and the numerical output \citep{2015MNRAS.446.2673L} of different simulation models.
 
 \section{Differential extinction}
-Many papers ****(such as ?) have examined the effects of extinction from multiple perspectives, many by examining ratios of reddening (a.k.a. colour excess) values as functions of wavelength primarily. The seminal work in this field is \cite{1989ApJ...345..245C}, hereafter CCM, which avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by fitting average ratios of the extinction parameter itself to observational data from stars taken in the IR, optical \citep{1988ESASP.281b.215C} and UV \citep{1988ApJ...328..734F} spectral regions, as an empirical function of wavelength $\lambda$. They produced a basic universal equation of the form:
+Many papers ****(such as ?) have examined the effects of extinction using ratios of reddening (a.k.a. colour excess) values as functions of wavelength primarily \citep{1988ApJ...328..734F}. The seminal work in this field is \cite{1989ApJ...345..245C}, hereafter CCM89, which avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by fitting average ratios of the extinction parameter itself to observational data from stars taken in the IR, optical \citep{1988ESASP.281b.215C} and UV \citep{1988ApJ...328..734F} spectral regions, as an empirical function of wavelength $\lambda$. They produced a basic universal equation of the form:
 
 \begin{equation}
 A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
 \label{CCM_general}
 \end{equation}
 
-where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The total wavelength range was divided into 4 subranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). The CCM model underpins more recent studies of intrinsic effects on extinction (\cite{2018MNRAS.479L.102C}, \cite{2008PASP..120..583G}), and provides the basis for the synthetic  $A_{X}/A_{V}$ dataset in this project.
+where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The total wavelength range was divided into 4 subranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). The CCM89 model underpins more recent studies of intrinsic effects on extinction (\cite{2008PASP..120..583G}, \cite{2018MNRAS.479L.102C}), and provides the basis for the synthetic $A_{X}/A_{V}$ dataset in this project.
 
-ATLAS9 model atmosphere predictions, calculated for a given value of stellar metallicity $Z$ and a grid of 476 combinations of $T_{\textnormal{eff}}$ and log($g$) values \citep{2004astro.ph..5087C} were used as synthetic stellar observation events****
+ATLAS9 model atmosphere predictions, calculated for a given value of stellar metallicity $Z$ and a grid of 476 combinations of $T_{\textnormal{eff}}$ and log($g$) values \citep{2004astro.ph..5087C} were used as synthetic stellar observation events**** (\cite{1997A&A...318..841C}, \cite{1993KurCD..13.....K})
 
-\cite{2018MNRAS.479L.102C}, hereafter CV18b ****use a similar approach to this project for the 3 Gaia filters, extending the approach employed with other filter systems in \cite{2018MNRAS.475.5023C}, hereafter CV18a, i.e. deriving bolometric data from a library of synthetic stellar model atmospheres, then fitting the data to a model function to estimate the behaviour of the extinction as a function of stellar parameters. There are key differences between the two projects, however. Firstly, CV18a,b used MARCS model atmospheres instead of ATLAS9. More importantly, the metallicity and, particularly, $T_{\textnormal{eff}}$ ranges covered by CV18a,b were smaller than the ones covered in this project. This makes the results of this project more applicable for a wider range of $T_{\textnormal{eff}}$ values and therefore stellar population ages, particularly for the youngest such examples, such as open clusters, as shown by comparing Figures \ref{BaSTI_coverage_16M} and \ref{BaSTI_coverage_10G}, which represent scenarios for open and globular clusters, respectively.
+\cite{2018MNRAS.479L.102C}, hereafter CV18b use a similar approach to this project for the 3 Gaia filters, extending the approach employed with other filter systems in \cite{2018MNRAS.475.5023C}, hereafter CV18a, i.e. deriving bolometric data from a library of synthetic stellar model atmospheres, then fitting the data to a model function to estimate the behaviour of the extinction as a function of stellar parameters. There are key differences between the two projects, however. Firstly, CV18a,b used MARCS model atmospheres instead of ATLAS9. More importantly, the metallicity and, particularly, $T_{\textnormal{eff}}$ ranges covered by CV18a,b were smaller than the ones covered in this project. This makes the results of this project more applicable for a wider range of $T_{\textnormal{eff}}$ values and therefore stellar population ages, particularly for the youngest such examples, such as open clusters, as shown by comparing Figures \ref{BaSTI_coverage_16M} and \ref{BaSTI_coverage_10G}, which represent scenarios for open and globular clusters, respectively.
 
 \chapter{Methodology} \label{Methodology}
 \section{Thermohaline mixing}
@@ -297,25 +304,26 @@ where $n$ is the time iterator, $\delta t$ is the time-step, with a fixed value 
 
 \section{Differential extinction}
 When calculating the bolometric corrections, the reference values taken by the parameters for Vega were:
+
 \begin{enumerate}
 \item $m_{X}^{0} = 0.03$ for the Gaia filters
 \item $m_{X}^{0} = 0.00$ for the Hubble WFC3 filters
 \end{enumerate}
 
-together with $M_{\textnormal{bol},\odot} = 4.75$. It should be noted that, during the final subtraction to obtain values of $A_{X}/A_{V}$, the $m_{X}^{0}$ and $M_{\textnormal{bol},\odot}$ values at both $A_{V}$ calibration values are the same, so the final results are unaffected by any calibration errors. The non-zero calibration value of $A_{V} = 1$ was chosen, as this allows for significant changes in $A_{X}/A_{V}$ from Equation (\ref{BCs_diff}), while also being close enough to zero to avoid significant changes in $A_{X}/A_{V}$ due to the Forbes effect \citep{2008PASP..120..583G}. Although the ATLAS9 minimum$T_{\textnormal{eff}}$ value is 3500K, due to a low-$T_{\textnormal{eff}}$ artefact present in the data for several filters in both the WFC3 and Gaia systems, this project only analysed data for $T_{\textnormal{eff}} \geq 4500$K. The total range of parameter values used in this project can be found in Table \ref{param_range_table}.
+together with $M_{\textnormal{bol},\odot} = 4.75$. Equation \ref{CCM_general}, with the different wavelength regimes for $a(x)$ and $b(x)$ described by CCM89, was used with the $A_{V}$ calibration values to simulate the extinction parameter in Equation \ref{BC_extinc}. $R_{V}$ was set to a value of 3.1, the standard value for the diffuse interstellar medium. The integration was carried out by iteratively adding the integrand results at regular small wavelength intervals. This produced two tables of bolometric correction data, one for each value of $A_{V}$, which were then subtracted to obtain a table of values of $A_{X}/A_{V}$. It should be noted that, during this final subtraction, the $m_{X}^{0}$ and $M_{\textnormal{bol},\odot}$ values at both $A_{V}$ calibration values are the same, so the final results are unaffected by any errors in these values. The non-zero calibration value of $A_{V} = 1$ was chosen, as this allows for significant changes in $A_{X}/A_{V}$ from Equation (\ref{BCs_diff}), while also being close enough to zero to avoid significant changes in $A_{X}/A_{V}$ due to the Forbes effect \citep{2008PASP..120..583G}. The total range of parameter values used in this project can be found in Table \ref{param_range_table}. Although the ATLAS9 minimum $T_{\textnormal{eff}}$ value is 3500K, due to a low-$T_{\textnormal{eff}}$ artefact present in the data for several filters in both the WFC3 and Gaia systems, this project only analysed data for $T_{\textnormal{eff}} \geq 4500$K. 
 
 \begin{table}
 \begin{tabular}{cccc}
 \hline
 Parameter & Minimum & Maximum & Number of values\\
 \hline
-$T_{\textnormal{eff}}$/K & 4500 & 50000 & 76 \\
+$T_{\textnormal{eff}}$/K & 3500 & 50000 & 76 \\
 log($g$/cm s$^{-1}$) & 0.0 & 5.0 & 11 \\
 log($Z/Z_{\odot}$) & -2.0 & 0.5 & 4 \\
 \hline
 
 \end{tabular}
-\caption{Stellar parameters used for calculating function in this project. Note: not all $T_{\textnormal{eff}}$ values have data for all log($g$) values - see \cite{2004astro.ph..5087C} for details}
+\caption{Stellar parameters values used in this project. Note: not all $T_{\textnormal{eff}}$ values have data for all log($g$) values - see \cite{2004astro.ph..5087C} for details}
 \label{param_range_table}
 \end{table}
 
@@ -469,7 +477,19 @@ Gaia & G\textsubscript{bp} & N \\
 \label{R2_yn_table}
 \end{table*}
 
-As shown in Figure****, for some filters, there are significant changes in the extinction ratio values at fixed $T_{\textnormal{eff}}$ ($|\delta A| > 0.02$), due to changes in log($g$), $Z$ or both. 
+\begin{figure}
+\includegraphics[scale=0.4]{../wfc3_16_23Myr_10Gyr_complex_solar/wfc3_ATLAS9_grid_BaSTI_coverage_c16_complex_Zsol_4500.pdf}
+\caption{$T_{\textnormal{eff}}$-log($g$) grid coverage by a 16 Myr, $Z_{\odot}$ BaSTI isochrone ****including mass-loss, core overshooting and diffusion effects}
+\label{BaSTI_coverage_16M}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.4]{../wfc3_16_23Myr_10Gyr_complex_solar/wfc3_ATLAS9_grid_BaSTI_coverage_c10000_complex_Zsol_4500.pdf}
+\caption{$T_{\textnormal{eff}}$-log($g$) grid coverage by a 10 Gyr, $Z_{\odot}$ BaSTI isochrone ****including mass-loss, core overshooting and diffusion effects}
+\label{BaSTI_coverage_10G}
+\end{figure}
+
+As shown in Figures \ref{all_Z_Z2_ratio} and \ref{all_logg_logg5_ratio}, for some filters, there are significant changes in the extinction ratio values at fixed $T_{\textnormal{eff}}$ ($|\delta A| > 0.02$), due to changes in log($g$), $Z$ or both. Figure \ref{BaSTI_coverage_16M} shows the $T_{\textnormal{eff}}$-log($g$) plane for a BaSTI isochrone at solar metallicity for a stellar population with an age of 16 Myr, corresponding to a young open cluster. The objects included in the figure are limited to the region used for fitting the $A_{1}$ and $A_{2}$ functions, so any objects with $T_{\textnormal{eff}} < 4500$K, i.e. the coolest giants and main-sequence dwarfs, are excluded.
 
 \begin{figure*}
 \begin{center}
@@ -486,18 +506,6 @@ As shown in Figure****, for some filters, there are significant changes in the e
 \label{all_logg_logg5_ratio}
 \end{center}
 \end{figure*}
-
-\begin{figure}
-\includegraphics[scale=0.4]{../wfc3_16_23Myr_10Gyr_complex_solar/wfc3_ATLAS9_grid_BaSTI_coverage_c16_complex_Zsol_4500.pdf}
-\caption{$T_{\textnormal{eff}}$-log($g$) grid coverage by a 16 Myr, $Z_{\odot}$ BaSTI isochrone ****including mass-loss, core overshooting and diffusion effects}
-\label{BaSTI_coverage_16M}
-\end{figure}
-
-\begin{figure}
-\includegraphics[scale=0.4]{../wfc3_16_23Myr_10Gyr_complex_solar/wfc3_ATLAS9_grid_BaSTI_coverage_c10000_complex_Zsol_4500.pdf}
-\caption{$T_{\textnormal{eff}}$-log($g$) grid coverage by a 10 Gyr, $Z_{\odot}$ BaSTI isochrone ****including mass-loss, core overshooting and diffusion effects}
-\label{BaSTI_coverage_10G}
-\end{figure}
 
 \begin{figure*}
 \includegraphics[scale=0.4]{../HubWFC/Hub_graphs/AHub_logg=5p0_solar_4500K_R1_only_Teff_fit_modded_plot.pdf}
@@ -517,7 +525,11 @@ So far, by measuring abundances of species which both are hydrogen fusion produc
 
 While the physical process and impacts of thermohaline mixing have been successfully implemented in other stellar evolution codes, such as MESA and STAREVOL, BaSTI has not yet been modified to include these in the iterative calculations. Achieving this is a significant goal because, as demonstrated by \cite{2015MNRAS.446.2673L} in the particular case of lithium abundances, there can be significant differences in predictions of abundances between different stellar evolution codes. Adding BaSTI to the list of codes available for future comparative studies would provide more scope to study potential sources of error, such as the model time-step and $C_{thl}$ value effects on abundances noted by \cite{2015MNRAS.446.2673L}. Of particular interest is the $C_{thl}$ free-parameter value, as there are many proposed values, from authors using different approaches and models, which differ in some cases by at least an order of magnitude.
 
-While the magnitude of the thermohaline mixing effect in Figure \ref{dXN14/dt_colour} gives
+While the magnitude of the change due to thermohaline mixing in Figure \ref{dXN14/dt_colour} gives**** an idea of the region in which the effect arises, the figure does not show any actual mixing taking place, as Equation \ref{iter_timeind} does not allow for changes in mass fraction between layers and it assumes ($\partial X_{i}/\partial t$) to be independent of time, so the current calculation does not give rise to a physically-viable diffusive effect.
+\cite{2010A&A...521A...9C}
+
+% and the value chosen for $C_{thl}$ are
+More fundamentally, the equation for $D_{thl}$ itself is not beyond dispute. When thermohaline mixing is studied in the full context of a non-homogeneous medium, such as a hydrogen-burning shell, outside the moving material bubble, in the normal stellar case ($\nabla _{\mu} > 0$ for the medium) the molecular weight gradient acts to counter the thermohaline effect, leading to a modified equation for $D_{thl}$ \citep{2010ApJ...723..563D}.
 
 \section{Differential extinction}
 When fitting the $A_{1}$ functions, with the exception of the f218w, f225w, f275w and f300x filters (the shortest-wavelength filters, all in the UV), all fitting results were accurate to within $\pm$0.02 of the $\log(g) = 5.0$ data. From Figure \ref{all_Z_Z2_ratio}, the same pattern occurs with metallicity, as the data for only the 4 aforementioned filters vary by more than 3$\%$, even between the $\log(Z/Z_{\odot}) = -2.0$ and $0.5$ data.
@@ -527,11 +539,11 @@ As shown in Figures \ref{BaSTI_coverage_16M} and \ref{BaSTI_coverage_10G}, even 
 The significant effect of metallicity is also, at the time of writing being investigated using $A_{2}$ functions, as this effect also occurs in the region $T_{\textnormal{eff}} \leq 8000$K.
 
 \chapter{Future work}
-This work, although confirming feasibility of thermohaline mixing in BaSTI, has yet to implement the effects of the resultant chemical mixing on the models of the star at times following the initial mixing. The next step should be to integrate the conditions for thermohaline mixing into the relevant BaSTI routines allow local chemical compositions to change in response to thermohaline mixing, which in turn allows the mixing effect to propagate into the radiative zone, the first step that must be taken if the mixing is to have any impact on observable chemical abundances (i.e. at the stellar surface).
+This work, although confirming feasibility of thermohaline mixing in BaSTI, has yet to implement the effects of the resultant chemical mixing on the models of the star at times following the initial mixing. The next step should be to integrate the conditions for thermohaline mixing into the relevant BaSTI routines allow local chemical compositions to change in response to thermohaline mixing, which in turn allows the mixing effect to propagate into the radiative zone, the first step that must be taken if the mixing is to have any impact on observable (surface) chemical abundances.
 
-**** modelling/integrating other effects into BaSTI
-The accuracy of the results of a full implementation of thermohaline mixing into BaSTI will still be unclear, given the known impact of rotation (\cite{1963ApJ...138.1134C} \cite{1998A&A...334.1000M},\cite{2017A&A...606A..55M},\cite{2012A&A...537A.146E}) and radiative levitation \citep{2016A&A...592A..29M} on stellar interior structure, and hence on observed emission, both in single stars  and populations. For example, rotation is a possible explanation for the phenomenon of extended main sequence turnoffs (\cite{2015MNRAS.453.2070N}, \cite{2016MNRAS.460L..20B}), split main sequences and multiple populations. If interior mixing effects are not included in calculations
-%\cit
+The accuracy of the results of a full implementation of thermohaline mixing into BaSTI will still be unclear, given the known impact of rotation (\cite{1963ApJ...138.1134C} \cite{1998A&A...334.1000M},\cite{2017A&A...606A..55M},\cite{2012A&A...537A.146E}) and radiative levitation \citep{2016A&A...592A..29M} on stellar interior structure, and hence on observed emission, both in single stars  and populations. For example, rotation is a possible explanation for the phenomenon of extended main sequence turnoffs (\cite{2015MNRAS.453.2070N}, \cite{2016MNRAS.460L..20B}), split main sequences and multiple populations.
+
+When combining multiple diffusive effects, it is common to treat the effects as independent, such that the combined effect, described by a coefficient $D_{tot} = \sum_{i} D_{i}$, is the sum total of the individual effects. \cite{2013A&A...553A...1M}, studying the general stellar case, found that the general stability criterion as a function of $D_{tot}$ involves coupling of multiple effects. This coupling will need to be considered when adding new effects to BaSTI, particularly rotation.
 
 For differential extinction, the immediate goal is to derive $A_{1}$ and $A_{2}$ functions that are  sufficiently accurate. The final step will be to apply them to the isochrone data by using the values of $T_{\textnormal{eff}}$ and log($g$) for each object in a given isochrone, together with the $Z$ value of the isochrone and the unique coefficients for each filter. The resulting extinction will then be added to the filter magnitude data for the objects and colour-magnitude diagrams (CMDs) will be plotted, simulating an observed stellar population, to study any differences in the distribution of the objects. The final step will be to compare the results with observed populations in the same CMD.
 
