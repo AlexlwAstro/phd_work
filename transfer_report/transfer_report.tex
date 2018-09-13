@@ -39,6 +39,12 @@
 \usepackage{epstopdf}
 \usepackage{subcaption}
 
+
+% ALW edit: FORMAT FOR INCLUDING PDF IMAGES!!!
+% for guidance, see phd_work/grfguide.pdf
+%\includegraphics[<options>]{filename.pdf}
+
+
 %%%%%%%%%%%	Page layout settings that follow JMU regulations     %%%%%%%%%%
 
 \setlength{\hoffset}{0mm}
@@ -83,8 +89,7 @@
 \begin{center}
 \hrule
 \vspace*{0.5cm}
-{\Huge \sc Thermohaline mixing \par}
-% & differential extinction in stars
+{\Huge \sc Thermohaline mixing and extinction in stars \par}
 \vspace*{0.5cm}
 \hrule
 
@@ -107,7 +112,8 @@
 \end{titlepage}
 
 \begin{abstract}
-The abstract of the paper.
+So far in this project, the potential effects of thermohaline mixing in red-giant branch star models have been studied and their projected effect on local mass fractions of $^{14}$N has been calculated. This effect is deemed to be highly significant, which will allow for the full implementation of thermohaline mixing in the models.
+The impact of fundamental stellar parameters on the ratio of values of interstellar extinction in different telescope filters has also been studied. The impact is significant and has been partially modelled using simple functions of the stellar parameters, a process which is ongoing at the time of writing.
 \end{abstract}
 
 \chapter{Introduction and background}
@@ -116,7 +122,7 @@ The fundamental parameters of stars, such as their effective temperatures and me
 Together, these effects on observed stellar properties, if not properly accounted for, can cause significant errors in any quantities derived from these properties, including stars' distance, age, luminosity and mass. 
 
 \section{Thermohaline mixing}
-The first months of the project were dedicated to the study of thermohaline mixing. The detailed study of this effect was begun by \cite{1972ApJ...172..165U} and \cite{1980A&A....91..175K}, to explain anomalous chemical abundances at the surface of mature (i.e., post-first-dredge-up (FDU)), ****low-mass ($\lesssim$ reld giant branch (RGB) stars. Specifically, the anomalies consist of an over-abundance of $^{12}$C, $^{16}$O and $^{14}$N, together with a paucity of $^{7}$Li and $^{1}$H, in the stellar spectra. Taken together, these particular changes in these particular species indicate an interaction between the RGB star's fusion shell and the surface, i.e. a mixing effect. Thermohaline mixing is proposed as a solution to this problem in the post-FDU phase in low-mass (< 1.5$M_{\odot}$) RGB stars****. The goal of this project is, ultimately, to implement a routine for calculating and propagating the effects of thermohaline mixing in BaSTI (\cite{2004ApJ...612..168P},\cite{2008ASPC..394..285P}), a 1D spherically-symmetric stellar interior model which produces both a detailed layered structural representation of a particular star at a series of ages in its lifetime and a summary of the most important fundamental properties, such as stellar mass, luminosity and radius, which are used to compare the models to observed properties of stars. The software can also use these models to produce isochrones at fixed metallicity \citep{2013A&A...558A..46P} with predicted magnitudes of stars of different masses in various filter systems.****
+The first months of the project were dedicated to the study of thermohaline mixing. The detailed study of this effect was begun by \cite{1972ApJ...172..165U} and \cite{1980A&A....91..175K}, to explain anomalous chemical abundances at the surface of mature (i.e., post-first-dredge-up (FDU)), low-mass ($\lesssim M_{\odot}$ red giant branch (RGB) stars \cite{2010A&A...521A...9C}. Specifically, the anomalies consist of an over-abundance of $^{12}$C, $^{16}$O and $^{14}$N, together with a paucity of $^{7}$Li and $^{1}$H, in the stellar spectra. Taken together, these particular changes in these particular species indicate an interaction between the RGB star's fusion shell and the surface, i.e. a mixing effect. Thermohaline mixing is proposed as a solution to this problem. The goal of this project is, ultimately, to implement a routine for calculating and propagating the effects of thermohaline mixing in BaSTI (\cite{2004ApJ...612..168P}, \cite{2008ASPC..394..285P}), a 1D spherically-symmetric stellar interior model which produces both a detailed layered structural representation of a particular star at a series of ages in its lifetime and a summary of the most important fundamental properties, such as stellar mass, luminosity and radius, which are used to compare the models to observed properties of stars. The software can also use these models to produce isochrones at fixed metallicity \citep{2013A&A...558A..46P} with predicted magnitudes of stars of different masses in various filter systems.
 
 Mixing of material occurs due to local thermodynamic instabilities. For stars, this requires consideration of 4 thermodynamic quantities: pressure $P$, temperature $T$, density $\rho$ and molecular weight, $\mu$, as well as a coordinate system in which to operate. For simple stellar models, radial symmetry is assumed, allowing the system to be reduced to the radial coordinate $r$, measured from the stellar centre. If we assume a fully-ionized plasma containing $N$ atomic species, the local mean molecular weight can be calculated as:
 
@@ -135,11 +141,9 @@ Let us consider a bubble of gaseous material in pressure-equilibrium with its su
 \nabla _{\textnormal{rad}} &> \nabla _{\textnormal{ad}} + \left( \frac{\phi}{\delta} \right) \nabla _{\mu} \label{ledoux_ineq}
 \end{align}
 
-where $\nabla _{\mu} = d\ln\mu / d\ln P$, $\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$ and $\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$ are the temperature-pressure gradients for the local environment (dominated by radiation pressure) and the bubble (treated as an adiabatic ideal gas), respectively, $\phi = \left( \partial \ln\rho / \partial \ln\mu \right)_{P,T}$ and $\delta = -\left( \partial \ln\rho / \partial \ln T \right)_{P,\mu}$  \citep{1980A&A....91..175K}. For the case of this project****, $(\phi/\delta)$ is always positive, and has been assigned a value of 1.
+where $\nabla _{\mu} = d\ln\mu / d\ln P$, $\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$ and $\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$ are the temperature-pressure gradients for the local environment (dominated by radiation pressure) and the bubble (treated as an adiabatic ideal gas), respectively, $\phi = \left( \partial \ln\rho / \partial \ln\mu \right)_{P,T}$ and $\delta = -\left( \partial \ln\rho / \partial \ln T \right)_{P,\mu}$  \citep{1980A&A....91..175K}. For the case of this project, $(\phi/\delta)$ is assumed to be positive, with a fixed value of 1.
 
-%, but of different temperature and chemical composition,
-
-For convection to occur in a given stellar region, only Equation (\ref{schwarz_ineq}), known as the Schwarzschild criterion for instability, needs to be true, as convection merely requires a non-zero $\Delta\mu$. Equation (\ref{ledoux_ineq}) is known as the Ledoux criterion. When there is a molecular weight inversion (thereby satisfying Equation (\ref{mu_inv_ineq})), instability arises invariably, but if only the Ledoux criterion is also true, the instability is thermohaline. If only the Schwarzschild criterion is true out of the three, the molecular weight gradient partially inhibits the effects of convective instability. The mixing process in this case is known as semiconvection \citep{2016ApJ...817...54M}.
+For convection to occur in a given stellar region, only Equation (\ref{schwarz_ineq}), known as the Schwarzschild criterion for instability, needs to be true.. Equation (\ref{ledoux_ineq}) is known as the Ledoux criterion. When there is a molecular weight inversion (thereby satisfying Equation (\ref{mu_inv_ineq})), instability arises invariably, but if only the Ledoux criterion is also true, the instability is thermohaline. If only the Schwarzschild criterion is true out of the three, the molecular weight gradient partially inhibits the effects of convective instability. The mixing process in this case is known as semiconvection \citep{2016ApJ...817...54M}.
 
 %If both the other criteria are true, the Ledoux criterion is automatically satisfied, in the stellar case ($\nabla _{\textnormal{rad}},\nabla _{\textnormal{ad}} > 0$).
 
@@ -149,20 +153,18 @@ The basic structure of low-mass  RGB stars, starting from the physical centre of
 \item Inert, electron-degenerate $^{4}$He-dominated core (98$\%$ by mass), generally extending out to a coordinate fractional mass of ~0.28$M_{\star}$.
 \item Fusion shell, in which the fusion reactions which previously occurred in the main-sequence core occur now in the RGB phase. The main reactions are the pp-chain and CNO cycle.
 \item Radiative zone, consisting of layers for which the none of the instability criteria are fulfilled, thus ensuring stability against convection. For a solar-mass RGB star, this extends out to ~0.29$M_{\odot}$, as calculated both in the model generated for this work by BaSTI  and by \cite{2006Sci...314.1580E}, who employed a fully-3D hydrodynamic approach.
-\item Convective zone, where the Schwarzschild criterion is fulfilled, and mixing is modelled using the mixing-length theory (MLT)****ref, with the free parameter modelled such that, given solar input parameters, the model produces solar outputs. ****Given the extremely short characteristic timescales for convective mixing, this process can be assumed to be instantaneous in full-stellar modelling.
+\item Convective zone, where the Schwarzschild criterion is fulfilled, and mixing is modelled using the mixing-length theory (MLT) \citep{2017RSOS....470192S}, with the free parameter modelled such that, given solar input parameters, the model produces solar outputs. Given the extremely short characteristic timescales for convective mixing, this process can be assumed to be instantaneous in full-stellar modelling.
 \item Atmosphere, where the radiation is emitted from the star - this layer consequently dominates the nature of the emission ($T_{\textnormal{eff}}$, emission lines, etc.)
 \end{enumerate}
 
-Thermohaline mixing, as noted above, requires a molecular weight inversion. Due to the $^{3}\textnormal{He}(^{3}\textnormal{He},2^{1}\textnormal{H})^{4}\textnormal{He}$.
-
-Thermohaline mixing can be defined as a diffusive process \citep{1980A&A....91..175K}, so it can be constructed in models to obey the diffusion equation for the mass fraction of atomic species $i$, $X_{i}$, as follows****:
+Thermohaline mixing, as noted above, requires a molecular weight gradient inversion. This can be provided by the $^{3}\textnormal{He}(^{3}\textnormal{He},2^{1}\textnormal{H})^{4}\textnormal{He}$ reaction, which is an unusual fusion reaction, as it maintains (very nearly) the same total nuclear mass while increasing the number of nuclei holding that mass. This decreases the local mean molecular weight and causes a gradient inversion between this layer and the layers above. Thermohaline mixing can be defined as a diffusive process \citep{1980A&A....91..175K}, so it can be constructed in models to obey the diffusion equation for the mass fraction of atomic species $i$, $X_{i}$, as follows:
 
 \begin{equation}
 \frac{\partial X_{i}}{\partial t} = \frac{1}{\rho r^{2}}\frac{\partial}{\partial r} \left( \rho r^{2} D \frac{\partial X_{i}}{\partial r} \right)
 \label{diffusion_eq}
 \end{equation}
 
-The strength of different diffusive effects in Equation (\ref{diffusion_eq}) is dictated by their respective diffusion coefficient $D$. In the case of thermohaline mixing, the coefficient is defined \cite{2010A&A...521A...9C} as:
+The strength of different diffusive effects in Equation (\ref{diffusion_eq}) is dictated by their respective diffusion coefficient $D$. In the case of thermohaline mixing, the coefficient is defined \citep{2010A&A...521A...9C} as:
 
 \begin{equation}
 D_{\textnormal{thl}} = C_{\textnormal{thl}} K \left( \frac{\phi}{\delta} \right) \frac{\nabla _{\mu}}{\nabla _{\textnormal{rad}} - \nabla _{\textnormal{ad}}}
@@ -176,18 +178,9 @@ K = \frac{4acT^{3}}{3\kappa\rho ^{2}c_{P}}
 \label{diffusivity_def}
 \end{equation}
 
-where $a$ is the radiation constant, $c$ the speed of light, $\kappa$ the Rosseland mean opacity and $c_{P}$ the specific heat at constant pressure.
-Given the requirement for a molecular-weight inversion, $D_{\textnormal{thl}}$ was set to zero if the local region 
+where $a$ is the radiation constant, $c$ the speed of light, $\kappa$ the Rosseland mean opacity and $c_{P}$ the specific heat at constant pressure. Given the requirement for a molecular-weight inversion for thermohaline mixing to occur, $D_{\textnormal{thl}}$ was set to zero in the calculation if this criterion was not fulfilled.
 
-
-
-%\begin{equation}
-%
-%\label{del_mu_def}
-%\end{equation}
-
-
-\section{Differential extinction}
+\section{Extinction}
 Extinction of light between a source object, such as a star, and a remote observer is subject to various quantities, such as the density and metallicity of the interstellar medium along the emission travel path. Bolometric corrections represent mathematical estimates which account for the fact that, in a given filter, any part of the stellar spectrum outside the filter's wavelength range remains undetected by that filter. They are useful in all observations, in particular when observing objects visible only in a narrow spectral region.
 
 After accounting for a general extinction effect on an object's emission, its apparent magnitude in a given filter $X$ (i.e. wavelength range, which we define as increasing from $\lambda _{1}$ to $\lambda _{2}$) is given by:
@@ -231,8 +224,6 @@ BC_{X} &= M_{\textnormal{bol},\odot} - m_{X}^{0} - 2.5 \log_{10} \left( \frac{4\
 \end{split}
 \end{align}
 
-%With the effects of extinction included, the bolometric correction with a given extinction reference, $A_{r}$, is given by:
-
 To extract the extinction parameter $A_{X}$, we use the simple relation:
 
 \begin{equation}
@@ -254,19 +245,19 @@ if $A_{X} = A_{X,\lambda}$ is assumed to be constant within the wavelength range
 
 \chapter{Current state of the field}
 \section{Thermohaline mixing}
-Multiple studies have established the feasibility of thermohaline mixing in low-mass RGB stars from molecular mass gradient inversions as small as $(\Delta\mu / \mu) \sim$ 10$^{-4}$ (\cite{2006Sci...314.1580E}, \cite{2010ApJ...723..563D}). There were 2 slightly different approaches put forward for modelling thermohaline mixing:****
+Multiple studies have established the feasibility of thermohaline mixing in low-mass RGB stars from molecular mass gradient inversions with relative changes as small as $(\Delta\mu / \mu) \sim$ 10$^{-4}$ (\cite{2006Sci...314.1580E}, \cite{2010ApJ...723..563D}). There were 2 slightly different approaches put forward for modelling thermohaline mixing:
 \begin{enumerate}
 
-\item Linear theory \citep{1972ApJ...172..165U} - in a similar vein to the convection MLT, a simple linear model is assumed, one of the core assumptions being that the mixing occurs via radial movement of very thin regions (i.e. high aspect ratios). This allows the models of the mixing to remain one-dimensional and thus simplifies the calculation. The associated free parameter ($C_{thl}$) is constrained by observation examples.
+\item Linear theory \citep{1972ApJ...172..165U} - in a similar vein to the convection MLT, a simple linear model is assumed, one of the core assumptions being that the mixing occurs via radial movement of very thin regions (i.e. high aspect ratios). This allows the models of the mixing to remain one-dimensional and thus simplifies the calculation. The associated free parameter ($C_{\textnormal{thl}}$) is constrained by observation examples.
 \item Blob theory \citep{1980A&A....91..175K} - the same as the linear theory, with the exception of the elimination of the assumption that the blob of chemically-different material is narrow. This allows for non-linear effects to be considered, including flow patterns which cause the moving blob to mix into its surroundings, reducing and eventually removing the blob as a distinct object.
 \end{enumerate}
 
-The difference between these two approaches, despite their identical underlying physical origin, was illustrated by \cite{2010ApJ...723..563D}, in which ****
+The difference between these two approaches, despite their identical underlying physical origin, was illustrated by \cite{2010ApJ...723..563D}, in which agreement was found between that paper's 2D numerical simulation approach and the blob theory, while a simple linear analysis agreed with the linear theory. Both approaches used the same RGB object parameters, yet disagreed on the value of $C_{\textnormal{thl}}$ by at least 1 order of magnitude, with the linear approach giving the higher value. The value of 1000 for $C_{\textnormal{thl}}$ in this project is in agreement with the linear approach.
 
 More generally, the theoretical approach to stellar interior mixing, including rotation, radiative levitation and thermohaline mixing, among other effects, is still a work in progress, with some disagreement regarding the implementation (\cite{2010ApJ...723..563D}, \cite{2013A&A...553A...1M}) and the numerical output \citep{2015MNRAS.446.2673L} of different simulation models.
 
-\section{Differential extinction}
-Many papers ****(such as ?) have examined the effects of extinction using ratios of reddening (a.k.a. colour excess) values as functions of wavelength primarily \citep{1988ApJ...328..734F}. The seminal work in this field is \cite{1989ApJ...345..245C}, hereafter CCM89, which avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by fitting average ratios of the extinction parameter itself to observational data from stars taken in the IR, optical \citep{1988ESASP.281b.215C} and UV \citep{1988ApJ...328..734F} spectral regions, as an empirical function of wavelength $\lambda$. They produced a basic universal equation of the form:
+\section{Extinction}
+Many papers have examined the effects of extinction using ratios of reddening (a.k.a. colour excess) values as functions of wavelength primarily \citep{1988ApJ...328..734F}. The seminal work in this field is \cite{1989ApJ...345..245C}, hereafter CCM89, which avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by fitting average ratios of the extinction parameter itself to observational data from stars taken in the IR, optical \citep{1988ESASP.281b.215C} and UV \citep{1988ApJ...328..734F} spectral regions, as an empirical function of wavelength $\lambda$. They produced a basic universal equation of the form:
 
 \begin{equation}
 A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
@@ -275,14 +266,33 @@ A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
 
 where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The total wavelength range was divided into 4 subranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). The CCM89 model underpins more recent studies of intrinsic effects on extinction (\cite{2008PASP..120..583G}, \cite{2018MNRAS.479L.102C}), and provides the basis for the synthetic $A_{X}/A_{V}$ dataset in this project.
 
-ATLAS9 model atmosphere predictions, calculated for a given value of stellar metallicity $Z$ and a grid of 476 combinations of $T_{\textnormal{eff}}$ and log($g$) values \citep{2004astro.ph..5087C} were used as synthetic stellar observation events**** (\cite{1997A&A...318..841C}, \cite{1993KurCD..13.....K})
+ATLAS9 model atmosphere predictions(\cite{1997A&A...318..841C}, \cite{1993KurCD..13.....K}), calculated for a given value of stellar metallicity $Z$ and a grid of 476 combinations of $T_{\textnormal{eff}}$ and log($g$) values \citep{2004astro.ph..5087C} were used as synthetic stellar observation events.
 
 \cite{2018MNRAS.479L.102C}, hereafter CV18b use a similar approach to this project for the 3 Gaia filters, extending the approach employed with other filter systems in \cite{2018MNRAS.475.5023C}, hereafter CV18a, i.e. deriving bolometric data from a library of synthetic stellar model atmospheres, then fitting the data to a model function to estimate the behaviour of the extinction as a function of stellar parameters. There are key differences between the two projects, however. Firstly, CV18a,b used MARCS model atmospheres instead of ATLAS9. More importantly, the metallicity and, particularly, $T_{\textnormal{eff}}$ ranges covered by CV18a,b were smaller than the ones covered in this project. This makes the results of this project more applicable for a wider range of $T_{\textnormal{eff}}$ values and therefore stellar population ages, particularly for the youngest such examples, such as open clusters, as shown by comparing Figures \ref{BaSTI_coverage_16M} and \ref{BaSTI_coverage_10G}, which represent scenarios for open and globular clusters, respectively.
 
 \chapter{Methodology} \label{Methodology}
 \section{Thermohaline mixing}
 
-For modelling thermohaline mixing, the BaSTI (\cite{2004ApJ...612..168P}) 1D full-star, full-lifespan stellar evolution FORTRAN code was used and modified to calculate the impact, on both local radial layers and the overall star, of adding the effect of thermohaline mixing, on both short- and long-term time-scales. The software iterates through a series of variable time-steps between different model stellar objects, starting at a pre-determined phase of the stellar evolution sequence. The software reads in a file containing a pre-determined set of initial conditions, including initial stellar mass, helium mass-fraction $Y$ and metallicity, as well as global settings, such as the total number of time-steps for which to generate models and whether to include different mixing effects. The mass fractions of the atomic species for the initial model (age, $t = 0$) were pre-calculated and stored in a separate file.
+For modelling thermohaline mixing, the BaSTI (\cite{2004ApJ...612..168P}) 1D full-star, full-lifespan stellar evolution FORTRAN code was used. The initial model parameters are list in Table \ref{basti_params}. The code was modified to calculate the impact, on both local radial layers and the overall star, of adding the effect of thermohaline mixing, on both short- and long-term time-scales. The software iterates through a series of variable time-steps between different model stellar objects, starting at a pre-determined phase of the stellar evolution sequence. The software reads in a file containing a pre-determined set of initial conditions, including initial stellar mass, helium mass-fraction $Y$ and metallicity, as well as global settings, such as the total number of time-steps for which to generate models and whether to include different mixing effects. The mass fractions of the atomic species for the initial model (age, $t = 0$) were pre-calculated and stored in a separate file.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{cc}
+\hline
+Input (initial) parameter & Value \\
+\hline
+Start time, ($t=0$) & pre-MS \\
+Mass & 1$M_{\odot}$ \\
+$Y$ & 0.248 \\
+$Z$ & 0.0172 ($=Z_{\odot}$) \\
+Diffusion & Enabled \\
+\hline
+\end{tabular}
+\caption{BaSTI initial setup}
+\label{basti_params}
+\end{center}
+\end{table}
+
 The object at each point in simulated time compromises a series of spherical layers, each with a local value of various physical parameters and of the mass fraction of all species being considered, representing the detailed physical and chemical structure of the stellar interior at that time.
 
 So far in this project, the thermohaline mixing-related quantities were calculated using a routine separate from the main BaSTI code, which was run in its entirety prior to employing the thermohaline routine. In this routine, all single differentials in a given layer $k$ were calculated linearly as follows:
@@ -293,16 +303,16 @@ So far in this project, the thermohaline mixing-related quantities were calculat
 \end{equation}
 
 a form known as the central difference method.
-To determine the potential for thermohaline mixing at a given model age, the abundances for all species in each layer were combined into a molecular weight value using Equation (\ref{mol_weight_def}), then combined with the pressure of the same layer to produce the $k$th-layer value of $\nabla_{\mu}$ via Equation (\ref{dy/dx_iter}). $D_{thl}$ was then calculated using Equation (\ref{Dthl_def}), with a fixed value of $(\phi/\delta) = 1$ and the other parameters obtained directly from the BaSTI model output tables. Equation (\ref{diffusion_eq}) was then used, together with Equation (\ref{dy/dx_iter}) using the right-hand bracketed terms collectively as $y$, to give the time differential of the mass fraction.**** Since this is merely a first-order approximation test of the feasibility for thermohaline mixing, and since the central difference method throws up the possibility of a result of zero for a solitary positive-$D_{\textnormal{thl}}$ layer, the $k$th-layer value of $D_{\textnormal{thl}}$ was used for the diffusion equation. The $k$th-layer value of the mass-fraction as a function of time was then calculated using the following linear iterative equation:
+To determine the potential for thermohaline mixing at a given model age, the abundances for all species in each layer were combined into a molecular weight value using Equation (\ref{mol_weight_def}), then combined with the pressure of the same layer to produce the $k$th-layer value of $\nabla_{\mu}$ via Equation (\ref{dy/dx_iter}). $D_{thl}$ was then calculated using Equation (\ref{Dthl_def}), with a fixed value of $(\phi/\delta) = 1$ and the other parameters obtained directly from the BaSTI model's output tables. Equation (\ref{diffusion_eq}) was then used, together with Equation (\ref{dy/dx_iter}) using the right-hand bracketed terms collectively as $y$, to give the time differential of the mass fraction. Since this is merely a first-order approximation test of the feasibility for thermohaline mixing, and since the central difference method throws up the possibility of a result of zero for a solitary positive-$D_{\textnormal{thl}}$ layer, the $k$th-layer value of $D_{\textnormal{thl}}$ was used for the diffusion equation. The $k$th-layer value of the mass-fraction as a function of time was then calculated using the following linear iterative equation:
 
 \begin{equation}
 X_{i,n,k} = X_{i,n-1,k} + \delta t \left( \frac{\partial X_{i}}{\partial t}\right)_{k},
 \label{iter_timeind}
 \end{equation}
 
-where $n$ is the time iterator, $\delta t$ is the time-step, with a fixed value of 500yr.
+where $n$ is the time iterator, with a maximum value of 100, and $\delta t$ is the time-step, with a fixed value of 500yr, giving an overall simulation time-scale of 50,000 years.
 
-\section{Differential extinction}
+\section{Extinction}
 When calculating the bolometric corrections, the reference values taken by the parameters for Vega were:
 
 \begin{enumerate}
@@ -313,6 +323,7 @@ When calculating the bolometric corrections, the reference values taken by the p
 together with $M_{\textnormal{bol},\odot} = 4.75$. Equation \ref{CCM_general}, with the different wavelength regimes for $a(x)$ and $b(x)$ described by CCM89, was used with the $A_{V}$ calibration values to simulate the extinction parameter in Equation \ref{BC_extinc}. $R_{V}$ was set to a value of 3.1, the standard value for the diffuse interstellar medium. The integration was carried out by iteratively adding the integrand results at regular small wavelength intervals. This produced two tables of bolometric correction data, one for each value of $A_{V}$, which were then subtracted to obtain a table of values of $A_{X}/A_{V}$. It should be noted that, during this final subtraction, the $m_{X}^{0}$ and $M_{\textnormal{bol},\odot}$ values at both $A_{V}$ calibration values are the same, so the final results are unaffected by any errors in these values. The non-zero calibration value of $A_{V} = 1$ was chosen, as this allows for significant changes in $A_{X}/A_{V}$ from Equation (\ref{BCs_diff}), while also being close enough to zero to avoid significant changes in $A_{X}/A_{V}$ due to the Forbes effect \citep{2008PASP..120..583G}. The total range of parameter values used in this project can be found in Table \ref{param_range_table}. Although the ATLAS9 minimum $T_{\textnormal{eff}}$ value is 3500K, due to a low-$T_{\textnormal{eff}}$ artefact present in the data for several filters in both the WFC3 and Gaia systems, this project only analysed data for $T_{\textnormal{eff}} \geq 4500$K. 
 
 \begin{table}
+\begin{center}
 \begin{tabular}{cccc}
 \hline
 Parameter & Minimum & Maximum & Number of values\\
@@ -325,6 +336,7 @@ log($Z/Z_{\odot}$) & -2.0 & 0.5 & 4 \\
 \end{tabular}
 \caption{Stellar parameters values used in this project. Note: not all $T_{\textnormal{eff}}$ values have data for all log($g$) values - see \cite{2004astro.ph..5087C} for details}
 \label{param_range_table}
+\end{center}
 \end{table}
 
 This first fitting step was carried out assuming a function of $T_{\textnormal{eff}}$ only, with no anchor points, for  extinction data at a fixed value of stellar surface gravity (log($g$/cm s$^{-1}$) = 5.0) and metallicity ($Z = Z_{\odot}$). Coincidentally, this also avoid any impact of the aforementioned Forbes effect due to low-$T_{\textnormal{eff}}$ values (less than 4000K, becoming especially prominent at 2500K, according to \cite{2008PASP..120..583G}). The errors on the resulting values for the coefficients of $A_{1}$ were computed as a covariance matrix. The $\sigma$ values for the coefficients displayed in Table \ref{R1_coeffs_table} were extracted from the variances, which together form the leading diagonal of the covariance matrix. The results of this stage are stored in the function $A_{1} = A_{X}/A_{V}(T_{\textnormal{eff}})$. This function took on one of two function forms, each containing 3 free parameters (denoted by $a$,$b$ and $c$), depending on the relative performance of both functions in each filter. The first case, referred to in Table \ref{R1_coeffs_table} by the abbreviation `pow', models a fit of the following power-law form:
@@ -341,9 +353,14 @@ A_{1,\textnormal{exp}} (T_{\textnormal{eff}}) = a \exp{(b T_{\textnormal{eff}})}
 \label{Teff_exp}
 \end{equation}
 
-The second fitting, whose results are stored as $A_{2}(T_{\textnormal{eff}},\log{g})$ was treated as a correction to the results of the $A_{1}$ fitting. Not all filters required a second fitting, as seen in Table \ref{R2_yn_table}. Since the main variations generally arise from changes in $T_{\textnormal{eff}}$, the final output of results is a plot of $A_{X}/A_{V}$ against $T_{\textnormal{eff}}$. Given that the $A_{1}$ results remain consistent with the data at high $T_{\textnormal{eff}}$ values across all filters due to the data tending towards a constant value of $A_{X}/A_{V}$, an upper $T_{\textnormal{eff}}$-limit of 8000K was set for $A_{2}$ as an anchor point. The data for the fitting was obtained by taking the data used to fit $A_{1}$ ($Z = Z_{\odot}$, log($g$)=5.0) and subtracting from it the data at all other log($g$) values. The $A_{2}$ results****
+The second fitting, whose results are stored as $A_{2}(T_{\textnormal{eff}},\log{g},Z)$ was treated as a correction to the results of the $A_{1}$ fitting. Not all filters required a second fitting, as seen in Table \ref{R2_yn_table}. Since the main variations generally arise from changes in $T_{\textnormal{eff}}$, the final output of results is a plot of $A_{X}/A_{V}$ against $T_{\textnormal{eff}}$. Given that the $A_{1}$ results remain consistent with the data at high $T_{\textnormal{eff}}$ values across all filters due to the data tending towards a constant value of $A_{X}/A_{V}$, an upper $T_{\textnormal{eff}}$-limit of 8000K was set for $A_{2}$ as an anchor point for the function. The data for the fitting was obtained by taking the data used to fit $A_{1}$ ($Z = Z_{\odot}$, log($g$)=5.0) and subtracting from it the data at all other log($g$) and $Z$ values. The final model for the extinction ratio, $A_{\textnormal{final}}$, was therefore defined as:
 
-Given the issues encoutered with modelling the $A_{2}$ functions, this project utilised the latest version of the BaSTI database \citep{2018ApJ...856..125H} to ascertain the range of log($g$) values covered by the selected $T_{\textnormal{eff}}$ range.
+\begin{equation}
+A_{\textnormal{final}}(T_{\textnormal{eff}},\log(g),Z) = A_{1}(T_{\textnormal{eff}}) + A_{2}(T_{\textnormal{eff}},\log(g),Z)
+\label{Afinal}
+\end{equation}
+
+Given the issues encountered with modelling the $A_{2}$ functions, this project utilised the latest version of the BaSTI database \citep{2018ApJ...856..125H} to ascertain the range of log($g$) values covered by the selected $T_{\textnormal{eff}}$ range.
 
 \chapter{Results so far}
 \section{Thermohaline mixing}
@@ -351,59 +368,41 @@ Using the methodology described in Section \ref{Methodology} and the BaSTI model
 
 The radial gradients of all chemical species, the mean molecular weight, $\nabla_{\mu}$,  $D_{thl}$ and the time-evolution data for $X_{^{14}\textnormal{N}}$ were calculated for each layer. Focussing on the region of the hydrogen-burning shell, the $^{3}$He gradient is plotted against stellar radius in Figure \ref{dHe3/dr_colour}, with the line colour corresponding to the local value of $D_{thl}$, as shown in the colour bar. For a known fusion region, the positive value of $dX/dr$ for a given species indicates the burning of that species in one or more fusion mechanisms. The conclusion that can be drawn from Figure \ref{dHe3/dr_colour} is that the conditions required for thermohaline mixing (indicated by non-zero $D_{\textnormal{thl}}$) exist in the outer part of the $^{3}$He fusion region.
 
-For the same radial region, the mass fraction for $^{14}$N is shown in Figure \ref{dXN14/dt_colour}, with each line representing the mass-fraction profile at a different time, with specific times listed in the legend. The behaviour of the mass fraction in the left-hand side of the figure ($R \lesssim 0.055R_{\odot}$) matches the behaviour shown in ****FigureX of ****paperY. The explanation for this two-step series is the domination of the CNO cycle in burning hydrogen in RGB fusion shells over the pp-chain, which dominates in MS core hydrogen burning. 
-
-The CNO cycle in low-mass stars consists of two separate cyclic branches, which create**** $^{4}$He from $^{1}$H via two different series of proton captures and $\beta ^{+}$ decays involving isotopes of C, N and O as catalysts. Focussing specifically on $^{14}$N, which is a stable isotope, the difference in its interactions between the cycles is its parent nuclei. In the CN cycle-branch, it is produced via the $^{13}$C($^{1}$H,$\gamma$)$^{14}$N reaction. In the NO cycle-branch, it is produced via the $^{17}$O($^{1}$H,$^{4}$He)$^{14}$N. For each branch of the CNO cycle to be completed, it requires a temperature sufficiently high to support all its constituent fusion reaction steps. When this condition is no longer fulfilled, the production and destruction of the C, N and O isotopes is no longer in equilibrium. As temperature decreases moving radially outwards, the first branch to reach this stage is the NO cycle, followed by the CN cycle. Once this stage is reached, reaction rates dictate how elemental abundances change. The NO cycle, which produces $^{14}N$ overall, stops, such that $^{14}N$ abundance drops at lower temperatures. At temperatures too low to sustain the CN cycle, the $^{12}$C stops being fused**** and hence the production of nitrogen is halted.
-
-This is an important observation as it establishes the location of $^{3}$He burning as being in the outer part of the H-burning shell, which agrees with the predictions of other models and is closest to the radiation zone, where thermohaline mixing is hypothesised to take effect. Figure \ref{dXN14/dt_colour} shows that, in a timespan of ~$5 \times 10^{4}$yr, of the order of the intervals between the ages of individual BaSTI models (~10$^{4}$yr around the model considered in the plots), the projected effect of thermohaline mixing on the local mass fraction of $^{14}$N is highly significant.
-
-
-\begin{table}
-\begin{tabular}{cc}
-\hline
-Input (initial) parameter & Value \\
-\hline
-Start time, ($t=0$) & pre-MS \\
-Mass & 1$M_{\odot}$ \\
-$Y$ & 0.248 \\
-$Z$ & 0.0172 ($=Z_{\odot}$) \\
-Diffusion & Enabled \\
-\hline
-\end{tabular}
-\caption{BaSTI initial setup}
-\label{basti_params}
-\end{table}
-
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.6]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_He3_radius_gradient_Dthl_color.png}
+\includegraphics[scale=0.7]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_He3_radius_gradient_Dthl_color_crop.png}
 \caption{$^{3}$He abundance gradient for model with $Z = Z_{\odot}$, $M = 1M_{\odot}$ and diffusion effects included, at a point $\log(L/L_{\odot}) = 2.1231$}
 \label{dHe3/dr_colour}
 \end{center}
 \end{figure}
 
+For the same radial region, the mass fraction for $^{14}$N is shown in Figure \ref{dXN14/dt_colour}, with each line representing the mass-fraction profile at a different time, with specific times listed in the legend. The behaviour of the mass fraction in the left-hand side of the figure ($R \lesssim 0.055R_{\odot}$) matches the behaviour shown in Figure 1 of \cite{2007A&A...467L..15C}. The explanation for this two-step series is the domination of the CNO cycle in burning hydrogen in RGB fusion shells over the pp-chain, which dominates in MS core hydrogen burning. 
+
+The CNO cycle in low-mass stars consists of two separate cyclic branches, which create $^{4}$He from $^{1}$H via two different series of proton captures and $\beta ^{+}$ decays involving isotopes of C, N and O as catalysts. Focussing specifically on $^{14}$N, which is a stable isotope, the difference in its interactions between the cycles is its parent nuclei. In the CN cycle-branch, it is produced via the $^{13}$C($^{1}$H,$\gamma$)$^{14}$N reaction. In the NO cycle-branch, it is produced via the $^{17}$O($^{1}$H,$^{4}$He)$^{14}$N. For each branch of the CNO cycle to be completed, it requires a temperature sufficiently high to support all its constituent fusion reaction steps. When this condition is no longer fulfilled, the production and destruction of the C, N and O isotopes is no longer in equilibrium. As temperature decreases moving radially outwards, the first branch to reach this stage is the NO cycle, followed by the CN cycle. Once this stage is reached, reaction rates dictate how elemental abundances change. The NO cycle, which produces $^{14}N$ overall, stops, such that $^{14}N$ abundance drops at lower temperatures. At temperatures too low to sustain the CN cycle, the $^{12}$C can no longer be burned and hence the production of nitrogen is halted. The normalised changes of the mass fractions of these species is shown in Figure \ref{5specs_norm}.
+
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.5]{../mu_test_data/mu_test_graphs/burning_logL=2p1231_5species.pdf}
+\includegraphics[scale=0.8]{../mu_test_data/mu_test_graphs/burning_logL=2p1231_5species.png}
 \caption{Mass fractions, with values normalised to those for $^{3}$He, for 5 species for model with $Z = Z_{\odot}$, $M = 1M_{\odot}$ and diffusion effects included, at a point $\log(L/L_{\odot}) = 2.1231$}
 \label{5specs_norm}
 \end{center}
 \end{figure}
 
+The CNO-cycle cutoff location establishes the location of $^{3}$He burning as being in the outer part of the H-burning shell, which agrees with the predictions of other models and is closest to the radiation zone, where thermohaline mixing is hypothesised to take effect. Figure \ref{dXN14/dt_colour} shows that, in a timespan of ~$5 \times 10^{4}$yr, of the order of the intervals between the ages of individual BaSTI models (~10$^{4}$yr around the model considered in the plots), the projected effect of thermohaline mixing on the local mass fraction of $^{14}$N is highly significant.
+
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.4]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_time_diff_eq_Dvar_10dt_dmu_k_lim.png}
+\includegraphics[scale=0.7]{../mu_test_data/mu_test_graphs/eq_logL=2p1231_time_diff_eq_Dvar_10dt_dmu_k_lim_crop.png}
 \caption{$^{14}$N abundance time derivative for model with $Z = Z_{\odot}$, $M = 1M_{\odot}$ and diffusion effects included, at a point $\log(L/L_{\odot}) = 2.1231$}
 \label{dXN14/dt_colour}
 \end{center}
 \end{figure}
 
-\section{Differential extinction}
-
-
+\section{Extinction}
 Table \ref{R1_coeffs_table} shows the best results obtained for $A_{1,\textnormal{exp}} (T_{\textnormal{eff}})$ for all filters. All coefficient values are presented with a precision of 4 significant figures. 
 
-\begin{table*}
+\begin{table}
+\begin{center}
 \begin{tabular}{cccccc}
 \hline
 %\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{3}{c}{$A_{1}$ coefficients} \\ \cline{4-6}
@@ -445,11 +444,41 @@ Gaia & G\textsubscript{bp} & pow & -457.6$\pm$64.9 & -0.9000$\pm$0.0172 & 1.247$
 & G\textsubscript{rp} & pow & -(4.383$\pm$0.871)$\times 10^{3}$ & -1.361$\pm$0.023 & 0.6771$\pm$0.0002 \\ \hline
 
 \end{tabular}
-\caption{tgfdidgdi****}
+\caption{Coefficient values produced by $A_{1}$ fitting}
 \label{R1_coeffs_table}
-\end{table*}
+\end{center}
+\end{table}
 
-\begin{table*}
+Using the results of Table \ref{R1_coeffs_table}, $A_{1}$ is plotted as a solid line, together with the original data, in Figure \ref{R1_bests}. The
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{../HubWFC/Hub_graphs/AHub_logg=5p0_solar_4500K_R1_only_Teff_fit_modded_plot.pdf}
+\caption{Plots of the best $A_{1}$ fitting result in each filter. Purple lines indicate that the fit took the form $A_{1,\textnormal{exp}}$, while green lines indicate the same for $A_{1,\textnormal{pow}}$. The dotted lines indicate deviations of $\pm$0.02 from the data (black crosses)}
+\label{R1_bests}
+\end{center}
+\end{figure}
+
+As shown in Figures \ref{all_Z_Z2_ratio} and \ref{all_logg_logg5_ratio}, for some filters, there are significant changes in the extinction ratio values at fixed $T_{\textnormal{eff}}$ ($|\delta A| > 0.02$), due to changes in log($g$), $Z$ or both.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.3]{../Aall_ratio_Zs_div_Z2_effect_high_logg_zoom_15000.pdf}
+\caption{Ratios of $A_{X}/A{V}$ values for different $Z$ values compared with solar metallicity data at log($g$) = 5.0}
+\label{all_Z_Z2_ratio}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.3]{../Aall_ratio_all_logg_div_5p0_effect.pdf}
+\caption{Ratios of $A_{X}/A{V}$ values for different log($g$) values compared with log($g$) = 5.0 data, all at solar metallicity}
+\label{all_logg_logg5_ratio}
+\end{center}
+\end{figure}
+
+\begin{table}
+\begin{center}
 \begin{tabular}{ccc}
 \hline
 System & Filter & $A_{2}$ required? \\
@@ -473,70 +502,53 @@ Gaia & G\textsubscript{bp} & N \\
 & G\textsubscript{rp} & N \\ \hline
 
 \end{tabular}
-\caption{tgfdidgdi****}
+\caption{Assessment of necessity for $A_{2}$ fitting}
 \label{R2_yn_table}
-\end{table*}
+\end{center}
+\end{table}
 
-\begin{figure}
-\includegraphics[scale=0.4]{../wfc3_16_23Myr_10Gyr_complex_solar/wfc3_ATLAS9_grid_BaSTI_coverage_c16_complex_Zsol_4500.pdf}
-\caption{$T_{\textnormal{eff}}$-log($g$) grid coverage by a 16 Myr, $Z_{\odot}$ BaSTI isochrone ****including mass-loss, core overshooting and diffusion effects}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.7]{../wfc3_16_23Myr_10Gyr_complex_solar/wfc3_ATLAS9_grid_BaSTI_coverage_c16_complex_Zsol_4500.pdf}
+\caption{$T_{\textnormal{eff}}$-log($g$) grid coverage by a 16 Myr, $Z_{\odot}$ BaSTI isochrone including mass-loss, core overshooting and diffusion effects}
 \label{BaSTI_coverage_16M}
+\end{center}
 \end{figure}
 
-\begin{figure}
-\includegraphics[scale=0.4]{../wfc3_16_23Myr_10Gyr_complex_solar/wfc3_ATLAS9_grid_BaSTI_coverage_c10000_complex_Zsol_4500.pdf}
-\caption{$T_{\textnormal{eff}}$-log($g$) grid coverage by a 10 Gyr, $Z_{\odot}$ BaSTI isochrone ****including mass-loss, core overshooting and diffusion effects}
+Figure \ref{BaSTI_coverage_16M} shows the $T_{\textnormal{eff}}$-log($g$) plane for a BaSTI isochrone at solar metallicity for a stellar population with an age of 16 Myr, corresponding to a young open cluster. The objects included in the figure are limited to the region used for fitting the $A_{1}$ and $A_{2}$ functions, so any objects with $T_{\textnormal{eff}} < 4500$K, i.e. the coolest giants and main-sequence dwarfs, are excluded. Combining the known variations of $A_{X}/A_{V}$ with log($g$) and $Z$ in the data used for fitting the functions with the known spread of the same parameters in the available isochrone data \citep{2013A&A...558A..46P}, it can be seen that $A_{2}$ fitting is necessary in some filter, as detailed in Table \ref{R2_yn_table}.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.7]{../wfc3_16_23Myr_10Gyr_complex_solar/wfc3_ATLAS9_grid_BaSTI_coverage_c10000_complex_Zsol_4500.pdf}
+\caption{$T_{\textnormal{eff}}$-log($g$) grid coverage by a 10 Gyr, $Z_{\odot}$ BaSTI isochrone including mass-loss, core overshooting and diffusion effects}
 \label{BaSTI_coverage_10G}
+\end{center}
 \end{figure}
-
-As shown in Figures \ref{all_Z_Z2_ratio} and \ref{all_logg_logg5_ratio}, for some filters, there are significant changes in the extinction ratio values at fixed $T_{\textnormal{eff}}$ ($|\delta A| > 0.02$), due to changes in log($g$), $Z$ or both. Figure \ref{BaSTI_coverage_16M} shows the $T_{\textnormal{eff}}$-log($g$) plane for a BaSTI isochrone at solar metallicity for a stellar population with an age of 16 Myr, corresponding to a young open cluster. The objects included in the figure are limited to the region used for fitting the $A_{1}$ and $A_{2}$ functions, so any objects with $T_{\textnormal{eff}} < 4500$K, i.e. the coolest giants and main-sequence dwarfs, are excluded.
-
-\begin{figure*}
-\begin{center}
-\includegraphics[scale=0.3]{../Aall_ratio_Zs_div_Z2_effect_high_logg_zoom_15000.pdf}
-\caption{****psrsoft image output for a simulated pulsar data file}
-\label{all_Z_Z2_ratio}
-\end{center}
-\end{figure*}
-
-\begin{figure*}
-\begin{center}
-\includegraphics[scale=0.3]{../Aall_ratio_all_logg_div_5p0_effect.pdf}
-\caption{Ratios of $A_{X}/A{V}$ values for different log($g$) values compared with log($g$)=5.0 data at solar metallicity}
-\label{all_logg_logg5_ratio}
-\end{center}
-\end{figure*}
-
-\begin{figure*}
-\includegraphics[scale=0.4]{../HubWFC/Hub_graphs/AHub_logg=5p0_solar_4500K_R1_only_Teff_fit_modded_plot.pdf}
-\caption{Plots of the best $A_{1}$ fitting result in each filter. Purple lines indicate that the fit took the form $A_{1,\textnormal{exp}}$, while green lines indicate the same for $A_{1,\textnormal{pow}}$. The dotted lines indicate deviations of $\pm$0.02 from the data (black crosses)}
-\label{R1_bests}
-\end{figure*}
-
-% ****FORMAT FOR INCLUDING PDF IMAGES!!!
-% for guidance, see phd_work/grfguide.pdf
-%\includegraphics[<options>]{filename.pdf}
 
 \chapter{Discussion}
 \section{Thermohaline mixing}
-As shown in Figure \ref{dXN14/dt_colour}, the conditions for thermohaline mixing are reproduced in the BaSTI code. The location of the regions for which these conditions apply is located in the upper, and therefore cooler, layers of the hydrogen fusion shell,
+As shown in Figure \ref{dXN14/dt_colour}, the conditions for thermohaline mixing are reproduced in the BaSTI code. The location of the regions for which these conditions apply is located in the upper, and therefore cooler, layers of the hydrogen fusion shell, where $^{3}$He burning occurs.
 
 So far, by measuring abundances of species which both are hydrogen fusion products and are not involved in $^{3}$He burning, such as $^{14}$N, it has been established that the existing BaSTI stellar evolution model creates the conditions for thermohaline mixing to occur in the radiative zone of a low-mass, post-FDU RGB star. It has also been shown that, as expected, the conditions are created by molecular weight inversions arising from $^{3}$He burning.
 
-While the physical process and impacts of thermohaline mixing have been successfully implemented in other stellar evolution codes, such as MESA and STAREVOL, BaSTI has not yet been modified to include these in the iterative calculations. Achieving this is a significant goal because, as demonstrated by \cite{2015MNRAS.446.2673L} in the particular case of lithium abundances, there can be significant differences in predictions of abundances between different stellar evolution codes. Adding BaSTI to the list of codes available for future comparative studies would provide more scope to study potential sources of error, such as the model time-step and $C_{thl}$ value effects on abundances noted by \cite{2015MNRAS.446.2673L}. Of particular interest is the $C_{thl}$ free-parameter value, as there are many proposed values, from authors using different approaches and models, which differ in some cases by at least an order of magnitude.
+While the physical process and impacts of thermohaline mixing have been successfully implemented in other stellar evolution codes, such as MESA and STAREVOL, BaSTI has not yet been modified to include these in the iterative calculations. Achieving this is a significant goal because, as demonstrated by \cite{2015MNRAS.446.2673L} in the particular case of lithium abundances, there can be significant differences in predictions of abundances between different stellar evolution codes. Adding BaSTI to the list of codes available for future comparative studies would provide more scope to study potential sources of error, such as the model time-step and $C_{\textnormal{thl}}$ value effects on abundances noted by \cite{2015MNRAS.446.2673L}. Of particular interest is the $C_{\textnormal{thl}}$ free-parameter value, as there are many proposed values, from authors using different approaches and models, which differ in some cases by at least an order of magnitude.
 
-While the magnitude of the change due to thermohaline mixing in Figure \ref{dXN14/dt_colour} gives**** an idea of the region in which the effect arises, the figure does not show any actual mixing taking place, as Equation \ref{iter_timeind} does not allow for changes in mass fraction between layers and it assumes ($\partial X_{i}/\partial t$) to be independent of time, so the current calculation does not give rise to a physically-viable diffusive effect.
+While the magnitude of the change due to thermohaline mixing in Figure \ref{dXN14/dt_colour} gives an idea of the region in which the effect arises, the figure does not show any actual mixing taking place, as Equation \ref{iter_timeind} does not allow for changes in mass fraction between layers and it assumes ($\partial X_{i}/\partial t$) to be independent of time, so the current calculation does not give rise to a physically-viable diffusive effect.
 \cite{2010A&A...521A...9C}
 
-% and the value chosen for $C_{thl}$ are
 More fundamentally, the equation for $D_{thl}$ itself is not beyond dispute. When thermohaline mixing is studied in the full context of a non-homogeneous medium, such as a hydrogen-burning shell, outside the moving material bubble, in the normal stellar case ($\nabla _{\mu} > 0$ for the medium) the molecular weight gradient acts to counter the thermohaline effect, leading to a modified equation for $D_{thl}$ \citep{2010ApJ...723..563D}.
 
-\section{Differential extinction}
+\section{Extinction}
 When fitting the $A_{1}$ functions, with the exception of the f218w, f225w, f275w and f300x filters (the shortest-wavelength filters, all in the UV), all fitting results were accurate to within $\pm$0.02 of the $\log(g) = 5.0$ data. From Figure \ref{all_Z_Z2_ratio}, the same pattern occurs with metallicity, as the data for only the 4 aforementioned filters vary by more than 3$\%$, even between the $\log(Z/Z_{\odot}) = -2.0$ and $0.5$ data.
 The 4 filters with low-accuracy results will require additional terms in $T_{\textnormal{eff}}$, i.e. a modified  $A_{1}$ function, to mimic the data to an acceptable degree of accuracy
-As shown in Figures \ref{BaSTI_coverage_16M} and \ref{BaSTI_coverage_10G}, even when considering only BaSTI isochrone data with $T_{\textnormal{eff}} \geq 4500$K, the range of log($g$) values covered still requires $A_{2}$ functions to be computed for the full range of isochrone ages, for those filters which require it, as shown by the significant changes in Figure \ref{all_logg_logg5_ratio}, even for log($g$) = 2.5, which is inside the lower limit for the 10Gyr isochrone. The relative shapes of the individual curves suggests that a single function of log($g$), moderated in magnitude by the $T_{\textnormal{eff}}$ of the data, could be obeyed by all of the curves. At the time of writing, this scenario is being studied using multiple forms of $A_{2}(T_{\textnormal{eff}},\log(g))$ below temperatures of 8000K. This apparent disagreement with the fitting function form described in \cite{2018MNRAS.475.5023C} and \cite{2018MNRAS.479L.102C} is simply due to the fact that the relevant filters were not studied in those works - this project agrees with those works for the filters studied both in those works
+As shown in Figures \ref{BaSTI_coverage_16M} and \ref{BaSTI_coverage_10G}, even when considering only BaSTI isochrone data with $T_{\textnormal{eff}} \geq 4500$K, the range of log($g$) values covered still requires $A_{2}$ functions to be computed for the full range of isochrone ages, for those filters which require it, as shown by the significant changes in Figure \ref{all_logg_logg5_ratio}, even for log($g$) = 2.5, which is inside the lower limit for the 10Gyr isochrone. The relative shapes of the individual curves suggests that a single function of log($g$), moderated in magnitude by the $T_{\textnormal{eff}}$ of the data, could be obeyed by all of the curves. At the time of writing, this scenario is being studied using multiple forms of $A_{2}(T_{\textnormal{eff}},\log(g))$ below temperatures of 8000K. This apparent disagreement with the fitting function form described in \cite{2018MNRAS.475.5023C} and \cite{2018MNRAS.479L.102C} is simply due to the fact that the relevant filters were not studied in those works - this project agrees with those works for the filters studied both in those works.
 
-The significant effect of metallicity is also, at the time of writing being investigated using $A_{2}$ functions, as this effect also occurs in the region $T_{\textnormal{eff}} \leq 8000$K.
+The significant effect of metallicity is also, at the time of writing being investigated using $A_{2}$ functions, as this effect also occurs in the region $T_{\textnormal{eff}} \leq 8000$K. This will follow the same approach as the log($g$)-investigation.
+
+\chapter{Conclusion}
+In this project so far, the physical conditions required for thermohaline mixing in low-mass RGB stars have been confirmed, and the projected effect of the mixing has been shown to be significant with regard to the local mass fraction of $^{14}$N. The location of the initial mixing effect has also been localised to the region of $^{3}$He burning.
+The project has also made progress towards modelling the effect of extinction as a function of fundamental stellar properties, with the largest variations accounted for using effective temperature alone, with more minor variations still being studied at the time of writing.
+
 
 \chapter{Future work}
 This work, although confirming feasibility of thermohaline mixing in BaSTI, has yet to implement the effects of the resultant chemical mixing on the models of the star at times following the initial mixing. The next step should be to integrate the conditions for thermohaline mixing into the relevant BaSTI routines allow local chemical compositions to change in response to thermohaline mixing, which in turn allows the mixing effect to propagate into the radiative zone, the first step that must be taken if the mixing is to have any impact on observable (surface) chemical abundances.
@@ -547,13 +559,20 @@ When combining multiple diffusive effects, it is common to treat the effects as 
 
 For differential extinction, the immediate goal is to derive $A_{1}$ and $A_{2}$ functions that are  sufficiently accurate. The final step will be to apply them to the isochrone data by using the values of $T_{\textnormal{eff}}$ and log($g$) for each object in a given isochrone, together with the $Z$ value of the isochrone and the unique coefficients for each filter. The resulting extinction will then be added to the filter magnitude data for the objects and colour-magnitude diagrams (CMDs) will be plotted, simulating an observed stellar population, to study any differences in the distribution of the objects. The final step will be to compare the results with observed populations in the same CMD.
 
-The ultimate goal of this PhD, and of the field of stellar physics in general, is to predict, quantitatively and accurately, the evolution of a star and, particularly, its fundamental observable properties over the course of its lifetime. This requires all known potential sources of mixing and instability to be factored into a single framework. This project will attempt to work towards this goal in BaSTI.****
+The ultimate goal of this PhD, and of the field of stellar physics in general, is to predict, quantitatively and accurately, the evolution of a star and, particularly, its fundamental observable properties over the course of its lifetime. This requires all known potential sources of mixing and instability to be factored into a single framework. This project will attempt to work towards this goal in BaSTI.
 
-\chapter{Conclusion}
-In this project so far, the physical conditions required for thermohaline mixing in low-mass RGB stars have been confirmed, and the projected effect of the mixing has been shown to be significant with regard to the local mass fraction of $^{14}$N.****
-
-\chapter{Timeline}
-****dgtfhfyhfy
+\section{Timeline}
+\begin{itemize}
+\item September 2018 - January 2019: Finish extinction fitting, study the effects on ischrones and Write up and submit these results.
+\item January - April 2019: Write the full routine in BaSTI to implement thermohaline mixing.
+\item April - July 2019: Study the effects of thermohaline mixing on low-mass BaSTI stellar models, in particular the surface chemical mass-fractions, compare with calculations from other models and publish results.
+\item July 2019 - March 2020: Implement routines in BaSTI governing the effects of stellar rotation, compare with calculations from other models. Write up and submit results of this analysis.
+\item March 2020 - July 2020: Compare the results of the rotating BaSTI models with results inferred from objects observed to host multiple population, extended main-sequence turnoffs or split main sequence phenomena.
+\item July - December 2020: Implement routines in BaSTI governing the effects of radiative levitation, compare with calculations from other models.
+\item December 2020 - March 2021: Compare the results of all new effects to observations of globular cluster turnoffs and horizontal branch stars.
+\item March - May 2021: Write up and submit 2 papers about the results of the combined effects on BaSTI.
+\item April - October 2021: Write up and submit PhD thesis.
+\end{itemize}
 
 \bibliographystyle{mnras} % unsrtnat
 \bibliography{transfer_report}
