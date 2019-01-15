@@ -12,7 +12,7 @@ c Output table: Teff,logg,G,G_bp,G_rp
 c************** units *******************************
 c      open(unit=1, file='WFPC2widefilters.dat')
 c      open(unit=2, file='INPUT')
-      pck_in = 'fp05k2odfnew.pck'
+      pck_in = 'fm20k2odfnew.pck'
       open(unit=2, file=pck_in)
 C fp00k2odfnew.pck = solar metallicity, Zs
 C fp05k2odfnew.pck = Z = 10^0.5 * Zs (~3 (3.162))
@@ -318,7 +318,8 @@ c      write(*,*) iz, 'correzione bolometrica=',bcV(ikj)
 
  700  continue
 
- 444  format(f8.0, f6.2, 51f8.3)
+c 444  format(f8.0, f6.2, 51f8.3)
+ 444  format(f8.0, f6.2, 51f10.5)
       close(2)
       close(9)
       stop
