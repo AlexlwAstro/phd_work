@@ -7,10 +7,15 @@ c****************** declarations ******************
       character namein(49)*100
 c
 c************** units *******************************
-      open(unit=2, file='fm05ak2odfnew.pck')
+      open(unit=2, file='fm20k2odfnew.pck')
+C fp00k2odfnew.pck = solar metallicity, Zs
+C fp05k2odfnew.pck = Z = 10^0.5 * Zs (~3 (3.162))
+C fm10k2odfnew.pck = Z = 10^-1 * Zs (1/10)
+C fm20k2odfnew.pck = Z = 10^-2 * Zs (1/100)
+
       open(unit=3, file='check')
       open(unit=4, file='spettroVega')
-      open(unit=9, file='OUTPUT')
+      open(unit=9, file='ACS_OUTPUT')
       open (unit=11, file='INPUTfilters_ACS', status='old' )
 c****************** insert extinction A(V)*************
       write(*,*) 'Insert A(V)'
@@ -286,6 +291,7 @@ c      write(*,*) iz, 'correzione bolometrica=',bcV(ikj)
  700  continue
 
  444  format(f8.0, f6.2, 21f8.3)
+c 444  format(f8.0, f6.2, 21f10.5)
       close(2)
       close(9)
       stop
