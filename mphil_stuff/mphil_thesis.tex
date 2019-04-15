@@ -1,12 +1,27 @@
-%%  LJMU LaTeX Thesis Template - Author: Martyn Bristow
-%% Thesis.tex -- Main file - compile this with LaTeX
-%% 
+\documentclass[12pt, a4paper]{report}
+% for guidance, see phd_work/mnras_guide.pdf
+%\setlength\parindent{0pt}
 
-% Set up the document
-\documentclass[a4paper, 11pt, oneside]{LJMU_Astro_Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
+
+%\documentclass[useAMS,usenatbib]{mn2e}
+\newcommand{\aap}{A\&A}
+\newcommand{\araa}{ARAA}
+\newcommand{\mnras}{MNRAS}
+\newcommand{\apjl}{ApJL}
+\newcommand{\apjs}{ApJS}
+\newcommand{\apj}{ApJ}
+\newcommand{\aj}{ApJ}
+\newcommand{\nat}{Nature}
+\newcommand{\pasa}{PASA}
+\newcommand{\pasj}{PASJ}
+\newcommand{\pasp}{PASP}
+\newcommand{\aapr}{A\&AR}
+\newcommand{\procspie}{Proc. SPIE}
+\newcommand{\apss}{Ap\&SS}
+%\newcommand{\rsquo}{`}
 
 \usepackage{graphicx}
 %\usepackage{braket}
@@ -24,125 +39,93 @@
 \usepackage{epstopdf}
 \usepackage{subcaption}
 
-\graphicspath{{Figures/}}  % Location of the graphics files (set up for graphics to be in PDF format)
 
-% Include any extra LaTeX packages required
-\usepackage[square, numbers, comma, sort&compress]{natbib}  % Use the "Natbib" style for the references in the Bibliography
-\usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
-\usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
-\hypersetup{urlcolor=black, colorlinks=true}  % Colours hyperlinks in blue, but this can be distracting if there are many links.
-% Valid latex color: white, black, red, green, blue, cyan, magenta, yellow.
+% ALW edit: FORMAT FOR INCLUDING PDF IMAGES!!!
+% for guidance, see phd_work/grfguide.pdf
+%\includegraphics[<options>]{filename.pdf}
 
-%% Custom definitions
-\def\aap{Astronomy \& Astrophysics}
-\def\apj{The Astrophysical Journal}
-\def\mnras{Monthly Notices of the Royal Astronomical Society}
-%% ----------------------------------------------------------------
+
+%%%%%%%%%%%	Page layout settings that follow JMU regulations     %%%%%%%%%%
+
+\setlength{\hoffset}{0mm}
+\setlength{\oddsidemargin}{0mm}
+\setlength{\evensidemargin}{0mm}
+
+\setlength{\voffset}{-10mm}
+\setlength{\topmargin}{0mm}
+\setlength{\headheight}{10mm}
+\setlength{\headsep}{10mm}
+
+\setlength{\textheight}{220mm}
+\setlength{\textwidth}{155mm}
+
+\setlength{\columnsep}{10mm}
+\setlength{\marginparsep}{0mm}
+\setlength{\marginparwidth}{0mm}
+\setlength{\footskip}{20mm}
+
+\setlength{\parindent}{0.3in} % Size of indent at the start of a new paragraph - originally 0.0in
+\setlength{\parskip}{0.0in} % Spacing between paragraphs - originally 0.1in
+
+\usepackage[hang,splitrule]{footmisc}
+
+\addtolength{\footskip}{0.5cm}
+\setlength{\footnotemargin}{0.3cm}
+\setlength{\footnotesep}{0.4cm}
+
+\makeatletter
+\let\splitfootnoterule=\pagefootnoterule
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%         Title Page            %%%%%%%%%%%%%%%%%%%%
+\pagestyle{headings}
+
 \begin{document}
-\frontmatter      % Begin Roman style (i, ii, iii, iv...) page numbering
+\begin{titlepage}
+\pagenumbering{arabic}
 
-% Set up the Title Page
-\title  {Thesis Title}
-\authors  {\texorpdfstring
-            {\href{http://martynbristow.co.uk/}{Martyn Bristow}}
-            {Martyn Bristow}
-            }
-\addresses  {\groupname\\\deptname\\\univname}  % Do not change this here, instead these must be set in the "Thesis.cls" file, please look through it instead
-\date       {\today}
-\subject    {}
-\keywords   {}
+\vspace*{-0.4cm}
 
-\maketitle
-%% ----------------------------------------------------------------
+\begin{center}
+\hrule
+\vspace*{0.5cm}
+{\Huge \sc Thermohaline mixing and extinction in stars \par}
+\vspace*{0.5cm}
+\hrule
 
-\setstretch{1.5}  % It is better to have smaller font and larger line spacing than the other way round
+\vspace*{5mm}
+{\normalsize Report submitted for the application for transfer from M.Phil. to Ph.D.}
 
-% Define the page headers using the FancyHdr package and set up for one-sided printing
-\fancyhead{}  % Clears all page headers and footers
-\rhead{\thepage}  % Sets the right side header to show the page number
-\lhead{}  % Clears the left side page header
+\vfill
 
-\pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
+{\bf Alexander Lisboa-Wright}
 
-\pagestyle{plain}
-\pagenumbering{roman}
-\setcounter{page}{2}
-\include{preface}
-\newpage
-\input{declaration}
-\newpage
-\input{abstract}
-\newpage
-%\input{publications}
-%\newpage
-\input{acknowledgements}
-\newpage
-%% ----------------------------------------------------------------
-% Declaration Page required for the Thesis, your institution may give you a different text to place here
-\Declaration{
+\end{center}
 
-\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+\vspace*{1.0cm}
 
-I, AUTHOR NAME, declare that this thesis titled, `THESIS TITLE' and the work presented in it are my own. I confirm that:
+\hrule
+\vspace*{0.2cm}
+\centering{Astrophysics Research Institute, Liverpool John Moores University}\\
+\centering{September 2018}
 
-\begin{itemize} 
-\item[\tiny{$\blacksquare$}] This work was done wholly or mainly while in candidature for a research degree at this University.
- 
-\item[\tiny{$\blacksquare$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
- 
-\item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
- 
-\item[\tiny{$\blacksquare$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
- 
-\item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
- 
-\item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.
-\\
-\end{itemize}
- 
- 
-Signed:\\
-\rule[1em]{25em}{0.5pt}  % This prints a line for the signature
- 
-Date:\\
-\rule[1em]{25em}{0.5pt}  % This prints a line to write the date
-}
-\clearpage  % Declaration ended, now start a new page
+\end{titlepage}
 
-%% ----------------------------------------------------------------
-% The "Funny Quote Page"
-\pagestyle{empty}  % No headers or footers for the following pages
+\begin{abstract}
+\end{abstract}
 
-\null\vfill
-% Now comes the "Funny Quote", written in italics
-\textit{``Write a funny quote here.''}
-
-\begin{flushright}
-If the quote is taken from someone, their name goes here
-\end{flushright}
-
-\vfill\vfill\vfill\vfill\vfill\vfill\null
-\clearpage  % Funny Quote page ended, start a new page
-%% ----------------------------------------------------------------
-
-% The Abstract Page
-\addtotoc{Abstract}  % Add the "Abstract" page entry to the Contents
-\abstract{
-\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
-
-The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
-
-}
 \chapter{Units and terminology}
-Unless stated otherwise, all quantities will be described in CGS units (masses in grams, lengths in centimetres, times in seconds, energies in ergs).
-$M$ : mass
-$M_{odot} = 1.989 \times 10^{33} \textnormal{g}$ : solar mass
-$L$ : luminosity
-$L_{odot} = 3.842 \times 10^{33} \textnormal{erg s^{-1}}$ : solar luminosity
-$g$ : gravity
-$R$ : radius
-$G = 6.6723 \times 10^{-8} \textnormal{cm^{3}g^{-1}s^{-2}}$ : gravitational constant
-$\sigma_{SB} = 5.678 \times 10^{-5} \textnormal{erg cm^{-2}K^{-4}s^{-1}}$ : Stefan-Boltzmann constant
+Unless stated otherwise, all quantities will be described in CGS units (masses in grams, lengths in centimetres, times in seconds, energies in ergs). \\*
+\\*
+$M$ : mass\\*
+$M_{\odot} = 1.989 \times 10^{33} \textnormal{ g}$ : solar mass\\*
+$L$ : luminosity\\*
+$L_{\odot} = 3.842 \times 10^{33} \textnormal{ erg s}^{-1}$ : solar luminosity\\*
+$g$ : gravity\\*
+$R$ : radius\\*
+$G = 6.6723 \times 10^{-8} \textnormal{ cm}^{3} \textnormal{ g}^{-1} \textnormal{ s}^{-2}$ : gravitational constant\\*
+$\sigma_{\textnormal{SB}} = 5.678 \times 10^{-5} \textnormal{ erg cm}^{-2} \textnormal{ K}^{-4} \textnormal{ s}^{-1}$ : Stefan-Boltzmann constant\\*
+
 
 \chapter{Introduction}
 \section{Motivation}
@@ -154,19 +137,70 @@ F = \frac{L}{4 \pi d^{2}}
 \end{equation}
 
 where $L$ is the star's luminosity, which is an intrinsic property of the star (i.e., independent of the observer).
-However, the interstellar medium is composed of many different structures, such as diffuse gas clouds, that can absorb or scatter light passing through, depending on the wavelength of the light.
+However, the interstellar medium is composed of many different structures, such as diffuse gas clouds, that can absorb or scatter light passing through, depending on the wavelength of the incoming photons, the density of the medium and the quantum levels in the atoms occupied by their electrons.
 
-\section{Background}
+\section{Observational constraints}
 No telescope can view the sky at all spectral wavelengths - it would be wholly impractical due to the sheer number of sources across the spectrum, as well as the fact that telescope resolution depends on the wavelength of the incoming light. Therefore, modern telescopes are equipped with a system of filters or bands, which allow only light within a narrow range of wavelengths. In a filter system, the individual filters are designed to operate best at different wavelengths. The system will be therefore have the following properties:
+
 \begin{itemize}
-\item the filters cover a much wider range of spectral wavelengths when combined than a single filter would alone; this is used to observe sources at different wavelengths to determine its colour ** (see Section ***).
+\item the filters cover a much wider range of spectral wavelengths when combined than a single filter would alone; this is used to observe sources at different wavelengths to determine its spectral colour ** (see Section ***).
 \item 
 \end{itemize}
+
 Filters - Johnson, ACS, WFC/UVIS, Gaia
+In this project, three broad-band filter systems were employed. These are the Advanced Camera System (ACS) and the Wide-Field Camera 3 (WFC3), both mounted on the Hubble Space Telescope, and the single filter set mounted on the Gaia space observatory.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{cccccc}
+\hline
+System & Filter & Peak wavelength / $\AA$ & FWHM / $\AA$ \\
+\hline
+
+& F435W & 4760 & 729 \\
+& F475W & 5000 & 986 \\
+& F555W & 5060 & 841 \\
+ACS & F606W & 6690 & 1566 \\
+& F625W & 6480 & 978 \\
+& F775W & 7320 & 1017 \\
+& F814W & 7460 & 1657 \\
+\hline
+& F218W & 2175 & 300 \\
+& F225W & 2250 & 500 \\
+& F275W & 2750 & 500 \\
+& F300X &  & 2775 \\
+& F336W & 3375 & 550 \\
+& F390W & 3900 & 1000 \\
+WFC3 & F438W & 4320 & 695 \\
+& F475W & 4750 & 1520 \\
+& F555W & 5410 & 1605 \\
+& F606W & 5956 & 2340 \\
+& F625W & 6250 & 1550 \\
+& F775W & 7760 & 1470 \\
+& F814W & 8353 & 2555 \\
+\hline
+& G &  &  \\
+Gaia & G\textsubscript{bp} &  &  \\
+& G\textsubscript{rp} &  &  \\
+\hline
+
+\end{tabular}
+\caption{Coefficient values produced by $A_{1}$ fitting}
+\label{simpfunc_coeffs_table}
+\end{center}
+\end{table}
+
 Filter response functions.
 
+\section{Basics of stellar evolution}
+
+
 \section{Previous studies}
-**Cardelli et al. (1989) produced empirical equations to accurately describe the ratio of extinction coefficients in a chosen filter $X$ ($A_{X}$) and the Johnson-$V$ filter ($A_{V}$), respectively.
+***Cardelli et al. (1989) produced empirical equations to accurately describe the ratio of extinction coefficients in a chosen filter $X$ ($A_{X}$) and the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{X}/A_{V}$.
+
+***Girardi et al. (2008) 
+
+***Casagrande \& Vandenberg (2014, 2018a, 2018b)
 
 
 
@@ -194,7 +228,7 @@ The quantity ($m - M$) is known as the distance modulus. It is particularly usef
 \item After the horizontal branch, there is again a rapid increase in luminosity accompanied by a slow decrease in temperature. This is the asymptotic giant branch (AGB).
 \end{itemize}
 
-It should be noted that the distance modulus in Equation \ref{distance_modulus} does not include extinction. To link the apparent magnitude to extinction, it is necessary to separate the distance modulus from the observed apparent magnitude, $m_{obs}$. This can be done by defining the intrinsic apparent magnitude, $m_{0}$, such that:
+It should be noted that the distance modulus in Equation \ref{distance_modulus} does not include extinction. To link the apparent magnitude to extinction, it is necessary to separate the distance modulus from the observed apparent magnitude, $m_{\textnormal{obs}}$. This can be done by defining the intrinsic apparent magnitude, $m_{0}$, such that:
 
 \begin{equation}
 \label{intrinsic_app_mag}
@@ -204,8 +238,8 @@ m_{0} - M = 5\log( (d/\textnormal{pc}) - 5
 i.e., the distance modulus is solely dependent on the distance to the  sources. Therefore, the extinction $A$ can be defined as:
 
 \begin{equation}
-\label{intrinsic_app_mag}
-A = m_{obs} - m_{0}
+\label{bol_extinc}
+A = m_{\textnormal{obs}} - m_{0}
 \end{equation}
 
 This fits with the definition of interstellar extinction given earlier, i.e. as the flux lost solely due to scattering and absorption in the interstellar medium.
@@ -225,23 +259,23 @@ Effective temperature has an effect on interstellar extinction due to its strong
 The metallicity of a star is defined as the fractional abundance of heavy elements, often approximated by iron alone, relative to the star's hydrogen abundance, compared to that of the Sun. The abundances are determined by the strength of the elements' characteristic atomic absorption lines in the stellar spectra.
 
 \begin{equation}
-\textnormal{[Fe/H]} = \log(N_{Fe}/N_{H}) - \log(N_{Fe,\odot}/N_{H,\odot})
+\textnormal{[Fe/H]} = \log(N_{\textnormal{Fe}}/N_{\textnormal{H}}) - \log(N_{\textnormal{Fe},\odot}/N_{\textnormal{H},\odot})
 \label{FeH_def}
 \end{equation}
 
 Since the output is logarithmic, a value of [Fe/H] = 0 indicates solar metallicity. An increase in metallicity would cause the corresponding absorption lines to be stronger, thus reducing the observable flux.
 
-The surface gravity ($g$) of a star is defined at the stellar surface:
+The definition of the stellar surface gravity $g$ is simply the value of the standard Newtonian gravtitional acceleration, applied to the stellar surface (the mass is the total stellar mass, $M_{*}$, and the distance is the stellar radius, $R_{*}$):
 
 \begin{equation}
-g = frac{GM_{*}}{R_{*}^{2}}
-\label{g_def}
+g = \frac{GM_{*}}{R_{*}^{2}}
+\label{gravity_def}
 \end{equation}
 
 A higher surface gravity represents a surface with a higher atomic number density. This environment produces a shorter mean free path for photons overall, meaning a smaller collision timescale. If the timescale is sufficiently small, the limit provided by Heisenberg's Uncertainty Principle causes an increase in the uncertainty of the energy absorbed by the atomic electron during the interaction with the photon:
 
 \begin{equation}
-\DeltaE \Deltat \approx h/(4\pi)
+\Delta E \Delta t \geq \hbar/2
 \label{heisenberg}
 \end{equation}
 
@@ -308,29 +342,44 @@ BC_{X}(0) - BC_{X}(A_{V}) &= 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lam
 
 ****average over the wavelength interval $[\lambda_{1},\lambda_{2}]$ which is a valid assumption \citep{2008PASP..120..583G}, even for the wide-field Hubble filters being studied in this work.
 
-\section{Methodology}
-\subsection{Software used}
+\chapter{Methodology}
+\section{Software used}
 Python 2.7
 FORTRAN 77 code
 ATLAS9
 BaSTI
-\subsection{Finding & fitting functions}
+\section{Finding \& fitting functions}
 Guesswork!
-\subsection{Isochrone data fitting}
-BaSTI models - transforming grid variables
+\section{Isochrone data fitting}
+****BaSTI models - transforming grid variables
+The output from the BaSTI database for each model stellar object gives the model's initial mass and current mass (i.e. after a time equal to the ischrone age), together with the logarithms of the stellar luminosity in solar units ($\log_{10}{L/L_{\odot}}$) and of the effective temperature in K ($\log_{10}{T_{\textnormal{eff}}}$). To derive the surface gravity $g$, we must combine Equations \ref{Teff_def} (to derive the stellar radius) \ref{gravity_def}. Equation \ref{gravity_LT_calc} shows the resultant definition of $g$ in cgs units:
+
+\begin{equation}
+\label{gravity_LT_calc}
+g = \frac{4 \pi G M_{*} \sigma_{\textnormal{SB}} T_{\textnormal{eff}}^{4}}{L_{*}}
+\end{equation}
+\begin{table}
+\begin{center}
+\begin{tabular}{ccccc}
+\hline
+Isochrone & $T_{\textnormal{eff}}$ & $T_{\textnormal{eff}}$ & $\log(g)$ & $\log(g)$ \\
+(Age/Myr , [Fe/H]) & minimum & maximum & minimum & maximum \\
+\hline
+500,0.002 & 2870 & 9640 & 0.886 & 5.137 \\
+1000,0.002 & 2824 & 8035 & 1.608 & 5.184 \\
+5000,-1.049 & 3118 & 7112 & 0.456 & 5.318 \\
+10000,-1.049 & 3086 & 6412 & 0.286 & 5.332 \\
+\hline
+\end{tabular}
+\caption{Ranges of effective temperature and surface gravities in selected BaSTI isochrones}
+\label{variable_ranges}
+\end{center}
+\end{table}
+
 DR2 Babusiaux data, errors
 
-\begin{equation}
-\label{Teff_def}
-L = 
-\end{equation}
-
-\begin{equation}
-\label{gravity_def}
-g = 
-\end{equation}
-\section{Results and discussion}
-\subsection{Extinction coefficient models}
+\chapter{Results and discussion}
+\section{Extinction coefficient models} \label{coef_models}
 
 \begin{table}
 \begin{center}
@@ -389,9 +438,11 @@ Gaia & G\textsubscript{bp} & pow & -457.6$\pm$64.9 & -0.9000$\pm$0.0172 & 1.247$
 \end{center}
 \end{table}
 
-\subsection{Effect on isochrones}
-\subsubsection{ACS} \label{ACS_isoc}
+It should be noted that the 
 
+\section{Effect on isochrones}
+Given the large number of filters studied in Section \ref{coef_models}
+\subsection{ACS} \label{ACS_isoc}
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.3]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
@@ -408,7 +459,7 @@ Gaia & G\textsubscript{bp} & pow & -457.6$\pm$64.9 & -0.9000$\pm$0.0172 & 1.247$
 \end{center}
 \end{figure}
 
-\subsubsection{WFC3} \label{WFC3_isoc}
+\subsection{WFC3} \label{WFC3_isoc}
 
 \begin{figure}[h]
 \begin{center}
@@ -442,7 +493,7 @@ Gaia & G\textsubscript{bp} & pow & -457.6$\pm$64.9 & -0.9000$\pm$0.0172 & 1.247$
 \end{center}
 \end{figure}
 
-\subsubsection{Gaia} \label{Gaia_isoc}
+\subsection{Gaia} \label{Gaia_isoc}
 
 \begin{figure}[h]
 \begin{center}
@@ -460,10 +511,10 @@ Gaia & G\textsubscript{bp} & pow & -457.6$\pm$64.9 & -0.9000$\pm$0.0172 & 1.247$
 \end{center}
 \end{figure}
 
-\subsection{Test case: NGC 6793}
+\section{Test case: NGC 6793}
 To test the effects of the difference in treatment of $A_{X}/A{V}$, both cases were employed to predict the isochrone ***parameters of the open cluster NGC 6793.
 
-\subsubsection{Observational background}
+\subsection{Observational background}
 NGC 6793 has little information available compared to many other open clusters. Two estimates for observational properties of the cluster have been published and are listed in Table \ref{NGC6793_obs}.
 
 \begin{table}
@@ -472,15 +523,15 @@ NGC 6793 has little information available compared to many other open clusters. 
 \hline
 %\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{3}{c}{$A_{1}$ coefficients} \\ \cline{4-6}
 %\textbf{Filter} \\
-Cluster property & K05 & B18
+Cluster property & K05 & GC18 \\
 \hline
 Distance modulus / mag & 10.73 & 8.894 \\
 -> distance / pc & 1400 & 601 \\
 log(age / yr) & 8.64 & 8.78 \\
 -> Age / Myr & 437 & 603 \\
 $E(B-V)$ / mag & 0.17 & 0.272 \\
-[Fe/H] & ? & ? \\
-Members & ? & 465 (271 with Gaia photometry) \\
+$[Fe/H]$ & ? & ? \\
+Members & ? (> 3 ACSS-2.5) & 465 (271 with Gaia photometry) \\
 \hline
 
 \end{tabular}
@@ -489,7 +540,7 @@ Members & ? & 465 (271 with Gaia photometry) \\
 \end{center}
 \end{table}
 
-\subsubsection{Comparison of extinction methods}
+\subsection{Comparison of extinction methods}
 The Gaia DR2 dataset, containing the parallaxes and apparent magnitudes (in all three Gaia filters) for 338 objects tagged as belonging to NGC 6793, was obtained. The number of objects is greater than the 271 photometric Gaia objects found by \cite{2018A&A...616A..10G}. There were significant variations in the observed parallaxes of individual stars, far beyond the maximum cluster radii expected (\cite{2006A&A...456..523S} - general open cluster properties).
 
 There are highly significant errors for the individual objects in the Gaia data propagation, even when assuming the only source of error is from  parallax measurements (see Figure \ref{ngc_errorbars}). The magnitude of the errorbars dwarf any changes in isochrones due to extinction coefficient treatments.
@@ -502,6 +553,8 @@ All, as shown in Section****, the isochrones are sensitive both to the reference
 \item The position of the lower main sequence is significantly more sensitive to metallicity than other parts of the isochrone.
 \end{enumerate}
 
+
+
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.3]{../NGC_6793_CMD_FeH_0p002_0p198_Av_1p0_600Myr_isochrones_both_errorbars_T5k.pdf}
@@ -510,8 +563,12 @@ All, as shown in Section****, the isochrones are sensitive both to the reference
 \end{center}
 \end{figure}
 
-\section{Conclusion}
-\subsection{Future work}
+\chapter{Conclusion}
+In all cases, applying a fixed extinction to all points in an isochrone causes the main-sequence turn-off to occur at a more luminous, bluer point in a given CMD than the MSTO point for an extinction coefficient described using a function fitted to empirically derived data.
+
+\section{Future work}
+
+
 \bibliographystyle{mnras} % unsrtnat
 \bibliography{mphil_thesis}
 

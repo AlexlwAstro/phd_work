@@ -1,0 +1,43 @@
+\begin{thebibliography}{}
+\makeatletter
+\relax
+\def\mn@urlcharsother{\let\do\@makeother \do\$\do\&\do\#\do\^\do\_\do\%\do\~}
+\def\mn@doi{\begingroup\mn@urlcharsother \@ifnextchar [ {\mn@doi@}
+  {\mn@doi@[]}}
+\def\mn@doi@[#1]#2{\def\@tempa{#1}\ifx\@tempa\@empty \href
+  {http://dx.doi.org/#2} {doi:#2}\else \href {http://dx.doi.org/#2} {#1}\fi
+  \endgroup}
+\def\mn@eprint#1#2{\mn@eprint@#1:#2::\@nil}
+\def\mn@eprint@arXiv#1{\href {http://arxiv.org/abs/#1} {{\tt arXiv:#1}}}
+\def\mn@eprint@dblp#1{\href {http://dblp.uni-trier.de/rec/bibtex/#1.xml}
+  {dblp:#1}}
+\def\mn@eprint@#1:#2:#3:#4\@nil{\def\@tempa {#1}\def\@tempb {#2}\def\@tempc
+  {#3}\ifx \@tempc \@empty \let \@tempc \@tempb \let \@tempb \@tempa \fi \ifx
+  \@tempb \@empty \def\@tempb {arXiv}\fi \@ifundefined
+  {mn@eprint@\@tempb}{\@tempb:\@tempc}{\expandafter \expandafter \csname
+  mn@eprint@\@tempb\endcsname \expandafter{\@tempc}}}
+
+\bibitem[\protect\citeauthoryear{{Gaia Collaboration} et~al.,}{{Gaia
+  Collaboration} et~al.}{2018}]{2018A&A...616A..10G}
+{Gaia Collaboration} et~al., 2018, \mn@doi [\aap]
+  {10.1051/0004-6361/201832843}, \href
+  {http://adsabs.harvard.edu/abs/2018A%26A...616A..10G} {616, A10}
+
+\bibitem[\protect\citeauthoryear{{Girardi} et~al.,}{{Girardi}
+  et~al.}{2008}]{2008PASP..120..583G}
+{Girardi} L.,  et~al., 2008, \pasp, 120, 583
+
+\bibitem[\protect\citeauthoryear{{Kharchenko}, {Piskunov}, {R{\"o}ser},
+  {Schilbach}  \& {Scholz}}{{Kharchenko} et~al.}{2005}]{2005A&A...438.1163K}
+{Kharchenko} N.~V.,  {Piskunov} A.~E.,  {R{\"o}ser} S.,  {Schilbach} E.,
+  {Scholz} R.-D.,  2005, \mn@doi [\aap] {10.1051/0004-6361:20042523}, \href
+  {http://adsabs.harvard.edu/abs/2005A%26A...438.1163K} {438, 1163}
+
+\bibitem[\protect\citeauthoryear{{Schilbach}, {Kharchenko}, {Piskunov},
+  {R{\"o}ser}  \& {Scholz}}{{Schilbach} et~al.}{2006}]{2006A&A...456..523S}
+{Schilbach} E.,  {Kharchenko} N.~V.,  {Piskunov} A.~E.,  {R{\"o}ser} S.,
+  {Scholz} R.-D.,  2006, \mn@doi [\aap] {10.1051/0004-6361:20054663}, \href
+  {http://adsabs.harvard.edu/abs/2006A%26A...456..523S} {456, 523}
+
+\makeatother
+\end{thebibliography}
