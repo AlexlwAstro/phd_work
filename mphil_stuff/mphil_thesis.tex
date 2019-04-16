@@ -148,13 +148,15 @@ No telescope can view the sky at all spectral wavelengths - it would be wholly i
 \end{itemize}
 
 Filters - Johnson, ACS, WFC/UVIS, Gaia
-In this project, three broad-band filter systems were employed. These are the Advanced Camera System (ACS) and the Wide-Field Camera 3 (WFC3), both mounted on the Hubble Space Telescope, and the single filter set mounted on the Gaia space observatory.
+In this project, three broad-band filter systems were employed. These are the Advanced Camera for Surveys (ACS) and the Ultraviolet Imaging Spectrograph channel of the Wide-Field Camera 3 (WFC3/UVIS), both mounted on the Hubble Space Telescope (HST), and the single filter set mounted on the Gaia space observatory.
+
+ACS was installed on HST in 2002 and repaired in 2009, when WFC3 was also installed.
 
 \begin{table}
 \begin{center}
 \begin{tabular}{cccccc}
 \hline
-System & Filter & Peak wavelength / $\AA$ & FWHM / $\AA$ \\
+System & Filter & Peak wavelength / \AA & FWHM / \AA \\
 \hline
 
 & F435W & 4760 & 729 \\
@@ -185,12 +187,47 @@ Gaia & G\textsubscript{bp} &  &  \\
 \hline
 
 \end{tabular}
-\caption{Coefficient values produced by $A_{1}$ fitting}
-\label{simpfunc_coeffs_table}
+\caption{Basic properties of the filters employed in this project}
+\label{filter_basics}
 \end{center}
 \end{table}
 
-Filter response functions.
+Filters thus*** present a challenge when trying to determine stellar spectra acccurately. This task is further complicated by the fact that, even in the wavelength range where a filter does detect incoming flux, the fraction of light it detects, known as the transmittance, is not uniform across the range. The transmittance as a function of wavelength range is known as a transmission curve or filter response function. Examples of response functions for some**** of the filters employed in this project are shown in Figure \ref{response_funcs}. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function could have a significant impact on the observed spectrum if not taken into account.
+The values in the column labelled 'FWHM' represents the full width at half-maximum. In this case, it is defined as the difference between the lowest and highest wavelength values at which the transmittance value is half of its maximum value for the filter, typically assuming the response function can be approximated as a Gaussian distribution. The FWHM acts as a proxy*** for the wavelength range within which the filter can reliably be used for observations.
+
+The wavelengths of light visible to an average human eye are in the range 3800-7400 \AA . Hence, the filters used here cover wavelengths from the soft-ultraviolet (soft-UV) to the near-infrared (NIR),  including all visible wavelengths.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{GaiaDR2Passbands.png}
+\caption{Filter response functions for Gaia photometric filters. Source: https://www.cosmos.esa.int/web/gaia/iow_20180316}
+\label{ACS_response_funcs}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{UVIS_Wide1.jpg}
+\caption{Filter response functions for wide-field WFC3 filters. Source: http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}
+\label{WFC3_response_funcs1}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{UVIS_Wide2.jpg}
+\caption{Filter response functions for wide-field WFC3 filters. Source: http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}
+\label{WFC3_response_funcs2}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{ACS_Wide.png}
+\caption{Filter response functions for wide-field ACS filters. Source: http://www.stsci.edu/hst/acs/analysis/throughputs}
+\label{ACS_response_funcs}
+\end{center}
+\end{figure}
 
 \section{Basics of stellar evolution}
 
@@ -288,7 +325,7 @@ m_{X} = -2.5 \log_{10} \left(\frac{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda}
 \label{app_mag_def}
 \end{equation}
 
-where $f_{\lambda}$ represents the monochromatic flux at a given wavelength $\lambda$ at the observer distance, $A_{X,\lambda}$ is the extinction value as a function of wavelength, $S_{\lambda}$ is the response function and $f_{\lambda}^{0}$ and $m_{X}^{0}$ represent the monochromatic flux and apparent magnitude, respectively, of a known reference object in $X$.
+where $f_{\lambda}$ represents the monochromatic flux at a given wavelength $\lambda$ at the observer distance, $A_{X,\lambda}$ is the extinction value as a function of wavelength, $S_{\lambda}$ represents the filter response function and $f_{\lambda}^{0}$ and $m_{X}^{0}$ represent the monochromatic flux and apparent magnitude, respectively, of a known reference object in $X$.
 
 %Since our goal, ultimately, is to document potential effects of fundamental stellar properties upon observables, we need to connect the observational and idealised scenarios, for which we use bolometric corrections.
 
@@ -340,7 +377,7 @@ BC_{X}(0) - BC_{X}(A_{V}) &= 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lam
 \end{split}
 \end{align}
 
-****average over the wavelength interval $[\lambda_{1},\lambda_{2}]$ which is a valid assumption \citep{2008PASP..120..583G}, even for the wide-field Hubble filters being studied in this work.
+****average over the wavelength interval $[\lambda_{1},\lambda_{2}]$ which is a valid assumption \citep{2014MNRAS.444..392C}, even for the wide-field Hubble filters being studied in this work.
 
 \chapter{Methodology}
 \section{Software used}
@@ -441,8 +478,11 @@ Gaia & G\textsubscript{bp} & pow & -457.6$\pm$64.9 & -0.9000$\pm$0.0172 & 1.247$
 It should be noted that the 
 
 \section{Effect on isochrones}
-Given the large number of filters studied in Section \ref{coef_models}
+Given the large number of filters studied in Section \ref{coef_models}, four commonly-used CMD axes were selected to test for any effects of a function-derived $A_{X}$. Two of these are specific to the WFC3 system, with one CMD each for ACS and Gaia.
 \subsection{ACS} \label{ACS_isoc}
+
+The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which produces larger spectral colours.****
+
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.3]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
@@ -460,6 +500,8 @@ Given the large number of filters studied in Section \ref{coef_models}
 \end{figure}
 
 \subsection{WFC3} \label{WFC3_isoc}
+
+The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which produces larger spectral colours.****
 
 \begin{figure}[h]
 \begin{center}
@@ -494,6 +536,8 @@ Given the large number of filters studied in Section \ref{coef_models}
 \end{figure}
 
 \subsection{Gaia} \label{Gaia_isoc}
+
+Given that Gaia has only three photometric filters in total and given that the G\textsubscript{bp} and G\textsubscript{rp}  was the F435W-(F435W-F814W) axis combination. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which produces larger spectral colours.****
 
 \begin{figure}[h]
 \begin{center}
