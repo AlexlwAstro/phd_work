@@ -192,7 +192,7 @@ Gaia & G\textsubscript{bp} &  &  \\
 \end{center}
 \end{table}
 
-Filters thus*** present a challenge when trying to determine stellar spectra acccurately. This task is further complicated by the fact that, even in the wavelength range where a filter does detect incoming flux, the fraction of light it detects, known as the transmittance, is not uniform across the range. The transmittance as a function of wavelength range is known as a transmission curve or filter response function. Examples of response functions for some**** of the filters employed in this project are shown in Figure \ref{response_funcs}. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function could have a significant impact on the observed spectrum if not taken into account.
+Filters thus*** present a challenge when trying to determine stellar spectra acccurately. This task is further complicated by the fact that, even in the wavelength range where a filter does detect incoming flux, the fraction of light it detects, known as the transmittance, is not uniform across the range. The transmittance as a function of wavelength is known as a transmission curve, bandpass or filter response function. Examples of response functions for some**** of the filters employed in this project are shown in Figure \ref{response_funcs}. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function could have a significant impact on the observed spectrum if not taken into account.
 The values in the column labelled 'FWHM' represents the full width at half-maximum. In this case, it is defined as the difference between the lowest and highest wavelength values at which the transmittance value is half of its maximum value for the filter, typically assuming the response function can be approximated as a Gaussian distribution. The FWHM acts as a proxy*** for the wavelength range within which the filter can reliably be used for observations.
 
 The wavelengths of light visible to an average human eye are in the range 3800-7400 \AA . Hence, the filters used here cover wavelengths from the soft-ultraviolet (soft-UV) to the near-infrared (NIR),  including all visible wavelengths.
@@ -281,7 +281,7 @@ A = m_{\textnormal{obs}} - m_{0}
 
 This fits with the definition of interstellar extinction given earlier, i.e. as the flux lost solely due to scattering and absorption in the interstellar medium.
 
-\section{Bolometric corrections}
+\section{Bolometric corrections} \label{BC_theory}
 All the equations in Section ****, including those for extinction, are not useful when applied to telescopes, as any filter will only detect a small fraction of the stellar flux across all wavelengths (known as the bolometric stellar flux) that reaches the telescope. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. Bolometric corrections are employed for this purpose.
 
 The use of bolometric corrections requires the detailed knowledge of stellar spectra least susceptible to significant extinction, i.e., nearby stars with high apparent fluxes. Only with complete knowledge of the spectrum from a reference star can the true spectrum of a distant star with unknown extinction be calculated. The spectra of these stars can be computed by using a grid of predicted fluxes from a stellar atmosphere model, the grid being composed of the stellar parameters known to change emission in stellar atmospheres. These are effective temperature, surface gravity and metallicity. For all filter systems studied in this project, the nearby star Vega was used as the reference object.
@@ -377,24 +377,54 @@ BC_{X}(0) - BC_{X}(A_{V}) &= 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lam
 \end{split}
 \end{align}
 
-****average over the wavelength interval $[\lambda_{1},\lambda_{2}]$ which is a valid assumption \citep{2014MNRAS.444..392C}, even for the wide-field Hubble filters being studied in this work.
+****average over the wavelength interval $[\lambda_{1},\lambda_{2}]$ which is a valid assumption \citep{2014MNRAS.444..392C}, as the CCM relations, which were derived using data from stars observed in the Johnson broad-band filters. Due to the nature of the filters' bandpasses, the CCM relations overestimate the extinction in the near-IR and blue-visible Johnson filters
+%\citep{1999fitzpatrick.
 
 \chapter{Methodology}
 \section{Software used}
-Python 2.7
-FORTRAN 77 code
-ATLAS9
-BaSTI
+
+The tables of bolometric corrections were generated using a FORTRAN 77 code incorporating the steps described in Section \ref{BC_theory}, inputs with tables describing the response functions of all three filter systems at short**** wavelength intervals and ATLAS9 model atmosphere tables at the same wavelengths, with the number of tables for each stellar metallicity value equal to the total number of (**Teff,, log(g)) combinations available (see Table **** of Castelli & Kurucz for details of the coverage in Teff-log(g) parameter space).
+
+Once the bolometric correction tables were produced, all subsequent processes were written in Python 2.7.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+%\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{3}{c}{$A_{1}$ coefficients} \\ \cline{4-6}
+%\textbf{Filter} \\
+Parameter / unit & Minimum & Maximum & Number of values \\
+\hline
+$T_{\textnormal{eff}}$ / K & 3500 & 50000 & 76 \\
+log( $g$ / cm s^-2) & 0.0 & 5.0 & 11 \\
+[Fe/H] & -2.0 & 0.5 & 4 \\
+\hline
+\end{tabular}
+\caption{Ranges for the input parameters for ATLAS9 atmospheric models}
+\label{atlas9_input}
+\end{center}
+\end{table}
+
+
+The isochrones used were generated using the latest Bag of Stellar Tricks and Isochrones (BaSTI) web interface.
 \section{Finding \& fitting functions}
 Guesswork!
+
+To generate extinction-coefficient ratios $A_{X}/A_{V}$ from the bolometric correction data
+
+To find usable functions required prioritising which parameters to model first, as increasing the number of stellar parameters would cause an increase in the number of coefficients to fit for the function being tested. This woould create a higher risk of degeneracies between coefficients and increase the fitting output errors such that the errors obscure any useful information about the coefficients themselves.
+
+The bolometric flux of a black body can be calculated as the total area under the curve described by the Planck function per unit wavelength/frequency as a function of wavelength/frequency. Since stellar emission spectra can be reasonably approximated by black body emission with emission lines, it can be seen that the greatest 
+
 \section{Isochrone data fitting}
 ****BaSTI models - transforming grid variables
-The output from the BaSTI database for each model stellar object gives the model's initial mass and current mass (i.e. after a time equal to the ischrone age), together with the logarithms of the stellar luminosity in solar units ($\log_{10}{L/L_{\odot}}$) and of the effective temperature in K ($\log_{10}{T_{\textnormal{eff}}}$). To derive the surface gravity $g$, we must combine Equations \ref{Teff_def} (to derive the stellar radius) \ref{gravity_def}. Equation \ref{gravity_LT_calc} shows the resultant definition of $g$ in cgs units:
+The output from the BaSTI database for each model stellar object gives the model's initial mass and current mass (i.e. after a time equal to the ischrone age), together with the logarithms of the stellar luminosity in solar units ($\log_{10}{L/L_{\odot}}$) and of the effective temperature in K ($\log_{10}{T_{\textnormal{eff}}}$). To derive the surface gravity $g$, we must combine Equations \ref{Teff_def}, to derive the stellar radius, and \ref{gravity_def}. Equation \ref{gravity_LT_calc} shows the resultant definition of $g$:
 
 \begin{equation}
 \label{gravity_LT_calc}
 g = \frac{4 \pi G M_{*} \sigma_{\textnormal{SB}} T_{\textnormal{eff}}^{4}}{L_{*}}
 \end{equation}
+
 \begin{table}
 \begin{center}
 \begin{tabular}{ccccc}
@@ -577,7 +607,6 @@ $E(B-V)$ / mag & 0.17 & 0.272 \\
 $[Fe/H]$ & ? & ? \\
 Members & ? (> 3 ACSS-2.5) & 465 (271 with Gaia photometry) \\
 \hline
-
 \end{tabular}
 \caption{Observational parameters for NGC 6793, according to \cite{2005A&A...438.1163K} (WEBDA archive page) and \cite{2018A&A...616A..10G}}
 \label{NGC6793_obs}
