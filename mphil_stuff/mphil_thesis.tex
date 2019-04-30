@@ -260,8 +260,16 @@ To illustrate, let us consider a bubble of gaseous material in pressure-equilibr
 where $\nabla _{\mu} = d\ln\mu / d\ln P$, $\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$ and $\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$ are the temperature-pressure gradients for the local environment (dominated by radiation pressure) and the bubble (treated as an adiabatic ideal gas), respectively, $\phi = \left( \partial \ln\rho / \partial \ln\mu \right)_{P,T}$ and $\delta = -\left( \partial \ln\rho / \partial \ln T \right)_{P,\mu}$  \citep{1980A&A....91..175K}.
 
 \section{Previous studies}
-\cite{1989ApJ...345..245C} used observations of bright main-sequence stars to produce empirical equations describing the ratio of extinction coefficients in a chosen filter $X$ ($A_{X}$) and the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{X}/A_{V}$.
+\cite{1989ApJ...345..245C} used observations of bright main-sequence stars to produce empirical equations describing the ratio of extinction coefficients in a chosen filter $X$ ($A_{X}$) and the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{X}/A_{V}$. ****They produced a basic universal equation of the form:
 
+% avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by 
+
+\begin{equation}
+A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
+\label{CCM_general}
+\end{equation}
+
+where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The total wavelength range was divided into 4 subranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). The CCM89 model underpins more recent studies of intrinsic effects on extinction (\cite{2008PASP..120..583G}, \cite{2018MNRAS.479L.102C}), and provides the basis for the synthetic $A_{X}/A_{V}$ dataset in this project.
 \cite{2008PASP..120..583G} produced data tables of bolometric corrections for stellar atmosphere models with parameters Teff, log(g), [Fe/H]****.
 
 ***Casagrande \& Vandenberg (2014, 2018a, 2018b)
@@ -276,11 +284,17 @@ Extinction is defined using the standard astronomical system of flux magnitudes.
 m_{1} - m_{2} = -2.5\log \left( \frac{F_{1}}{F_{2}} \right)
 \end{equation}
 
-where $m_{1}$ and $m_{2}$ are the magnitudes for $F_{1}$ and $F_{2}$, respectively. However, the flux of a source varies naturally with the distance to the observer (see Equation \ref{flux_def}). To account for this, the distances to the nearest stars was determined independently of their flux, by their parallax from Earth. This gives each astronomical object two characteristic flux measurements. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source, as observed by the telescope. The absolute magnitude is the projected flux magnitude of the same source if it were to be placed at a distance of 10 parsecs (pc) from the telescope, thus accounting for the distances The relation between these quantities if there is zero extinction can be found by combining Equations \ref{flux_def} and \ref{mags_def}:
+where $m_{1}$ and $m_{2}$ are the magnitudes for $F_{1}$ and $F_{2}$, respectively. However, the flux of a source varies naturally with the distance to the observer (see Equation \ref{flux_def}). To account for this, the distances to the nearest stars was determined independently of their flux, by their parallax from Earth. The parallax $p$ of an object is defined by the angular distance the object moves relative to the ``fixed'' background as the Earth moves a distance of 1AU (the average separation of the Sun and Earth during one complete orbit) perpendicular to the line-of-sight. This allows the distance, $d$, to be measured using the geometry of triangles, combined with the small-angle approximation, as:
+
+\begin{equation}
+d/\textnormal{pc} = \frac{1}{(p/\textnormal{arcsec})}
+\end{equation}
+
+This gives each astronomical object two fundamental flux measurements. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source, as observed by the telescope. The absolute magnitude is the projected flux magnitude of the same source if it were to be placed at a distance of 10 parsecs (pc) from the telescope, thus accounting for the distances The relation between these quantities if there is zero extinction can be found by combining Equations \ref{flux_def} and \ref{mags_def}:
 % In general, the extinction coefficient $A$ is defined relative to two ubiquitous astrophysical quantities.
 \begin{equation}
 \label{distance_modulus}
-m - M = -2.5\log \left( \left(\frac{10\textnormal{pc}}{d}\right)^{2} \right) = 5\log(d/\textnormal{pc}) - 5
+m - M = -2.5\log \left( \left(\frac{10\textnormal{pc}}{d}\right)^{2} \right) = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
 \end{equation}
 
 The quantity ($m - M$) is known as the distance modulus. It is particularly useful for observing stellar populations, as stars within a single-age population are easily classified using their position on the theoretical Hertzsprung-Russell (HR) diagram or ***some of its observational equivalents, known as colour-magnitude diagrams (CMDs). In the HR diagram, stars of a given age and metallicity are plotted in the luminosity-effective temperature ($L-T_{\textnormal{eff}}$) plane. An example of a HR diagram is shown in Figure ****. It can be seen that all stars lie on a single, complicated line, known as an isochrone. Isochrones for different population ages and metallicities are calculated using theoretical stellar models for the largest possible spread of initial stellar masses. An isochrone in the HR diagram has a number of distinct features:
@@ -307,6 +321,21 @@ A = m_{\textnormal{obs}} - m_{0}
 \end{equation}
 
 This fits with the definition of interstellar extinction given earlier, i.e. as the flux lost solely due to scattering and absorption in the interstellar medium.
+
+However, as noted earlier, in astronomy it is infeasible to attempt observations by a single instrument at all wavelengths. Telescopes instead are generally purpose-built to study a single, relatively narrow wavelength range of the EM spectrum. Within this range, telescope observation ranges are further divided by filters or passbands, one of which is placed on their aperture at any given observation time****. As shown in Figure \ref{ACS_response_funcs}, \ref{WFC3_response_funcs1}, \ref{WFC3_response_funcs2} and****, a single generic filter $X$ has a range of wavelengths for which it is able to detect flux. It can also be seen in these figures that the transmittance of the filter changes as a function of wavelength
+
+\begin{equation}
+f_{\lambda} = \frac{2hc}{\lambda^{5}\left(\exp\left({\frac{hc}{\lambda k_{B}T}}\right) - 1\right)}
+\label{planck_bb}
+\end{equation} 
+
+****In this project, when comparing effects of different extinction treatments and, subsequently, when comparing observational datasets (with uncertainties in the values of their objects' stellar parameters and unknown extinction coefficients) to theoretical datasets via color-magnitude diagrams (CMDs), the most convenient format is to add the (theoretical) extinction coefficients to the theoretical dataset magnitudes (i.e., absolute magnitudes). As a result, the quantity from each dataset that is being compared in the CMDs is the absolute magnitude plus an extinction coefficient. If we label this quantity $M_{\textnormal{ext},X}$, we can define it bolometric as:
+
+\begin{equation}
+M_{\textnormal{ext},X} = M_{X} + A_{X}
+\end{equation}
+
+To measure a star's effective temperature, observers compare the star's observed flux in two filters at different wavelengths, typically in the UV-IR wavelength range. This is because a star with a higher effective temperature will be more luminous in every filter than a cooler star at the same position. This creates uncertainty if the distance measurement cannot be obtained independent of photometry.
 
 \section{Bolometric corrections} \label{BC_theory}
 All the equations in Section ****, including those for extinction, are not useful when applied to telescopes, as any filter will only detect a small fraction of the stellar flux across all wavelengths (known as the bolometric stellar flux) that reaches the telescope. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. This mitigation is carried out by employing bolometric corrections.
@@ -444,6 +473,10 @@ When calculating the bolometric corrections, the reference values taken by the p
 
 together with $M_{\textnormal{bol},\odot} = 4.75$. Equation \ref{CCM_general}, with the different wavelength regimes for $a(x)$ and $b(x)$ described by CCM89, was used with the $A_{V}$ calibration values to simulate the extinction parameter in Equation \ref{BC_extinc}. $R_{V}$ was set to a value of 3.1, the standard value for the diffuse interstellar medium. The integration was carried out by iteratively adding the integrand results at regular small wavelength intervals. The non-zero calibration value of $A_{V} = 1$ was chosen, as this allows for significant changes in $A_{X}/A_{V}$ from Equation (\ref{BCs_diff}), while also being close enough to zero to avoid significant changes in $A_{X}/A_{V}$ due to the Forbes effect \citep{2008PASP..120..583G}.
 
+The Forbes effect occurs as a broadband beam of light, such as that passes through an extended partially-transparent medium, such as a series of glass plates, the Earth's atmosphere or an interstellar gas cloud. It states that the greater the distance travelled by a light beam through the medium, the more penetrating the beam becomes \citep{1842RSPT..132..225F}. If we use the case of the glass plates as an example, this means that the fraction of the light incident on the $n$th plate in the series which is separated by that plate from the original path is always greater than the corresponding fraction at the ($n+1$)th plate. The physical basis for the Forbes effect is that those photons in the original beam with wavelengths that make them the most likely to be absorbed or refracted are separated from the beam earlier. Therefore, as the beam travels through the medium, its constituent photons are progressively less likely to be separated. Since a higher fraction of its photons are retained as the distance through the medium increases, the beam is more penetrating.
+
+The Forbes effect thus has an impact on the non-zero $A_{V}$ value used because if a uniform medium is assumed, as here, where $R_{V}$ is held constant at the standard diffuse ISM value of 3.1****, a larger $A_{V}$ value implies a longer path through the ISM, and thus a stronger Forbes effect. According to \cite{2008PASP..120..583G}, any ****significant impact from the Forbes effect on the values of $A_{X}/A_{V}$ occurs for a chosen $A_{V} \gtrsim 5$. Therefore, the choice of $A_{V} = 1$ made for this project should avoid serious problems from the Forbes effect.
+
 ****Guesswork!
 
 To generate extinction-coefficient ratios $A_{X}/A_{V}$ from the bolometric correction data
@@ -474,7 +507,7 @@ The output from the BaSTI database for each model stellar object gives the model
 g = \frac{4 \pi G M_{*} \sigma_{\textnormal{SB}} T_{\textnormal{eff}}^{4}}{L_{*}}
 \end{equation}
 
-After this had been completed, each object had a co-ordinate in ($T_{\textnormal{eff}}$, log($g$)) parameter space, plus the metallicity of the overall isochrone model. The functions described in Section **** were then appli
+After this had been completed, each object had a co-ordinate in ($T_{\textnormal{eff}}$, log($g$)) parameter space, plus the metallicity of the overall isochrone model. The functions described in Section **** were then applied to the dataset of stellar objects, producing filter magnitudes correct
 
 \begin{table}
 \begin{center}
@@ -495,6 +528,9 @@ Isochrone & $T_{\textnormal{eff}}$ & $T_{\textnormal{eff}}$ & $\log(g)$ & $\log(
 \end{table}
 
 DR2 Babusiaux data, errors
+
+****However, the filter magnitudes in the photometric data were the original apparent magnitudes, not absolute magnitudes. Therefore, to match the attributes**** of the observational and isochrone datasets, it was necessary to both correct the observational fluxes**** for distance and add extinction to the isochrone data. This produces 
+
 
 \chapter{Results and discussion}
 \section{Extinction coefficient models} \label{coef_models}
