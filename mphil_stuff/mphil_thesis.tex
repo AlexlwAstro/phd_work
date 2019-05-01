@@ -38,7 +38,7 @@
 \usepackage{setspace}
 \usepackage{epstopdf}
 \usepackage{subcaption}
-
+\usepackage{url}
 
 % ALW edit: FORMAT FOR INCLUDING PDF IMAGES!!!
 % for guidance, see phd_work/grfguide.pdf
@@ -211,7 +211,7 @@ The wavelengths of light visible to an average human eye are in the range 3800-7
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.5]{GaiaDR2Passbands.png}
-\caption{Filter response functions for Gaia photometric filters.} %Source: https://www.cosmos.esa.int/web/gaia/iow_20180316}
+\caption{Filter response functions for Gaia photometric filters. Source: \protect\url{https://www.cosmos.esa.int/web/gaia/iow_20180316}}
 \label{ACS_response_funcs}
 \end{center}
 \end{figure}
@@ -219,7 +219,7 @@ The wavelengths of light visible to an average human eye are in the range 3800-7
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.5]{UVIS_Wide1.jpg}
-\caption{Filter response functions for wide-field WFC3 filters.} %Source: http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}
+\caption{Filter response functions for wide-field WFC3 filters. Source: \protect\url{http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}}
 \label{WFC3_response_funcs1}
 \end{center}
 \end{figure}
@@ -227,7 +227,7 @@ The wavelengths of light visible to an average human eye are in the range 3800-7
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.5]{UVIS_Wide2.jpg}
-\caption{Filter response functions for wide-field WFC3 filters.} %Source: http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}
+\caption{Filter response functions for wide-field WFC3 filters. Source: \protect\url{http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}}
 \label{WFC3_response_funcs2}
 \end{center}
 \end{figure}
@@ -235,7 +235,7 @@ The wavelengths of light visible to an average human eye are in the range 3800-7
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.5]{ACS_Wide.png}
-\caption{Filter response functions for wide-field ACS filters. Source: http://www.stsci.edu/hst/acs/analysis/throughputs}
+\caption{Filter response functions for wide-field ACS filters. Source: \protect\url{http://www.stsci.edu/hst/acs/analysis/throughputs}}
 \label{ACS_response_funcs}
 \end{center}
 \end{figure}
@@ -243,7 +243,7 @@ The wavelengths of light visible to an average human eye are in the range 3800-7
 \section{Basics of stellar evolution} \label{stel_evol}
 In the main sequence, nuclear fusion occurs in the core and any products must be subjected to mixing effects to reach the atmosphere. Since stellar interiors are physically fluid, heavier nuclei, which are denser, preferentially gather in regions close to the star's centre of gravity. Therefore, processes such as convection, thermohaline mixing and radiative levitation would be needed to induce a noticeable change in surface composition. However, these processes require certain physical conditions on local scales, if they are to be sustained. 
 
-****On the main-sequence, only low-mass stars ($M_{*} \lesssim 0.5M_{\odot}$) have fully-convective interiors. Massive ($M_{*} \gtrsim 1.5M_{\odot}$) stars have convective cores, but radiative envelopes. Intermediate-mass stars, including the Sun, have radiative cores and convective envelopes. Since regions in which energy transport is dominated by radiative effects.
+****On the main-sequence, only low-mass stars ($M_{*} \lesssim 0.5M_{\odot}$) have fully-convective interiors. Massive ($M_{*} \gtrsim 1.5M_{\odot}$) stars have convective cores, but radiative envelopes. Intermediate-mass stars, including the Sun, have radiative cores and convective envelopes. Since regions in which energy transport is dominated by radiative effects are stable against convection****.
 
 \begin{equation}
 \nabla_{\textnormal{rad}} = \frac{3\kappa LP}{16\pi acGmT^{4}}
@@ -335,18 +335,34 @@ f_{\lambda} = \frac{2hc}{\lambda^{5}\left(\exp\left({\frac{hc}{\lambda k_{B}T}}\
 M_{\textnormal{ext},X} = M_{X} + A_{X}
 \end{equation}
 
-To measure a star's effective temperature, observers compare the star's observed flux in two filters at different wavelengths, typically in the UV-IR wavelength range. This is because a star with a higher effective temperature will be more luminous in every filter than a cooler star at the same position. This creates uncertainty if the distance measurement cannot be obtained independent of photometry.
+To measure a star's effective temperature, observers compare the star's observed flux in two filters at different wavelengths, typically in the UV-IR wavelength range. This is because a star with a higher effective temperature will be more luminous in every filter than a cooler star at the same position. This creates uncertainty if the distance measurement cannot be obtained independent of photometry. Therefore, observers utilise the colour index, which is defined as the difference between an object's magnitude in each of the two filters. ****If we compare the black body spectra in Figure****, it can be seen that the maximum monochromatic flux of the black body occurs at an increasingly shorter wavelength for increasingly hotter objects. This makes the object look bluer. The relationship between the wavelength at which the monochromatic flux is maximal and the black body temperature is quantified by Wien's displacement law.
+
+The colour index is defined as the flux magnitude in the bluer (shorter-wavelength) filter minus that in the redder filter. For two filters $X$ and $Y$, with $X$ being bluer than $Y$, the colour index of observations made using them is:
+
+\begin{align}
+\begin{split}
+(X-Y) &= m_{X} - m_{Y} \\
+&= (m_{X,0} - m_{Y,0}) + (A_{X} - A_{Y}) \\
+&= (X-Y)_{0} + E(X-Y)
+\end{split}
+\end{align}
+
+where $(X-Y)_{0}$ is the intrinsic colour index of the object and $E(X-Y)$ is known as the colour excess and represents the effect of extinction on the observed colour index. The colour excess is important because of the prominence of the intrinsic colour index in determining effective temperature. More negative values of $(X-Y)$ indicate bluer stars, with higher effective temperatures.
+
+The most commonly-used colour index, employed as a reference for most optical observations, is the Johnson ($B-V$) index.
 
 \section{Bolometric corrections} \label{BC_theory}
 All the equations in Section ****, including those for extinction, are not useful when applied to telescopes, as any filter will only detect a small fraction of the stellar flux across all wavelengths (known as the bolometric stellar flux) that reaches the telescope. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. This mitigation is carried out by employing bolometric corrections.
 
 The use of bolometric corrections requires the detailed knowledge of stellar spectra least susceptible to significant extinction, i.e., nearby stars with high apparent fluxes. Only with complete knowledge of the spectrum from a reference star can the true spectrum of a distant star with unknown extinction be calculated. The spectra of these stars can be computed by using a grid of predicted fluxes from a stellar atmosphere model, the grid being composed of the stellar parameters known to change emission in stellar atmospheres. These are effective temperature, surface gravity and metallicity. For all filter systems studied in this project, the nearby star Vega ($\alpha$ Lyr) was used as the reference object. Using Vega as the reference star is the most well-known approach to calibration \citep{2014MNRAS.444..392C}
 
-The effective temperature ($T_{\textnormal{eff}}$) of a star is defined as the temperature of a black body which produces the closest matching bolometric spectrum to that of the star. This approximation is valid because all stars have been observed to have spectra that closely resemble those of black bodies, with the notable exception of atmospheric absorption lines.
+The effective temperature ($T_{\textnormal{eff}}$) of a star is defined as the temperature of a black body which produces the same bolometric flux as that produced by the star. This approximation is valid because all stars have been observed to have spectra that closely resemble those of black bodies, with the notable exception of atmospheric absorption lines.
+
 \begin{equation}
 L = 4 \pi R^{2} \sigma_{SB} T_{\textnormal{eff}}^{4}
 \label{Teff_def}
 \end{equation}
+
 Effective temperature has an effect on interstellar extinction due to its strong effect on the stellar luminosity and, hence, the flux. For a higher flux, more photons are likely to interact with the ISM, hence a higher extinction coefficient.
 
 The metallicity of a star is defined as the fractional abundance of heavy elements, often approximated by iron alone, relative to the star's hydrogen abundance, compared to that of the Sun. The abundances are determined by the strength of the elements' characteristic atomic absorption lines in the stellar spectra.
@@ -356,9 +372,9 @@ The metallicity of a star is defined as the fractional abundance of heavy elemen
 \label{FeH_def}
 \end{equation}
 
-Since the output is logarithmic, a value of [Fe/H] = 0 indicates solar metallicity. An increase in metallicity would cause the corresponding absorption lines to be stronger, thus reducing the observable flux.
+Since the output is logarithmic, a value of [Fe/H] = 0 indicates solar metallicity. An increase in metallicity would cause the corresponding absorption lines to be stronger, thus reducing the observable flux. An increased metallicity also implies an increase in abundance of sub-ferrous metals. The presence of more nuclear species, each with unique absorption line configurations, inevitably creates more observable lines, further increasing the apparent extinction in the spectral flux.
 
-The definition of the stellar surface gravity $g$ is simply the value of the standard Newtonian gravtitional acceleration, applied to the stellar surface (the mass is the total stellar mass, $M_{*}$, and the distance is the stellar radius, $R_{*}$):
+The definition of the stellar surface gravity $g$ is simply the value of the standard Newtonian gravitational acceleration, applied to the stellar surface (the mass is the total stellar mass, $M_{*}$, and the distance is the stellar radius, $R_{*}$):
 
 \begin{equation}
 g = \frac{GM_{*}}{R_{*}^{2}}
@@ -463,7 +479,7 @@ $\textnormal{[Fe/H]}$ & -2.0 & 0.5 & 4 \\
 
 The isochrones used were generated using the latest Bag of Stellar Tricks and Isochrones (BaSTI) web interface \citep{2018ApJ...856..125H}. The filter systems whose throughput data were employed by BaSTI to generate the fluxes for the isochrones were ACS, WFC3 and Gaia-DR2. It should be noted that the WFC3 isochrone output does not include flux magnitudes for the F300X filter.
 
-\section{Finding \& fitting functions}
+\section{Finding \& fitting functions} \label{find_fit}
 When calculating the bolometric corrections, the reference values taken by the parameters for Vega were:
 
 \begin{enumerate}
@@ -490,12 +506,15 @@ A_{\textnormal{pow}} (T_{\textnormal{eff}}) = a (T_{\textnormal{eff}})^{b} + c
 \label{Teff_pow}
 \end{equation}
 
-while the second case (denoted by `exp') models an exponential:
-
 \begin{equation}
 A_{\textnormal{exp}} (T_{\textnormal{eff}}) = a \exp{(b T_{\textnormal{eff}})} + c
 \label{Teff_exp}
 \end{equation}
+
+For filters whose data could not support an accurate fit using $A_{\textnormal{pow}}$ or $A_{\textnormal{exp}}$
+Unsuccessful attempts were
+
+****Add other functions here!
 
 \section{Isochrone data fitting}
 To obtain isochrones from the BaSTI online database, the desired age range, initial metallicity and filter system must be specified. Therefore, the values of these quantities are shared by all stellar objects. For the stages in stellar evolution prior to the main-sequence turn-off, any changes in atmospheric metallicity are insignificant, due to the factors discussed in Section \ref{stel_evol}.
@@ -507,7 +526,7 @@ The output from the BaSTI database for each model stellar object gives the model
 g = \frac{4 \pi G M_{*} \sigma_{\textnormal{SB}} T_{\textnormal{eff}}^{4}}{L_{*}}
 \end{equation}
 
-After this had been completed, each object had a co-ordinate in ($T_{\textnormal{eff}}$, log($g$)) parameter space, plus the metallicity of the overall isochrone model. The functions described in Section **** were then applied to the dataset of stellar objects, producing filter magnitudes correct
+After this had been completed, each object had a co-ordinate in ($T_{\textnormal{eff}}$, log($g$)) parameter space, plus the metallicity of the overall isochrone model. The functions described in Section \ref{find_fit} were then applied to the dataset of stellar objects, producing values of $M_{\textnormal{eff},X}$ for each filter for all objects.
 
 \begin{table}
 \begin{center}
@@ -529,7 +548,7 @@ Isochrone & $T_{\textnormal{eff}}$ & $T_{\textnormal{eff}}$ & $\log(g)$ & $\log(
 
 DR2 Babusiaux data, errors
 
-****However, the filter magnitudes in the photometric data were the original apparent magnitudes, not absolute magnitudes. Therefore, to match the attributes**** of the observational and isochrone datasets, it was necessary to both correct the observational fluxes**** for distance and add extinction to the isochrone data. This produces 
+****However, the filter magnitudes in the photometric data were the original apparent magnitudes, not absolute magnitudes. Therefore, to match the attributes**** of the observational and isochrone datasets, it was necessary to correct the observational fluxes**** for distance and add extinction to the isochrone data. Thus, we were compared the $M_{ext,X}$ values for all isochrone data. This was
 
 
 \chapter{Results and discussion}
@@ -598,7 +617,7 @@ It should be noted that the
 Given the large number of filters studied in Section \ref{coef_models}, four commonly-used CMD axes were selected to test for any effects of a function-derived $A_{X}$. Two of these are specific to the WFC3 system, with one CMD each for ACS and Gaia.
 \subsection{ACS} \label{ACS_isoc}
 
-The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which produces larger spectral colours.****
+The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which covers the peak wavelengths**** for all the spectral type present
 
 \begin{figure}[h]
 \begin{center}
