@@ -107,7 +107,7 @@
 \hrule
 \vspace*{0.2cm}
 \centering{Astrophysics Research Institute, Liverpool John Moores University}\\
-\centering{September 2018}
+\centering{September 2019}
 
 \end{titlepage}
 
@@ -129,15 +129,6 @@ $G = 6.6723 \times 10^{-8} \textnormal{ cm}^{3} \textnormal{ g}^{-1} \textnormal
 $\sigma_{\textnormal{SB}} = 5.678 \times 10^{-5} \textnormal{ erg cm}^{-2} \textnormal{ K}^{-4} \textnormal{ s}^{-1}$ & : & Stefan-Boltzmann constant\\
 \end{tabular}
 \\*
-$M$ : mass\\*
-$M_{\odot} = 1.989 \times 10^{33} \textnormal{ g}$ : solar mass\\*
-$L$ : luminosity\\*
-$L_{\odot} = 3.842 \times 10^{33} \textnormal{ erg s}^{-1}$ : solar luminosity\\*
-$g$ : gravity\\*
-$R$ : radius\\*
-$G = 6.6723 \times 10^{-8} \textnormal{ cm}^{3} \textnormal{ g}^{-1} \textnormal{ s}^{-2}$ : gravitational constant\\*
-$\sigma_{\textnormal{SB}} = 5.678 \times 10^{-5} \textnormal{ erg cm}^{-2} \textnormal{ K}^{-4} \textnormal{ s}^{-1}$ : Stefan-Boltzmann constant\\*
-
 
 \chapter{Introduction}
 \section{Motivation}
@@ -273,7 +264,7 @@ A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
 \label{CCM_general}
 \end{equation}
 
-where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The total wavelength range was divided into 4 sub-ranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). The CCM89 model underpins more recent studies of intrinsic effects on extinction (\cite{2008PASP..120..583G}, \cite{2018MNRAS.479L.102C}), and provides the basis for the synthetic $A_{X}/A_{V}$ datasets in this project, ****where $A_{X}$ is the coefficient for a given filter $X$.
+where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The significance of $R_{V}$, as noted in the same paper, comes from its usefulness as an indicator of the nature of the interstellar medium through which the observed light travels in order to reach the observer.**** The total wavelength range was divided into 4 sub-ranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). The CCM89 model underpins more recent studies of intrinsic effects on extinction (\cite{2008PASP..120..583G}, \cite{2018MNRAS.479L.102C}), and provides the basis for the synthetic $A_{X}/A_{V}$ datasets in this project, ****where $A_{X}$ is the coefficient for a given filter $X$.
 
 \cite{2008PASP..120..583G} produced data tables of $A_{X}/A_{V}$ via bolometric corrections (as was carried out in this study). for stellar atmosphere models with parameters $T_{\textnormal{eff}}$, log($g$) and [Fe/H]. They carried this out using the same ATLAS9 data that was used to generate the data for this project, but also combining it with data from other studies**** \cite{2002A&A...391..195G}, resulting in data covering a parameter space extending beyond the ATLAS9 limits in all three parameters. They used the data tables to directly**** calculate the $A_{X}/A_{V}$ values for the stellar models in . They then applied They found that, when 
 
@@ -468,7 +459,7 @@ BC_{X}(0) - BC_{X}(A_{V}) &= 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lam
 \end{align}
 %\\ &\approx \left(A_{X}/A_{V}\right)A_{V}
 
-****average over the wavelength interval $[\lambda_{1},\lambda_{2}]$ which is a valid assumption \citep{2014MNRAS.444..392C}, as the CCM relations, which were derived using data from stars observed in the Johnson broad-band filters. Due to the nature of the filters' bandpasses, the CCM relations overestimate the extinction in the near-IR and blue-visible Johnson filters
+****average over the wavelength interval $[\lambda_{1},\lambda_{2}]$ which is a valid assumption \citep{2014MNRAS.444..392C}, as the CCM relations, which were derived using data from stars observed in the Johnson broad-band filters, themselves were. Due to the nature of the filters' bandpasses, the CCM relations overestimate the extinction in the near-IR and blue-visible Johnson filters
 %\citep{1999fitzpatrick.
 
 \chapter{Methodology}
@@ -498,7 +489,7 @@ $\textnormal{[Fe/H]}$ & -2.0 & 0.5 & 4 \\
 
 The isochrones used were generated using the latest Bag of Stellar Tricks and Isochrones (BaSTI) web interface \citep{2018ApJ...856..125H}. The filter systems whose throughput data were employed by BaSTI to generate the fluxes for the isochrones were ACS, WFC3 and Gaia-DR2. It should be noted that the WFC3 isochrone output does not include flux magnitudes for the F300X filter.
 
-\section{Finding \& fitting functions} \label{find_fit}
+\section{Extinction data}
 When calculating the bolometric corrections, the reference values taken by the parameters for Vega were:
 
 \begin{enumerate}
@@ -512,10 +503,33 @@ The Forbes effect occurs as a broadband beam of light, such as that passes throu
 
 The Forbes effect thus has an impact on the non-zero $A_{V}$ value used because if a uniform medium is assumed, as here, where $R_{V}$ is held constant at the standard diffuse ISM value of 3.1****, a larger $A_{V}$ value implies a longer path through the ISM, and thus a stronger Forbes effect. According to \cite{2008PASP..120..583G}, any ****significant impact from the Forbes effect on the values of $A_{X}/A_{V}$ occurs for a chosen $A_{V} \gtrsim 4$. They found that the effect was particularly strong for stars with $T_{\textnormal{eff}} \lesssim 3000$K and that, unsurprising, it became greater as the filter wavelength range increased. Therefore, the choice of $A_{V} = 1$ made for this project should avoid serious problems from the Forbes effect.
 
-****Guesswork!
-
 To generate extinction-coefficient ratios $A_{X}/A_{V}$ from the bolometric correction data, Equation \ref{BCs_diff} was used to****
 
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.3]{../just_full_data/comb/AHub_FeHm2p0_just_Teff_fit_plot_dots.pdf}
+\caption{****Monochromatic flux of a black body for different stellar effective temperatures. The black dashed lines mark the approximate limits of the visible part of the EM spectrum. The green curve represents the distributed of the maxima for the other curves.}
+\label{Ax/Av data FeH=-2}
+
+\includegraphics[scale=0.3]{../just_full_data/comb/AHub_FeH0p0_just_Teff_fit_plot_dots.pdf}
+\caption{Solar metallicity}
+\label{Ax/Av data FeH=0}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.3]{../just_full_data/ACS/AHub_FeHm2p0_just_Teff_fit_plot_dots.pdf}
+\caption{****Monochromatic flux of a black body for different stellar effective temperatures. The black dashed lines mark the approximate limits of the visible part of the EM spectrum. The green curve represents the distributed of the maxima for the other curves.}
+\label{Ax/Av data FeH=-2}
+
+\includegraphics[scale=0.3]{../just_full_data/ACS/AHub_FeH0p5_just_Teff_fit_plot_dots.pdf}
+\caption{Solar metallicity}
+\label{Ax/Av data FeH=0}
+\end{center}
+\end{figure}
+
+\section{Finding \& fitting functions} \label{find_fit}
 To find usable functions required prioritising which parameters to model first, as increasing the number of stellar parameters would cause an increase in the number of coefficients to fit for the function being tested. This would create a higher risk of degeneracies between coefficients and increase the fitting output errors such that the errors obscure any useful information about the coefficients themselves.
 
 The bolometric flux of a black body can be calculated as the total area under the curve described by the Planck function per unit wavelength/frequency as a function of wavelength/frequency. Since stellar emission spectra can be reasonably approximated by a black body emission with absorption lines, it can be seen from Equation\ref{Teff_def} that the greatest effect on stellar spectra, and therefore on the extinction coefficient, will come from effective temperature. Therefore, the initial functions to be fitted were simple analytical functions of $T_{\textnormal{eff}}$ only:
@@ -538,12 +552,17 @@ For filters whose data could not support an accurate**** fit on this data or cou
 For these filters, several unsuccessful approaches were made before an acceptable function was found for each filter. These included:
 \begin{itemize}
 \item Using a polynomial fit for the BFD, for filter which could not be accurately described in the BFD in the first instance.
-\item Fitting all the data in the ****parameter space in two steps, by fitting the residuals from the $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$ fits to a new function with explicit variations in [Fe/H] and log($g$). The functions included repeating $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$ damped-oscillator functions  
+\item Fitting all the data in the ****parameter space in two steps, by fitting the residuals from the $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$ fits to a new function with explicit variations in [Fe/H] and log($g$). The ****functions included second fittings of $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$, damped-oscillator functions and oscillating power-law functions, among others. When fitted to the residuals, this meant an oscillation with amplitude decaying with increasing $T_{\textnormal{eff}}$
 \end{itemize}
 
 
-A more successful approach was to individually tailor the form of the function for each filter. All the available data for each filter was plotted, in multiple 2D and 3D axes, and the trends seen in the data were transcribed to find not only an overarching model template, akin to the status of $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$, but also individual sub-functions, such as describing an exponential decay coefficient using a linear combination of log($g$) and [Fe/H] terms.
+A more successful approach was to individually**** tailor the form of the function for each filter. All the available data for each filter was plotted, in multiple 2D and 3D axes, and the trends seen in the data were transcribed to find not only an overarching model template, akin to the status of $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$, but also individual sub-functions, such as describing an exponential decay coefficient using a linear combination of log($g$) and [Fe/H] terms.
 ****Add other functions here!
+
+In general, the longer the effective wavelength of a given filter throughput, the smaller the value of $A_{X}/A_{V}$. This conforms with the expectation resulting from the fact that extinction mechanisms in the ISM preferential affect photons with shorter wavelengths.
+
+A property found in some filters, more pronounced at higher metallicity but with a possible slight dependence on surface gravity, is the tendency of the gradient of $A_{X}/A_{V}$ with increasing $T_{\textnormal{eff}}$ to become significantly less positive at the lowest temperatures in the data, typically 4000K and below. The spread in $A_{X}/A_{V}$ values for different log($g$) is typically about 0.2-04, with a linear progression from log($g$) = 5.0 at the lowest end to log($g$) = 0.0 at the highest. In some filters, at the highest metallicity employed ([Fe/H] = 0.5), this phenomenon causes the gradient to become significantly negative, reversing the trend everywhere else in the data, including for the same filters at lower metallicity. Due to the shape of the resulting point-to-point line in these axes, it has been dubbed the ``tail-flick'' phenomenon. The black bodies
+
 
 \section{Isochrone data fitting}
 To obtain isochrones from the BaSTI online database, the desired age range, initial metallicity and filter system must be specified. Therefore, the values of these quantities are shared by all stellar objects. For the stages in stellar evolution prior to the main-sequence turn-off, any changes in atmospheric metallicity are insignificant, due to the factors discussed in Section \ref{stel_evol}.
@@ -606,8 +625,8 @@ The isochrone with the resulting parameters were then plotted alongside the stan
 \hline
 %\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{3}{c}{$A_{1}$ coefficients} \\ \cline{4-6}
 %\textbf{Filter} \\
-System & Filter & $A_{1}$ function & & $A_{1}$ coefficients & \\
- & & & $a$ & $b$ & $c$ \\
+System & Filter &  Function & & Coefficients & \\
+ & & ($A_{\textnormal{pow}}$ or $A_{\textnormal{exp}}$) & $a$ & $b$ & $c$ \\
 \hline
 
 & F435W & pow & -0.0276$\pm$0.0061 & -0.967$\pm$0.1918 & 1.3613$\pm$0.005 \\
@@ -615,7 +634,7 @@ System & Filter & $A_{1}$ function & & $A_{1}$ coefficients & \\
 & F555W & pow & -0.0089$\pm$0.0034 & -1.534$\pm$0.3895 & 1.0473$\pm$0.0026 \\
 ACS & F606W & exp & -0.2295$\pm$0.0361 & -2.9413$\pm$0.3326 & 0.9591$\pm$0.0017 \\
 & F625W & exp & -0.0741$\pm$0.0487 & -3.3839$\pm$1.4339 & 0.8647$\pm$0.0016 \\
-& F775W & exp & -0.0695$\pm$6.4918e-02 & -3.8286$\pm$2.0938e+00 & 0.6497$\pm$1.5715e-03 \\
+& F775W & exp & -0.0695$\pm$0.0649 & -3.8286$\pm$2.0938 & 0.6497$\pm$0.0016 \\
 & F814W & exp & -0.0909$\pm$0.0438 & -3.2279$\pm$1.0425 & 0.6086$\pm$0.0016 \\ \hline
 
 %& F218W & R2fle & -232.4$\pm$48.1 & -(1.076$\pm$0.043)$\times 10^{-3}$ & 2.933$\pm$0.007 \\
@@ -625,12 +644,12 @@ ACS & F606W & exp & -0.2295$\pm$0.0361 & -2.9413$\pm$0.3326 & 0.9591$\pm$0.0017 
 
 & F336W & pow & -0.0064$\pm$0.0028 & -1.8004$\pm$0.4633 & 1.6472$\pm$0.0022 \\
 & F390W & exp & -0.0763$\pm$0.0061 & -0.7961$\pm$0.1602 & 1.486$\pm$0.0035 \\
-WFC3 & F438W & exp & -0.0839$\pm$0.0284 -2.5967$\pm$0.6941  1.3507$\pm$0.0017 \\
+& F438W & exp & -0.0839$\pm$0.0284 & -2.5967$\pm$0.6941 & 1.3507$\pm$0.0017 \\
 & F475W & pow & -0.0224$\pm$0.0041 & -1.3107$\pm$0.1793 & 1.2233$\pm$0.0031 \\
-& F555W & exp & -0.2282$\pm$0.0396 & -3.0752$\pm$0.3704 & 1.0776$\pm$0.0017 \\
+WFC3 & F555W & exp & -0.2282$\pm$0.0396 & -3.0752$\pm$0.3704 & 1.0776$\pm$0.0017 \\
 & F606W & exp & -0.2271$\pm$0.0368 & -2.9707$\pm$0.3438 & 0.9622$\pm$0.0017 \\
 & F625W & pow & -0.0048$\pm$0.0028 & -1.8035$\pm$0.6184 & 0.879$\pm$0.0022 \\
-& F775W & exp & -0.0713$\pm$6.9506e-02 & -3.9365$\pm$2.1978e+00 & 0.6558$\pm$1.5609e-03 \\
+& F775W & exp & -0.0713$\pm$0.0695 & -3.9365$\pm$2.1978 & 0.6558$\pm$0.0016 \\
 & F814W & pow & -0.0058$\pm$0.0029 & -1.7434$\pm$0.5318 & 0.6149$\pm$0.0023 \\ \hline
 
 & G & pow & -0.0952$\pm$0.0042 & -1.2853$\pm$0.043 & 1.044$\pm$0.0032 \\
@@ -638,12 +657,19 @@ Gaia & G\textsubscript{bp} & pow & -0.1258$\pm$0.0081 & -0.7984$\pm$0.0499 & 1.2
 & G\textsubscript{rp} & pow & -0.013$\pm$0.0031 & -1.6863$\pm$0.2444 & 0.6753$\pm$0.0023 \\ \hline
 
 \end{tabular}
-\caption{Coefficient values produced for each filter, $A_{\textnormal{exp}}$ or $A_{\textnormal{exp}}$ fitting, as appropriately labelled. Any filters missing from this table are those with data that could not be acurrately fitted using either function.}
+\caption{Coefficient values produced for each filter via $A_{\textnormal{exp}}$ or $A_{\textnormal{exp}}$ fitting, as appropriately labelled. Any filters missing from this table are those with data that could not be accurately fitted using either function.}
 \label{simpfunc_coeffs_table}
 \end{center}
 \end{table}
 
-All filters, with the exception ofhe simplest functions trialled for fitting, $A_{\textnormal{pow}} (T_{\textnormal{eff}})$ or $A_{\textnormal{pow}} (T_{\textnormal{eff}})$
+The extinction-ratio data for all filters, with the exception of the four fully-UV filters in the WFC3 system, could be accurately modell the simplest functions trialled for fitting, $A_{\textnormal{pow}} (T_{\textnormal{eff}})$ or $A_{\textnormal{pow}} (T_{\textnormal{eff}})$
+
+****It can be seen in the original extinction-ratio data that general trends predicted by the physics in stellar atmospheres are present:
+\begin{itemize}
+\item The 
+\end{itemize}
+
+The $(A_{X}/A_{V})$ data which underpinned this project was derived using the mean extinction laws prescribed in \citep{1989ApJ...345..245C}. These equations were derived by studying trends in 
 
 \section{Effect on isochrones}
 Given the large number of filters studied in Section \ref{coef_models}, four commonly-used CMD axes were selected to test for any effects of a function-derived $A_{X}$. Two of these are specific to the WFC3 system, with one CMD each for ACS and Gaia.
@@ -705,7 +731,7 @@ The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CM
 
 \subsection{Gaia} \label{Gaia_isoc}
 
-Given that Gaia has only three photometric filters in total and given that the G\textsubscript{bp} and G\textsubscript{rp}  was the F435W-(F435W-F814W) axis combination. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which produces larger spectral colours.****
+The photometric filters in Gaia, ****as shown by their respective response functions in Figure \ref{Gaia_response_funcs}, are designed such that the only reasonable colour index is the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) index. has only three photometric filters in total and given that the G\textsubscript{bp} and G\textsubscript{rp}. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which produces larger spectral colours.****
 
 \begin{figure}[h]
 \begin{center}
