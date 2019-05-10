@@ -152,11 +152,35 @@ Interstellar extinction preferentially affects light at shorter (i.e., bluer) wa
 No telescope can view the sky at all spectral wavelengths - it would be wholly impractical due to the sheer number of sources across the spectrum, as well as the fact that telescope resolution depends on the wavelength of the incoming light. Therefore, modern telescopes are equipped with a system of filters or bands, which allow only light within a narrow range of wavelengths. In a filter system, the individual filters are designed to operate best at different wavelengths. The system will be therefore have the following properties:
 
 \begin{itemize}
-\item the filters cover a much wider range of spectral wavelengths when combined than a single filter would alone; this is used to observe sources at different wavelengths to determine its spectral colour **** (see Section ***).
-\item 
+\item the filters cover a much wider range of spectral wavelengths than a single filter would alone; this is used to observe sources at different wavelengths to determine its spectral colour **** (see Section ***).
+\item The filters are designed such that the range of wavelengths in which they can best detect incoming light overlap with their neighbours, as shown in Figures \ref{Gaia_response_funcs}-\ref{ACS_response_funcs}. This ensures that there are no wavelength gaps in which incoming light cannot be detected. This is particularly important for quantum line emission, which occurs only at specific wavelengths for particular electron occupancy levels (see Section**** for exceptions relevant to this case). The most prominent case of astrophysical line emission is that of HII ()
 \end{itemize}
 
 ****Filters - Johnson, ACS, WFC/UVIS, Gaia
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{GaiaDR2Passbands.png}
+\caption{Filter response functions for Gaia photometric filters. Source: \protect\url{https://www.cosmos.esa.int/web/gaia/iow_20180316}}
+\label{Gaia_response_funcs}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{UVIS_Wide1.jpg}
+\caption{Filter response functions for wide-field WFC3 filters. Source: \protect\url{http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}}
+\label{WFC3_response_funcs1}
+
+\includegraphics[scale=0.5]{UVIS_Wide2.jpg}
+\caption{Filter response functions for wide-field WFC3 filters. Source: \protect\url{http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}}
+\label{WFC3_response_funcs2}
+
+\includegraphics[scale=0.5]{ACS_Wide.png}
+\caption{Filter response functions for wide-field ACS filters. Source: \protect\url{http://www.stsci.edu/hst/acs/analysis/throughputs}}
+\label{ACS_response_funcs}
+\end{center}
+\end{figure}
 
 The standard treatment of extinction is to apply a single constant value of the extinction coefficient for a given filter $X$, denoted in the literature by $A_{X}$. For wavelengths in or close to the optical spectral range, this quantity is usually expressed as a fixed ratio of the (constant) coefficient value in the Johnson-$V$ filter, the standard visual comparison filter.
 
@@ -208,30 +232,6 @@ Filters thus**** present a challenge when trying to determine stellar spectra ac
 The values in the column labelled 'FWHM' represents the full width at half-maximum. In this case, it is defined as the difference between the lowest and highest wavelength values at which the transmittance value is half of its maximum value for the filter, typically assuming the response function can be approximated as a Gaussian distribution. The FWHM acts as a proxy**** for the wavelength range within which the filter can reliably be used for observations.
 
 The wavelengths of light visible to an average human eye are in the range 3800-7400 \AA . Hence, the filters used here cover wavelengths from the soft-ultraviolet (soft-UV) to the near-infrared (NIR),  including all visible wavelengths.
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[scale=0.5]{GaiaDR2Passbands.png}
-\caption{Filter response functions for Gaia photometric filters. Source: \protect\url{https://www.cosmos.esa.int/web/gaia/iow_20180316}}
-\label{Gaia_response_funcs}
-\end{center}
-\end{figure}
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[scale=0.5]{UVIS_Wide1.jpg}
-\caption{Filter response functions for wide-field WFC3 filters. Source: \protect\url{http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}}
-\label{WFC3_response_funcs1}
-
-\includegraphics[scale=0.5]{UVIS_Wide2.jpg}
-\caption{Filter response functions for wide-field WFC3 filters. Source: \protect\url{http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}}
-\label{WFC3_response_funcs2}
-
-\includegraphics[scale=0.5]{ACS_Wide.png}
-\caption{Filter response functions for wide-field ACS filters. Source: \protect\url{http://www.stsci.edu/hst/acs/analysis/throughputs}}
-\label{ACS_response_funcs}
-\end{center}
-\end{figure}
 
 \section{Basics of stellar evolution} \label{stel_evol}
 In the main sequence, nuclear fusion occurs in the core and any products must be subjected to mixing effects to reach the atmosphere. Since stellar interiors are physically fluid, heavier nuclei, which are denser, preferentially gather in regions close to the star's centre of gravity. Therefore, processes such as convection, thermohaline mixing and radiative levitation would be needed to induce a noticeable change in surface composition. However, these processes require certain physical conditions on local scales, if they are to be sustained. 
@@ -343,7 +343,7 @@ The colour index is defined as the flux magnitude in the bluer (shorter-waveleng
 \end{split}
 \end{align}
 
-where $(X-Y)_{0}$ is the intrinsic colour index of the object and $E(X-Y)$ is known as the colour excess and represents the effect of extinction on the observed colour index. The colour excess is important because of the prominence of the intrinsic colour index in determining effective temperature. More negative values of $(X-Y)$ indicate bluer stars, with higher effective temperatures.
+where $(X-Y)_{0}$ is the intrinsic colour index of the object and $E(X-Y) = A_{X} - A_{Y}$ is known as the colour excess, but can also be denoted using ``reddening''. Due to the potential confusion of the term ``reddening'' between $A_{X}$ and $E(X-Y)$, the former will be referred to here as the ``extinction'' or ``extinction coefficient'' and the latter as the ``colour excess''. The colour excess represents the effect of extinction on the observed colour index. The colour excess is important because of the prominence of the intrinsic colour index in determining effective temperature. More negative values of $(X-Y)$ indicate bluer stars, with higher effective temperatures.
 
 The most commonly-used colour index, employed as a reference for most optical observations, is the Johnson ($B-V$) index.
 
@@ -544,7 +544,7 @@ A_{\textnormal{exp}} (T_{\textnormal{eff}}) = a \exp{(b T_{4})} + c
 \label{Teff_exp}
 \end{equation}
 
-where $T_{4} = 10^{-4}T_{\textnormal{eff}}$. The fitting operation was carried out on the data for solar metallicity ([Fe/H] = 0.0) and, because it gave the greatest number of $T_{\textnormal{eff}}$ data points, log($g$) = 5. This dataset will be referred to as the basic fitting data (BFD).
+where $T_{4} = 10^{-4} \times T_{\textnormal{eff}}$. The fitting operation was carried out on the data for solar metallicity ([Fe/H] = 0.0) and, because it gave the greatest number of $T_{\textnormal{eff}}$ data points, log($g$) = 5. This dataset will be referred to as the basic fitting data (BFD).
 
 Many filters, particularly bluer filters, exhibited
 
@@ -559,7 +559,7 @@ For these filters, several unsuccessful approaches were made before an acceptabl
 A more successful approach was to individually**** tailor the form of the function for each filter. All the available data for each filter was plotted, in multiple 2D and 3D axes, and the trends seen in the data were transcribed to find not only an overarching model template, akin to the status of $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$, but also individual sub-functions, such as describing an exponential decay coefficient using a linear combination of log($g$) and [Fe/H] terms.
 ****Add other functions here!
 
-In general, the longer the effective wavelength of a given filter throughput, the smaller the value of $A_{X}/A_{V}$. This conforms with the expectation resulting from the fact that extinction mechanisms in the ISM preferential affect photons with shorter wavelengths.
+In general, the longer the effective wavelength of a given filter throughput, the smaller the value of $A_{X}/A_{V}$. This conforms with the expectation resulting from the fact that the physical mechanisms causing extinction in the ISM preferential affect photons with shorter wavelengths.
 
 A property found in some filters, more pronounced at higher metallicity but with a possible slight dependence on surface gravity, is the tendency of the gradient of $A_{X}/A_{V}$ with increasing $T_{\textnormal{eff}}$ to become significantly less positive at the lowest temperatures in the data, typically 4000K and below. The spread in $A_{X}/A_{V}$ values for different log($g$) is typically about 0.2-04, with a linear progression from log($g$) = 5.0 at the lowest end to log($g$) = 0.0 at the highest. In some filters, at the highest metallicity employed ([Fe/H] = 0.5), this phenomenon causes the gradient to become significantly negative, reversing the trend everywhere else in the data, including for the same filters at lower metallicity. Due to the shape of the resulting point-to-point line in these axes, it has been dubbed the ``tail-flick'' phenomenon. The black bodies
 
@@ -596,9 +596,9 @@ Isochrone & $T_{\textnormal{eff}}$ & $T_{\textnormal{eff}}$ & $\log(g)$ & $\log(
 
 DR2 Babusiaux data, errors****
 
-****However, the filter magnitudes in the photometric data were the original apparent magnitudes, not absolute magnitudes. Therefore, to match the attributes**** of the observational and isochrone datasets, it was necessary to correct the observational fluxes**** for distance and add extinction to the isochrone data, ****as is done by observers. Thus, we were compared the $M_{ext,X}$ values for all isochrone data.
+****However, the filter magnitudes in the photometric data were the original apparent magnitudes, not absolute magnitudes. Therefore, to match the attributes**** of the observational and isochrone datasets, it was necessary to correct the observational fluxes**** for distance and add extinction to the isochrone data, ****as is done by observers. Thus, we were comparing the $M_{ext,X}$ values for the isochrones and the observational data.
 
-The errors in the parallax data for objects assigned to NGC 6793 were significant, particularly for stars in the lower main-sequence. This lead to errors in the predicted $M_{ext,X}$ magnitudes, which is calculated by rearranging Equation \ref{distance_modulus}. - even when assuming no errors in the observed fluxes from the photometric filters.****
+The errors in the parallax data for objects assigned to NGC 6793 were significant, particularly for stars in the lower main-sequence - understandably, since they are the faintest objects in the data and therefore are more difficult to track against the bakcground light sources. This leads to errors in the predicted $M_{ext,X}$ magnitudes, which is calculated by rearranging Equation \ref{distance_modulus}. ****The significance of the parallax errors is such that even when assuming no errors in the observed fluxes from the photometric filters, any differences between the positions of the main sequence of isochrones with astrophysically-significant differences in parameters is rendered observationally insignificant.
 
 
 When comparing the two approaches to extinction, in order to test for any differences in projected isochrone age via the MSTO, a range of ages must be considered. A ``primary'' age was utilised as the true cluster isochrone age. This primary isochrone was subjected to both the function-based and standard extinction approaches. Two isochrones with ages equidistant from the primary were subjected to the standard approach only. All four of the resulting $M_{ext,X}$ isochrones were plotted together in the four chosen CMD axes, together with the original (zero-extinction) isochrone for visual reference.
@@ -780,9 +780,19 @@ Members & ? (> 3 ACSS-2.5) & 465 (271 with Gaia photometry) \\
 \subsection{Comparison of extinction methods}
 The Gaia DR2 dataset, containing the parallaxes and apparent magnitudes (in all three Gaia filters) for 338 objects tagged as belonging to NGC 6793, was obtained. The number of objects is greater than the 271 photometric Gaia objects found by \cite{2018A&A...616A..10G}. There were significant variations in the observed parallaxes of individual stars, far beyond the maximum cluster radii expected (\cite{2006A&A...456..523S} - general open cluster properties).
 
-There are highly significant errors for the individual objects in the Gaia data propagation, even when assuming the only source of error is from  parallax measurements (see Figure \ref{ngc_errorbars}). The magnitude of the errorbars dwarf any changes in isochrones due to extinction coefficient treatments.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.3]{../NGC_6793_CMD_FeH_0p002_0p198_Av_1p0_600Myr_isochrones_both_errorbars_T5k.pdf}
+\caption{Gaia CMD of NGC 6793 with errorbars included.}
+\label{ngc_errorbars}
+\end{center}
+\end{figure}
 
-All, as shown in Section****, the isochrones are sensitive both to the reference extinction coefficient value $A_{V}$ and to the value of $A_{X}/A_{V}$ for the fixed case. Some individual parts of the isochrones relevant to this study are additionally sensitive to other isochrone parameters:
+There are highly significant errors for the individual objects in the Gaia data propagation, even when assuming the only source of error is from  parallax measurements, as shown in Figure \ref{ngc_errorbars}. The magnitude of the errorbars dwarf any changes in isochrones due to extinction coefficient treatments in the main sequence. For the few objects in the data with 
+
+****Get zoom in on turn-off region
+
+All the isochrones, as shown in Section****, are sensitive both to the reference extinction coefficient value $A_{V}$ and to the value of $A_{X}/A_{V}$ for the fixed-coefficient case, which is to be expected. Some individual parts of the isochrones relevant to this study are additionally sensitive to other isochrone parameters:
 
 \begin{enumerate}
 %, but metallicity has a smaller effect
@@ -792,13 +802,6 @@ All, as shown in Section****, the isochrones are sensitive both to the reference
 
 
 
-\begin{figure}[h]
-\begin{center}
-\includegraphics[scale=0.3]{../NGC_6793_CMD_FeH_0p002_0p198_Av_1p0_600Myr_isochrones_both_errorbars_T5k.pdf}
-\caption{Gaia CMD of NGC 6793 with errorbars included.}
-\label{ngc_errorbars}
-\end{center}
-\end{figure}
 
 \chapter{Conclusion}
 In all cases, applying a fixed extinction to all points in an isochrone causes the main-sequence turn-off to occur at a more luminous, bluer point in a given CMD than the MSTO point for an extinction coefficient described using a function fitted to empirically derived data.
