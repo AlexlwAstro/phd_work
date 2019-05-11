@@ -546,7 +546,7 @@ A_{\textnormal{pow}} (T_{\textnormal{eff}}) = a (T_{4})^{b} + c
 \end{equation}
 
 \begin{equation}
-A_{\textnormal{exp}} (T_{\textnormal{eff}}) = a \exp{(b T_{4})} + c
+A_{\textnormal{exp}} (T_{\textnormal{eff}}) = a \exp(b T_{4}) + c
 \label{Teff_exp}
 \end{equation}
 
@@ -564,6 +564,24 @@ For these filters, several unsuccessful approaches were made before an acceptabl
 
 A more successful approach was to individually**** tailor the form of the function for each filter. All the available data for each filter was plotted, in multiple 2D and 3D axes, and the trends seen in the data were transcribed to find not only an overarching model template, akin to the status of $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$, but also individual sub-functions, such as describing an exponential decay coefficient using a linear combination of log($g$) and [Fe/H] terms.
 ****Add other functions here!
+
+For the four UV filters in WFC3, the final form for the overarching template for $A_{X}/A_{V}$ was a logistic function in $T_{\textnormal{eff}}$, shown in Equation \ref{A_logis_UV}. For a general logistic function in $T_{\textnormal{eff}}$, there are four principle parameters:
+\begin{itemize}
+\item The global maximum value, denoted in this case by $A_{max}$;
+\item The global minimum value, $A_{min}$;
+\item The exponential decay coefficient, $k$;
+\item The $T_{\textnormal{eff}}$-coordinate of the sigmoid midpoint, in this case $T_{\textnormal{0}}$.
+\end{itemize}
+
+This form was chosen on the basis of its ability to model the low-$T_{\textnormal{eff}}$ change in gradient for these filters, which appears to be more significant in these filters than for others, as can be seen in Figures \ref{Ax/Av data FeH=0} and \ref{Ax/Av data FeH=-2}, even after accounting for the difference in scale between the maxima and minima in each filter. In particular, the $T_{\textnormal{eff}}$ gradient prior to the plateau appears to lead to an asymptote at lower, but still potentially-feasible temperatures. This issue is resolved by the change in gradient, which can be accurately modelled using a logistic curve, while also maintaining accuracy in modelling the gradient change during the transition to the plateau.
+
+However, the problems regarding the significant changes in extinction ratios with surface gravity and metallicity required addressing. Therefore, upon inspection of the data over all combinations of both parameters, the logistic coefficients $T_{0}$ and $k$ were expressed as simple functions of $g$ and [Fe/H], shown in Equations \ref{T0_eq} and \ref{decay_const_eq}, respectively. Therefore, the overall function $A_{logis}$ is sensitive to all three input stellar atmosphere parameters, with effective temperature having the greatest effect and the effects of the other parameters dependent on the best-fit values of the relevant coefficients.
+
+\begin{align}
+T_{\textnormal{0}} &= a\log(g) + b\left(\frac{\textnormal{[Fe/H]}}{\left|\textnormal{[Fe/H]}\right|^{1/2}}\right) + c \label{T0_eq}\\
+k &= d\log(g) + e\textnormal{[Fe/H]} + f \label{decay_const_eq}\\
+A_{logis}(T_{\textnormal{eff}},g,\textnormal{[Fe/H]}) &= \frac{(A_{max}-A_{min})}{( 1 + \exp{(-10^{-4}k(T_{\textnormal{eff}}-T_{\textnormal{0}})) ) )}} + A_{min} \label{A_logis_UV}
+\end{align}
 
 In general, the longer the effective wavelength of a given filter throughput, the smaller the value of $A_{X}/A_{V}$. This conforms with the expectation resulting from the fact that the physical mechanisms causing extinction in the ISM preferential affect photons with shorter wavelengths.
 
