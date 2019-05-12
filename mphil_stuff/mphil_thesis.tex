@@ -236,9 +236,9 @@ The values in the column labelled 'FWHM' represents the full width at half-maxim
 The wavelengths of light visible to an average human eye are in the range 3800-7400 \AA . Hence, the filters used here cover wavelengths from the soft-ultraviolet (soft-UV) to the near-infrared (NIR),  including all visible wavelengths.
 
 \section{Basics of stellar evolution} \label{stel_evol}
-In the main sequence, nuclear fusion occurs in the core and any products must be subjected to mixing effects to reach the atmosphere. Since stellar interiors are physically fluid, heavier nuclei, which are denser, preferentially gather in regions close to the star's centre of gravity. Therefore, processes such as convection, thermohaline mixing and radiative levitation would be needed to induce a noticeable change in surface composition. However, these processes require certain physical conditions on local scales, if they are to be sustained. 
+In the main sequence, nuclear fusion occurs in the core and any products must be subjected to mixing effects to reach the atmosphere. Since stellar interiors are physically fluid, heavier nuclei, which are more dense, preferentially gather in regions close to the star's centre of gravity. Therefore, processes such as convection, thermohaline mixing and radiative levitation are required to induce a noticeable change in surface composition. However, these processes require certain physical conditions on local scales, if they are to be sustained for long enough to induce a visible change in the stellar spectrum.
 
-****On the main-sequence, only low-mass stars ($M_{*} \lesssim 0.5M_{\odot}$) have fully-convective interiors. Massive ($M_{*} \gtrsim 1.5M_{\odot}$) stars have convective cores, but radiative envelopes. Intermediate-mass stars, including the Sun, have radiative cores and convective envelopes. Since regions in which energy transport is dominated by radiative effects are stable against convection****.
+On the main-sequence, only low-mass stars ($M_{*} \lesssim 0.38M_{\odot}$) \citep{2018A&A...619A.177B} have fully-convective interiors. Massive ($M_{*} \gtrsim 1.5M_{\odot}$) stars have convective cores, but radiative envelopes. Intermediate-mass stars, including the Sun, have radiative cores and convective envelopes. Since regions in which energy transport is dominated by radiative effects are stable against convection, stars with masses greater than $0.38M_{\odot}$ are highly unlikely to show large changes in atmospheric composition along the main sequence. However, the fully-convective lower-mass stars are able to do so. Therefore, the faintest and reddest parts of the main sequence are most likely to have atmospheres enriched with metals, which would be confined in the cores of more massive stars. These enriched atmospheres are therefore highly sensitive to the overall metallicity of the original gas cloud in which the star, and its parent cluster if applicable, formed****.
 
 \begin{equation}
 \nabla_{\textnormal{rad}} = \frac{3\kappa LP}{16\pi acGmT^{4}}
@@ -536,7 +536,9 @@ To generate extinction-coefficient ratios $A_{X}/A_{V}$ from the bolometric corr
 \end{figure}
 
 \section{Finding \& fitting functions} \label{find_fit}
-To find usable functions required prioritising which parameters to model first, as increasing the number of stellar parameters would cause an increase in the number of coefficients to fit for the function being tested. This would create a higher risk of degeneracies between coefficients and increase the fitting output errors such that the errors obscure any useful information about the coefficients themselves.
+In order to find usable functions, ****required prioritising which parameters to model first, as increasing the number of stellar parameters would cause an increase in the number of coefficients to fit for the function being tested. This would create a higher risk of degeneracies between coefficients and increase the fitting output errors such that the errors obscure any useful information about the coefficients themselves.
+
+A property found in the data for some filters, more pronounced at higher metallicity but with a possible slight dependence on surface gravity, is the tendency of the gradient of $A_{X}/A_{V}$ with increasing $T_{\textnormal{eff}}$ to become significantly less positive at the lowest temperatures in the data, typically 4000K and below. The spread in $A_{X}/A_{V}$ values for different log($g$) is typically about 0.2-04, with a linear progression from log($g$) = 5.0 at the lowest end to log($g$) = 0.0 at the highest. In some filters, at the highest metallicity employed ([Fe/H] = 0.5), this phenomenon causes the gradient to become significantly negative, reversing the trend everywhere else in the data, including for the same filters at lower metallicity. Due to the shape of the resulting point-to-point line in these axes, it has been dubbed the ``tail-flick'' phenomenon. For filters with a small total range of $A_{X}/A_{V}$, this was ignored as an artefact from the numerical integration required for Equation \ref{BC_extinc} for the BCs at both chosen $A_{V}$ values.
 
 The bolometric flux of a black body can be calculated as the total area under the curve described by the Planck function per unit wavelength/frequency as a function of wavelength/frequency. Since stellar emission spectra can be reasonably approximated by a black body emission with absorption lines, it can be seen from Equation\ref{Teff_def} that the greatest effect on stellar spectra, and therefore on the extinction coefficient, will come from effective temperature. Therefore, the initial functions to be fitted were simple analytical functions of $T_{\textnormal{eff}}$ only:
 
@@ -584,8 +586,6 @@ A_{logis}(T_{\textnormal{eff}},g,\textnormal{[Fe/H]}) &= \frac{(A_{max}-A_{min})
 \end{align}
 
 In general, the longer the effective wavelength of a given filter throughput, the smaller the value of $A_{X}/A_{V}$. This conforms with the expectation resulting from the fact that the physical mechanisms causing extinction in the ISM preferential affect photons with shorter wavelengths.
-
-A property found in some filters, more pronounced at higher metallicity but with a possible slight dependence on surface gravity, is the tendency of the gradient of $A_{X}/A_{V}$ with increasing $T_{\textnormal{eff}}$ to become significantly less positive at the lowest temperatures in the data, typically 4000K and below. The spread in $A_{X}/A_{V}$ values for different log($g$) is typically about 0.2-04, with a linear progression from log($g$) = 5.0 at the lowest end to log($g$) = 0.0 at the highest. In some filters, at the highest metallicity employed ([Fe/H] = 0.5), this phenomenon causes the gradient to become significantly negative, reversing the trend everywhere else in the data, including for the same filters at lower metallicity. Due to the shape of the resulting point-to-point line in these axes, it has been dubbed the ``tail-flick'' phenomenon. The black bodies
 
 
 \section{Isochrone data fitting}
@@ -686,12 +686,27 @@ Gaia & G\textsubscript{bp} & pow & -0.1258$\pm$0.0081 & -0.7984$\pm$0.0499 & 1.2
 \end{center}
 \end{table}
 
-The extinction-ratio data for all filters, with the exception of the four fully-UV filters in the WFC3 system, could be accurately modell the simplest functions trialled for fitting, $A_{\textnormal{pow}} (T_{\textnormal{eff}})$ or $A_{\textnormal{pow}} (T_{\textnormal{eff}})$
+The extinction-ratio data for all filters, with the exception of the four fully-UV filters in the WFC3 system, could be accurately modelled by the simplest functions trialled for fitting, $A_{\textnormal{pow}} (T_{\textnormal{eff}})$ or $A_{\textnormal{pow}} (T_{\textnormal{eff}})$.
+\begin{table}
+\begin{center}
+\begin{tabular}{ccccc}
+\hline
 
-****It can be seen in the original extinction-ratio data that general trends predicted by the physics in stellar atmospheres are present:
-\begin{itemize}
-\item The 
-\end{itemize}
+Filter &  Function & & Coefficients & \\
+ & ($A_{\textnormal{pow}}$ or $A_{\textnormal{exp}}$) & $a$ & $b$ & $c$ \\
+\hline
+F218W & exp & -0.0763$\pm$0.0061 & -0.7961$\pm$0.1602 & 1.486$\pm$0.0035 \\
+F225W & exp & -0.0839$\pm$0.0284 & -2.5967$\pm$0.6941 & 1.3507$\pm$0.0017 \\
+F275W & pow & -0.0224$\pm$0.0041 & -1.3107$\pm$0.1793 & 1.2233$\pm$0.0031 \\
+F300X & blah**** & -0.2282$\pm$0.0396 & -3.0752$\pm$0.3704 & 1.0776$\pm$0.0017 \\
+\hline
+\end{tabular}
+\caption{Coefficient values for non-trivial functions produced for fitting to UV filter data.}
+\label{UV_coeffs_table}
+\end{center}
+\end{table}
+
+All the functions are consistent with the general trends predicted by the physics in stellar atmospheres, since the effective temperature has the greatest effect upon the value of $A_{X}/A_{V}$, with relatively minor differences due to 
 
 The $(A_{X}/A_{V})$ data which underpinned this project was derived using the mean extinction laws prescribed in \citep{1989ApJ...345..245C}. These equations were derived by studying trends in 
 
