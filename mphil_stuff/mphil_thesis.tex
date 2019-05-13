@@ -1,12 +1,8 @@
 \documentclass[12pt, a4paper]{report}
 % for guidance, see phd_work/mnras_guide.pdf
 %\setlength\parindent{0pt}
-
-\usepackage[english]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage[T1]{fontenc}
-
 %\documentclass[useAMS,usenatbib]{mn2e}
+
 \newcommand{\aap}{A\&A}
 \newcommand{\araa}{ARAA}
 \newcommand{\mnras}{MNRAS}
@@ -23,6 +19,9 @@
 \newcommand{\apss}{Ap\&SS}
 %\newcommand{\rsquo}{`}
 
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
 %\usepackage{braket}
 \usepackage[english]{babel}
@@ -39,6 +38,7 @@
 \usepackage{epstopdf}
 \usepackage{subcaption}
 \usepackage{url}
+
 
 % ALW edit: FORMAT FOR INCLUDING PDF IMAGES!!!
 % for guidance, see phd_work/grfguide.pdf
@@ -154,8 +154,8 @@ The goal of this project is to attempt to use analytic functions to model the va
 No telescope can view the sky at all spectral wavelengths - it would be wholly impractical due to the sheer number of sources across the spectrum, as well as the fact that telescope resolution depends on the wavelength of the incoming light. Therefore, modern telescopes are equipped with a system of filters or bands, which allow only light within a narrow range of wavelengths. In a filter system, the individual filters are designed to operate best at different wavelengths. The system will be therefore have the following properties:
 
 \begin{itemize}
-\item the filters cover a much wider range of spectral wavelengths than a single filter would alone; this is used to observe sources at different wavelengths to determine its spectral colour **** (see Section ***).
-\item The filters are designed such that the range of wavelengths in which they can best detect incoming light overlap with their neighbours, as shown in Figures \ref{Gaia_response_funcs}-\ref{ACS_response_funcs}. This ensures that there are no wavelength gaps in which incoming light cannot be detected. This is particularly important for quantum line emission, which occurs only at specific wavelengths for particular electron occupancy levels (see Section**** for exceptions relevant to this case). The most prominent case of astrophysical line emission is that of HII ()
+\item the filters cover a much wider range of spectral wavelengths than a single filter would alone; this is used to observe sources at different wavelengths to determine its spectral colour **** (see Section ****).
+\item The filters are designed such that the range of wavelengths in which they can best detect incoming light overlap with their neighbours, as shown in Figures \ref{Gaia_response_funcs}-\ref{ACS_response_funcs}. This ensures that there are no wavelength gaps in which incoming light cannot be detected. This is particularly important for quantum line emission, which occurs only at specific wavelengths for particular electron occupancy levels (see Section**** for exceptions relevant to this case). One of the most prominent case of astrophysical line emission is that of H\alpha, in which the electron in a neutral hydrogen atom transitions from the $n = 3$ to the $n = 2$ quantum occupation state, emitting a photon with a wavelength of 656 nm, which is in the red part of the visible spectrum.
 \end{itemize}
 
 ****Filters - Johnson, ACS, WFC/UVIS, Gaia
@@ -186,17 +186,14 @@ No telescope can view the sky at all spectral wavelengths - it would be wholly i
 
 The standard treatment of extinction is to apply a single constant value of the extinction coefficient for a given filter $X$, denoted in the literature by $A_{X}$. For wavelengths in or close to the optical spectral range, this quantity is usually expressed as a fixed ratio of the (constant) coefficient value in the Johnson-$V$ filter, the standard visual comparison filter.
 
-In this project, three broad-band filter systems were employed. These are the Advanced Camera for Surveys (ACS) and the Ultraviolet Imaging Spectrograph channel of the Wide-Field Camera 3 (WFC3/UVIS), both mounted on the Hubble Space Telescope (HST), and the single filter set mounted on the Gaia space observatory.
-
-ACS was installed on HST in 2002 and repaired in 2009, when WFC3 was also installed.
+In this project, three broad-band filter systems were employed. These are the Advanced Camera for Surveys (ACS) and the Ultraviolet Imaging Spectrograph channel of the Wide-Field Camera 3 (WFC3/UVIS), both mounted on the Hubble Space Telescope (HST), and the single set of three broadband filters mounted on the Gaia space observatory \citep{2010A&A...523A..48J}.
 
 \begin{table}
 \begin{center}
 \begin{tabular}{cccccc}
 \hline
-System & Filter & Peak wavelength / \AA & FWHM / \AA \\
+System & Filter & Central wavelength / \AA & FWHM / \AA \\
 \hline
-
 & F435W & 4760 & 729 \\
 & F475W & 5000 & 986 \\
 & F555W & 5060 & 841 \\
@@ -219,23 +216,34 @@ WFC3 & F438W & 4320 & 695 \\
 & F775W & 7760 & 1470 \\
 & F814W & 8353 & 2555 \\
 \hline
-& G &  &  \\
-Gaia & G\textsubscript{bp} &  &  \\
-& G\textsubscript{rp} &  &  \\
+& G & 6730 & 4400 \\
+Gaia & G\textsubscript{bp} & 5320 & 2530 \\
+& G\textsubscript{rp} & 7970 & 2960 \\
 \hline
 
 \end{tabular}
-\caption{Basic properties of the filters employed in this project}
+\caption{Basic properties of the filters employed in this project.}
 \label{filter_basics}
 \end{center}
 \end{table}
 
 Filters thus**** present a challenge when trying to determine stellar spectra accurately. This task is further complicated by the fact that, even in the wavelength range where a filter does detect incoming flux, the fraction of light it detects, known as the transmittance, is not uniform across the range. The transmittance as a function of wavelength is known as a transmission curve, bandpass or filter response function. Examples of response functions for some**** of the filters employed in this project are shown in Figure \ref{ACS_response_funcs}. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function could have a significant impact on the observed spectrum if not taken into account.
-The values in the column labelled 'FWHM' represents the full width at half-maximum. In this case, it is defined as the difference between the lowest and highest wavelength values at which the transmittance value is half of its maximum value for the filter, typically assuming the response function can be approximated as a Gaussian distribution. The FWHM acts as a proxy**** for the wavelength range within which the filter can reliably be used for observations.
+The values in the column labelled 'FWHM' represents the full width at half-maximum. In this case, it is defined as the difference between the lowest and highest wavelength values at which the transmittance value is half of its maximum value for the filter, typically assuming the response function can be approximated as a Gaussian distribution centred on the central wavelength. The FWHM acts as an approximate measure of the wavelength range within which the filter can reliably be used for observations.
 
 The wavelengths of light visible to an average human eye are in the range 3800-7400 \AA . Hence, the filters used here cover wavelengths from the soft-ultraviolet (soft-UV) to the near-infrared (NIR),  including all visible wavelengths.
 
 \section{Basics of stellar evolution} \label{stel_evol}
+While observations can reveal properties of individual stars and stellar populations more generally, the significance of these properties can only be gained by understanding the underlying physical processes and structure of the stars themselves.
+
+****It can be seen that all stars lie on a single, complicated line, known as an isochrone. Isochrones for different population ages and metallicities are calculated using theoretical stellar models for the largest possible spread of initial stellar masses. An isochrone in the HR diagram has a number of distinct features:
+\begin{itemize}
+\item Most stars, including the coolest and least-luminous ones, follow a tight pattern of luminoaity increasing with temperature. This is known as the main sequence (MS)
+\item This pattern stops as the luminosity continues to increase slowly but with decreasing temperature. The end of the MS is called the main-sequence turn-off (MSTO), which is followed by the sub-giant branch (SGB).
+\item After the SGB, the gradient becomes much steeper, with temperate decreasing and luminosity rapidly increasing. This is the red-giant branch (RGB).
+\item At the tip of the RGB, stars start becoming fainter and their temperatures increase. Eventually, their is a sequence of stars with near-constant luminosity but a range of effective temperatures. This is the horizontal branch (HB).
+\item After the horizontal branch, there is again a rapid increase in luminosity accompanied by a slow decrease in temperature. This is the asymptotic giant branch (AGB).
+\end{itemize}
+
 In the main sequence, nuclear fusion occurs in the core and any products must be subjected to mixing effects to reach the atmosphere. Since stellar interiors are physically fluid, heavier nuclei, which are more dense, preferentially gather in regions close to the star's centre of gravity. Therefore, processes such as convection, thermohaline mixing and radiative levitation are required to induce a noticeable change in surface composition. However, these processes require certain physical conditions on local scales, if they are to be sustained for long enough to induce a visible change in the stellar spectrum.
 
 On the main-sequence, only low-mass stars ($M_{*} \lesssim 0.38M_{\odot}$) \citep{2018A&A...619A.177B} have fully-convective interiors. Massive ($M_{*} \gtrsim 1.5M_{\odot}$) stars have convective cores, but radiative envelopes. Intermediate-mass stars, including the Sun, have radiative cores and convective envelopes. Since regions in which energy transport is dominated by radiative effects are stable against convection, stars with masses greater than $0.38M_{\odot}$ are highly unlikely to show large changes in atmospheric composition along the main sequence. However, the fully-convective lower-mass stars are able to do so. Therefore, the faintest and reddest parts of the main sequence are most likely to have atmospheres enriched with metals, which would be confined in the cores of more massive stars. These enriched atmospheres are therefore highly sensitive to the overall metallicity of the original gas cloud in which the star, and its parent cluster if applicable, formed****.
@@ -254,7 +262,7 @@ To illustrate, let us consider a bubble of gaseous material in pressure-equilibr
 
 where $\nabla _{\mu} = d\ln\mu / d\ln P$, $\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$ and $\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$ are the temperature-pressure gradients for the local environment (dominated by radiation pressure) and the bubble (treated as an adiabatic ideal gas), respectively, $\phi = \left( \partial \ln\rho / \partial \ln\mu \right)_{P,T}$ and $\delta = -\left( \partial \ln\rho / \partial \ln T \right)_{P,\mu}$  \citep{1980A&A....91..175K}.
 
-In stellar evolution, the stages described in **** represent extended periods of time in which the stellar interior, described in theoretical models as a series of (quasi-)spherical shells, can be described as being in hydrostatic equilibrium, i.e., the gravitational pressure inwards on material in a given shell, due to the mass enclosed by the shell, is equal to the radiation pressure outwards generated by nuclear fusion occurring within the area enclosed by the shell, either in the core or in an inner shell. Giant stars are objects with luminosities significantly higher and lower surface gravities than stars on the main sequence (which have gravities in the range 4 $\lesssim$ log($g$) $\lesssim$ 5).
+In stellar evolution, the stages described in **** represent extended periods of time in which the stellar interior, described in theoretical models as a series of (quasi-)spherical shells, can be described as being in hydrostatic equilibrium, i.e., the gravitational pressure inwards on material in a given shell, due to the mass enclosed by the shell, is equal to the radiation pressure outwards generated by nuclear fusion occurring within the area enclosed by the shell, either in the core or in an inner shell. Giant stars are objects with luminosities significantly higher and surface gravities lower than stars on the main sequence (which generally have gravities in the range 4 $\lesssim$ log($g$) $\lesssim$ 5.5).
 
 \section{Previous studies}
 \cite{1989ApJ...345..245C} used observations of bright main-sequence stars to produce empirical equations describing the ratio of extinction coefficients at a specific wavelength $\lambda$ ($A_{\lambda}$) and the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{\lambda}/A_{V}$. They produced a basic universal equation of the form:
@@ -292,23 +300,14 @@ where $m_{1}$ and $m_{2}$ are the magnitudes for $F_{1}$ and $F_{2}$, respective
 d/\textnormal{pc} = \frac{1}{(p/\textnormal{arcsec})}
 \end{equation}
 
-This gives each astronomical object two fundamental flux measurements. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source, as observed by the telescope. The absolute magnitude is the projected flux magnitude of the same source if it were to be placed at a distance of 10 parsecs (pc) from the telescope, thus accounting for the distances The relation between these quantities if there is zero extinction can be found by combining Equations \ref{flux_def} and \ref{mags_def}:
+This gives each astronomical object two fundamental flux measurements. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source, as observed by the telescope. The absolute magnitude is the projected flux magnitude of the same source if it were to be placed at a distance of 10 parsecs (pc) from the telescope, thus accounting for the natural decrease in flux due to the distance between the source and the telescope. The relation between these quantities if there is zero extinction can be found by combining Equations \ref{flux_def} and \ref{mags_def}:
 % In general, the extinction coefficient $A$ is defined relative to two ubiquitous astrophysical quantities.
 \begin{equation}
 \label{distance_modulus}
 m - M = -2.5\log \left( \left(\frac{10\textnormal{pc}}{d}\right)^{2} \right) = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
 \end{equation}
 
-The quantity ($m - M$) is known as the distance modulus. It is particularly useful for observing stellar populations, as stars within a single-age population are easily classified using their position on the theoretical Hertzsprung-Russell (HR) diagram or ***some of its observational equivalents, known as colour-magnitude diagrams (CMDs). In the HR diagram, stars of a given age and metallicity are plotted in the luminosity-effective temperature ($L-T_{\textnormal{eff}}$) plane. An example of a HR diagram is shown in Figure ****. It can be seen that all stars lie on a single, complicated line, known as an isochrone. Isochrones for different population ages and metallicities are calculated using theoretical stellar models for the largest possible spread of initial stellar masses. An isochrone in the HR diagram has a number of distinct features:
-\begin{itemize}
-\item Most stars, including the coolest and least-luminous ones, follow a tight pattern of luminoaity increasing with temperature. This is known as the main sequence (MS)
-\item This pattern stops as the luminosity continues to increase slowly but with decreasing temperature. The end of the MS is called the main-sequence turn-off (MSTO), which is followed by the sub-giant branch (SGB).
-\item After the SGB, the gradient becomes much steeper, with temperate decreasing and luminosity rapidly increasing. This is the red-giant branch (RGB).
-\item At the tip of the RGB, stars start becoming fainter and their temperatures increase. Eventually, their is a sequence of stars with near-constant luminosity but a range of effective temperatures. This is the horizontal branch (HB).
-\item After the horizontal branch, there is again a rapid increase in luminosity accompanied by a slow decrease in temperature. This is the asymptotic giant branch (AGB).
-\end{itemize}
-
-It should be noted that the distance modulus in Equation \ref{distance_modulus} does not include extinction. To link the apparent magnitude to extinction, it is necessary to separate the distance modulus from the observed apparent magnitude, $m_{\textnormal{obs}}$. This can be done by defining the intrinsic apparent magnitude, $m_{0}$, such that:
+The quantity ($m - M$) is known as the distance modulus, and, . It should be noted that the distance modulus in Equation \ref{distance_modulus} does not include extinction. To link the apparent magnitude to extinction, it is necessary to separate the distance modulus from the observed apparent magnitude, $m_{\textnormal{obs}}$. This can be done by defining the intrinsic apparent magnitude, $m_{0}$, such that:
 
 \begin{equation}
 \label{intrinsic_app_mag}
@@ -324,7 +323,7 @@ A = m_{\textnormal{obs}} - m_{0}
 
 This fits with the definition of interstellar extinction given earlier, i.e. as the flux lost solely due to scattering and absorption in the interstellar medium.
 
-However, as noted earlier, in astronomy it is infeasible to attempt observations by a single instrument at all wavelengths. Telescopes instead are generally purpose-built to study a single, relatively narrow wavelength range of the EM spectrum. Within this range, telescope observation ranges are further divided by filters or passbands, one of which is placed on their aperture at any given observation time****. As shown in Figure \ref{ACS_response_funcs}, \ref{WFC3_response_funcs1}, \ref{WFC3_response_funcs2} and****, a single generic filter $X$ has a range of wavelengths for which it is able to detect flux. It can also be seen in these figures that the transmittance of the filter changes as a function of wavelength
+However, as noted earlier, in astronomy it is infeasible to attempt observations by a single instrument at all wavelengths. Telescopes instead are generally purpose-built to study a single, relatively narrow wavelength range of the EM spectrum. Within this range, telescope observation ranges are further divided by filters or passbands, one of which is placed on their aperture at any given observation time. As shown in Figures \ref{ACS_response_funcs}-\ref{Gaia_response_funcs}, any single filter $X$ has a limited range of wavelengths for which it is able to detect flux. It can also be seen in these figures that the transmittance of the filter changes as a function of wavelength
 
 \begin{equation}
 f_{\lambda} = \frac{2hc}{\lambda^{5}\left(\exp\left({\frac{hc}{\lambda k_{B}T}}\right) - 1\right)}
@@ -622,7 +621,9 @@ DR2 Babusiaux data, errors****
 
 ****However, the filter magnitudes in the photometric data were the original apparent magnitudes, not absolute magnitudes. Therefore, to match the attributes**** of the observational and isochrone datasets, it was necessary to correct the observational fluxes**** for distance and add extinction to the isochrone data, ****as is done by observers. Thus, we were comparing the $M_{ext,X}$ values for the isochrones and the observational data.
 
-The errors in the parallax data for objects assigned to NGC 6793 were significant, particularly for stars in the lower main-sequence - understandably, since they are the faintest objects in the data and therefore are more difficult to track against the bakcground light sources. This leads to errors in the predicted $M_{ext,X}$ magnitudes, which is calculated by rearranging Equation \ref{distance_modulus}. ****The significance of the parallax errors is such that even when assuming no errors in the observed fluxes from the photometric filters, any differences between the positions of the main sequence of isochrones with astrophysically-significant differences in parameters is rendered observationally insignificant.
+The errors in the parallax data for objects assigned to NGC 6793 were significant, particularly for stars in the lower main-sequence - understandably, since they are the faintest objects in the data and therefore are more difficult to track against the bakcground light sources. This leads to errors in the predicted $M_{ext,X}$ magnitudes, which is calculated by rearranging Equation \ref{distance_modulus}. ****The significance of the parallax errors in the main sequence is such that even when assuming no errors in the observed fluxes from the photometric filters, any differences between isochrones with similar parameters are rendered insignificant.
+
+Since the table for photometric fluxes did not include photometric errors, the parallax errors alone accounted for the total error in the calculated $M_{ext,X}$. Therefore, the errors on the flux measurements  were exactly equal in all filters for a given star. The errors on the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) color index were calculated as standard, by adding the individual filter errors in quadrature, giving the color errors which were a factor of $\sqrt{2}$ greater than those for the individual filter fluxes.
 
 
 When comparing the two approaches to extinction, in order to test for any differences in projected isochrone age via the MSTO, a range of ages must be considered. A ``primary'' age was utilised as the true cluster isochrone age. This primary isochrone was subjected to both the function-based and standard extinction approaches. Two isochrones with ages equidistant from the primary were subjected to the standard approach only. All four of the resulting $M_{ext,X}$ isochrones were plotted together in the four chosen CMD axes, together with the original (zero-extinction) isochrone for visual reference.
@@ -714,7 +715,7 @@ The $(A_{X}/A_{V})$ data which underpinned this project was derived using the me
 Given the large number of filters studied in Section \ref{coef_models}, four commonly-used CMD axes were selected to test for any effects of a function-derived $A_{X}$. Two of these are specific to the WFC3 system, with one CMD each for ACS and Gaia.
 \subsection{ACS} \label{ACS_isoc}
 
-The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which covers the peak wavelengths**** for all the spectral type present
+The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS in its colour index, which is the index most likely to distinguish between objects with a large range of effective temperatures, making it useful for modelling the main sequence and MSTO, the two most important CMD components for calculating cluster isochrone ages.
 
 \begin{figure}[h]
 \begin{center}
@@ -770,7 +771,7 @@ The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CM
 
 \subsection{Gaia} \label{Gaia_isoc}
 
-The photometric filters in Gaia, ****as shown by their respective response functions in Figure \ref{Gaia_response_funcs}, are designed such that the only reasonable colour index is the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) index. has only three photometric filters in total and given that the G\textsubscript{bp} and G\textsubscript{rp}. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which produces larger spectral colours.****
+The photometric filters in Gaia, as shown by their respective response functions in Figure \ref{Gaia_response_funcs}, are designed such that the only reasonable colour index is the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) index. The $G$ filter, being the widest filter of the three available wide-field filters. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS, which produces larger spectral colours.****
 
 \begin{figure}[h]
 \begin{center}
@@ -847,7 +848,7 @@ In all cases, applying a fixed extinction to all points in an isochrone causes t
 
 \section{Future work}
 
-
+%\bibliographystyle{ieeetr}
 \bibliographystyle{mnras} % unsrtnat
 \bibliography{mphil_thesis}
 
