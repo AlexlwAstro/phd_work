@@ -78,79 +78,11 @@
 \makeatother
 
 \begin{document}
+
 \chapter{Theoretical background}
-\section{Extinction definition} \label{extinc_desc}
-Extinction is defined using the standard astronomical system of flux magnitudes. The difference between two generic flux measurements, $F_{1}$ and $F_{2}$, in magnitudes is expressed as:
-\begin{equation}
-\label{mags_def}
-m_{1} - m_{2} = -2.5\log \left( \frac{F_{1}}{F_{2}} \right)
-\end{equation}
-
-where $m_{1}$ and $m_{2}$ are the measured flux magnitudes for $F_{1}$ and $F_{2}$, respectively. However, the flux of a source varies naturally with the distance to the observer (see Equation \ref{flux_def}). To account for this, the distances to the nearest stars were determined independently of their flux, by their parallax from Earth. The parallax $p$ of an object (measured in arcseconds in Equation \ref{parallax_eq}) is defined by the angular distance the object moves relative to the ``fixed'' background as the Earth moves a distance of 1AU (the average separation of the Sun and Earth during one complete orbit) perpendicular to the line-of-sight. This allows the distance, $d$, to be measured (in parsecs) using only the geometry of triangles, combined with the small-angle approximation, as:
-
-\begin{equation}
-d/\textnormal{pc} = \frac{1}{(p/\textnormal{arcsec})}
-\label{parallax_eq}
-\end{equation}
-
-This gives each astronomical object two fundamental flux measurements. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source, as observed directly by the telescope. The absolute magnitude is the projected flux magnitude of the same source if it were to be placed at a distance of 10 parsecs (pc) from the telescope, thus accounting for the natural decrease in flux due to the distance between the source and the telescope. The relation between these quantities if there is zero extinction can be found by combining Equations \ref{flux_def} and \ref{mags_def}:
-% In general, the extinction coefficient $A$ is defined relative to two ubiquitous astrophysical quantities.
-\begin{equation}
-\label{distance_modulus}
-m - M = -2.5\log \left( \left(\frac{10\textnormal{pc}}{d}\right)^{2} \right) = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
-\end{equation}
-
-The quantity ($m - M$) is known as the distance modulus, and, . It should be noted that the distance modulus in Equation \ref{distance_modulus} does not include extinction. To link the apparent magnitude to extinction, it is necessary to separate the distance modulus from the observed apparent magnitude, $m_{\textnormal{obs}}$. This can be done by defining the intrinsic apparent magnitude, $m_{0}$, such that:
-
-\begin{equation}
-\label{intrinsic_app_mag}
-m_{0} - M = 5\log(d/\textnormal{pc}) - 5
-\end{equation}
-
-i.e., the distance modulus is solely dependent on the distance to the  sources. Therefore, the extinction $A$ can be defined as:
-
-\begin{equation}
-\label{bol_extinc}
-A = m_{\textnormal{obs}} - m_{0}
-\end{equation}
-
-This fits with the definition of interstellar extinction given earlier, i.e. as the flux lost solely due to scattering and absorption in the interstellar medium.
-
-However, as noted earlier, in astronomy it is infeasible to attempt observations by a single instrument at all wavelengths. Telescopes instead are generally purpose-built to study a single, relatively narrow wavelength range of the EM spectrum. Within this range, telescope observation ranges are further divided by filters or passbands, one of which is placed on their aperture at any given observation time. As shown in Figures \ref{ACS_response_funcs}-\ref{Gaia_response_funcs}, any single filter $X$ has a limited range of wavelengths for which it is able to detect flux. It can also be seen in these figures that the transmittance of the filter changes as a function of wavelength
-
-\begin{equation}
-f_{\lambda} = \frac{2hc}{\lambda^{5}\left(\exp\left({\frac{hc}{\lambda k_{B}T}}\right) - 1\right)}
-\label{planck_bb}
-\end{equation} 
-
-****In this project, when comparing effects of different extinction treatments and, subsequently, when comparing observational datasets (with uncertainties in the values of their objects' stellar parameters and unknown extinction coefficients) to theoretical datasets via color-magnitude diagrams (CMDs), the most convenient format is to add the (theoretical) extinction coefficients to the theoretical dataset magnitudes (i.e., absolute magnitudes). As a result, the quantity from each dataset that is being compared in the CMDs is the absolute magnitude plus an extinction coefficient. If we label this quantity $M_{\textnormal{ext},X}$, we can define it bolometric as:
-
-\begin{equation}
-M_{\textnormal{ext},X} = M_{X} + A_{X}
-\end{equation}
-
-To measure a star's effective temperature, observers compare the star's observed flux in two filters at different wavelengths, typically in the UV-IR wavelength range. This is because a star with a higher effective temperature will be more luminous in every filter than a cooler star at the same position. This creates uncertainty if the distance measurement cannot be obtained independent of photometry. Therefore, observers utilise the colour index, which is defined as the difference between an object's magnitude in each of the two filters. ****If we compare the black body spectra in Figure****, it can be seen that the maximum monochromatic flux of the black body occurs at an increasingly shorter wavelength for increasingly hotter objects. This makes the object look bluer. The relationship between the wavelength at which the monochromatic flux is maximal and the black body temperature is quantified by Wien's displacement law.
-
-The colour index is defined as the flux magnitude in the bluer (shorter-wavelength) filter minus that in the redder filter. For two filters $X$ and $Y$, with $X$ being bluer than $Y$, the colour index of observations made using them is:
-
-\begin{align}
-\begin{split}
-(X-Y) &= m_{X} - m_{Y} \\
-&= (m_{X,0} - m_{Y,0}) + (A_{X} - A_{Y}) \\
-&= (X-Y)_{0} + E(X-Y)
-\end{split}
-\end{align}
-
-where $(X-Y)_{0}$ is the intrinsic colour index of the object and $E(X-Y) = A_{X} - A_{Y}$ is known as the colour excess, but can also be denoted using ``reddening''. Due to the potential confusion of the term ``reddening'' between $A_{X}$ and $E(X-Y)$, the former will be referred to here as the ``extinction'' or ``extinction coefficient'' and the latter as the ``colour excess''. The colour excess represents the effect of extinction on the observed colour index. The colour excess is important because of the prominence of the intrinsic colour index in determining effective temperature. More negative values of $(X-Y)$ indicate bluer stars, with higher effective temperatures.
-
-The most commonly-used colour index, employed as a reference for most optical observations, is the Johnson ($B-V$) index.
-
-****Flambda is where t,g,z effects come into BC equations!!!
-
-\section{Bolometric corrections} \label{BC_theory}
-All the equations in Section ****, including those for extinction, are not useful when applied to telescopes, as any filter will only be able detect a small fraction of the stellar flux across all wavelengths (known as the bolometric stellar flux) that reaches the telescope, due to its response function. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. This mitigation is carried out by employing bolometric corrections.
-
-The use of bolometric corrections requires the detailed knowledge of stellar spectra least susceptible to significant extinction, i.e., nearby stars with high apparent fluxes. Only with complete knowledge of the spectrum from a reference star can the true spectrum of a distant star with unknown extinction be calculated. The spectra of these stars can be computed by using a grid of predicted fluxes from a stellar atmosphere model, the grid being composed of the stellar parameters known to change emission in stellar atmospheres. These are effective temperature, surface gravity and metallicity. For all filter systems studied in this project, the nearby star Vega ($\alpha$ Lyr) was used as the reference object. Using Vega as the reference star is the most well-known approach to calibration \citep{2014MNRAS.444..392C}.
+This chapter details the mathematical framework of the physics underpinning this project.
+\section{Stellar parameters}
+To understand the significance of differences between stars with respect to interstellar extinction, we must first define the fundamental features of a stellar atmosphere, which will be used in this project as the input variables on which any star-wise variations in extinction will be modelled.
 
 The effective temperature ($T_{\textnormal{eff}}$) of a star is defined as the temperature of a black body which produces the same bolometric flux as that produced by the star. This approximation is valid because all stars have been observed to have spectra that closely resemble those of black bodies, with the notable exception of atmospheric absorption lines.
 
@@ -196,7 +128,80 @@ A higher surface gravity represents a surface with a higher atomic number densit
 \label{heisenberg}
 \end{equation}
 
-This effect, known as ``pressure broadening'', causes a symmetrical distribution of absorption energies (and wavelengths) about the normal emission energy for that particular atomic state. This means fewer photons pass through the surface, thereby reducing the surface flux.
+This effect, known as ``pressure broadening'', causes a symmetrical distribution of absorption energies (and wavelengths) about the normal emission energy for that particular atomic state. This means that an atomic species in a given quantum state is able to absorb photons at a range of wavelengths. When this is applied over an extended massive region, such as a stellar surface, the result is that fewer photons pass through the surface, thereby reducing the surface flux seen by an outside observer.
+
+\section{Extinction definition} \label{extinc_desc}
+Extinction is defined using the standard astronomical system of flux magnitudes. In general, the difference between two flux measurements, $F_{1}$ and $F_{2}$, in magnitudes, is expressed as:
+
+\begin{equation}
+\label{mags_def}
+m_{1} - m_{2} = -2.5\log \left( \frac{F_{1}}{F_{2}} \right)
+\end{equation}
+
+where $m_{1}$ and $m_{2}$ are the magnitudes for $F_{1}$ and $F_{2}$, respectively. However, the flux of a source varies naturally with the distance to the observer (see Equation \ref{flux_def}). To account for this, the distances to the nearest stars was determined independently of their flux, by their parallax from Earth. The parallax $p$ of an object is defined by the angular distance the object moves relative to the ``fixed'' background as the Earth moves a distance of 1AU (the average separation of the Sun and Earth during one complete orbit) perpendicular to the line-of-sight. This allows the distance, $d$, to be measured using the geometry of triangles, combined with the small-angle approximation, as:
+
+\begin{equation}
+d/\textnormal{pc} = \frac{1}{(p/\textnormal{arcsec})}
+\end{equation}
+
+This gives each astronomical object two fundamental flux measurements. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source, as observed by the telescope. The absolute magnitude is the projected flux magnitude of the same source if it were to be placed at a distance of 10 parsecs (pc) from the telescope, thus accounting for the natural decrease in flux due to the distance between the source and the telescope. The relation between these quantities if there is zero extinction can be found by combining Equations \ref{flux_def} and \ref{mags_def}:
+% In general, the extinction coefficient $A$ is defined relative to two ubiquitous astrophysical quantities.
+\begin{equation}
+\label{distance_modulus}
+m - M = -2.5\log \left( \left(\frac{10\textnormal{pc}}{d}\right)^{2} \right) = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
+\end{equation}
+
+The quantity ($m - M$) is known as the distance modulus, and, . It should be noted that the distance modulus in Equation \ref{distance_modulus} does not include extinction. To link the apparent magnitude to extinction, it is necessary to separate the distance modulus from the observed apparent magnitude, $m_{\textnormal{obs}}$. This can be done by defining the intrinsic apparent magnitude, $m_{0}$, such that:
+
+\begin{equation}
+\label{intrinsic_app_mag}
+m_{0} - M = 5\log(d/\textnormal{pc}) - 5
+\end{equation}
+
+i.e., the distance modulus is solely dependent on the distance to the  sources. Therefore, the extinction $A$ can be defined as:
+
+\begin{equation}
+\label{bol_extinc}
+A = m_{\textnormal{obs}} - m_{0}
+\end{equation}
+
+This fits with the definition of interstellar extinction given earlier, i.e. as the flux lost solely due to scattering and absorption in the interstellar medium.
+
+However, as noted earlier, in astronomy it is infeasible to attempt observations by a single instrument at all wavelengths. Telescopes instead are generally purpose-built to study a single, relatively narrow wavelength range of the EM spectrum. Within this range, telescope observation ranges are further divided by filters or passbands, one of which is placed on their aperture at any given observation time. As shown in Figures \ref{ACS_response_funcs}-\ref{Gaia_response_funcs}, any single filter $X$ has a limited range of wavelengths for which it is able to detect flux. It can also be seen in these figures that the transmittance of the filter changes as a function of wavelength
+
+\begin{equation}
+f_{\lambda} = \frac{2hc}{\lambda^{5}\left(\exp\left({\frac{hc}{\lambda k_{B}T}}\right) - 1\right)}
+\label{planck_bb}
+\end{equation} 
+
+The object of this project is to compare different extinction treatments and the subsequent effect on interpretation observational cluster datasets. For any observational set of stars, the stars' extinction coefficients will be completely unknown from the data alone. In order to compare observational data and theoretical isochrones via color-magnitude diagrams (CMDs), the most convenient format is to add the (theoretical) extinction coefficients to the theoretical dataset magnitudes (i.e., absolute magnitudes). As a result, the quantity from each dataset that is being compared in the CMDs is the absolute magnitude plus the extinction coefficient. If we label this quantity $M_{\textnormal{ext},X}$ for a given filter, we can define it as:
+
+\begin{equation}
+M_{\textnormal{ext},X} = M_{X} + A_{X}
+\end{equation}
+
+To measure a star's effective temperature, observers compare the star's observed flux in two filters at different wavelengths, typically in the UV-IR wavelength range. This is because a star with a higher effective temperature will be more luminous in every filter than a cooler star at the same position. This creates uncertainty if the distance measurement cannot be obtained independent of photometry. Therefore, observers utilise the colour index, which is defined as the difference between an object's magnitude in each of the two filters. ****If we compare the black body spectra in Figure \ref{planck_curve}, it can be seen that the maximum monochromatic flux of the black body occurs at an increasingly shorter wavelength for increasingly hotter objects. This makes the object look bluer. The relationship between the wavelength at which the monochromatic flux is maximal and the black body temperature is quantified by Wien's displacement law.
+
+The colour index is defined as the flux magnitude in the bluer (shorter-wavelength) filter minus that in the redder filter. For two filters $X$ and $Y$, with $X$ being bluer than $Y$, the colour index of observations made using them is:
+
+\begin{align}
+\begin{split}
+(X-Y) &= m_{X} - m_{Y} \\
+&= (m_{X,0} - m_{Y,0}) + (A_{X} - A_{Y}) \\
+&= (X-Y)_{0} + E(X-Y)
+\end{split}
+\end{align}
+
+where $(X-Y)_{0}$ is the intrinsic colour index of the object and $E(X-Y) = A_{X} - A_{Y}$ is known as the colour excess, but can also be denoted using ``reddening''. Due to the potential confusion of the term ``reddening'' between $A_{X}$ and $E(X-Y)$, the former will be referred to here as the ``extinction'' or ``extinction coefficient'' and the latter as the ``colour excess''. The colour excess represents the effect of extinction on the observed colour index. The colour excess is important because of the prominence of the intrinsic colour index in determining effective temperature. More negative values of $(X-Y)$ indicate bluer stars, with higher effective temperatures.
+
+The most commonly-used colour index, employed as a reference for most optical observations, is the Johnson ($B-V$) index.
+
+****Flambda is where t,g,z effects come into BC equations!!!
+
+\section{Bolometric corrections} \label{BC_theory}
+All the equations in Section ****, including those for extinction, are not useful when applied to telescopes, as any filter will only detect a small fraction of the stellar flux across all wavelengths (known as the bolometric stellar flux) that reaches the telescope. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. This mitigation is carried out by employing bolometric corrections.
+
+The use of bolometric corrections requires the detailed knowledge of stellar spectra least susceptible to significant extinction, i.e., nearby stars with high apparent fluxes. Only with complete knowledge of the spectrum from a reference star can the true spectrum of a distant star with unknown extinction be calculated. The spectra of these stars can be computed by using a grid of predicted fluxes from a stellar atmosphere model, the grid being composed of the stellar parameters known to change emission in stellar atmospheres. These are effective temperature, surface gravity and metallicity. For all filter systems studied in this project, the nearby star Vega ($\alpha$ Lyr) was used as the reference object. Using Vega as the reference star is the most well-known approach to photometric calibration \citep{2014MNRAS.444..392C}.
 
 After accounting for a general extinction effect on an object's emission, its apparent magnitude in a given filter $X$ (i.e. wavelength range, which we define as increasing from $\lambda _{1}$ to $\lambda _{2}$) is given by:
 
@@ -257,8 +262,14 @@ BC_{X}(0) - BC_{X}(A_{V}) &= 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lam
 \end{align}
 %\\ &\approx \left(A_{X}/A_{V}\right)A_{V}
 
-****average over the wavelength interval $[\lambda_{1},\lambda_{2}]$ which is a valid assumption \citep{2014MNRAS.444..392C}, as the CCM relations, which were derived using data from stars observed in the Johnson broad-band filters, themselves were. Due to the nature of the filters' bandpasses, the CCM relations overestimate the extinction in the near-IR and blue-visible Johnson filters
+****average over the wavelength interval $[\lambda_{1},\lambda_{2}]$ which is a valid assumption \citep{2014MNRAS.444..392C}, as the CCM relations, which were derived using data from stars observed in the Johnson broad-band filters, themselves were. Due to the nature of the filters' bandpasses, the CCM relations overestimate the extinction in the near-IR and blue-visible Johnson filters****
 %\citep{1999fitzpatrick.
+
+\section{Forbes effect}
+The Forbes effect occurs as a broadband beam of light, such as that passes through an extended partially-transparent medium, such as a series of glass plates, the Earth's atmosphere or an interstellar gas cloud. It states that the greater the distance travelled by a light beam through the medium, the more penetrating the beam becomes \citep{1842RSPT..132..225F}. If we use the case of the glass plates as an example, this means that the fraction of the light incident on the $n$th plate in the series which is separated by that plate from the original path is always greater than the corresponding fraction at the ($n+1$)th plate. The physical basis for the Forbes effect is that those photons in the original beam with wavelengths that make them the most likely to be absorbed or refracted are separated from the beam earlier. Therefore, as the beam travels through the medium, its constituent photons are progressively less likely to be separated. Since a higher fraction of its photons are retained as the distance through the medium increases, the beam is more penetrating.
+
+The Forbes effect, therefore, has an impact on the non-zero $A_{V}$ value used because if a uniform medium is assumed, as here, where $R_{V}$ is held constant at the standard diffuse ISM value of 3.1****, a larger $A_{V}$ value implies a longer path through the ISM, and thus a stronger Forbes effect. According to \cite{2008PASP..120..583G}, any ****significant impact from the Forbes effect on the values of $A_{X}/A_{V}$ occurs for a chosen $A_{V} \gtrsim 4$. They found that the effect was particularly strong for stars with $T_{\textnormal{eff}} \lesssim 3000$K and that, unsurprising, it became greater as the filter wavelength range increased. Therefore, the choice of $A_{V} = 1$ made for this project should avoid serious problems from the Forbes effect.
+
 
 \bibliographystyle{mnras} % unsrtnat
 \bibliography{mphil_thesis}
