@@ -233,83 +233,47 @@ Gaia & G\textsubscript{bp} & 5320 & 2530 \\
 Filters thus**** present a challenge when trying to determine stellar spectra accurately. This task is further complicated by the fact that, even in the wavelength range where a filter does detect incoming flux, the fraction of light it detects, known as the transmittance, is not uniform across the range. The transmittance as a function of wavelength is known as a transmission curve, bandpass or filter response function. Examples of response functions for some**** of the filters employed in this project are shown in Figure \ref{ACS_response_funcs}. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function could have a significant impact on the observed spectrum if not taken into account.
 The values in the column labelled 'FWHM' represents the full width at half-maximum. In this case, it is defined as the difference between the lowest and highest wavelength values at which the transmittance value is half of its maximum value for the filter, typically assuming the response function can be approximated as a Gaussian distribution centred on the central wavelength. The FWHM acts as an approximate measure of the wavelength range within which the filter can reliably be used for observations.
 
-The wavelengths of light visible to an average human eye are in the range 3800-7400 \AA . Hence, the filters used here cover wavelengths from the soft-ultraviolet (soft-UV) to the near-infrared (NIR),  including all visible wavelengths.
-
-\section{Basics of stellar evolution} \label{stel_evol}
-While observations can reveal properties of individual stars and stellar populations more generally, the significance of these properties can only be gained by understanding the underlying physical processes and structure of the stars themselves.
-
-****It can be seen that all stars lie on a single, complicated line, known as an isochrone. Isochrones for different population ages and metallicities are calculated using theoretical stellar models for the largest possible spread of initial stellar masses. An isochrone in the HR diagram has a number of distinct features:
-\begin{itemize}
-\item Most stars, including the coolest and least-luminous ones, follow a tight pattern of luminoaity increasing with temperature. This is known as the main sequence (MS)
-\item This pattern stops as the luminosity continues to increase slowly but with decreasing temperature. The end of the MS is called the main-sequence turn-off (MSTO), which is followed by the sub-giant branch (SGB).
-\item After the SGB, the gradient becomes much steeper, with temperate decreasing and luminosity rapidly increasing. This is the red-giant branch (RGB).
-\item At the tip of the RGB, stars start becoming fainter and their temperatures increase. Eventually, their is a sequence of stars with near-constant luminosity but a range of effective temperatures. This is the horizontal branch (HB).
-\item After the horizontal branch, there is again a rapid increase in luminosity accompanied by a slow decrease in temperature. This is the asymptotic giant branch (AGB).
-\end{itemize}
-
-In the main sequence, nuclear fusion occurs in the core and any products must be subjected to mixing effects to reach the atmosphere. Since stellar interiors are physically fluid, heavier nuclei, which are more dense, preferentially gather in regions close to the star's centre of gravity. Therefore, processes such as convection, thermohaline mixing and radiative levitation are required to induce a noticeable change in surface composition. However, these processes require certain physical conditions on local scales, if they are to be sustained for long enough to induce a visible change in the stellar spectrum.
-
-On the main-sequence, only low-mass stars ($M_{*} \lesssim 0.38M_{\odot}$) \citep{2018A&A...619A.177B} have fully-convective interiors. Massive ($M_{*} \gtrsim 1.5M_{\odot}$) stars have convective cores, but radiative envelopes. Intermediate-mass stars, including the Sun, have radiative cores and convective envelopes. Since regions in which energy transport is dominated by radiative effects are stable against convection \citep{2017RSOS....470192S}, stars with masses greater than $0.38M_{\odot}$ are highly unlikely to show large changes in atmospheric composition along the main sequence. However, the fully-convective lower-mass stars are able to do so. Therefore, the faintest and reddest parts of the main sequence are most likely to have atmospheres enriched with metals, which would be confined in the cores of more massive stars. These enriched atmospheres are therefore highly sensitive to the overall metallicity of the original gas cloud in which the star, and its parent cluster if applicable, formed****.
-
-\begin{equation}
-\nabla_{\textnormal{rad}} = \frac{3\kappa LP}{16\pi acGmT^{4}}
-\end{equation}
-
-To illustrate, let us consider a bubble of gaseous material in pressure-equilibrium with its surroundings and represent mixing as a significant change in the bubble's (radial) position on a significant time-scale, arising from small differences in the remaining 3 thermodynamic quantities between the bubble and its surroundings. For a non-rotating star, using a simple linear approach, together with the Archimedes principle, gives a set of 4 homogeneous differential equations for the (small) differences in $P$, $T$, $\mu$ and $r$ (Equations (3.1)-(3.4) in \cite{2017RSOS....470192S}). If $\Delta x_{i}$ are the differences in the 4 parameters, taking the ansatz form $\Delta x_{i} = B_{i} e^{nt}$ allows for a solution as a 3rd-order polynomial in $n$ (Equation (3.5) in \cite{2017RSOS....470192S}), if the determinant of the relevant matrix (dependent of the values of the $B_{i}$) is zero. The Routh-Hurwitz stability criterion can then be applied to this polynomial to give a general solution for $n$. For a physically-unstable solution, the exponent in the $\Delta x_{i}$ equation must be positive, i.e. $n$ must satisfy the condition $\operatorname{Re}(n) > 0$. Hence, the subsequent constraints on the polynomial coefficients form all the possible conditions for instability,  of which at least one must be satisfied. These constraints take the following form:
-
-\begin{align}
-\nabla _{\mu} &< 0 \label{mu_inv_ineq} \\
-\nabla _{\textnormal{rad}} &> \nabla _{\textnormal{ad}} \label{schwarz_ineq} \\
-\nabla _{\textnormal{rad}} &> \nabla _{\textnormal{ad}} + \left( \frac{\phi}{\delta} \right) \nabla _{\mu} \label{ledoux_ineq}
-\end{align}
-
-where $\nabla _{\mu} = d\ln\mu / d\ln P$, $\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$ and $\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$ are the temperature-pressure gradients for the local environment (dominated by radiation pressure) and the bubble (treated as an adiabatic ideal gas), respectively, $\phi = \left( \partial \ln\rho / \partial \ln\mu \right)_{P,T}$ and $\delta = -\left( \partial \ln\rho / \partial \ln T \right)_{P,\mu}$  \citep{1980A&A....91..175K}.
-
-In stellar evolution, the stages described in **** represent extended periods of time in which the stellar interior, described in theoretical models as a series of (quasi-)spherical shells, can be described as being in hydrostatic equilibrium, i.e., the gravitational pressure inwards on material in a given shell, due to the mass enclosed by the shell, is equal to the radiation pressure outwards generated by nuclear fusion occurring within the area enclosed by the shell, either in the core or in an inner shell. Giant stars are objects with luminosities significantly higher and surface gravities lower than stars on the main sequence (which generally have gravities in the range 4 $\lesssim$ log($g$) $\lesssim$ 5.5).
-
-\section{Previous studies}
-\cite{1989ApJ...345..245C} used observations of bright main-sequence stars to produce empirical equations describing the mean ratio of extinction coefficients at a specific wavelength $\lambda$ ($A_{\lambda}$) and the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{\lambda}/A_{V}$. They produced a basic universal equation of the form:
-
-% avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by 
-
-\begin{equation}
-A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
-\label{CCM_general}
-\end{equation}
-
-where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The significance of $R_{V}$, as noted in the same paper, comes from its usefulness as an indicator of the nature of the interstellar medium through which the observed light travels in order to reach the observer.**** The total wavelength range was divided into 4 sub-ranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). This model underpins more recent studies of intrinsic effects on extinction (\cite{2008PASP..120..583G}, \cite{2018MNRAS.479L.102C}), and provides the basis for the synthetic $A_{X}/A_{V}$ datasets in this project, ****where $A_{X}$ is the coefficient for a given filter $X$.
-
-\cite{2008PASP..120..583G} produced data tables of $A_{X}/A_{V}$ via bolometric corrections (as was carried out in this study). for stellar atmosphere models with parameters $T_{\textnormal{eff}}$, log($g$) and [Fe/H]. They carried this out using the same ATLAS9 data \cite{2004astro.ph..5087C} that was used to generate the data for this project, but also combining it with data from other studies**** \cite{2002A&A...391..195G}, resulting in data covering a parameter space extending beyond the ATLAS9 limits in all three parameters. They used the data tables to directly**** calculate the $A_{X}/A_{V}$ values for the stellar models in theoretical isochrones****. While determining that the values of $A_{X}/A_{V}$ varied significantly with $T_{\textnormal{eff}}$ and log($g$), the variation with metallicity was found to be ~0.17$\%$ between [Fe/H] = 0.0 and [Fe/H] = -2.5. They found that, when they set $A_{V} = 6$, there was a systematic shift for the ACS system between extinction values calculated star-wise using the BC tables and a constant extinction value. The constant values of $A_{X}/A_{V}$ were calculated from a yellow dwarf in the low-extinction regime. Overall, the BC tables produced a smaller extinction coefficient in the F814W filter and a larger (F475W-F814W) colour index value. It also caused a change in the shape of the curve at the MSTO. They then applied the BC table data method to the case of the globular cluster M92. They found the optimal metallicity to be $Z = 0.0004$ ([Fe/H] $\approx$ -1.6) instead of the value obtain by previous observers of $Z = 0.0001$ ([Fe/H] $\approx$ -2.2). Therefore, their use of BC data caused the estimated cluster metallicity to be greater than when using the standard one-size-fits-all approach to extinction.
-
-****Casagrande \& Vandenberg (2014, 2018a, 2018b) created simple linear models in the ****and Gaia filter systems, expressed for $R_{X}  = \frac{A_{X}}{E(B-V)}$. The equation is independent of surface gravity and has the following form:
-\begin{equation}
-R_{X}  = a_{0} + T_{4}(a_{1} + a_{2}T_{4}) + a_{3}\textnormal{[Fe/H]}
-\label{casagrande_ext_fit}
-\end{equation}
-
-where $T_{4} = 10^{-4} \times T_{\textnormal{eff}}$. The equation is valid for $5250\textnormal{K} \leq T_{\textnormal{eff}} \leq 7000\textnormal{K}$.
+The wavelengths of light visible to the average human eye are in the range 3800-7400 \AA . Hence, the filters used here cover wavelengths from the soft-ultraviolet (soft-UV) to the near-infrared (NIR),  including all visible wavelengths.
 
 \chapter{Theoretical background}
-This chapter details the mathematical framework of the physics underpinning this project.
+While observations can reveal properties of individual stars and stellar populations more generally, the significance of these properties can only be gained by understanding the underlying physical processes and structure of the stars themselves. This chapter details the physical and mathematical framework of the processes which motivate and underpin this project.
+
 \section{Stellar parameters}
-To understand the significance of differences between stars with respect to interstellar extinction, we must first define the fundamental features of a stellar atmosphere, which will be used in this project as the input variables on which any star-wise variations in extinction will be modelled.
+To understand the significance of differences between stars with respect to interstellar extinction, we must first define the fundamental features of a stellar atmosphere, which will be used in this project as the input variables on which any star-to-star variations in extinction will be modelled. \\*
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.5]{blackbody_teff_illustration.pdf}
-\caption{****Monochromatic flux of a black body for different stellar effective temperatures. The black dashed lines mark the approximate limits of the visible part of the EM spectrum. The green curve represents the distributed of the maxima for the other curves.}
+\caption{Monochromatic flux of a black body for different stellar effective temperatures. The black dashed lines mark the approximate limits of the visible part of the EM spectrum. The green curve represents the distributed of the maxima for the other curves.}
 \label{planck_curve}
 \end{center}
 \end{figure}
 
-The effective temperature ($T_{\textnormal{eff}}$) of a star is defined as the temperature of a black body which produces the same bolometric flux as that produced by the star. This approximation is valid because all stars have been observed to have spectra that closely resemble those of black bodies, with the notable exception of atmospheric absorption lines.
+The effective temperature ($T_{\textnormal{eff}}$) of a star is defined as the thermodynamic temperature of a black body which produces the same stellar flux across all wavelengths (known as the bolometric flux) as that produced by the star. A black body represents the perfect thermal emitting object. The universal equation of the radiation emitted by a black body produces the body's flux per unit wavelength $F_{\lambda,bb}$, known as the black body's monochromatic flux. The equation, known as the Planck Law, is as follows:
+
+
+\begin{equation}
+F_{\lambda,bb} = \frac{2hc^{2}}{\lambda^{5}\left(\exp\left({\frac{hc}{\lambda k_{B}T}}\right) - 1\right)}
+\label{planck_bb}
+\end{equation} 
+
+where $T$ is the thermodynamic temperature of the black body, $h$ is Planck's constant, $c$ is the vacuum speed of light and $k_{B}$ is Boltzmann's constant. This equation also holds if the light wave frequency is used instead of the wavelength, with the monochromatic flux $F_{\nu,bb}$ now being the black body flux per unit frequency:
+
+\begin{equation}
+F_{\nu,bb} = \frac{2h\nu^{3}}{c^{2}\left(\exp\left({\frac{h\nu}{k_{B}T}}\right) - 1\right)}
+\label{planck_bb_freq}
+\end{equation}
+
+In this project, the definition of monochromatic flux for any given object will be reserved exclusively for the flux per unit wavelength, $F_{\lambda}$, with any calculations involving black body fluxes using Equation \ref{planck_bb}. \\*
+
+The general approximation of stars to black bodies (and hence the actual stellar surface temperature to $T_{\textnormal{eff}}$) is valid because all stars have been observed to have spectra that closely resemble those of black bodies, with the notable exception of atmospheric absorption lines.
 
 \begin{equation}
 L = 4 \pi R^{2} \sigma_{SB} T_{\textnormal{eff}}^{4}
 \label{Teff_def}
 \end{equation}
 
-Effective temperature has an effect on interstellar extinction due to its strong effect on the stellar luminosity and, hence, the flux. For a higher flux, more photons are likely to interact with the ISM, hence a higher extinction coefficient.
+Effective temperature has an effect on interstellar extinction due to its strong effect on the stellar luminosity and, hence, the flux. For a higher flux, more photons are likely to interact with the ISM, hence a higher extinction coefficient. \\*
 
 The metallicity of a star is defined as the fractional abundance of heavy elements, often approximated by iron (Fe) alone, relative to the star's hydrogen (H) abundance, compared to that of the Sun. The abundances are determined by the strength of the elements' characteristic atomic absorption lines in the stellar spectra.
 
@@ -362,14 +326,14 @@ For interactions between neutral atoms, the relevant processes are the standard 
 Also, the rotation of the star has an impact on spectral line widths via a Doppler shift at each line-of-sight velocity. Together, the distribution of these velocities has the effect of broadening the absorption lines via a Gaussian distribution in wavelength, centred on the  \citep{1995ApJ...439..860C}. The relationship to surface gravity arises from the gravity being the source of centripetal acceleration at the surface of a rotating star, and therefore being proportional in magnitude to the square of the surface rotational velocity.
 
 \section{Extinction definition} \label{extinc_desc}
-Extinction is defined using the standard astronomical system of flux magnitudes. In general, the difference between two flux measurements, $F_{1}$ and $F_{2}$, in magnitudes, is expressed as:
+Extinction is defined using the standard astronomical system of flux magnitudes. In general, the difference between two flux measurements, $f_{1}$ and $f_{2}$, in magnitudes, is expressed as:
 
 \begin{equation}
 \label{mags_def}
-m_{1} - m_{2} = -2.5\log \left( \frac{F_{1}}{F_{2}} \right)
+m_{1} - m_{2} = -2.5\log \left( \frac{f_{1}}{f_{2}} \right)
 \end{equation}
 
-where $m_{1}$ and $m_{2}$ are the magnitudes for $F_{1}$ and $F_{2}$, respectively. However, the flux of a source varies intrinsically with the distance travelled by the light to the observer (see Equation \ref{flux_def}). To account for this, the distances to sufficiently close sources can be determined independently of their flux by measuring the sources' parallax from Earth.\\*
+where $m_{1}$ and $m_{2}$ are the magnitudes for $f_{1}$ and $f_{2}$, respectively. However, the flux of a source varies intrinsically with the distance travelled by the light to the observer (see Equation \ref{flux_def}). To account for this, the distances to sufficiently close sources can be determined independently of their flux by measuring the sources' parallax from Earth. \\*
 
 The parallax $p$ of an object is defined as the angular distance the object moves relative to the ``fixed'' background stars as the Earth moves a distance of 1AU (the average separation of the Sun and Earth during one complete orbit) perpendicular to the line-of-sight. This allows the distance, $d$, to be calculated using the geometry of triangles, combined with the small-angle approximation, as:
 
@@ -377,7 +341,9 @@ The parallax $p$ of an object is defined as the angular distance the object move
 d/\textnormal{pc} = \frac{1}{(p/\textnormal{arcsec})}
 \end{equation}
 
-This gives each astronomical object two fundamental flux parameters. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source as observed by the telescope. The absolute magnitude is the predicted flux magnitude of the same source if it were to be placed at a fixed distance of 10 parsecs (pc) from the telescope with zero extinction. The absolute magnitude exists for the purpose of stellar classification, as the corresponding flux is simply a constant multiplied by the stellar luminosity (see Equation \ref{flux_def}), which is an intrinsic physical property of the star. \\*
+****For more distant stellar sources with much smaller parallaxes, a potential alternative is to view the object in a very long-wavelength filter, in which observations are likely to be impacted much less significantly by extinction, to estimate the type of star being observed, before using theoretical models to compare with observations at different wavelengths. This is more effective for brighter stars. \\*
+
+The role of distance gives each astronomical object two principal flux parameters. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source as observed by the telescope. The absolute magnitude is the predicted flux magnitude of the same source if it were to be placed at a fixed distance of 10 parsecs (pc) from the telescope with zero extinction. The absolute magnitude exists for the purpose of stellar classification, as the corresponding flux is simply a constant multiplied by the stellar luminosity (see Equation \ref{flux_def}), which is an intrinsic physical property of the star. \\*
 
 However, to calculate the absolute magnitude of a source, we first require its distance and extinction coefficient, $A$. To account for extinction, it is necessary to define a new quantity, known as the intrinsic apparent magnitude, $m_{0}$. This is defined as the flux magnitude of a source corrected for losses due to extinction but not due to distance. In practice, it represents the apparent magnitude for light passing through a fully-transparent medium. The relation between $m_{0}$ and $M$, can be found by combining Equations \ref{flux_def} and \ref{mags_def}:
 
@@ -386,9 +352,9 @@ However, to calculate the absolute magnitude of a source, we first require its d
 m_{0} - M = -2.5\log \left( \left(\frac{10\textnormal{pc}}{d}\right)^{2} \right) = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
 \end{equation}
 
-This quantity is known as the distance modulus. As seen in Equation \ref{distance_modulus}, it varies only with distance. The quantity $m - M $, linking the initial observed data with the final theoretical data, is known as the apparent distance modulus. \\*
+This quantity is known as the distance modulus. As seen in Equation \ref{distance_modulus}, it varies only with distance. The quantity $m - M $, linking the initial observed data with the final theoretical data, is known as the apparent distance modulus and varies with both distance and extinction. \\*
 
-Therefore, the extinction coefficient $A$, defined as the flux lost due to the effects of the intervening medium, can be defined as:
+Therefore, the extinction coefficient $A$, defined as the flux lost due to the effects of the intervening line-of-sight medium, can be defined as:
 
 \begin{equation}
 \label{bol_extinc}
@@ -397,36 +363,19 @@ A = m - m_{0}
 
 This fits with the physical definition of interstellar extinction given earlier, i.e. as the flux lost solely due to scattering and absorption in the interstellar medium. \\*
 
-****In practice, the universal general shape and position of stellar populations in the HR diagram and each observational CMD, particularly that of the main sequence, provides a highly useful tool for matching stellar populations with unknown distances and extinction coefficients to known examples. This is done by alignment of the respective main sequences in absolute-magnitude CMDs. \\*
-
-However, as noted earlier, in astronomy it is infeasible to attempt observations by a single instrument at all wavelengths. Telescopes instead are generally purpose-built to study a single, relatively narrow wavelength range of the EM spectrum. Within this range, telescope observation ranges are further divided by filters or passbands, one of which is placed on their aperture at any given observation time. As shown in Figures \ref{ACS_response_funcs}-\ref{Gaia_response_funcs}, any single filter $X$ has a limited range of wavelengths for which it is able to detect flux. It can also be seen in these figures that the transmittance of the filter changes as a function of wavelength****
-
-\begin{equation}
-F_{\lambda,bb} = \frac{2hc}{\lambda^{5}\left(\exp\left({\frac{hc}{\lambda k_{B}T}}\right) - 1\right)}
-\label{planck_bb}
-\end{equation} 
-
-The object of this project is to compare different extinction treatments and the subsequent effect on interpretation observational cluster datasets. For any observational set of stars, the stars' extinction coefficients will be completely unknown from the data alone. In order to compare observational data and theoretical isochrones via color-magnitude diagrams (CMDs), the most convenient format is to add the (theoretical) extinction coefficients to the theoretical dataset magnitudes (i.e., absolute magnitudes). As a result, the quantity from each dataset that is being compared in the CMDs is the absolute magnitude plus the extinction coefficient. If we label this quantity $M_{\textnormal{ext},X}$ for a given filter, we can define it as:
-
-\begin{align}
-\begin{split}
-M_{\textnormal{ext},X} &= M_{X} + A_{X} \\
- &= m - (m - M)_{X,0}
-\end{split}
-\end{align}
-
-To measure a star's effective temperature, observers compare the star's observed flux in two filters at different wavelengths, typically in the UV-IR wavelength range. This is because a star with a higher effective temperature will be more luminous in every filter than a cooler star at the same position. This creates uncertainty if the distance measurement cannot be obtained independent of photometry. Therefore, observers utilise the colour index, which is defined as the difference between an object's magnitude in each of the two filters. ****If we compare the black body spectra in Figure \ref{planck_curve}, it can be seen that the maximum monochromatic flux of the black body occurs at an increasingly shorter wavelength for increasingly hotter objects. This makes the object appear bluer to an observer.\\*
-%The relationship between the wavelength at which the monochromatic flux is maximal and the black body temperature is quantified by Wien's displacement law.
+However, as noted earlier, in astronomy it is not feasible to attempt observations by a single instrument at all wavelengths. Telescopes instead are purpose-built to study a single wavelength range within the full EM spectrum. Within this range, telescope observation ranges are further divided by filters or passbands, one of which is placed on their aperture at any given observation time. As shown in Figures \ref{ACS_response_funcs}-\ref{Gaia_response_funcs}, any single filter $X$ has a limited range of wavelengths for which it is able to detect flux. It can also be seen in these figures that the transmittance of the filter changes as a function of wavelength. These instrumental factors must be considered, in addition to the observational challenges of distance and interstellar extinction, in order to correctly analyse observation telescope data. \\*
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.5]{cumulative_blackbody_teff_illustration.pdf}
-\caption{Cumulative fraction of the total flux of a black body for different stellar effective temperatures. The black dashed lines mark the approximate limits of the visible part of the EM spectrum.}
+\caption{****Cumulative fraction of the total flux of a black body for different stellar effective temperatures. The black dashed lines mark the approximate limits of the visible part of the EM spectrum.}
 \label{cumulative_planck_curve}
 \end{center}
 \end{figure}
 
-The colour index is defined as the flux magnitude in the bluer (shorter-wavelength) filter minus that in the redder filter. For two filters $X$ and $Y$, with $X$ being bluer than $Y$, the colour index of observations made using them is:
+****If we compare the black body spectra in Figure \ref{planck_curve}, it can be seen that the maximum monochromatic flux of the black body occurs at an increasingly shorter wavelength for increasingly hotter objects. This makes the object appear bluer to an observer. The relationship between the wavelength at which the monochromatic flux is maximal and the black body temperature is quantified by Wien's displacement law.\\*
+
+More importantly, for two wavelengths, which are sufficiently far apart, the change in monochromatic flux is always greater for stars with higher effective temperatures. Therefore, to measure a star's effective temperature, observers compare the star's observed flux in two filters at different wavelengths, typically in the UV-IR wavelength range. The difference between the star's flux magnitudes in each of the two filters is then taken, with the flux in the redder filter being deducted from that of the bluer filter. This quantity is known as the colour index. For two filters $X$ and $Y$, with $X$ being bluer than $Y$, the colour index of observations made using those filters is defined as:
 
 \begin{align}
 \begin{split}
@@ -436,25 +385,25 @@ The colour index is defined as the flux magnitude in the bluer (shorter-waveleng
 \end{split}
 \end{align}
 
-where $(X-Y)_{0}$ is the intrinsic colour index of the object and $E(X-Y) = A_{X} - A_{Y}$ is known as the colour excess, but can also be denoted in literature using the term ``reddening''. The colour excess represents the effect of extinction on the observed colour index. The colour excess is important because of the prominence of the intrinsic colour index in determining effective temperature. More negative values of $(X-Y)$ indicate bluer stars, with higher effective temperatures. The most commonly-used colour index, employed as a reference for most optical observations, is the Johnson ($B-V$) index.\\*
+where $(X-Y)_{0}$ is the intrinsic colour index of the object and $E(X-Y) = A_{X} - A_{Y}$ is known as the colour excess, but can also be denoted in literature using the term ``reddening''. The colour excess represents the effect of extinction on the observed colour index. The colour excess is important because of the prominence of the intrinsic colour index in determining effective temperature. More negative values of $(X-Y)$ indicate bluer stars, with higher effective temperatures. \\*
 
-****Flambda is where t,g,z effects come into BC equations!!! \\*
+The most commonly-used colour index, employed as a reference for most optical observations, is the Johnson ($B-V$) index. This is due to these filters being the among most long-lived, well-used and best-studied available, allowing for better comparisons of different data, including data from older archives. \\*
 
-Due to the potential confusion of the use of ``reddening'' between $A_{X}$ and $E(X-Y)$, the former will be referred to here as the ``extinction'' or ``extinction coefficient'' and the latter as the ``colour excess''.
+Due to the potential confusion due to the use of the term ``reddening'' for both $A_{X}$ and $E(X-Y)$ in literature, $A_{X}$ will be referred to here as the ``extinction'' or ``extinction coefficient'' and $E(X-Y)$ as the ``colour excess''.
 
 \section{Bolometric corrections} \label{BC_theory}
-All the equations in Section ****, including those for extinction, are not useful when applied to telescopes, as any filter will only detect a small fraction of the stellar flux across all wavelengths (known as the bolometric stellar flux) that reaches the telescope. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. This mitigation is carried out by employing bolometric corrections.\\*
+All the equations in Section \ref{extinc_desc}, including those for extinction, are not useful when applied to telescopes, as any filter will only detect a small fraction of the bolometric stellar flux that reaches the telescope. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. This mitigation is carried out by employing bolometric corrections.\\*
 
 The use of bolometric corrections requires the detailed knowledge of stellar spectra least susceptible to significant extinction, i.e., nearby stars with high apparent fluxes. Only with complete knowledge of the spectrum from a reference star can the true spectrum of a distant star with unknown extinction be calculated. The spectra of these stars can be computed by using a grid of predicted fluxes from a stellar atmosphere model, the grid being composed of the stellar parameters known to change emission in stellar atmospheres. These are effective temperature, surface gravity and metallicity. For all filter systems studied in this project, the nearby bright star Vega ($\alpha$ Lyr) was used as the reference object. Using Vega as the reference star is the most well-known approach to photometric calibration \citep{2014MNRAS.444..392C}.\\*
 
-After accounting for a general extinction effect on an object's emission, its apparent magnitude in a given filter $X$ (i.e. wavelength range, which we define as increasing from $\lambda _{1}$ to $\lambda _{2}$) is given by:
+After accounting for a general extinction effect on an object's emission, its apparent magnitude in the wavelength range of a given filter $X$, defined as increasing from the shortest ($\lambda_{1}$) to the longest ($\lambda_{2}$) wavelength for which its response function is non-zero, can be calculated as:
 
 \begin{equation}
 m_{X} = -2.5 \log_{10} \left(\frac{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda} \left( 10^{-0.4 A_{X,\lambda}} \right) S_{\lambda} d\lambda }{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda}^{0} S_{\lambda} d\lambda }\right) + m_{X}^{0}
 \label{app_mag_def}
 \end{equation}
 
-where $f_{\lambda}$ represents the monochromatic flux at a given wavelength $\lambda$ at the observer distance, $A_{X,\lambda}$ is the extinction value as a function of wavelength, $S_{\lambda}$ represents the filter response function and $f_{\lambda}^{0}$ and $m_{X}^{0}$ represent the monochromatic flux and apparent magnitude, respectively, of a known reference object in $X$.
+where $f_{\lambda}$ represents the (theoretical) monochromatic flux at a given wavelength $\lambda$ at the observer distance from the source, $A_{X,\lambda}$ is the extinction coefficient in $X$ as a function of wavelength and $S_{\lambda}$ represents the filter response function of $X$. $f_{\lambda}^{0}$ and $m_{X}^{0}$ represent the monochromatic flux and apparent magnitude, respectively, in $X$of a known reference object, which is Vega in the case of this project.
 
 %Since our goal, ultimately, is to document potential effects of fundamental stellar properties upon observables, we need to connect the observational and idealised scenarios, for which we use bolometric corrections.
 
@@ -513,6 +462,80 @@ BC_{X}(0) - BC_{X}(A_{V}) &= 2.5 \log_{10} \left( \frac{\int_{\lambda_{1}}^{\lam
 The Forbes effect occurs as a broadband beam of light, such as that passes through an extended partially-transparent medium, such as a series of glass plates, the Earth's atmosphere or an interstellar gas cloud. It states that the greater the distance travelled by a light beam through the medium, the more penetrating the beam becomes \citep{1842RSPT..132..225F}. If we use the case of the glass plates as an example, this means that the fraction of the light incident on the $n$th plate in the series which is dissipated by that plate from the original path is always greater than the corresponding fraction at the ($n+1$)th plate \citep{1995A&AS..109..293G}. The physical basis for the Forbes effect is that those photons in the original beam with wavelengths that make them the most likely to be absorbed or refracted are separated from the beam earlier. Therefore, as the beam travels through the medium, its constituent photons are progressively less likely to be separated. Since a higher fraction of its photons are retained as the distance through the medium increases, the beam is more penetrating \citep{OHVRIL1999305}.\\*
 
 The Forbes effect thus has an impact on the non-zero $A_{V}$ value used in Equation \ref{BCs_diff} because if a uniform medium is assumed, as here, where $R_{V}$ is held constant at the standard diffuse ISM value of 3.1 \citep{1989ApJ...345..245C}, a larger $A_{V}$ value implies a longer path through the ISM, and thus a stronger Forbes effect. According to \cite{2008PASP..120..583G}, any significant impact from the Forbes effect on the values of $A_{X}/A_{V}$ occurs for a chosen $A_{V} \gtrsim 4$. They found that the effect was particularly strong for stars with $T_{\textnormal{eff}} \lesssim 3000$K and that, unsurprising, it became greater as the wavelength range covered by the filter response function increased. The choice of $A_{V} = 1$ made for this project should avoid serious problems from the Forbes effect, even for the widest filters.
+
+\section{Color-magnitude diagrams}
+The significance of the ****
+Different stars can have widely differing properties depending on their size, age and chemical composition. A given sample or population of stars with a significant range of stellar masses will always appear in****
+
+To determine the properties of stellar populations, all stars in an observational sample or star cluster are plotted together on a pair of axes known as the colour-magnitude diagram (CMD). The absolute magnitude of stars in a given filter is on the y-axis, with the flux increasing (and the magnitude value decreasing) upwards. The intrinsic colour index of the stars is on the x-axis, with the values increasing (and stars becoming redder) to the right.****
+
+In practice, the universal general shape and position of stellar populations in the HR diagram and each observational CMD, particularly the position and shape of the main sequence, provides a highly useful tool for matching stellar populations with unknown distances and extinction coefficients to known examples. This is done by alignment of the respective main sequences in CMDs.**** \\*
+
+The object of this project is to compare different extinction treatments and the subsequent effect on interpretation observational cluster datasets. For any observational set of stars, the stars' extinction coefficients will be completely unknown from the data alone. In order to compare observational data and theoretical isochrones via CMDs, the most convenient format is to add the (theoretical) extinction coefficients to the theoretical dataset magnitudes (i.e., absolute magnitudes). As a result, the quantity from each dataset that is being compared in the CMDs is the absolute magnitude plus the extinction coefficient. If we label this quantity $M_{\textnormal{ext},X}$ for a given filter, we can define it as:
+
+\begin{align}
+\begin{split}
+M_{\textnormal{ext},X} &= M_{X} + A_{X} \\
+ &= m - (m - M)_{X,0}
+\end{split}
+\end{align}
+
+This 
+
+\section{Basics of stellar evolution} \label{stel_evol}
+****It can be seen that almost all stars in a given population lie on a single, complicated line, known as an isochrone***. Isochrones for different population ages and metallicities are calculated using theoretical stellar models for the largest possible spread of initial stellar masses. An isochrone in the HR diagram has a number of distinct features:
+
+\begin{itemize}
+\item Most stars, including the coolest and least-luminous objects, follow a tight pattern of luminosity increasing with temperature. This is known as the main sequence (MS).
+\item This pattern stops as the luminosity continues to increase slowly but with decreasing temperature. The upper end of the MS is called the main-sequence turn-off (MSTO), which is followed by the sub-giant branch (SGB).
+\item After the SGB, the gradient becomes much steeper, with temperate decreasing slowly and luminosity increasing rapidly. This is the red-giant branch (RGB).
+\item At the tip of the RGB, stars start becoming fainter and their temperatures increase. Eventually, their is a sequence of stars with near-constant luminosity but a range of effective temperatures. This is the horizontal branch (HB).
+\item After the horizontal branch, there is again a rapid increase in luminosity accompanied by a slow decrease in temperature. This is the asymptotic giant branch (AGB).
+\end{itemize}
+
+In the main sequence, nuclear fusion occurs in the core and any products must be subjected to mixing effects to reach the atmosphere. Since stellar interiors are physically fluid, heavier nuclei, which are more dense, preferentially gather in regions close to the star's centre of gravity. Therefore, processes such as convection, thermohaline mixing and radiative levitation are required to induce a noticeable change in surface composition. However, these processes require certain physical conditions on local scales, if they are to be sustained for long enough to induce a visible change in the stellar spectrum.
+
+On the main-sequence, only low-mass stars ($M_{*} \lesssim 0.38M_{\odot}$) \citep{2018A&A...619A.177B} have fully-convective interiors. Massive ($M_{*} \gtrsim 1.5M_{\odot}$) stars have convective cores, but radiative envelopes. Intermediate-mass stars, including the Sun, have radiative cores and convective envelopes. Since regions in which energy transport is dominated by radiative effects are stable against convection \citep{2017RSOS....470192S}, stars with masses greater than $0.38M_{\odot}$ are highly unlikely to show large changes in atmospheric composition along the main sequence. However, the fully-convective lower-mass stars are able to do so. Therefore, the faintest and reddest parts of the main sequence are most likely to have atmospheres enriched with metals, which would be confined in the cores of more massive stars. These enriched atmospheres are therefore highly sensitive to the overall metallicity of the original gas cloud in which the star, and its parent cluster if applicable, formed****.
+
+\begin{equation}
+\nabla_{\textnormal{rad}} = \frac{3\kappa LP}{16\pi acGmT^{4}}
+\end{equation}
+
+To illustrate, let us consider a bubble of gaseous material in pressure-equilibrium with its surroundings and represent mixing as a significant change in the bubble's (radial) position on a significant time-scale, arising from small differences in the remaining 3 thermodynamic quantities between the bubble and its surroundings. For a non-rotating star, using a simple linear approach, together with the Archimedes principle, gives a set of 4 homogeneous differential equations for the (small) differences in $P$, $T$, $\mu$ and $r$ (Equations (3.1)-(3.4) in \cite{2017RSOS....470192S}). If $\Delta x_{i}$ are the differences in the 4 parameters, taking the ansatz form $\Delta x_{i} = B_{i} e^{nt}$ allows for a solution as a 3rd-order polynomial in $n$ (Equation (3.5) in \cite{2017RSOS....470192S}), if the determinant of the relevant matrix (dependent of the values of the $B_{i}$) is zero. The Routh-Hurwitz stability criterion can then be applied to this polynomial to give a general solution for $n$. For a physically-unstable solution, the exponent in the $\Delta x_{i}$ equation must be positive, i.e. $n$ must satisfy the condition $\operatorname{Re}(n) > 0$. Hence, the subsequent constraints on the polynomial coefficients form all the possible conditions for instability,  of which at least one must be satisfied. These constraints take the following form:
+
+\begin{align}
+\nabla _{\mu} &< 0 \label{mu_inv_ineq} \\
+\nabla _{\textnormal{rad}} &> \nabla _{\textnormal{ad}} \label{schwarz_ineq} \\
+\nabla _{\textnormal{rad}} &> \nabla _{\textnormal{ad}} + \left( \frac{\phi}{\delta} \right) \nabla _{\mu} \label{ledoux_ineq}
+\end{align}
+
+where $\nabla _{\mu} = d\ln\mu / d\ln P$, $\nabla _{\textnormal{rad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{rad}}$ and $\nabla _{\textnormal{ad}} = \left(\partial\ln T / \partial\ln P \right)_{\textnormal{ad}}$ are the temperature-pressure gradients for the local environment (dominated by radiation pressure) and the bubble (treated as an adiabatic ideal gas), respectively, $\phi = \left( \partial \ln\rho / \partial \ln\mu \right)_{P,T}$ and $\delta = -\left( \partial \ln\rho / \partial \ln T \right)_{P,\mu}$  \citep{1980A&A....91..175K}.
+
+In stellar evolution, the stages described in **** represent extended periods of time in which the stellar interior, described in theoretical models as a series of (quasi-)spherical shells, can be described as being in hydrostatic equilibrium, i.e., the gravitational pressure inwards on material in a given shell, due to the mass enclosed by the shell, is equal to the radiation pressure outwards generated by nuclear fusion occurring within the area enclosed by the shell, either in the core or in an inner shell. Giant stars are objects with luminosities significantly higher and surface gravities lower than stars on the main sequence (which generally have gravities in the range 4 $\lesssim$ log($g$) $\lesssim$ 5.5).
+
+\chapter{Previous studies into extinction variations}
+
+Although interstellar extinction at optical wavelengths has always
+\cite{1989ApJ...345..245C} used observations of bright main-sequence stars to produce empirical equations describing the mean ratio of extinction coefficients at a specific wavelength $\lambda$ ($A_{\lambda}$) to the extinction in the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{\lambda}/A_{V}$. They produced a basic universal equation of the form:
+
+% avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by 
+
+\begin{equation}
+A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
+\label{CCM_general}
+\end{equation}
+
+where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The significance of $R_{V}$, as noted in the same paper, comes from its usefulness as an indicator of the nature of the interstellar medium through which the observed light travels in order to reach the observer.**** The total wavelength range was divided into 4 sub-ranges, each with a governing pair of empirically-determined equations (to determine $a(x)$ and $b(x)$, respectively). This model underpins more recent studies of intrinsic effects on extinction (\cite{2008PASP..120..583G}, \cite{2018MNRAS.479L.102C}), and provides the basis for the synthetic $A_{X}/A_{V}$ datasets in this project, ****where $A_{X}$ is the coefficient for a given filter $X$. Equation \ref{CCM_general} has become a standard model for observers to employ when observing in the UV, optical and near-IR wavelength regions, although it is not always accurate**** \\*
+
+\cite{2008PASP..120..583G} produced data tables of $A_{X}/A_{V}$ via bolometric corrections (as was carried out in this study). for stellar atmosphere models with parameters $T_{\textnormal{eff}}$, log($g$) and [Fe/H]. They carried this out using the same ATLAS9 data \cite{2004astro.ph..5087C} that was used to generate the data for this project, but also combining it with data from other studies**** \cite{2002A&A...391..195G}, resulting in data covering a parameter space extending beyond the ATLAS9 limits in all three parameters. They used the data tables to directly**** calculate the $A_{X}/A_{V}$ values for the stellar models in theoretical isochrones****. While determining that the values of $A_{X}/A_{V}$ varied significantly with $T_{\textnormal{eff}}$ and log($g$), the variation with metallicity was found to be ~0.17$\%$ between [Fe/H] = 0.0 and [Fe/H] = -2.5. They found that, when they set $A_{V} = 6$, there was a systematic shift for the ACS system between extinction values calculated star-wise using the BC tables and a constant extinction value. The constant values of $A_{X}/A_{V}$ were calculated from a yellow dwarf in the low-extinction regime. Overall, the BC tables produced a smaller extinction coefficient in the F814W filter and a larger (F475W-F814W) colour index value. It also caused a change in the shape of the curve at the MSTO. They then applied the BC table data method to the case of the globular cluster M92. They found the optimal metallicity to be $Z = 0.0004$ ([Fe/H] $\approx$ -1.6) instead of the value obtain by previous observers of $Z = 0.0001$ ([Fe/H] $\approx$ -2.2). Therefore, their use of BC data caused the estimated cluster metallicity to be greater than when using the standard one-size-fits-all approach to extinction. \\*
+
+****Casagrande \& Vandenberg (2014, 2018a, 2018b) created simple linear models in the ****and Gaia filter systems, expressed for $R_{X}  = \frac{A_{X}}{E(B-V)}$. The equation is independent of surface gravity and has the following form:
+\begin{equation}
+R_{X}  = a_{0} + T_{4}(a_{1} + a_{2}T_{4}) + a_{3}\textnormal{[Fe/H]}
+\label{casagrande_ext_fit}
+\end{equation}
+
+where $T_{4} = 10^{-4} \times T_{\textnormal{eff}}$. The equation is valid for $5250\textnormal{K} \leq T_{\textnormal{eff}} \leq 7000\textnormal{K}$.
 
 \chapter{Methodology}
 \section{Software used}
@@ -642,9 +665,9 @@ It was confirmed that this new function could describe each scenario accurately 
 The sub-functions of log($g$) and [Fe/H], upon inspection of the coefficients for the $T_{\textnormal{eff}}$-only logistic function, were found to be simple functions of log($g$) and [Fe/H], independent of $T_{\textnormal{eff}}$ variations. This allowed for them to be used as the definitions of $T_{0}$ and $k$, as shown in Equations \ref{T0_eq} and \ref{decay_const_eq}, respectively.
 
 \begin{align}
-T_{\textnormal{0}} &= a\log(g) + b\left(\frac{\textnormal{[Fe/H]}}{\left|\textnormal{[Fe/H]}\right|^{1/2}}\right) + c \label{T0_eq}\\
-k &= d\log(g) + e\textnormal{[Fe/H]} + f \label{decay_const_eq}\\
-A_{logis}(T_{\textnormal{eff}},g,\textnormal{[Fe/H]}) &= \frac{(A_{max}-A_{min})}{( 1 + \exp{(-10^{-4}k(T_{\textnormal{eff}}-T_{\textnormal{0}})) ) )}} + A_{min} \label{A_logis_UV}
+T_{\textnormal{0}} &= a\log(g) + b\left(\frac{\left[\textnormal{Fe/H}\right]}{\left|\left[\textnormal{Fe/H}\right]\right|^{1/2}}\right) + c \label{T0_eq}\\
+k &= d\log(g) + e\left[\textnormal{Fe/H}\right] + f \label{decay_const_eq}\\
+A_{logis}(T_{\textnormal{eff}},g,\left[\textnormal{Fe/H}\right]) &= \frac{(A_{max}-A_{min})}{( 1 + \exp{(-10^{-4} k(T_{\textnormal{eff}}-T_{\textnormal{0}})) ) )}} + A_{min} \label{A_logis_UV}
 \end{align}
 
 The final form was then subjected to a final fit on the entire $A_{X}/A_{V}$ dataset, covering the entire ($T_{\textnormal{eff}}$,  log($g$), [Fe/H]) parameter space available. $A_{logis}$ was able to accurately reproduce the behaviour of almost the entire dataset. The details are given in Section \ref{coef_models}.\\*
