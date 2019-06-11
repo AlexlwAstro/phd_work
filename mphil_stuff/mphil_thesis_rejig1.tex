@@ -194,7 +194,13 @@ Furthermore, the filters in a given system are designed such that the range of w
 Filters thus**** present a challenge when trying to determine stellar spectra accurately. This task is further complicated by the fact that, even in the wavelength range where a filter does detect incoming flux, the fraction of light it detects, known as the transmittance, is not uniform across the range. The transmittance as a function of wavelength is known as a transmission curve, bandpass or filter response function. Examples of response functions for some**** of the filters employed in this project are shown in Figure \ref{ACS_response_funcs}. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function could have a significant impact on the observed spectrum if not taken into account.
 The values in the column labelled 'FWHM' represents the full width at half-maximum. In this case, it is defined as the difference between the lowest and highest wavelength values at which the transmittance value is half of its maximum value for the filter, typically assuming the response function can be approximated as a Gaussian distribution centred on the central wavelength. The FWHM acts as an approximate measure of the wavelength range within which the filter can reliably be used for observations.
 
-\section{Known extinction treatments}
+\section{The standard treatment of extinction in observations}
+In observations, the extinction for a given source is initially unknown. For a stellar population, observers must make use of CMD features (absolute magnitudes) that vary as little as possible with variations in intrinsic parameters ****Independent of filter properties, such as the filter bandwidth,
+
+
+\section{Empirical extinction curves}
+
+
 \cite{1989ApJ...345..245C} used observations of mostly O- and B-type main-sequence stars to produce empirical equations describing the mean ratio of extinction coefficients at a specific wavelength $\lambda$ ($A_{\lambda}$) to the extinction in the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{\lambda}/A_{V}$. They produced a basic equation of the form:
 
 % avoided the complications of using reddening (which is not itself intrinsic and whose implications be impacted by the choice of filters) by 
@@ -269,7 +275,7 @@ The goal of this project is to attempt to use analytic functions to model the va
 
 
 
-\chapter{Theoretical background}
+\chapter{****Theoretical background}
 While observations can reveal properties of individual stars and stellar populations more generally, the significance of these properties can only be gained by understanding the underlying physical processes and structure of the stars themselves. This chapter details the physical and mathematical framework of the processes which motivate and underpin this project.
 
 \section{Stellar parameters} \label{params}
@@ -354,50 +360,9 @@ For interactions between neutral atoms, the relevant processes are the standard 
 Also, the rotation of the star has an impact on spectral line widths via a Doppler shift at each line-of-sight velocity. Together, the distribution of these velocities has the effect of broadening the absorption lines via a Gaussian distribution in wavelength, centred on the  \citep{1995ApJ...439..860C}. The relationship to surface gravity arises from the gravity being the source of centripetal acceleration at the surface of a rotating star, and therefore being proportional in magnitude to the square of the surface rotational velocity.
 
 
-\section{Colour-magnitude diagrams}
-
-By examining the flux-magnitude equations from Section \ref{extinc_desc}, it becomes clear that both the absolute filter magnitudes and the intrinsic color indices can be used, together with bolometric corrections, to calculate the axis parameters of the HR diagram from observational data. To determine the detailed properties of stellar populations, all stars in an observational sample or star cluster are plotted together on a pair of axes known as a colour-magnitude diagram (CMD), which represents an observational analogue of the HR diagram. The absolute magnitude of stars in a given filter $Z$, $M_{Z}$, is on the y-axis, with the flux increasing (and the magnitude value decreasing) upwards. The intrinsic colour index of the stars in two filters $X$ and $Y$, $(X-Y)_{0}$, is on the x-axis, with the values increasing (and stars becoming redder) to the right. In practice, due to the unknown extinction coefficients of the individual stars and the cluster as a whole, the axial parameters  are $M_{\textnormal{ext},Z}$ and $(X-Y)$. Note that filter $Z$ may be the same as either $X$ or $Y$. \\*
-
-In practice, the general shape and position of stellar populations in the HR diagram and each observational CMD, particularly the position and shape of the main sequence, provides a highly useful tool for comparing stellar populations with unknown distances and extinction coefficients to known examples and to theoretical models. This is done by alignment of the respective main sequences in CMDs, particularly the upper main sequence, which contains the most luminous MS stars and is less sensitive to the (initially unknown) value of the cluster metallicity than the lower MS. \\*
 
 \chapter{Methodology}
-\section{Software used}
-To generate the predicted stellar flux, the ATLAS9 model stellar atmosphere code \citep{1993KurCD..13.....K} was used to produce monochromatic fluxes for a series of wavelengths ranging from 9 nm to 160,000 nm, with a resolution of 2 nm or less in the UV.  Table 1 of \cite{2004astro.ph..5087C} contains precise details of the coverage in ($T_{\textnormal{eff}}$, log($g$)) parameter space, while a brief summary  of the limits of the space is listed in Table \ref{atlas9_input}. Four input metallicities were used for ATLAS9, at values of [Fe/H] = -2, -1, 0 and 0.5, covering the metallicities of most observed globular and open clusters. Each metallicity case was subject to the same coverage in ATLAS9.\\*
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[scale=0.6]{ATLAS9_grid_BaSTI_coverage_500Myr_crop.png}
-\caption{$T_{\textnormal{eff}}$-log($g$) plot for a BaSTI 500 Myr solar-metallicity isochrone (black crosses) and ATLAS9 model grid (blue dots) for $T_{\textnormal{eff}} \leq 10000$ K.}
-\label{Teff-logg coverage}
-\end{center}
-\end{figure}
-
-The tables of bolometric corrections were generated using a FORTRAN 77 code incorporating the steps described in Section \ref{BC_theory}, inputs with tables describing the response functions of all three filter systems at the same wavelengths as those listed in the ATLAS9 model atmosphere tables, with the number of tables for each stellar metallicity value equal to the total number of ($T_{\textnormal{eff}}$, log($g$)) combinations available.\\*
-
-Once the bolometric correction tables were produced, all subsequent processes were written in Python 2.7 in the form of IPython notebooks. The repository containing all data, plots and programme codes for this project can be found at \protect\url{https://github.com/AlexlwAstro/phd_work}.\\*
-
-
-\begin{table}
-\begin{center}
-\begin{tabular}{cccc}
-\hline
-%\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{3}{c}{$A_{1}$ coefficients} \\ \cline{4-6}
-%\textbf{Filter} \\
-Parameter / unit & Minimum & Maximum & Number of values \\
-\hline
-$T_{\textnormal{eff}}$ / K & 3500 & 50000 & 76 \\
-log( $g$ / cm s$^{-2}$) & 0.0 & 5.0 & 11 \\
-$\textnormal{[Fe/H]}$ & -2.0 & 0.5 & 4 \\
-\hline
-\end{tabular}
-\caption{Ranges for the input parameters for ATLAS9 atmospheric models}
-\label{atlas9_input}
-\end{center}
-\end{table}
-
-The isochrones used were generated using the latest Bag of Stellar Tricks and Isochrones (BaSTI) web interface (\cite{2004ApJ...612..168P}, \cite{2018ApJ...856..125H}). The filter systems whose throughput data were employed by BaSTI to generate the fluxes for the isochrones were ACS, WFC3 and Gaia-DR2. It should be noted that the WFC3 isochrone output does not include flux magnitudes for the F300X filter.\\*
-
-\section{Calculating extinction data}
+\section{Calculating extinction ratio data}
 
 All the equations in Section \ref{extinc_desc}, including those for extinction, are not useful when applied to telescopes, as any filter will only detect a small fraction of the bolometric stellar flux that reaches the telescope. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. This mitigation is carried out by employing bolometric corrections.\\*
 
@@ -464,59 +429,43 @@ BC_{X}(0) - BC_{X}(A_{V}) &= \left(A_{X}/A_{V}\right)A_{V}
 
 As demonstrated in the equation above, any dependence of the $A_{X}/A_{V}$ data on the Vega measurements or (as yet unknown or uncertain) bolometric quantities from Equation \ref{BC_extinc} is eliminated during the subtraction. \\*
 
-Most papers employing filters in the relevant spectral regions use the model of $A_{\lambda}/A_{V}$ as described by \cite{1989ApJ...345..245C} or a modified version (\cite{1994ApJ...422..158O} and \cite{1999PASP..111...63F} are among the most frequently used). This project uses the original model. The assumptions used to equate $A_{X}/A_{V}$ with the result of Equation \ref{BCs_diff} are valid because the observational flux data used by \cite{1989ApJ...345..245C} when deriving their monochromatic extinction model were obtained using broad-band filters, and so are subject to the effects of variations inherent in both the real stellar spectra and the filter response functions, making the data heterochromatic \citep{2014MNRAS.444..392C}, in the same manner as the output data. \\*
+
+\section{Software used}
+To generate the predicted stellar flux, the ATLAS9 model stellar atmosphere code \citep{1993KurCD..13.....K} was used to produce monochromatic fluxes for a series of wavelengths ranging from 9 nm to 160,000 nm, with a resolution of 2 nm or less in the UV.  Table 1 of \cite{2004astro.ph..5087C} contains precise details of the coverage in ($T_{\textnormal{eff}}$, log($g$)) parameter space, while a brief summary  of the limits of the space is listed in Table \ref{atlas9_input}. Four input metallicities were used for ATLAS9, at values of [Fe/H] = -2, -1, 0 and 0.5, covering the metallicities of most observed globular and open clusters. Each metallicity case was subject to the same coverage in ATLAS9. As shown in Figure \ref{Teff-logg coverage}, the \\*
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.3]{../just_full_data/comb/AHub_FeHm2p0_just_Teff_fit_plot_dots.pdf}
-\caption{WFC3 and Gaia filter $A_{X}/A_{V}$ data for [Fe/H] = -2, plotted against effective temperature, with each colour of dots representing a different value of log($g$).}
-\label{comb Ax/Av data FeH=-2}
+\includegraphics[scale=0.6]{ATLAS9_grid_BaSTI_coverage_2ages_crop.png}
+\caption{$T_{\textnormal{eff}}$-log($g$) scatter plot for a BaSTI 50 Myr, [Fe/H] = -1 isochrone (red), a BaSTI 12 Gyr, [Fe/H] = -1 isochrone (black) and ATLAS9 model grid (blue) for $T_{\textnormal{eff}} \leq 23000$ K.}
+\label{Teff-logg coverage}
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+The tables of bolometric corrections were generated using a FORTRAN 77 code incorporating the steps described in Section \ref{BC_theory}, inputs with tables describing the response functions of all three filter systems at the same wavelengths as those listed in the ATLAS9 model atmosphere tables, with the number of tables for each stellar metallicity value equal to the total number of ($T_{\textnormal{eff}}$, log($g$)) combinations available.\\*
+
+Once the bolometric correction tables were produced, all subsequent processes were written in Python 2.7 in the form of IPython notebooks. The repository containing all data, plots and programme codes for this project can be found at \protect\url{https://github.com/AlexlwAstro/phd_work}.\\*
+
+
+\begin{table}
 \begin{center}
-\includegraphics[scale=0.3]{../just_full_data/comb/AHub_FeH0p0_just_Teff_fit_plot_dots.pdf}
-\caption{WFC3 and Gaia filter $A_{X}/A_{V}$ data for [Fe/H] = 0.5, plotted against effective temperature, with each colour of dots representing a different value of log($g$), showing the prominent presence of the tail-flick phenomenon in some filters.}
-\label{comb Ax/Av data FeH=0}
+\begin{tabular}{cccc}
+\hline
+%\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{3}{c}{$A_{1}$ coefficients} \\ \cline{4-6}
+%\textbf{Filter} \\
+Parameter / unit & Minimum & Maximum & Number of values \\
+\hline
+$T_{\textnormal{eff}}$ / K & 3500 & 50000 & 76 \\
+log( $g$ / cm s$^{-2}$) & 0.0 & 5.0 & 11 \\
+$\textnormal{[Fe/H]}$ & -2.0 & 0.5 & 4 \\
+\hline
+\end{tabular}
+\caption{Ranges for the input parameters for ATLAS9 atmospheric models}
+\label{atlas9_input}
 \end{center}
-\end{figure}
+\end{table}
 
-When calculating the bolometric corrections, the reference values taken by the parameters for Vega were:
+The isochrones used were generated using the latest Bag of Stellar Tricks and Isochrones (BaSTI) web interface (\cite{2004ApJ...612..168P}, \cite{2018ApJ...856..125H}). The filter systems whose throughput data were employed by BaSTI to generate the fluxes for the isochrones were ACS, WFC3 and Gaia-DR2. It should be noted that the WFC3 isochrone output does not include flux magnitudes for the F300X filter.\\*
 
-\begin{enumerate}
-\item $m_{X}^{0} = 0.03$ for the Gaia filters
-\item $m_{X}^{0} = 0.00$ for the Hubble WFC3 filters
-\end{enumerate}
-
-together with $M_{\textnormal{bol},\odot} = 4.75$. The Vega model used in this project assumed $T_{\textnormal{eff}} = 9550$K and $\log(g) = 3.95$. The mean extinction law from \cite{1989ApJ...345..245C}, as shown in Equation \ref{CCM_general}, with its different wavelength regimes for $a(x)$ and $b(x)$, was used with the $A_{V}$ calibration values to simulate the extinction parameter in Equation \ref{BC_extinc}. $R_{V}$ was set to a value of 3.1, the standard value for the diffuse interstellar medium. The integration was carried out by iteratively adding the integrand results at regular small wavelength intervals. The non-zero calibration value of $A_{V} = 1$ was chosen, as this allows for significant changes in $A_{X}/A_{V}$ from Equation (\ref{BCs_diff}), while also being close enough to zero to avoid significant changes in $A_{X}/A_{V}$ due to the Forbes effect \citep{2008PASP..120..583G}.\\*
-
-To generate extinction-coefficient ratios $A_{X}/A_{V}$ from the bolometric correction data, Equation \ref{BCs_diff} was used to calculate the differences between the BC($A_{V} = 0$) and BC($A_{V} = 1$) datasets and thereby give a single dataset of mean $A_{X}/A_{V}$ values (\cite{2008PASP..120..583G},\cite{2014MNRAS.444..392C}).\\*
-
-%\section{Forbes effect}
-The Forbes effect occurs as a broadband beam of light, such as that passes through an extended partially-transparent medium, such as a series of glass plates, the Earth's atmosphere or an interstellar gas cloud. It states that the greater the distance travelled by a light beam through the medium, the more penetrating the beam becomes \citep{1842RSPT..132..225F}. If we use the case of the glass plates as an example, this means that the fraction of the light incident on the $n$th plate in the series which is dissipated by that plate from the original path is always greater than the corresponding fraction at the ($n+1$)th plate \citep{1995A&AS..109..293G}. The physical basis for the Forbes effect is that those photons in the original beam with wavelengths that make them the most likely to be absorbed or refracted are separated from the beam earlier. Therefore, as the beam travels through the medium, its constituent photons are progressively less likely to be separated. Since a higher fraction of its photons are retained as the distance through the medium increases, the beam is more penetrating \citep{OHVRIL1999305}.\\*
-
-The Forbes effect has an impact on the non-zero $A_{V}$ value used in Equation \ref{BCs_diff} because if a uniform medium is assumed, as here, where $R_{V}$ is held constant at the standard diffuse ISM value of 3.1 \citep{1989ApJ...345..245C}, a larger $A_{V}$ value implies a longer path through the ISM, and thus a stronger Forbes effect. According to \cite{2008PASP..120..583G}, any significant impact from the Forbes effect on the values of $A_{X}/A_{V}$ occurs for a chosen $A_{V} \gtrsim 4$. They found that the effect was particularly strong for stars with $T_{\textnormal{eff}} \lesssim 3000$K and that, unsurprisingly, it became greater as the wavelength range covered by the filter response function increased. The choice of $A_{V} = 1$ made for this project should avoid serious problems from the Forbes effect, even for the widest filters. \\*
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[scale=0.3]{../just_full_data/ACS/AHub_FeHm2p0_just_Teff_fit_plot_dots.pdf}
-\caption{ACS filter $A_{X}/A_{V}$ data for [Fe/H] = -2, plotted against effective temperature, with each colour of dots representing a different value of log($g$).}
-\label{acs Ax/Av data FeH=-2}
-\end{center}
-\end{figure}
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[scale=0.3]{../just_full_data/ACS/AHub_FeH0p5_just_Teff_fit_plot_dots.pdf}
-\caption{ACS filter $A_{X}/A_{V}$ data for [Fe/H] = 0.5, plotted against effective temperature, with each colour of dots representing a different value of log($g$), showing the prominent presence of the tail-flick phenomenon in some filters.}
-\label{acs Ax/Av data FeH=0}
-\end{center}
-\end{figure}
-
-As can be seen in the data displayed in Figures \ref{comb Ax/Av data FeH=-2}-\ref{acs Ax/Av data FeH=0}, in almost all of the filters studied in this project, the longer the central wavelength of a given filter throughput, the smaller the average value of $A_{X}/A_{V}$, independent of all other parameters. This conforms with the expectation resulting from the fact that the physical mechanisms causing extinction in the ISM preferential affect photons with shorter wavelengths.\\*
-
-Above $T_{\textnormal{eff}} \approx$ 12000-15000 K, the values of $A_{X}/A_{V}$ are approaching a constant value as a function of all three input parameters. This is reflected in the choice of decay functions as the fitting functions for the data. This region of parameter space will be referred to henceforth as the ``high-$T_{\textnormal{eff}}$ extinction plateau region'' or simply ``plateau''.\\*
 
 \section{Filters studied}
 In this project, three broad-band filter systems were employed. Two are systems on board the Hubble Space Telescope (HST). These are the Advanced Camera for Surveys (ACS), installed in 2002 on the HST \citep{2007AJ....133.1658S}, and the Ultraviolet Imaging Spectrograph channel of the Wide-Field Camera 3 (WFC3/UVIS), installed on the HST in 2009 (\cite{2010wfc..rept...14K},\cite{2010SPIE.7731E..0ZM}). The third is the single set of three broadband filters mounted on the Gaia space observatory  \citep{2010A&A...523A..48J}, launched in 2013. \\*
@@ -798,14 +747,12 @@ F300X & blah**** & -0.2282$\pm$0.0396 & -3.0752$\pm$0.3704 & 1.0776$\pm$0.0017 \
 \end{center}
 \end{table}
 
-All the functions are consistent with the general trends predicted by the physics in stellar atmospheres, since the effective temperature has the greatest effect upon the value of $A_{X}/A_{V}$, with relatively minor differences due to 
-
-The $(A_{X}/A_{V})$ data which underpinned this project was derived using the mean extinction laws prescribed in \cite{1989ApJ...345..245C}. These equations were derived by studying trends in 
+All the functions are consistent with the general trends predicted by the physics in stellar atmospheres, since the effective temperature has the greatest effect upon the value of $A_{X}/A_{V}$, with relatively minor differences due to ****
 
 \section{Effect on isochrones} \ref{result_CMDs}
 Given the large number of filters studied in Section \ref{coef_models}, four commonly-used CMD axes were selected to test for any effects of a function-derived $A_{X}$. Two of these are specific to the WFC3 system, with one CMD each for ACS and Gaia.
-\subsection{ACS} \label{ACS_isoc}
 
+\subsection{ACS} \label{ACS_isoc}
 The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS in its colour index, which is the index most likely to distinguish between objects with a large range of effective temperatures, making it useful for modelling the main sequence and MSTO, the two most important CMD components for calculating cluster isochrone ages.
 
 \begin{figure}[h]
