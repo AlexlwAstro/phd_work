@@ -195,11 +195,11 @@ Filters thus**** present a challenge when trying to determine stellar spectra ac
 The values in the column labelled 'FWHM' represents the full width at half-maximum. In this case, it is defined as the difference between the lowest and highest wavelength values at which the transmittance value is half of its maximum value for the filter, typically assuming the response function can be approximated as a Gaussian distribution centred on the central wavelength. The FWHM acts as an approximate measure of the wavelength range within which the filter can reliably be used for observations.
 
 \section{The standard treatment of extinction in observations}
-In observations, the extinction for a given source is initially unknown. For a stellar population, observers must make use of CMD features (absolute magnitudes) that vary as little as possible with variations in intrinsic parameters ****Independent of filter properties, such as the filter bandwidth,
+In observations, the extinction for a given source is initially unknown. For a stellar population, observers must make use of HR diagram features (absolute magnitudes) that vary as little as possible with variations in age and metallicity. The best example of this is the red clump \citep{1992ApJS...78..517C} ****Independent of filter properties, such as the filter bandwidth,
 
 
 \section{Empirical extinction curves}
-
+\cite{1985ApJ...288..618R} found that outside dense molecular clouds, which have high opacities and whose lines-of-sight are less frequently used as a result, all extinction laws for all Johnson filters studied were uniform between wavelengths of 1 and 13 $\mu$m when observing sources in the direction of the Galactic Centre. This result was then used to produce constant $A_{X}/A_{V}$ extinction ratios in the same filters. They also determined the global average value of $R_{V}$ to be 3.08 (~3.1) for the diffuse ISM.
 
 \cite{1989ApJ...345..245C} used observations of mostly O- and B-type main-sequence stars to produce empirical equations describing the mean ratio of extinction coefficients at a specific wavelength $\lambda$ ($A_{\lambda}$) to the extinction in the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{\lambda}/A_{V}$. They produced a basic equation of the form:
 
@@ -364,7 +364,7 @@ Also, the rotation of the star has an impact on spectral line widths via a Doppl
 \chapter{Methodology}
 \section{Calculating extinction ratio data}
 
-All the equations in Section \ref{extinc_desc}, including those for extinction, are not useful when applied to telescopes, as any filter will only detect a small fraction of the bolometric stellar flux that reaches the telescope. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. This mitigation is carried out by employing bolometric corrections.\\*
+All the equations in Section \ref{extinc_desc}, including those for extinction, are not useful when applied to telescopes, as any filter will only detect a small fraction of the bolometric stellar flux that reaches the telescope. The missing information resulting from this observational constraint renders it difficult to determine the interstellar extinction. These constraints much be mitigated before an accurate value of the extinction coefficient can be determined. This mitigation is carried out by calculating corrections.\\*
 
 The use of bolometric corrections requires the detailed knowledge of stellar spectra least susceptible to significant extinction, i.e., nearby stars with high apparent fluxes. Only with complete knowledge of the spectrum from a reference star can the true spectrum of a distant star with unknown extinction be calculated. The spectra of these stars can be computed by using a grid of predicted fluxes from a stellar atmosphere model, the grid being composed of the stellar parameters known to change emission in stellar atmospheres. These are effective temperature, surface gravity and metallicity. For all filter systems studied in this project, the nearby bright star Vega ($\alpha$ Lyr) was used as the reference object. Using Vega as the reference star is the most well-known approach to photometric calibration \citep{2014MNRAS.444..392C}.\\*
 
@@ -849,12 +849,10 @@ All the isochrones, as shown in Section****, are sensitive both to the reference
 \item The position of the lower main sequence is significantly more sensitive to metallicity than other parts of the isochrone.
 \end{enumerate}
 
+****compare BaSTI and PARSEC isochrone softwares using \cite{2019MNRAS.483.4949G} figures
 
-
-\chapter{Conclusion}
+\chapter{Conclusion & future work}
 In all cases, applying a fixed extinction to all points in an isochrone causes the main-sequence turn-off to occur at a more luminous, bluer point in a given CMD than the MSTO point for an extinction coefficient described using a function fitted to empirically derived data.
-
-\section{Future work}
 
 %\bibliographystyle{ieeetr}
 \bibliographystyle{mnras} % unsrtnat
