@@ -533,7 +533,7 @@ The output from the BaSTI database for each model stellar object gives the model
 g = \frac{4 \pi G M_{*} \sigma_{\textnormal{SB}} T_{\textnormal{eff}}^{4}}{L_{*}}
 \end{equation}
 
-After this had been completed, each object had a co-ordinate in ($T_{\textnormal{eff}}$, log($g$)) parameter space, plus the metallicity of the overall isochrone model. The filter magnitudes in the photometric data are the apparent magnitudes of the stars assigned to NGC 6793. Therefore, to match the quantities of the observational and isochrone datasets being compared, it was necessary to correct the observational data for distance and add extinction to the isochrones. This is that standard procedure used when analysing observational data. Thus, we were comparing the $M_{\textnormal{ext},X}$ values for the isochrones and the observational data. The functions described in Section \ref{coef_models} were then applied to the dataset of stellar objects, producing values of $M_{\textnormal{ext},X}$ for each filter for all objects, as is the standard for analysing observational data with unknown extinction coefficients.
+After this had been completed, each object had a co-ordinate in ($T_{\textnormal{eff}}$, log($g$)) parameter space, plus the metallicity of the overall isochrone model. The filter magnitudes in the photometric data are the apparent magnitudes of the stars assigned to NGC 6793. Therefore, to match the quantities of the observational and isochrone datasets being compared, it was necessary to correct the observational data for distance and add extinction to the isochrones. This is that standard procedure used when analysing observational data. Thus, we were comparing the $M_{\textnormal{ext},X}$ values for the isochrones and the observational data. The functions described in Section \ref{ext_models} were then applied to the dataset of stellar objects, producing values of $M_{\textnormal{ext},X}$ for each filter for all objects, as is the standard for analysing observational data with unknown extinction coefficients.
 
 \begin{table}
 \begin{center}
@@ -616,7 +616,7 @@ A property found in the data for some filters, more pronounced at higher metalli
 
 This gradient inversion was ignored as an artefact from the numerical integration required for Equation \ref{BC_extinc}. This was justified on the basis that it is physical infeasible for a cooler star to experience a higher extinction $A_{X}$ than a hotter star for a globally-constant $A_{V}$ value and metallicity, as was assumed for data in each BC table. In the relevant filters, only effective temperatures above those affected by the gradient inversion was used for fitting.\\*
 
-\section{Extinction coefficient models} \label{coef_models}
+\section{Extinction ratio models} \label{ext_models}
 
 In order to find usable model functions without running into issues with degeneracy between coefficients in the same function, prioritising the order in which the three stellar parameters were model was paramount. Too many coefficients created errors that were significantly greater in degenerate coefficients than in non-degenerate ones. This would obscure any useful information about the validity of the function form.\\*
 
@@ -645,8 +645,8 @@ There were filters whose BFD could not support an accurate fit or maintain the d
 
 \begin{itemize}
 \item Using a polynomial fit for the BFD, for filter which could not be accurately described in the BFD in the first instance.
-\item Fitting the entire dataset in two steps, by fitting the residuals from the $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$ fitting processes to a new function with explicit variations in all three stellar parameters. The ****functions included damped-oscillator functions and oscillating power-law functions, among others. When fitted to the residuals, this meant an oscillation with amplitude decaying with increasing $T_{\textnormal{eff}}$/
-%\end{itemize}
+\item Fitting the entire dataset in two steps, by fitting the residuals from the $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$ fitting processes to a new function with explicit variations in all three stellar parameters. The ****functions included damped-oscillator functions and oscillating power-law functions, among others. When fitted to the residuals, this meant an oscillation with amplitude decaying with increasing $T_{\textnormal{eff}}$****
+\end{itemize}
 
 The most successful approach was plotting all the available data for each filter, in multiple 2D and 3D axes, and analysing it visually. The trends seen in the data were transcribed to find not only an overarching function template, akin to the status of $A_{\textnormal{pow}}$ and $A_{\textnormal{exp}}$, but also smaller mathematical constructs within the template, such as describing a decay coefficient in terms of log($g$) and [Fe/H]. The details of the final form of the template as a function of each stellar parameter were deduced by fitting a logistic function of $T_{\textnormal{eff}}$ to the $A_{X}/A_{V}$ data for each ([Fe/H],log($g$)) combination. This was decided on the basis that $A_{\textnormal{exp}}$ had been superior to $A_{\textnormal{pow}}$ in describing the data for all relevant filters and because, for these filters, the low-$T_{\textnormal{eff}}$ change in gradient appeared to be more significant than for others and the gradient was not inverted, as can be seen in Figures \ref{comb Ax/Av data FeH=0}-\ref{acs Ax/Av data FeH=-2}. This is still the case, even after accounting for the difference in $A_{X}/A_{V}$ scale between filters. In particular, the $T_{\textnormal{eff}}$ gradient prior to the plateau appears to lead to an asymptote at lower, but still physically-viable, temperatures. This issue is resolved by the logistic function's property of converging to a constant value for both very high and low values of the input variable.  \\*
 
@@ -673,40 +673,40 @@ The final form was then subjected to a final fit on the entire $A_{X}/A_{V}$ dat
 
 \begin{table}
 \begin{center}
-\begin{tabular}{cccccc}
+\begin{tabular}{ccccccc}
 \hline
 %\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{3}{c}{$A_{1}$ coefficients} \\ \cline{4-6}
 %\textbf{Filter} \\
-System & Filter &  Function & & Coefficients & \\
- & & ($A_{\textnormal{pow}}$ or $A_{\textnormal{exp}}$) & $a$ & $b$ & $c$ \\
+System & Filter &  Function & & Coefficients & & $T_{\textnormal{min}}$ \\
+ & & ($A_{\textnormal{pow}}$ or $A_{\textnormal{exp}}$) & $a$ & $b$ & $c$ & \\
 \hline
 
-& F435W & pow & -0.0276$\pm$0.0061 & -0.967$\pm$0.1918 & 1.3613$\pm$0.005 \\
-& F475W & pow & -0.0235$\pm$0.0042 & -1.2855$\pm$0.174 & 1.2323$\pm$0.0032 \\
-& F555W & pow & -0.0089$\pm$0.0034 & -1.534$\pm$0.3895 & 1.0473$\pm$0.0026 \\
-ACS & F606W & exp & -0.2295$\pm$0.0361 & -2.9413$\pm$0.3326 & 0.9591$\pm$0.0017 \\
-& F625W & exp & -0.0741$\pm$0.0487 & -3.3839$\pm$1.4339 & 0.8647$\pm$0.0016 \\
-& F775W & exp & -0.0695$\pm$0.0649 & -3.8286$\pm$2.0938 & 0.6497$\pm$0.0016 \\
-& F814W & exp & -0.0909$\pm$0.0438 & -3.2279$\pm$1.0425 & 0.6086$\pm$0.0016 \\ \hline
+& F435W & pow & -0.028$\pm$0.006 & -0.967$\pm$0.192 & 1.361$\pm$0.005 & \\
+& F475W & pow & -0.024$\pm$0.004 & -1.286$\pm$0.174 & 1.232$\pm$0.003 & \\
+& F555W & pow & -0.009$\pm$0.004 & -1.534$\pm$0.390 & 1.047$\pm$0.003 & \\
+ACS & F606W & exp & -0.230$\pm$0.036 & -2.941$\pm$0.333 & 0.959$\pm$0.002 & \\
+& F625W & exp & -0.074$\pm$0.049 & -3.384$\pm$1.434 & 0.865$\pm$0.002 & \\
+& F775W & exp & -0.070$\pm$0.065 & -3.829$\pm$2.094 & 0.650$\pm$0.002 & \\
+& F814W & exp & -0.091$\pm$0.044 & -3.228$\pm$1.043 & 0.609$\pm$0.002 & \\ \hline
 
 %& F218W & R2fle & -232.4$\pm$48.1 & -(1.076$\pm$0.043)$\times 10^{-3}$ & 2.933$\pm$0.007 \\
 %& F225W & R2fle & -128.5$\pm$13.8 & -(1.031$\pm$0.022)$\times 10^{-3}$ & 2.610$\pm$0.003 \\
 %& F275W & R2fle & 0.9726$\pm$0.0581 & -(3.518$\pm$0.109)$\times 10^{-4}$ & 2.060$\pm$0.001 \\
 %& F300X & R1fle & -(5.335$\pm$0.936)$\times 10^{5}$ & -1.664$\pm$0.021 & 2.052$\pm$0.001 \\
 
-& F336W & pow & -0.0064$\pm$0.0028 & -1.8004$\pm$0.4633 & 1.6472$\pm$0.0022 \\
-& F390W & exp & -0.0763$\pm$0.0061 & -0.7961$\pm$0.1602 & 1.486$\pm$0.0035 \\
-& F438W & exp & -0.0839$\pm$0.0284 & -2.5967$\pm$0.6941 & 1.3507$\pm$0.0017 \\
-& F475W & pow & -0.0224$\pm$0.0041 & -1.3107$\pm$0.1793 & 1.2233$\pm$0.0031 \\
-WFC3 & F555W & exp & -0.2282$\pm$0.0396 & -3.0752$\pm$0.3704 & 1.0776$\pm$0.0017 \\
-& F606W & exp & -0.2271$\pm$0.0368 & -2.9707$\pm$0.3438 & 0.9622$\pm$0.0017 \\
-& F625W & pow & -0.0048$\pm$0.0028 & -1.8035$\pm$0.6184 & 0.879$\pm$0.0022 \\
-& F775W & exp & -0.0713$\pm$0.0695 & -3.9365$\pm$2.1978 & 0.6558$\pm$0.0016 \\
-& F814W & pow & -0.0058$\pm$0.0029 & -1.7434$\pm$0.5318 & 0.6149$\pm$0.0023 \\ \hline
+& F336W & pow & -0.006$\pm$0.003 & -1.800$\pm$0.463 & 1.647$\pm$0.002 & \\
+& F390W & exp & -0.076$\pm$0.006 & -0.796$\pm$0.160 & 1.486$\pm$0.004 & \\
+& F438W & exp & -0.084$\pm$0.028 & -2.597$\pm$0.694 & 1.351$\pm$0.002 & \\
+& F475W & pow & -0.022$\pm$0.004 & -1.311$\pm$0.179 & 1.223$\pm$0.003 & \\
+WFC3 & F555W & exp & -0.228$\pm$0.040 & -3.075$\pm$0.370 & 1.078$\pm$0.002 \\
+& F606W & exp & -0.227$\pm$0.037 & -2.971$\pm$0.344 & 0.962$\pm$0.002 & \\
+& F625W & pow & -0.005$\pm$0.003 & -1.804$\pm$0.618 & 0.879$\pm$0.002 & \\
+& F775W & exp & -0.071$\pm$0.070 & -3.937$\pm$2.198 & 0.656$\pm$0.002 & \\
+& F814W & pow & -0.006$\pm$0.003 & -1.743$\pm$0.532 & 0.615$\pm$0.002 & \\ \hline
 
-& G & pow & -0.0952$\pm$0.0042 & -1.2853$\pm$0.043 & 1.044$\pm$0.0032 \\
-Gaia & G\textsubscript{bp} & pow & -0.1258$\pm$0.0081 & -0.7984$\pm$0.0499 & 1.2562$\pm$0.0069 \\
-& G\textsubscript{rp} & pow & -0.013$\pm$0.0031 & -1.6863$\pm$0.2444 & 0.6753$\pm$0.0023 \\ \hline
+& G & pow & -0.095$\pm$0.004 & -1.285$\pm$0.043 & 1.044$\pm$0.003 & \\
+Gaia & G\textsubscript{bp} & pow & -0.126$\pm$0.008 & -0.798$\pm$0.050 & 1.256$\pm$0.007 & \\
+& G\textsubscript{rp} & pow & -0.013$\pm$0.003 & -1.686$\pm$0.244 & 0.675$\pm$0.002 & \\ \hline
 
 \end{tabular}
 \caption{Coefficient values produced for each filter via $A_{\textnormal{exp}}$ or $A_{\textnormal{exp}}$ fitting, as appropriately labelled. Any filters missing from this table are those with data that could not be accurately fitted using either function.}
@@ -737,7 +737,7 @@ F300X & blah**** & -0.2282$\pm$0.0396 & -3.0752$\pm$0.3704 & 1.0776$\pm$0.0017 \
 All the functions are consistent with the general trends predicted by the physics in stellar atmospheres, since the effective temperature has the greatest effect upon the value of $A_{X}/A_{V}$, with relatively minor differences due to ****
 
 \section{Effect on isochrones} \label{result_CMDs}
-%Given the large number of filters studied in Section \ref{coef_models}, four commonly-used CMD axes were selected to test for any effects of a function-derived $A_{X}$. Two of these are specific to the WFC3 system, with one CMD each for ACS and Gaia.  
+%Given the large number of filters studied in Section \ref{ext_models}, four commonly-used CMD axes were selected to test for any effects of a function-derived $A_{X}$. Two of these are specific to the WFC3 system, with one CMD each for ACS and Gaia.  
 The ATLAS9 metallicity chosen for calculating the fixed-extinction $A_{X}/A_{V}$ values to be applied to the isochrone was that which best matched the metallicity of the isochrone to which the coefficient was applied. The ATLAS9 value will be denoted [Fe/H]$_{CM}$. The first value was equal to $(A_{X}/A_{V})_{plat} = (A_{X}/A_{V})(T_{\textnormal{eff}} = 50,000\textnormal{K},\log(g) = 5.0,\textnormal{[Fe/H]}_{CM})$, and the second was equal to $(A_{X}/A_{V})_{MS} = (A_{X}/A_{V})(T_{\textnormal{eff}} = 5,000\textnormal{K},\log(g) = 5.0,\textnormal{[Fe/H]}_{CM})$. This was done to reflect the fact that, on one hand, the assumption of a constant extinction coefficient is valid in the plateau region and, on the other, given the position of the MSTO in terms of stellar model $T_{\textnormal{eff}}$ values, it would be more prudent to ensure that the upper main sequences resulting from both approaches to extinction coincide in the CMD, making it easier to see any disagreements in the turn-off ages. For each of these plots, $A_{V}$ was fixed at a value of 1.0.\\*
 
 \subsection{ACS} \label{ACS_isoc}
