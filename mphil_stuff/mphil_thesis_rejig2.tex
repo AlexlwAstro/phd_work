@@ -284,6 +284,10 @@ When a particle absorption a photon, the absorption process is not instantaneous
 
 The impact of surface gravity arises via additional broadening effects upon these same absorption lines. When broadening effects are applied to an emission spectrum, such as a spectrum from a stellar surface, the result is that fewer photons pass through the surface, thereby reducing the surface flux seen by an outside observer. \\*
 
+\section{****Forbes effect} \label{forbes}
+The Forbes effect occurs as a broadband beam of light, such as that passes through an extended partially-transparent medium, such as the Earth's atmosphere or an interstellar gas cloud. It states that the greater the distance travelled by a light beam through the medium, the more penetrating the beam becomes \citep{1842RSPT..132..225F}. The physical basis for this effect is that those photons in the original beam with wavelengths that make them the most likely to be absorbed or refracted are separated from the beam earlier. Therefore, as the beam travels through the medium, its constituent photons are progressively less likely to be separated. Since a higher fraction of its photons are retained as the distance through the medium increases, the beam is more penetrating \citep{OHVRIL1999305}.\\*
+
+The Forbes effect thus has an impact on the non-zero $A_{V}$ value used in Equation \ref{BCs_diff} because if a uniform medium is assumed, as here, where $R_{V}$ is held constant at the standard diffuse ISM value of 3.1 \citep{1989ApJ...345..245C}, a larger $A_{V}$ value implies a longer path through the ISM, and thus a stronger Forbes effect. According to \cite{2008PASP..120..583G}, any significant impact from the Forbes effect on the values of $A_{X}/A_{V}$ occurs for a chosen $A_{V} \gtrsim 4$. They found that the effect was particularly strong for stars with $T_{\textnormal{eff}} \lesssim 3000$K and that, unsurprising, it became greater as the wavelength range covered by the filter response function increased.\\*
 
 \section{Effects of extinction on interpreting stellar populations} \label{extinc_desc}
 
@@ -574,7 +578,8 @@ Distance modulus / mag & 10.73 & 8.894 \\
 -> distance / pc & 1400 & 601 \\
 log(age / yr) & 8.64 & 8.78 \\
 -> Age / Myr & 437 & 603 \\
-$E(B-V)$ / mag & 0.17 & 0.272 \\
+$E(B-V)$ / mag & 0.17 & 0.843 \\
+-> $A_{V}$ / mag (if $R_{V} = 3.1$) & 0.53 & 0.682 \\
 $[Fe/H]$ & ? & ? \\
 Members & ? (> 3 ACSS-2.5) & 465 (271 with Gaia photometry) \\
 \hline
@@ -598,18 +603,15 @@ The isochrone with the resulting parameters were then plotted alongside two stan
 
 
 \chapter{Results and discussion}
+
 \section{Choice of $R_{V}$ and $A_{V}$ values}
-In order to generate the bolometric correction data, the Fortran software required the user to input a single, global value for the parameters $R_{V}$ and $A_{V}$. The global $R_{V}$ value, which is applied to the \cite{1989ApJ...345..245C} extinction law, was chosen as $R_{V} = 3.1$. This is equal to the mean diffuse ISM value calculated by \cite{1985ApJ...288..618R}. The choice for the non-zero value of $A_{V}$ was required in order to generate the $A_{X}/A_{V}$ data via Equation \ref{BCs_diff}. The choice for this global value was made as $A_{V} = 1.0$. This was chosen for multiple**** reasons:
+In order to generate the bolometric correction data, the Fortran software required the user to input a single, global value for the parameters $R_{V}$ and $A_{V}$. The global $R_{V}$ value, which is applied to the \cite{1989ApJ...345..245C} extinction law, was chosen as $R_{V} = 3.1$. This is equal to the mean diffuse ISM value calculated by \cite{1985ApJ...288..618R} and widely used in analysis of stellar observations. The choice for the non-zero value of $A_{V}$ was required in order to generate the $A_{X}/A_{V}$ data via Equation \ref{BCs_diff}. The choice for this global value was made as $A_{V} = 1.0$. This was chosen for multiple**** reasons:
 
 \begin{itemize}
-\item ****Closer to observed $A_{V}$ values, which are usually here or lower
-\item Forbes effect****
+\item The value is sufficiently large for differences between both BC datasets to become apparent in the $A_{X}/A_{V}$ data.
+\item The $A_{V}$ values of observed stellar populations are often around or less than 1.0, which precludes using a higher value for the BC data.
+\item A value of $A_{V} = 1.0$ is also sufficiently small for the Forbes effect (see Section \ref{forbes} to have a negligible impact, even for filters with the widest bandwidths.
 \end{itemize}
-
-\section{****Forbes effect}
-The Forbes effect occurs as a broadband beam of light, such as that passes through an extended partially-transparent medium, such as a series of glass plates, the Earth's atmosphere or an interstellar gas cloud. It states that the greater the distance travelled by a light beam through the medium, the more penetrating the beam becomes \citep{1842RSPT..132..225F}. If we use the case of the glass plates as an example, this means that the fraction of the light incident on the $n$th plate in the series which is dissipated by that plate from the original path is always greater than the corresponding fraction at the ($n+1$)th plate \citep{1995A&AS..109..293G}. The physical basis for the Forbes effect is that those photons in the original beam with wavelengths that make them the most likely to be absorbed or refracted are separated from the beam earlier. Therefore, as the beam travels through the medium, its constituent photons are progressively less likely to be separated. Since a higher fraction of its photons are retained as the distance through the medium increases, the beam is more penetrating \citep{OHVRIL1999305}.\\*
-
-The Forbes effect thus has an impact on the non-zero $A_{V}$ value used in Equation \ref{BCs_diff} because if a uniform medium is assumed, as here, where $R_{V}$ is held constant at the standard diffuse ISM value of 3.1 \citep{1989ApJ...345..245C}, a larger $A_{V}$ value implies a longer path through the ISM, and thus a stronger Forbes effect. According to \cite{2008PASP..120..583G}, any significant impact from the Forbes effect on the values of $A_{X}/A_{V}$ occurs for a chosen $A_{V} \gtrsim 4$. They found that the effect was particularly strong for stars with $T_{\textnormal{eff}} \lesssim 3000$K and that, unsurprising, it became greater as the wavelength range covered by the filter response function increased. The choice of $A_{V} = 1$ made for this project should avoid serious problems from the Forbes effect, even for the widest filters.
 
 \section{Trends in $A_{X}/A_{V}$ data}
 A property found in the data for some filters, more pronounced at higher metallicity but with a possible slight dependence on surface gravity, is the tendency of the gradient of $A_{X}/A_{V}$ with increasing $T_{\textnormal{eff}}$ to become significantly less positive at the lowest temperatures in the data, typically 4000K and below. The spread in $A_{X}/A_{V}$ values for different log($g$) is typically about 0.2-0.4, with a linear progression from log($g$) = 5.0 at the lowest end to log($g$) = 0.0 at the highest. In some filters, at the highest metallicity employed ([Fe/H] = 0.5), this phenomenon causes the gradient to invert and become significantly negative, reversing the trend everywhere else in the data, including for the same filters at lower metallicity. Due to the shape of the resulting point-to-point line in these axes, it has been dubbed the ``tail-flick'' phenomenon.\\*
@@ -668,7 +670,7 @@ k &= d\log(g) + e\left[\textnormal{Fe/H}\right] + f \label{decay_const_eq}\\
 A_{logis}(T_{\textnormal{eff}},g,\left[\textnormal{Fe/H}\right]) &= \frac{(A_{max}-A_{min})}{( 1 + \exp{(-10^{-4} k(T_{\textnormal{eff}}-T_{\textnormal{0}})) ) )}} + A_{min} \label{A_logis_UV}
 \end{align}
 
-The final form was then subjected to a final fit on the entire $A_{X}/A_{V}$ dataset, covering the entire ($T_{\textnormal{eff}}$,  log($g$), [Fe/H]) parameter space available. $A_{logis}$ was able to accurately reproduce the behaviour of almost the entire dataset. The details are given in ****.\\*
+The final form was then subjected to a final fit on the entire $A_{X}/A_{V}$ dataset, covering the entire ($T_{\textnormal{eff}}$,  log($g$), [Fe/H]) parameter space available. $A_{logis}$ was able to accurately reproduce the behaviour of almost the entire dataset. The coefficients for Equations \ref{T0_eq}-\ref{A_logis_UV} are given in Table \ref{UV_coeffs_table}. **** \\*
 
 
 \begin{table}
@@ -680,36 +682,35 @@ The final form was then subjected to a final fit on the entire $A_{X}/A_{V}$ dat
 System & Filter &  Function & & Coefficients & & $T_{\textnormal{min}}$ / K \\
  & & ($A_{\textnormal{pow}}$ or $A_{\textnormal{exp}}$) & $a$ & $b$ & $c$ & (global maximum error margin) \\
 \hline
-
-& F435W & pow & -0.028$\pm$0.006 & -0.967$\pm$0.192 & 1.361$\pm$0.005 & 0(0.0) \\
-& F475W & pow & -0.024$\pm$0.004 & -1.286$\pm$0.174 & 1.232$\pm$0.003 & 0(0.0) \\
-& F555W & pow & -0.009$\pm$0.004 & -1.534$\pm$0.390 & 1.047$\pm$0.003 & 0(0.0) \\
-ACS & F606W & exp & -0.230$\pm$0.036 & -2.941$\pm$0.333 & 0.959$\pm$0.002 & 0(0.0) \\
-& F625W & exp & -0.074$\pm$0.049 & -3.384$\pm$1.434 & 0.865$\pm$0.002 & 0(0.0) \\
-& F775W & exp & -0.070$\pm$0.065 & -3.829$\pm$2.094 & 0.650$\pm$0.002 & 0(0.0) \\
-& F814W & exp & -0.091$\pm$0.044 & -3.228$\pm$1.043 & 0.609$\pm$0.002 & 0(0.0) \\ \hline
+& F435W & exp & -0.144$\pm$0.031 & -2.159$\pm$0.360 & 1.352$\pm$0.002 & 3500(0.03) \\
+& F475W & exp & -0.214$\pm$0.047 & -2.660$\pm$0.380 & 1.226$\pm$0.002 & 4000(0.025) \\
+& F555W & exp & -0.0914$\pm$0.048 & -2.677$\pm$0.901 & 1.045$\pm$0.002 & 3500(0.01) \\
+ACS & F606W & exp & -0.218$\pm$0.055 & -2.867$\pm$0.445 & 0.959$\pm$0.002 & 3500(0.01) \\
+& F625W & exp & -0.072$\pm$0.078 -3.332$\pm$2.000 & 0.865$\pm$0.002 & 3500(0.01) \\
+& F775W & pow & -0.0035$\pm$0.0042 & -1.4878$\pm$1.5414 & 0.6507$\pm$0.0031 & 3500(0.01) \\
+& F814W & pow & -0.007$\pm$0.0046 & -1.3743$\pm$0.8303 & 0.6108$\pm$0.0034 & 3750(0.015) \\ \hline
 
 %& F218W & R2fle & -232.4$\pm$48.1 & -(1.076$\pm$0.043)$\times 10^{-3}$ & 2.933$\pm$0.007 \\
 %& F225W & R2fle & -128.5$\pm$13.8 & -(1.031$\pm$0.022)$\times 10^{-3}$ & 2.610$\pm$0.003 \\
 %& F275W & R2fle & 0.9726$\pm$0.0581 & -(3.518$\pm$0.109)$\times 10^{-4}$ & 2.060$\pm$0.001 \\
 %& F300X & R1fle & -(5.335$\pm$0.936)$\times 10^{5}$ & -1.664$\pm$0.021 & 2.052$\pm$0.001 \\
 
-& F336W & pow & -0.006$\pm$0.003 & -1.800$\pm$0.463 & 1.647$\pm$0.002 & 0(0.0) \\
-& F390W & exp & -0.076$\pm$0.006 & -0.796$\pm$0.160 & 1.486$\pm$0.004 & 0(0.0) \\
-& F438W & exp & -0.084$\pm$0.028 & -2.597$\pm$0.694 & 1.351$\pm$0.002 & 0(0.0) \\
-& F475W & pow & -0.022$\pm$0.004 & -1.311$\pm$0.179 & 1.223$\pm$0.003 & 0(0.0) \\
-WFC3 & F555W & exp & -0.228$\pm$0.040 & -3.075$\pm$0.370 & 1.078$\pm$0.002 & 0(0.0) \\
-& F606W & exp & -0.227$\pm$0.037 & -2.971$\pm$0.344 & 0.962$\pm$0.002 & 0(0.0) \\
-& F625W & pow & -0.005$\pm$0.003 & -1.804$\pm$0.618 & 0.879$\pm$0.002 & 0(0.0) \\
-& F775W & exp & -0.071$\pm$0.070 & -3.937$\pm$2.198 & 0.656$\pm$0.002 & 0(0.0) \\
-& F814W & pow & -0.006$\pm$0.003 & -1.743$\pm$0.532 & 0.615$\pm$0.002 & 0(0.0) \\ \hline
+& F336W & pow & -0.0074$\pm$0.0041 & -1.5251$\pm$0.7272 & 1.6478$\pm$0.003 & 3500(0.025) \\
+& F390W & exp & -0.0695$\pm$0.0057 & -0.6438$\pm$0.177 & 1.489$\pm$0.005 & 4500(0.04) \\
+& F438W & exp & -0.1132$\pm$0.0658 & -3.0839$\pm$1.0322 & 1.3504$\pm$0.0017 & 3750(0.015) \\
+& F475W & pow & -0.0179$\pm$0.0037 & -1.718$\pm$0.275 & 1.220$\pm$0.003 & 4000(0.02) \\
+WFC3 & F555W & pow & -0.0138$\pm$0.0033 & -1.8873$\pm$0.3326 & 1.0798$\pm$0.0024 & 3750(0.02) \\
+& F606W & exp & -0.2131$\pm$0.0559 & -2.8788$\pm$0.4604 & 0.9623$\pm$0.0017 & 3500(0.015) \\
+& F625W & pow & -0.0042$\pm$0.0031 & -2.0634$\pm$1.0248 & 0.8787$\pm$0.0022 & 3500(0.01) \\
+& F775W & pow & -0.0033$\pm$0.0041 & -1.529$\pm$1.6335 & 0.6568$\pm$0.003 & 3750(0.01) \\
+& F814W & pow & -0.0071$\pm$0.0046 & -1.3905$\pm$0.8027 & 0.6158$\pm$0.0034 & 4000(0.01) \\ \hline
 
-& G & pow & -0.095$\pm$0.004 & -1.285$\pm$0.043 & 1.044$\pm$0.003 & 0(0.0) \\
-Gaia & G\textsubscript{bp} & pow & -0.126$\pm$0.008 & -0.798$\pm$0.050 & 1.256$\pm$0.007 & 0(0.0) \\
-& G\textsubscript{rp} & pow & -0.013$\pm$0.003 & -1.686$\pm$0.244 & 0.675$\pm$0.002 & 0(0.0) \\ \hline
+& G & pow & -0.0888$\pm$0.0045 & -1.402$\pm$0.0642 & 1.0395$\pm$0.0033 & 0(0.0) \\
+Gaia & G\textsubscript{bp} & pow & -0.115$\pm$0.0081 & -0.8997$\pm$0.0692 & 1.2468$\pm$0.0068 & 0(0.0) \\
+& G\textsubscript{rp} & pow & -0.0159$\pm$0.0047 & -1.3519$\pm$0.3678 & 0.6772$\pm$0.0035 & 0(0.0) \\ \hline
 
 \end{tabular}
-\caption{Coefficient values produced for each filter via $A_{\textnormal{exp}}$ or $A_{\textnormal{exp}}$ fitting, as appropriately labelled. Any filters missing from this table are those with data that could not be accurately fitted using either function.}
+\caption{Coefficient values produced for each filter via $A_{\textnormal{exp}}$ or $A_{\textnormal{exp}}$ fitting, as appropriately labelled. Any filters missing from this table are those with data that could not be accurately fitted using either function. The errors are calculated using a simulated $A_{X}/A_{V}$ uncertainty of 0.01}
 \label{simpfunc_coeffs_table}
 \end{center}
 \end{table}
@@ -742,7 +743,10 @@ F300X & Equation \ref{decay_const_eq} & a & b & c \\
 \end{center}
 \end{table}
 
-All the functions are consistent with the general trends predicted by the physics in stellar atmospheres, since the effective temperature has the greatest effect upon the value of $A_{X}/A_{V}$, with relatively minor differences due to ****
+All the functions are consistent with the general trends predicted by the physics in stellar atmospheres, since the effective temperature has the greatest effect upon the value of $A_{X}/A_{V}$, with relatively minor effects due to spectral absorption lines, via surface gravity and metallicity. In general stars with higher effective temperatures (and consequently stronger and bluer flux spectra) experience higher $A_{X}/A_{V}$ values in all filters than stars with low effective temperatures. The maximum $A_{X}/A_{V}$ value in a given filter decreases as the filter's central wavelength increases. This is expected for black-body analogues (see Equation \ref{planck_bb} and Figure \ref{planck_curve}). Both trends are also consistent with the known short-wavelength preference of physical mechanisms causing interstellar extinction.\\*
+
+The accuracy of these relatively simple functions is important because the $A_{X}/A_{V}$ dataset for each filter is now reduced to a much smaller number of degrees of freedom, equal to the number of coefficients in the relevant function. The input parameters ($T_{\textnormal{eff}}$, log($g$) and [Fe/H]) are required when using either tables of $A_{X}/A_{V}$ or the functions ****
+
 
 \section{Effect on isochrones} \label{result_CMDs}
 %Given the large number of filters studied in Section \ref{ext_models}, four commonly-used CMD axes were selected to test for any effects of a function-derived $A_{X}$. Two of these are specific to the WFC3 system, with one CMD each for ACS and Gaia.  
@@ -754,7 +758,7 @@ The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CM
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.3]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
-\caption{ACS F435W-(F435W-F814W) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{MS}$ for each filter}
+\caption{ACS F435W-(F435W-F814W) CMD with a fixed extinction ratio equal to $(A_{X}/A_{V})_{MS}$ for each filter}
 \label{acs_isoc_T5k}
 \end{center}
 \end{figure}
@@ -762,10 +766,12 @@ The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CM
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.3]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
-\caption{ACS F435W-(F435W-F814W) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{plat}$ for each filter}
+\caption{ACS F435W-(F435W-F814W) CMD with a fixed extinction ratio equal to $(A_{X}/A_{V})_{plat}$ for each filter}
 \label{acs_isoc_T50k}
 \end{center}
 \end{figure}
+
+It can be seen that the impact of changing the extinction approach used to change the isochrone position in this CMD is insignificant. Although there are some larger differences in the position of the isochrone in the post-SGB evolutionary stages, this is irrelevant when fitting isochrones to observational data. The result of using $(A_{X}/A_{V})_{plat}$ is not significantly different from that of using $(A_{X}/A_{V})_{MS}$ for this CMD. By examining the data presented in Figures****, it can be seen that there is little significant change in $A_{X}/A_{V}$ values in the F435W and F814W ACS filters.
 
 \subsection{WFC3} \label{WFC3_isoc}
 
@@ -809,15 +815,15 @@ The photometric filters in Gaia, as shown by their respective response functions
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.3]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{MS}$ for each filter}
 \label{gaia_isoc_T5k}
-\end{center}
-\end{figure}
+%\end{center}
+%\end{figure}
 
-\begin{figure}[h]
-\begin{center}
-\includegraphics[scale=0.3]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+%\begin{figure}[h]
+%\begin{center}
+\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{plat}$ for each filter}
 \label{gaia_isoc_T50k}
 \end{center}
@@ -825,19 +831,18 @@ The photometric filters in Gaia, as shown by their respective response functions
 
 \section{NGC 6793}
 
-****The errors in the parallax data for objects assigned to NGC 6793 were significant, particularly for stars in the lower main-sequence - understandably, since they are the faintest objects in the data and therefore are more difficult to track against the background light sources. This leads to errors in the predicted $M_{\textnormal{ext},X}$ magnitudes, which is calculated by rearranging Equation \ref{distance_modulus}. The significance of the parallax errors in the main sequence is such that, any differences between isochrones with similar parameters are rendered insignificant. This is the case irrespective of photometric errors in the observed fluxes from the photometric filters.\\*
+****The errors in the parallax data for objects assigned to NGC 6793 were significant, particularly for stars in the lower main-sequence - understandably, since they are the faintest objects in the data and therefore are more difficult to track against the background light sources. Even when assuming the only source of error is from  parallax measurements, as was done for the errorbars shown in Figure \ref{ngc_errorbars}, the magnitude of the errorbars dwarf any changes in isochrones due to extinction ratio treatments in the lower main sequence. This leads to errors in the predicted $M_{\textnormal{ext},X}$ magnitudes, which is calculated by rearranging Equation \ref{distance_modulus}. The significance of the parallax errors in the main sequence is such that, any differences between isochrones with similar parameters are rendered insignificant. This is the case irrespective of photometric errors in the observed fluxes from the photometric filters.\\*
 
 Since the table for photometric fluxes did not include photometric errors, the parallax errors alone accounted for the total error in the calculated $M_{\textnormal{ext},X}$. Therefore, the errors on the flux measurements  were exactly equal in all filters for a given star. The errors on the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) color index were calculated as standard, by adding the individual filter errors in quadrature, giving the color errors which were a factor of $\sqrt{2}$ greater than those for the individual filter fluxes.\\*
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.3]{../NGC_6793_CMD_FeH_0p002_0p198_Av_1p0_600Myr_isochrones_both_errorbars_T5k.pdf}
+\includegraphics[scale=0.5]{../NGC_6793_CMD_FeH_0p002_0p198_Av_1p0_600Myr_isochrones_both_errorbars_T5k.pdf}
 \caption{Gaia CMD of NGC 6793 with errorbars included.}
 \label{ngc_errorbars}
 \end{center}
 \end{figure}
 
-There are highly significant errors for the individual objects in the Gaia data propagation, even when assuming the only source of error is from  parallax measurements, as shown in Figure \ref{ngc_errorbars}. The magnitude of the errorbars dwarf any changes in isochrones due to extinction coefficient treatments in the main sequence. For the few objects in the data with 
 
 ****Get zoom in on turn-off region
 
@@ -849,10 +854,40 @@ All the isochrones, as shown in Section****, are sensitive both to the reference
 \item The position of the lower main sequence is significantly more sensitive to metallicity than other parts of the isochrone.
 \end{enumerate}
 
+\begin{table}
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+%\multirow{2}{*}{System} & \multirow{2}{*}{Filter} & \multirow{2}{*}{$A_{1}$ function} & \multicolumn{3}{c}{$A_{1}$ coefficients} \\ \cline{4-6}
+%\textbf{Filter} \\
+Cluster property & K05 & GC18 & This project \\
+\hline
+Age / Myr & 437 & 603 & 500**** \\
+$A_{V}$ / mag & 0.53 & 0.843 & 1.1****\\
+$[Fe/H]$ & ? & ? & 0.5**** \\
+Members & ? & 271 (photometric) & 274 (photometric) \\
+\hline
+\end{tabular}
+\caption{Comparison of results from this project with observational parameters for NGC 6793 from Table \ref{NGC6793_obs}
+\label{NGC6793_result}
+\end{center}
+\end{table}
+
 ****compare BaSTI and PARSEC isochrone softwares using \cite{2019MNRAS.483.4949G} figures
 
+A potential source of error when comparing the comes from 
+
 \chapter{Conclusion \& future work}
-In all cases, applying a fixed extinction to all points in an isochrone causes the main-sequence turn-off to occur at a more luminous, bluer point in a given CMD than the MSTO point for an extinction coefficient described using a function fitted to empirically derived data.
+In all cases, applying a fixed extinction to all points in an isochrone causes the main-sequence turn-off to occur at a more luminous, bluer point in a given CMD than the MSTO point for an isochrone with extinction values for every star described using an analytical function fitted to empirically-derived data.\\*
+
+The significance of this position change is dependent on the filters used to construct the CMD in question. The position changes in the HST ACS and WFC3 systems' CMDs are insignificant. The Gaia photometric CMD, by contrast, is highly sensitive to the $A_{X}$ values applied to the filters. This applies not only when comparing the fixed-$A_{X}/A_{V}$ approach to the function approach, but also when comparing the fixed approaches using $(A_{X}/A_{V})_{plat}$ and $(A_{X}/A_{V})_{MS}$. This underscores the risk of incorrect assumptions being made when fitting isochrones to observational data with globally- fixed $(A_{X}/A_{V})$ ****
+
+\section{Future work}
+There are multiple ways to extend the applicability of the work done in this project. The most obvious example is to acquire and utilise the response functions of more filter systems, particularly for more modern and more sensitive instruments, such as the James Webb Space Telescope (JWST) and the proposed WFIRST and PLATO space telescopes.\\*
+
+Another extension would be to apply the function-based extinction approach to observed clusters with isochrone ages determined using the globally-fixed $A_{X}$ approach. If, as predicted for the limited examples studied in this project, the isochrone ages of a given cluster CMD are greater when employing a fixed-extinction approach, there is the possibility of a systematic decrease in the predicted ages of these observed after comparison with ages derived using a function-based approach.\\*
+
+Finally, the limits on the accuracy of the model functions presented here require investigation, particularly the accuracy limit at the lowest $T_{\textnormal{eff}}$ values available from ATLAS9. This could be done using the same approach as that used by \cite{2008PASP..120..583G}, who use models from **** to extend their bolometric correction database to a minimum $T_{\textnormal{eff}}$ of ~ 1000 K. The coolest known stellar objects (excluding brown dwarfs) have $T_{\textnormal{eff}} \gtrsim 2500$ K. Extending the dataset would constrain the allowed behaviour of the model functions in the lowest ATLAS9 metallicities. Currently, the lack of data below 3500 K prevents investigation of the significance of the tail-flick phenomenon. At present, the phenomenon 
 
 %\bibliographystyle{ieeetr}
 \bibliographystyle{mnras} % unsrtnat
