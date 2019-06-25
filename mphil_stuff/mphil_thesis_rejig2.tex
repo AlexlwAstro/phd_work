@@ -589,9 +589,9 @@ Members & ? (> 3 ACSS-2.5) & 465 (271 with Gaia photometry) \\
 \end{center}
 \end{table}
 
-The Gaia DR2 dataset for NGC 6793, containing the parallaxes and apparent magnitudes (in all three Gaia filters) for 338 objects identified as belonging to the cluster, was obtained. The number of objects is greater than the 271 photometric Gaia objects found by \cite{2018A&A...616A..10G}. In addition to this, there were significant variations in the observed parallaxes of individual stars, far beyond the maximum cluster radii expected (\cite{2006A&A...456..523S}). Some objects were even assigned negative parallax values, which are therefore mathematically impossible. Restrictions on the parallax measurements were implemented, by imposing a distance-based selection range centred at 600 pc, which was treated as the centre of the cluster, in line with the \cite{2018A&A...616A..10G} estimate in Table \ref{NGC6793_obs}. The range was decreased until the remaining sample size was approximately equal to 271. When this was implemented, the final sample of observational data for NGC 6793 contained 274 objects. Some of these objects still had parallax distances further from the cluster centre than would be expected for any star cluster. The size of the final dataset balanced the need for maintaining sufficient data points, to achieve a valid comparison to the previous studies of NGC 6793, and eliminating anomalous data.\\*
+The Gaia DR2 dataset for NGC 6793, containing the parallaxes and apparent magnitudes (in all three Gaia filters) for 338 objects identified as belonging to the cluster, was obtained. The number of objects is greater than the 271 photometric Gaia objects found by \cite{2018A&A...616A..10G}, hereafter referred to as GC18. Restrictions on the parallax measurements were implemented, by imposing a distance-based selection range centred at 600 pc, which was treated as the centre of the cluster, in line with the GC18 estimate in Table \ref{NGC6793_obs}. The range was decreased until the remaining sample size was approximately equal to 271. When this was implemented, the final sample of observational data for NGC 6793 contained 274 objects. Some of these objects still had parallax distances further from the cluster centre than would be expected for any star cluster. The size of the final dataset balanced the need for maintaining sufficient data points, to achieve a valid comparison to the previous studies of NGC 6793, and eliminating anomalous data.\\*
 
-The isochrone fitting to the NGC 6793 was done by eye using a plot of the cluster's observed Gaia CMD, the position of each star corrected for its parallax distance. Using the values of $E(B-V)$ and age from \cite{2018A&A...616A..10G}, a standard-case isochrone was derived, again assuming a diffuse ISM (i.e., $R_{V} = 3.1$). The standard treatment was employed twice, creating a different isochrone each time. A coefficient calculated from $(A_{X}/A_{V})_{MS}$ was applied in one case and one calculated using $(A_{X}/A_{V})_{plat}$ in the other. The fitting process was carried out in sequential stages:
+The isochrone fitting to the NGC 6793 was done by eye using a plot of the cluster's observed Gaia CMD, the position of each star corrected for its parallax distance. Using the values of $E(B-V)$ and age from GC18, a standard-case isochrone was derived, again assuming a diffuse ISM (i.e., $R_{V} = 3.1$). The standard treatment was employed twice, creating a different isochrone each time. A coefficient calculated from $(A_{X}/A_{V})_{MS}$ was applied in one case and one calculated using $(A_{X}/A_{V})_{plat}$ in the other. The fitting process was carried out in sequential stages:
 
 \begin{enumerate}
 \item First, the upper main sequence of the FBEC isochrone was fitted to that of the standard-case isochrone by varying the value of $A_{V}$ used to calculate the final FBEC value for each stellar object.
@@ -599,7 +599,7 @@ The isochrone fitting to the NGC 6793 was done by eye using a plot of the cluste
 \item Finally, the FBEC isochrone metallicity was varied in an attempt match the observed lower main-sequence.
 \end{enumerate}
 
-The isochrone with the resulting parameters were then plotted alongside two standard-case isochrones, The resulting curves were compared to each other for accuracy with respect to the observational data.
+The isochrone with the resulting parameters were then plotted alongside two standard-case isochrones, The resulting curves were compared to each other for accuracy with respect to the observational data.\\*
 
 
 \chapter{Results and discussion}
@@ -831,20 +831,29 @@ The photometric filters in Gaia, as shown by their respective response functions
 
 \section{NGC 6793}
 
-****The errors in the parallax data for objects assigned to NGC 6793 were significant, particularly for stars in the lower main-sequence - understandably, since they are the faintest objects in the data and therefore are more difficult to track against the background light sources. Even when assuming the only source of error is from  parallax measurements, as was done for the errorbars shown in Figure \ref{ngc_errorbars}, the magnitude of the errorbars dwarf any changes in isochrones due to extinction ratio treatments in the lower main sequence. This leads to errors in the predicted $M_{\textnormal{ext},X}$ magnitudes, which is calculated by rearranging Equation \ref{distance_modulus}. The significance of the parallax errors in the main sequence is such that, any differences between isochrones with similar parameters are rendered insignificant. This is the case irrespective of photometric errors in the observed fluxes from the photometric filters.\\*
-
-Since the table of photometric fluxes did not include photometric errors, the parallax errors alone accounted for the total error in the calculated $M_{\textnormal{ext},X}$. Therefore, the errors on the flux measurements  were exactly equal in all filters for a given star. The errors on the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) color index were calculated as standard, by adding the individual filter errors in quadrature, giving the color errors which were a factor of $\sqrt{2}$ greater than those for the individual filter fluxes.\\*
-
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.5]{../NGC_6793_CMD_FeH_0p002_0p198_Av_1p0_600Myr_isochrones_both_errorbars_T5k.pdf}
-\caption{Gaia CMD of NGC 6793 with errorbars included.}
-\label{ngc_errorbars}
+\includegraphics[scale=0.45]{../NGC_6793_CMD_observational_errorbars.pdf}
+\caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD showing the 274 cluster members in the final dataset, with errorbars shown. The color of each object is determined by its parallax-derived distance.}
+\label{NGC_6793_obs_only}
 \end{center}
 \end{figure}
 
+\begin{figure}[hbt]
+\begin{center}
+\includegraphics[scale=0.45]{../NGC_6793_distances_hist.pdf}
+\caption{Histogram of distances for the 274 stars in the final observational dataset. The bins are set to a fixed width of 10 pc.}
+\label{NGC_6793_dist_hist}
+\end{center}
+\end{figure}
 
-****Get zoom in on turn-off region
+The Gaia observational dataset of stars in NGC 6793 is shown as a distance-corrected CMD in Figure \ref{NGC_6793_obs_only}, with distances and photometric errors propagated directly from parallax measurements.\\*
+
+Looking at the distances to the objects in the final dataset, it is clear that there are significant variations in the observed parallaxes of individual stars, far beyond the maximum cluster radii expected for the largest open clusters, given as 16.8$\pm$2.4 pc by \cite{2006A&A...456..523S} or even radii of compact stellar associations, given as 33.2$\pm$21.7 pc in the same paper. Even the . Some objects in the original dataset (338 members in total) were even assigned negative parallax values, which are mathematically impossible. Figure \ref{NGC_6793_dist_hist} shows a histogram of the final NGC 6793 sample****. It is clear that a substantial fraction of this sample have measured parallax distances which put them outside the physical limits of better-studied open clusters.\\*
+
+However, ****the errors in the parallax data for objects assigned to NGC 6793 were significant, particularly for stars in the lower main-sequence - understandably, since they are the faintest objects in the data and therefore are more difficult to track against background light sources. The significance persists despite this project assuming that the only source of photometric error is the parallax measurements. This leads to errors in the predicted $M_{\textnormal{ext},X}$ magnitudes, which are calculated by rearranging Equation \ref{distance_modulus}. The resulting errorbars are shown in Figure \ref{NGC_6793_obs_only}. The magnitudes of the errorbars dwarf any isochrone position changes due to differing extinction treatments in the lower main sequence. The uncertainties also render differences in position between isochrones with similar parameters insignificant.\\*
+
+Since the table of photometric fluxes did not include photometric errors, the parallax errors alone accounted for the total error in the calculated $M_{\textnormal{ext},X}$. Therefore, the errors on the flux measurements  were exactly equal in all filters for a given star. The errors on the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) color index were calculated as standard, by adding the individual filter errors in quadrature, giving the color errors which were a factor of $\sqrt{2}$ greater than those for the individual filter fluxes.\\*
 
 All the isochrones, as shown in Section****, are sensitive both to the reference extinction coefficient value $A_{V}$ and to the value of $A_{X}/A_{V}$ for the fixed-coefficient case, which is to be expected. Some individual parts of the isochrones relevant to this study are additionally sensitive to other isochrone parameters:
 
@@ -854,7 +863,15 @@ All the isochrones, as shown in Section****, are sensitive both to the reference
 \item The position of the lower main sequence is significantly more sensitive to metallicity than other parts of the isochrone.
 \end{enumerate}
 
-Before comparisons with the GC18 parameters can be made, a reference isochrone, with a globally-fixed $A_{X}$ value of 0.843 and age of 600 Myr (in accordance with Table \ref{NGC6793_obs}), was made. The $A_{X}/A_{V}$ values required to achieve alignment with the upper main sequence were equal to the $(A_{X}/A_{V})_{plat}$ values for each Gaia filter. While the results from GC18 do not include a metallicity estimate for NGC 6793, it can be estimated from its age that a solar-like metallicity is likely. Therefore, the relevant isochrone has a metallicity of [Fe/H] = 0. Due to the overall red-ward shift of the isochrone caused by using $(A_{X}/A_{V})_{plat}$, as demonstrated in Figure \ref{gaia_isoc_T50k},  the GC18 parameter values do not apply when using model functions to simulate isochrone extinction. The alignment of the upper main sequence was achieved using a value of $A_{V} = 1.1$. The best-fit MSTO of this isochrone had an age of 500 Myr. To better align the lower main sequence, an increase in isochrone metallicity was required. The best-fit metallicity was [Fe/H] = ****.
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.45]{../NGC_6793_CMD_FeH_0p062_Av_1p1_500Myr_all_isochrones_summary.pdf}
+\caption{****Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD showing the 274 cluster members in the final dataset, with errorbars shown. The color of each object is determined by its parallax-derived distance.}
+\label{NGC_6793_isoc_inset__1.1_500_0.062}
+\end{center}
+\end{figure}
+
+Before comparisons with the GC18 parameters can be made, a reference isochrone, with a globally-fixed $A_{X}$ value of 0.843 and age of 600 Myr (in accordance with Table \ref{NGC6793_obs}), was made. The $A_{X}/A_{V}$ values required to achieve alignment with the upper main sequence were equal to the $(A_{X}/A_{V})_{plat}$ values for each Gaia filter. While the results from GC18 do not include a metallicity estimate for NGC 6793, it can be estimated from its age that a solar-like metallicity is likely. Therefore, the relevant isochrone has a metallicity of [Fe/H] = 0. Due to the overall red-ward shift of the isochrone caused by using $(A_{X}/A_{V})_{plat}$, as demonstrated in Figure \ref{gaia_isoc_T50k},  the GC18 parameter values do not apply when using model functions to simulate isochrone extinction. The alignment of the upper main sequence was achieved using a value of $A_{V} = 1.1$. The best-fit MSTO of this isochrone had an age of 500 Myr. To better align the lower main sequence, an increase in isochrone metallicity was required. The best-fit metallicity was [Fe/H] = 0.062.
 
 
 \begin{table}
@@ -865,10 +882,10 @@ Before comparisons with the GC18 parameters can be made, a reference isochrone, 
 %\textbf{Filter} \\
 Cluster property & K05 & GC18 & This project \\
 \hline
-Age / Myr & 437 & 603 & 500**** \\
-$A_{V}$ / mag & 0.53 & 0.843 & 1.1****\\
-$[Fe/H]$ & ? & ? & 0.5**** \\
-Members & ? & 271 (photometric) & 274 (photometric) \\
+Age / Myr & 437 & 603 & 500 \\
+$A_{V}$ / mag & 0.53 & 0.843 & 1.1 \\
+$[Fe/H]$ & ? & ? & 0.062 \\
+Members & ? & 271 (photometric) & 274 \\
 \hline
 \end{tabular}
 \caption{Comparison of results from this project with observational parameters for NGC 6793 from Table \ref{NGC6793_obs}}
@@ -876,7 +893,7 @@ Members & ? & 271 (photometric) & 274 (photometric) \\
 \end{center}
 \end{table}
 
-A potential source of error when comparing the best-fit isochrone results of this project for NGC 6793 with those from GC18**** comes from the fact that this project employs the latest BaSTI isochrone database \citep{2018ApJ...856..125H}, while GC18 uses the PARSEC isochrone database \citep{2017ApJ...835...77M}. The use of different isochrone software could impact the validity of comparing the $A_{V}$ values, ages and metallicities arising from both extinction treatments.\\*
+A potential source of uncertainty when comparing the best-fit isochrone results of this project for NGC 6793 with those from GC18**** comes from the fact that this project employs the latest BaSTI isochrone database \citep{2018ApJ...856..125H}, while GC18 uses the PARSEC isochrone database \citep{2017ApJ...835...77M}. The use of different isochrone software could impact the validity of comparing the $A_{V}$ values, ages and metallicities arising from both extinction treatments.\\*
 
 \cite{2019MNRAS.483.4949G} carried out a detailed set of observations of the Galactic globular cluster NGC 5904 in 29 photometric bands. The CMDs created from this data were used to fit isochrones from five different databases, including PARSEC and BaSTI. They adopted the \cite{1989ApJ...345..245C} extinction law with the parameters having values of $R_{V} = 3.60\pm0.05$ and $A_{V} = 0.20\pm0.02$. As shown in Table \ref{NGC5904_obs_gontcharov}, the Gaia colour excess $E(G_{\textnormal{bp}} - G_{\textnormal{rp}})$ for NGC 5904 differs significantly between the best-fits from the two databases, which in turn causes disagreements for the projected cluster age and (photometric) distance. Across all filter systems and isochrone databases, the authors calculated mean estimates of the cluster properties and found that the resulting photometric distance to be in agreement with the cluster distance calculated from the Gaia parallaxes of the cluster members.\\*
 
