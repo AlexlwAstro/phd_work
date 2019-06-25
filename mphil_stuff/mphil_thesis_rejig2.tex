@@ -514,9 +514,9 @@ WFC3 & F438W & 4322 & 674 & 3895 & 4710 \\ % & 4320 & 695
 & F775W & 7725 & 1454 & 6869 & 8571 \\ % & 7760 & 1470
 & F814W & 7814 & 1505 & 6978 & 9684 \\ % & 8353 & 2555
 \hline
-& G & 6631 & 4397 & 3321 & 10515 \\ % & 6730 & 4400
-Gaia & G\textsubscript{bp} & 5330 & 2530 & 3283 & 6714 \\ % & 5320 & 2530
-& G\textsubscript{rp} & 7896 & 2956 & 6296 & 10637 \\ % & 7970 & 2960
+& $G$ & 6631 & 4397 & 3321 & 10515 \\ % & 6730 & 4400
+Gaia & $G_{\textnormal{bp}}$ & 5330 & 2530 & 3283 & 6714 \\ % & 5320 & 2530
+& $G_{\textnormal{rp}}$ & 7896 & 2956 & 6296 & 10637 \\ % & 7970 & 2960
 \hline
 
 \end{tabular}
@@ -605,7 +605,7 @@ The isochrone with the resulting parameters were then plotted alongside two stan
 \chapter{Results and discussion}
 
 \section{Choice of $R_{V}$ and $A_{V}$ values}
-In order to generate the bolometric correction data, the Fortran software required the user to input a single, global value for the parameters $R_{V}$ and $A_{V}$. The global $R_{V}$ value, which is applied to the \cite{1989ApJ...345..245C} extinction law, was chosen as $R_{V} = 3.1$. This is equal to the mean diffuse ISM value calculated by \cite{1985ApJ...288..618R} and widely used in analysis of stellar observations. The choice for the non-zero value of $A_{V}$ was required in order to generate the $A_{X}/A_{V}$ data via Equation \ref{BCs_diff}. The choice for this global value was made as $A_{V} = 1.0$. This was chosen for multiple**** reasons:
+In order to generate the bolometric correction data, the Fortran software required the user to input a single, global value for the parameters $R_{V}$ and $A_{V}$. The global $R_{V}$ value, which is applied to the \cite{1989ApJ...345..245C} extinction law, was chosen as $R_{V} = 3.1$. This is equal to the mean diffuse ISM value calculated by \cite{1985ApJ...288..618R} and widely used in analysis of stellar observations. The choice for the non-zero value of $A_{V}$ was required in order to generate the $A_{X}/A_{V}$ data via Equation \ref{BCs_diff}. The choice for this global value was made as $A_{V} = 1.0$. This was chosen for multiple reasons:
 
 \begin{itemize}
 \item The value is sufficiently large for differences between both BC datasets to become apparent in the $A_{X}/A_{V}$ data.
@@ -715,7 +715,7 @@ Gaia & G\textsubscript{bp} & pow & -0.115$\pm$0.0081 & -0.8997$\pm$0.0692 & 1.24
 \end{center}
 \end{table}
 
-The extinction-ratio data for all filters, with the exception of the four fully-UV filters in the WFC3 system, could be accurately modelled by the simplest functions trialled for fitting, $A_{\textnormal{pow}} (T_{\textnormal{eff}})$ or $A_{\textnormal{pow}} (T_{\textnormal{eff}})$.
+The extinction-ratio data for all filters, with the exception of the four fully-UV filters in the WFC3 system, could be accurately modelled by the simplest functions trialled for fitting, $A_{\textnormal{exp}} (T_{\textnormal{eff}})$ or $A_{\textnormal{pow}} (T_{\textnormal{eff}})$.
 \begin{table}
 \begin{center}
 \begin{tabular}{cccccc}
@@ -745,7 +745,7 @@ F300X & Equation \ref{decay_const_eq} & a & b & c \\
 
 All the functions are consistent with the general trends predicted by the physics in stellar atmospheres, since the effective temperature has the greatest effect upon the value of $A_{X}/A_{V}$, with relatively minor effects due to spectral absorption lines, via surface gravity and metallicity. In general stars with higher effective temperatures (and consequently stronger and bluer flux spectra) experience higher $A_{X}/A_{V}$ values in all filters than stars with low effective temperatures. The maximum $A_{X}/A_{V}$ value in a given filter decreases as the filter's central wavelength increases. This is expected for black-body analogues (see Equation \ref{planck_bb} and Figure \ref{planck_curve}). Both trends are also consistent with the known short-wavelength preference of physical mechanisms causing interstellar extinction.\\*
 
-The accuracy of these relatively simple functions is important because the $A_{X}/A_{V}$ dataset for each filter is now reduced to a much smaller number of degrees of freedom, equal to the number of coefficients in the relevant function. The input parameters ($T_{\textnormal{eff}}$, log($g$) and [Fe/H]) are required when using either tables of $A_{X}/A_{V}$ or the functions ****
+The accuracy of these relatively simple functions is important because the $A_{X}/A_{V}$ dataset for each filter is now reduced to a much smaller number of degrees of freedom, equal to the number of coefficients in the relevant function. The input parameters ($T_{\textnormal{eff}}$, log($g$) and [Fe/H]) are required, regardless of whether interpolation of the tables of $A_{X}/A_{V}$ data or the functions are being employed. ****
 
 
 \section{Effect on isochrones} \label{result_CMDs}
@@ -833,7 +833,7 @@ The photometric filters in Gaia, as shown by their respective response functions
 
 ****The errors in the parallax data for objects assigned to NGC 6793 were significant, particularly for stars in the lower main-sequence - understandably, since they are the faintest objects in the data and therefore are more difficult to track against the background light sources. Even when assuming the only source of error is from  parallax measurements, as was done for the errorbars shown in Figure \ref{ngc_errorbars}, the magnitude of the errorbars dwarf any changes in isochrones due to extinction ratio treatments in the lower main sequence. This leads to errors in the predicted $M_{\textnormal{ext},X}$ magnitudes, which is calculated by rearranging Equation \ref{distance_modulus}. The significance of the parallax errors in the main sequence is such that, any differences between isochrones with similar parameters are rendered insignificant. This is the case irrespective of photometric errors in the observed fluxes from the photometric filters.\\*
 
-Since the table for photometric fluxes did not include photometric errors, the parallax errors alone accounted for the total error in the calculated $M_{\textnormal{ext},X}$. Therefore, the errors on the flux measurements  were exactly equal in all filters for a given star. The errors on the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) color index were calculated as standard, by adding the individual filter errors in quadrature, giving the color errors which were a factor of $\sqrt{2}$ greater than those for the individual filter fluxes.\\*
+Since the table of photometric fluxes did not include photometric errors, the parallax errors alone accounted for the total error in the calculated $M_{\textnormal{ext},X}$. Therefore, the errors on the flux measurements  were exactly equal in all filters for a given star. The errors on the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) color index were calculated as standard, by adding the individual filter errors in quadrature, giving the color errors which were a factor of $\sqrt{2}$ greater than those for the individual filter fluxes.\\*
 
 \begin{figure}[h]
 \begin{center}
@@ -854,6 +854,9 @@ All the isochrones, as shown in Section****, are sensitive both to the reference
 \item The position of the lower main sequence is significantly more sensitive to metallicity than other parts of the isochrone.
 \end{enumerate}
 
+Before comparisons with the GC18 parameters can be made, a reference isochrone, with a globally-fixed $A_{X}$ value of 0.843 and age of 600 Myr (in accordance with Table \ref{NGC6793_obs}), was made. The $A_{X}/A_{V}$ values required to achieve alignment with the upper main sequence were equal to the $(A_{X}/A_{V})_{plat}$ values for each Gaia filter. While the results from GC18 do not include a metallicity estimate for NGC 6793, it can be estimated from its age that a solar-like metallicity is likely. Therefore, the relevant isochrone has a metallicity of [Fe/H] = 0. Due to the overall red-ward shift of the isochrone caused by using $(A_{X}/A_{V})_{plat}$, as demonstrated in Figure \ref{gaia_isoc_T50k},  the GC18 parameter values do not apply when using model functions to simulate isochrone extinction. The alignment of the upper main sequence was achieved using a value of $A_{V} = 1.1$. The best-fit MSTO of this isochrone had an age of 500 Myr. To better align the lower main sequence, an increase in isochrone metallicity was required. The best-fit metallicity was [Fe/H] = ****.
+
+
 \begin{table}
 \begin{center}
 \begin{tabular}{cccc}
@@ -868,14 +871,38 @@ $[Fe/H]$ & ? & ? & 0.5**** \\
 Members & ? & 271 (photometric) & 274 (photometric) \\
 \hline
 \end{tabular}
-\caption{Comparison of results from this project with observational parameters for NGC 6793 from Table \ref{NGC6793_obs}
+\caption{Comparison of results from this project with observational parameters for NGC 6793 from Table \ref{NGC6793_obs}}
 \label{NGC6793_result}
 \end{center}
 \end{table}
 
-****compare BaSTI and PARSEC isochrone softwares using \cite{2019MNRAS.483.4949G} figures
+A potential source of error when comparing the best-fit isochrone results of this project for NGC 6793 with those from GC18**** comes from the fact that this project employs the latest BaSTI isochrone database \citep{2018ApJ...856..125H}, while GC18 uses the PARSEC isochrone database \citep{2017ApJ...835...77M}. The use of different isochrone software could impact the validity of comparing the $A_{V}$ values, ages and metallicities arising from both extinction treatments.\\*
 
-A potential source of error when comparing the comes from 
+\cite{2019MNRAS.483.4949G} carried out a detailed set of observations of the Galactic globular cluster NGC 5904 in 29 photometric bands. The CMDs created from this data were used to fit isochrones from five different databases, including PARSEC and BaSTI. They adopted the \cite{1989ApJ...345..245C} extinction law with the parameters having values of $R_{V} = 3.60\pm0.05$ and $A_{V} = 0.20\pm0.02$. As shown in Table \ref{NGC5904_obs_gontcharov}, the Gaia colour excess $E(G_{\textnormal{bp}} - G_{\textnormal{rp}})$ for NGC 5904 differs significantly between the best-fits from the two databases, which in turn causes disagreements for the projected cluster age and (photometric) distance. Across all filter systems and isochrone databases, the authors calculated mean estimates of the cluster properties and found that the resulting photometric distance to be in agreement with the cluster distance calculated from the Gaia parallaxes of the cluster members.\\*
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+Cluster property & PARSEC & BaSTI \\
+\hline
+$E(G_{\textnormal{bp}} - G_{\textnormal{bp}})$ / mag & 0.080$\pm$0.02 & 0.013$\pm$0.03 \\
+Age / Gyr & 11.5 & 12.5 \\
+Distance / pc & 7600 & 8400 \\
+\hline
+\end{tabular}
+\caption{Comparison of best-fit parameter results for NGC 5904 using PARSEC and BaSTI. Data taken from \cite{2019MNRAS.483.4949G}.}
+\label{NGC5904_obs_gontcharov}
+\end{center}
+\end{table}
+
+In the case of the analysis of NGC 6793 made here, the distance measurements are derived from parallax measurements and so are unaffected by the choice of isochrone software, allowing the GC18 cluster distance to be assumed here (as 600 pc to the cluster centre). Furthermore, using the PARSEC-derived parameters from GC18, an accurate BaSTI model isochrone was nevertheless produced successfully without any deviation from standard assumptions made for an extinction model of constant $A_{X}/A_{V}$.\\*
+
+Therefore, it was concluded that the validity of comparing of the respective $A_{X}$, [Fe/H] and age values from GC18 and this project was not endangered by the use of different isochrone databases by the each study.\\*
+
+As predicted by the comparisons made in Section \ref{Gaia_isoc}, the isochrone with a function-based extinction at the GC18 value of $A_{V} = 0.84$ is systematically too blue and too bright to fit to the observed CMD of NGC 6793. This remains the case regardless of changes in age and metallicity. Therefore, there is significant disagreement between the $A_{V}$ values between the two extinction calculation methods.****
+
+**** There are considerable uncertainties for the parameters in both isochrones in Figure ****. Most fundamentally, the position of the MSTO is reliant only on the position of the four brightest cluster members, of which the brightest two, if the isochrones are accurate, appear to be part of part of the cluster's SGB hook \citep{1998MNRAS.298..525P}. Furthermore, these two hook members are not covered by either isochrone, with the position differences being highly**** significant regarding the objects' (small) parallax errors. This disagreement persists even with substantial changes in metallicity, while any changes in $A_{V}$ and age cause misalignment with the main sequence and MSTO, respectively.
 
 \chapter{Conclusion \& future work}
 In all cases, applying a fixed extinction to all points in an isochrone causes the main-sequence turn-off to occur at a more luminous, bluer point in a given CMD than the MSTO point for an isochrone with extinction values for every star described using an analytical function fitted to empirically-derived data.\\*
@@ -887,7 +914,9 @@ There are multiple ways to extend the applicability of the work done in this pro
 
 Another extension would be to apply the function-based extinction approach to observed clusters with isochrone ages determined using the globally-fixed $A_{X}$ approach. If, as predicted for the limited examples studied in this project, the isochrone ages of a given cluster CMD are greater when employing a fixed-extinction approach, there is the possibility of a systematic decrease in the predicted ages of these observed after comparison with ages derived using a function-based approach.\\*
 
-Finally, the limits on the accuracy of the model functions presented here require investigation, particularly the accuracy limit at the lowest $T_{\textnormal{eff}}$ values available from ATLAS9. This could be done using the same approach as that used by \cite{2008PASP..120..583G}, who use models from **** to extend their bolometric correction database to a minimum $T_{\textnormal{eff}}$ of ~ 1000 K. The coolest known stellar objects (excluding brown dwarfs) have $T_{\textnormal{eff}} \gtrsim 2500$ K. Extending the dataset would constrain the allowed behaviour of the model functions in the lowest ATLAS9 metallicities. Currently, the lack of data below 3500 K prevents investigation of the significance of the tail-flick phenomenon. At present, the phenomenon 
+Regarding the case of NGC 6793, follow-up observations with Johnson-Cousins filters, if feasible, could resolve the $A_{V}$ disagreement between extinction-calculation methods by providing a direct measured value upon which the Gaia extinction ratios can be calculated.\\*
+
+Finally, the limits on the accuracy of the model functions presented here require investigation, particularly the accuracy limit at the lowest $T_{\textnormal{eff}}$ values available from ATLAS9. This could be done using the same approach as that used by \cite{2008PASP..120..583G}, who use models from **** to extend their bolometric correction database to a minimum $T_{\textnormal{eff}}$ of ~ 1000 K. The coolest known stellar objects (excluding brown dwarfs) have $T_{\textnormal{eff}} \gtrsim 2500$ K. Extending the dataset would constrain the allowed behaviour of the model functions in the lowest ATLAS9 metallicities. Currently, the lack of data below 3500 K prevents investigation of the significance of the tail-flick phenomenon. At present, the phenomenon ****
 
 %\bibliographystyle{ieeetr}
 \bibliographystyle{mnras} % unsrtnat
