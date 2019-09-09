@@ -154,7 +154,8 @@ parsec (pc) &:& 1 pc = $3.086 \times 10^{18}$ cm
 \\*
 
 \chapter{Introduction}
-\section{Extinction definition} \label{ext_def}
+\section{Extinction} \label{ext_def}
+\subsection{Definition and origin}
 
 As the light emitted from a star travels towards a distant observer, its intensity, or flux, $f$ decreases with distance $d$ via an inverse-square law:
 
@@ -173,7 +174,10 @@ d/\textnormal{pc} = \frac{1}{(p/\textnormal{arcsec})}
 
 Parallaxes are extremely useful because, provided a star can be distinguished from bright objects near it in the sky, its parallax can be measured accurately, completely independent from its flux. For more distant stellar sources with much smaller parallaxes, a potential alternative is to view the object in a very long-wavelength filter, in which observations are likely to be impacted much less significantly by extinction, to estimate the type of star being observed, before using theoretical models to compare with observations at different wavelengths. This is more effective for brighter stars. \\*
 
-However, the interstellar medium (ISM) is not a perfect vacuum. It contains many different structures, such as diffuse gas clouds, that can absorb or scatter light passing through, depending on the wavelength of the incoming photons, the density of the medium and the quantum levels in the atoms occupied by their electrons. Although the light absorbed by an atom is re-radiated, this radiation is emitted isotropically, causing a net decrease in the flux travelling in the direction of a given observer. These absorption and scattering events are known as interstellar extinction. A beam containing photons with a sufficiently large range of wavelengths will therefore lose some of its photons, and therefore flux, due to interactions with the ISM through which it travels. The magnitude of loss is determined by the wavelength(s) of those photons, the fraction of the beam consisting of these photons and the state of the ISM. For a given source, its interstellar extinction value represents the total flux absorbed or scattered due to all extinction events along the line-of-sight between the source and the observer.\\*
+However, the interstellar medium (ISM) is not a perfect vacuum. It contains many different structures, such as clouds of diffuse gas and dust grains, that can absorb or scatter light passing through. The effect of dust clouds on light travelling towards observers is particularly apparent when examining star clusters and galaxies, with the dust obscuring optical light from sources behind the clouds****.
+
+
+****The incidence of absorption and scattering events depends on the wavelength of the incoming photons, the density of the medium and the quantum levels in the atoms occupied by their electrons. Although the light absorbed by an atom is re-radiated, this radiation is emitted isotropically, causing a net decrease in the flux travelling in the direction of a given observer. These absorption and scattering events are known as interstellar extinction. A beam containing photons with a sufficiently large range of wavelengths will therefore lose some of its photons, and therefore flux, due to interactions with the ISM through which it travels. The magnitude of loss is determined by the wavelength(s) of those photons, the fraction of the beam consisting of these photons and the state of the ISM. For a given source, its interstellar extinction value represents the total flux absorbed or scattered due to all extinction events along the line-of-sight between the source and the observer.\\*
 
 Interstellar extinction preferentially affects light at shorter (i.e., bluer) wavelengths. Therefore, the effect of extinction is sometimes referred to as ``reddening'', despite the fact that this term is also applied to a related, but distinct, quantity (see Section \ref{extinc_desc}). Therefore, it should be expected that sources with proportionally higher fluxes at shorter wavelengths are most affected by extinction. \\*
 
@@ -200,11 +204,77 @@ The quantity $(m - M)_{0}$ is known as the distance modulus. As seen in Equation
 Therefore, the extinction coefficient $A$, defined as the flux absorbed or scattered by the intervening line-of-sight medium, can be defined as:
 
 \begin{equation}
-\label{bol_extinc}
 A = m - m_{0}
+\label{bol_extinc}
 \end{equation}
 
+****
+Optical depth!!!!
+When a broadband beam of light passes through a cloud, the loss of flux due to absorption, refraction or diffraction****, for a given filter $X$ is related to the optical depth, $\tau_{X}$. The optical depth is defined along the line-of-sight via:
+
+\begin{equation}
+\tau_{X} = \int_{0}^{l} \rho \kappa_{X} dl = \int_{0}^{l} n \sigma_{X} dl
+\label{optical_depth}
+\end{equation}
+
+where $l$ is the length of the path taken by the beam through the cloud, $\rho$ is the mass density of the local cloud material, $\kappa_{X}$ is the material's opacity, $n$ is the particle number density and $\sigma_{X}$ is the particle collision cross-section.
+****
+
 This fits with the physical definition of interstellar extinction given earlier, i.e. as the flux of photons scattered and absorbed in the interstellar medium. \\*
+
+\subsection{Effects of extinction on interpreting stellar populations} \label{extinc_desc}
+
+The goal of this project is to compare different extinction treatments and the subsequent effect on the interpretation of observational cluster datasets. For any observational set of stars, the stars' extinction coefficients will be completely unknown from the data alone. In order to compare observational and theoretical data, the most convenient approach is to add the (theoretical) extinction coefficient(s) to the theoretical dataset magnitudes (i.e., absolute magnitudes), before comparing to the distance-corrected observational data. As a result, the quantity from each dataset that is being compared is the absolute magnitude plus the extinction coefficient in each filter. If we label this quantity $M_{\textnormal{ext},X}$ for a generic filter $X$, we can define it as:
+
+\begin{equation}
+M_{\textnormal{ext},X} = M_{X} + A_{X}
+\label{MextX_def}
+\end{equation}
+
+Applying the definitions of the bolometric extinction and distance modulus given in Equation \ref{bol_extinc} and \ref{distance_modulus}, respectively, to the case of filter $X$ gives the following:
+
+\begin{equation}
+A_{X} = m_{X} - m_{X,0}
+\label{extinc_X}
+\end{equation}
+
+\begin{equation}
+(m - M)_{X,0} = m_{X,0} - M_{X} = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
+\label{DM_X}
+\end{equation}
+
+It can be seen that the distance modulus in $X$ shares the same relationship with distance as its bolometric counterpart in Equation \ref{distance_modulus}. Using Equations \ref{extinc_X} and \ref{DM_X}, Equation \ref{MextX_def} can now be rewritten such that $M_{\textnormal{ext},X}$ is defined using both quantities derived directly from observations and those determined by theoretical models:
+
+\begin{align}
+\begin{split}
+M_{\textnormal{ext},X} &= M_{X} + A_{X} \textnormal{ (theoretical data)}\\
+ &= m_{X} + 5 - 5\log\left(\frac{d}{\textnormal{pc}}\right) \textnormal{ (observational data)}
+\end{split}
+\label{MextX_eq}
+\end{align}
+
+This allows for direct comparison of theoretical isochrones, whose stars are treated with theoretically-determined $A_{X}$ values, with distance-corrected observational data, whose stars have unknown $A_{X}$ values. Therefore, this provides a pathway for comparing the standard treatment of extinction (constant $A_{X}/A_{V}$ ratios) with the treatment proposed in this project ($A_{X}/A_{V}$ varying as functions of intrinsic stellar parameters). \\*
+
+If we compare the individual black body spectra in Figure \ref{planck_curve}, it can be seen that the maximum monochromatic flux of the black body occurs at an increasingly shorter wavelength for objects with increasingly higher temperatures. This makes the object appear bluer to an observer. The relationship between the wavelength at which the monochromatic flux is maximal ($\lambda_{max}$) and the black body temperature is quantified by Wien's displacement law:
+
+\begin{equation}
+\lambda_{max} T = 2.898 \times 10^{6} \textnormal{ nm K}
+\label{wien_eq}
+\end{equation}
+
+More importantly, Figure \ref{planck_curve} demonstrates that, within the UV-to-IR wavelength regime, the change in flux between two wavelength regions is always greater for stars with higher effective temperatures. Therefore, to measure a star's effective temperature, observers compare the star's observed flux in two filters operating at different wavelengths within this range. The difference between the star's flux magnitudes in each of the two filters is then taken, with the flux in the redder filter being deducted from that of the bluer filter. This quantity is known as the colour index. For two filters $X$ and $Y$, with $X$ being bluer than $Y$, the colour index of observations made using those filters, $(X-Y)$, is defined as:
+
+\begin{align}
+\begin{split}
+(X-Y) &= m_{X} - m_{Y} \\
+ &= (m_{X,0} - m_{Y,0}) + (A_{X} - A_{Y}) \\
+ &= (X-Y)_{0} + E(X-Y)
+\end{split}
+\end{align}
+
+where $(X-Y)_{0}$ is the true or intrinsic colour index of the object and $E(X-Y) = A_{X} - A_{Y}$ is known as the colour excess, but can also be denoted in literature using the term ``reddening''. The colour excess represents the effect of extinction on the observed colour index. Its importance arises from the prominence of the intrinsic colour index in determining effective temperature. Higher values of $(X-Y)$ indicate redder stars, with lower effective temperatures.\\*
+
+The most commonly-used colour index, employed as a reference for most optical observations, is the Johnson ($B-V$) index. This is due to these filters being the among most widely-used and best-studied available, allowing for better comparisons of different data, including data from older archives.\\*
 
 \section{Observational constraints}
 No telescope can view the sky at all spectral wavelengths, as this would be wholly impractical. Therefore, modern telescopes are equipped with a system of filters, which allow only light within a narrow range of wavelengths. In a filter system, the individual filters are designed to operate best at different wavelengths. The filter system therefore covers a much wider range of spectral wavelengths than a single filter would alone. This property is used to observe stars at different wavelengths to determine their colour, which in turn grants further physical information about the star (see Section \ref{extinc_desc} for details). Furthermore, the filters in a given system are often designed such that the range of wavelengths in which each can detect incoming light overlaps with those of its neighbour(s), as shown in Figures \ref{Gaia_response_funcs}-\ref{ACS_response_funcs}. This ensures that there are no wavelength gaps in which incoming light cannot be detected.\\*
@@ -218,6 +288,15 @@ The treatment of extinction in observational surveys is usually via a constant v
 
 \section{Empirical extinction curves}
 \cite{1985ApJ...288..618R} found that outside dense molecular clouds, which have high opacities and whose lines-of-sight are less frequently used as a result, all extinction laws for all Johnson filters studied were uniform between wavelengths of 1 and 13 $\mu$m when observing sources in the direction of the Galactic Centre. This result was then used to produce constant $A_{X}/A_{V}$ extinction ratios in the same filters. They also determined the now-widely used global average value of 3.08 (~3.1) for $R_{V} = A{V}/E(B-V)$, known as the total-to-selective extinction ratio,  for the diffuse ISM. \\*
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{blackbody_teff_logF_illustration.pdf}
+\caption{Plot of the logarithm of monochromatic flux of a black body for different stellar effective temperatures, as a function of wavelength. The black dashed lines mark the approximate limits of the visible part of the EM spectrum. The green curve represents the variation of the Planck Law maxima with effective temperature.}
+\label{planck_curve}
+\end{center}
+\end{figure}
 
 \cite{1989ApJ...345..245C} used observations of mostly O- and B-type main-sequence stars to produce empirical equations describing the mean ratio of extinction coefficients at a specific wavelength $\lambda$ ($A_{\lambda}$) to the extinction in the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{\lambda}/A_{V}$. They produced a basic equation of the form:
 
@@ -248,7 +327,7 @@ To understand the significance of differences between stars with respect to inte
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.5]{blackbody_teff_logF_illustration.pdf}
+\includegraphics[width=1.0\textwidth]{blackbody_teff_logF_illustration.pdf}
 \caption{Plot of the logarithm of monochromatic flux of a black body for different stellar effective temperatures, as a function of wavelength. The black dashed lines mark the approximate limits of the visible part of the EM spectrum. The green curve represents the variation of the Planck Law maxima with effective temperature.}
 \label{planck_curve}
 \end{center}
@@ -310,60 +389,6 @@ The impact of surface gravity arises via additional broadening effects upon thes
 The Forbes effect occurs as a broadband beam of light, such as that passes through an extended partially-transparent medium, such as the Earth's atmosphere or an interstellar gas cloud. It states that the greater the distance travelled by a light beam through the medium, the more penetrating the beam becomes \citep{1842RSPT..132..225F}. The physical basis for this effect is that those photons in the original beam with wavelengths that make them the most likely to be absorbed or refracted are separated from the beam earlier. Therefore, as the beam travels through the medium, its constituent photons are progressively less likely to be separated. Since a higher fraction of its photons are retained as the distance through the medium increases, the beam is more penetrating \citep{OHVRIL1999305}.\\*
 
 The Forbes effect thus has an impact on the non-zero $A_{V}$ value used in Equation \ref{BCs_diff} because if a uniform medium is assumed, as here, where $R_{V}$ is held constant at the standard diffuse ISM value of 3.1 \citep{1989ApJ...345..245C}, a larger $A_{V}$ value implies a longer path through the ISM, and thus a stronger Forbes effect. According to \cite{2008PASP..120..583G}, any significant impact from the Forbes effect on the values of $A_{X}/A_{V}$ occurs for a chosen $A_{V} \gtrsim 4$. They found that the effect was particularly strong for stars with $T_{\textnormal{eff}} \lesssim 3000$K and that, unsurprising, it became greater as the wavelength range covered by the filter response function increased.\\*
-
-\section{Effects of extinction on interpreting stellar populations} \label{extinc_desc}
-
-The goal of this project is to compare different extinction treatments and the subsequent effect on the interpretation of observational cluster datasets. For any observational set of stars, the stars' extinction coefficients will be completely unknown from the data alone. In order to compare observational and theoretical data, the most convenient approach is to add the (theoretical) extinction coefficient(s) to the theoretical dataset magnitudes (i.e., absolute magnitudes), before comparing to the distance-corrected observational data. As a result, the quantity from each dataset that is being compared is the absolute magnitude plus the extinction coefficient in each filter. If we label this quantity $M_{\textnormal{ext},X}$ for a generic filter $X$, we can define it as:
-
-\begin{equation}
-M_{\textnormal{ext},X} = M_{X} + A_{X}
-\label{MextX_def}
-\end{equation}
-
-Applying the definitions of the bolometric extinction and distance modulus given in Equation \ref{bol_extinc} and \ref{distance_modulus}, respectively, to the case of filter $X$ gives the following:
-
-\begin{equation}
-A_{X} = m_{X} - m_{X,0}
-\label{extinc_X}
-\end{equation}
-
-\begin{equation}
-(m - M)_{X,0} = m_{X,0} - M_{X} = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
-\label{DM_X}
-\end{equation}
-
-It can be seen that the distance modulus in $X$ shares the same relationship with distance as its bolometric counterpart in Equation \ref{distance_modulus}. Using Equations \ref{extinc_X} and \ref{DM_X}, Equation \ref{MextX_def} can now be rewritten such that $M_{\textnormal{ext},X}$ is defined using both quantities derived directly from observations and those determined by theoretical models:
-
-\begin{align}
-\begin{split}
-M_{\textnormal{ext},X} &= M_{X} + A_{X} \textnormal{ (theoretical data)}\\
- &= m_{X} + 5 - 5\log\left(\frac{d}{\textnormal{pc}}\right) \textnormal{ (observational data)}
-\end{split}
-\label{MextX_eq}
-\end{align}
-
-This allows for direct comparison of theoretical isochrones, whose stars are treated with theoretically-determined $A_{X}$ values, with distance-corrected observational data, whose stars have unknown $A_{X}$ values. Therefore, this provides a pathway for comparing the standard treatment of extinction (constant $A_{X}/A_{V}$ ratios) with the treatment proposed in this project ($A_{X}/A_{V}$ varying as functions of intrinsic stellar parameters). \\*
-
-If we compare the individual black body spectra in Figure \ref{planck_curve}, it can be seen that the maximum monochromatic flux of the black body occurs at an increasingly shorter wavelength for objects with increasingly higher temperatures. This makes the object appear bluer to an observer. The relationship between the wavelength at which the monochromatic flux is maximal ($\lambda_{max}$) and the black body temperature is quantified by Wien's displacement law:
-
-\begin{equation}
-\lambda_{max} T = 2.898 \times 10^{6} \textnormal{ nm K}
-\label{wien_eq}
-\end{equation}
-
-More importantly, Figure \ref{planck_curve} demonstrates that, within the UV-to-IR wavelength regime, the change in flux between two wavelength regions is always greater for stars with higher effective temperatures. Therefore, to measure a star's effective temperature, observers compare the star's observed flux in two filters operating at different wavelengths within this range. The difference between the star's flux magnitudes in each of the two filters is then taken, with the flux in the redder filter being deducted from that of the bluer filter. This quantity is known as the colour index. For two filters $X$ and $Y$, with $X$ being bluer than $Y$, the colour index of observations made using those filters, $(X-Y)$, is defined as:
-
-\begin{align}
-\begin{split}
-(X-Y) &= m_{X} - m_{Y} \\
- &= (m_{X,0} - m_{Y,0}) + (A_{X} - A_{Y}) \\
- &= (X-Y)_{0} + E(X-Y)
-\end{split}
-\end{align}
-
-where $(X-Y)_{0}$ is the true or intrinsic colour index of the object and $E(X-Y) = A_{X} - A_{Y}$ is known as the colour excess, but can also be denoted in literature using the term ``reddening''. The colour excess represents the effect of extinction on the observed colour index. Its importance arises from the prominence of the intrinsic colour index in determining effective temperature. Higher values of $(X-Y)$ indicate redder stars, with lower effective temperatures.\\*
-
-The most commonly-used colour index, employed as a reference for most optical observations, is the Johnson ($B-V$) index. This is due to these filters being the among most widely-used and best-studied available, allowing for better comparisons of different data, including data from older archives.\\*
 
 \section{Project objective}
 This project will study the variations of the extinction ratios $A_{X}/A_{V}$ in multiple photometric filters within multiple filter systems with changes in $T_{\textnormal{eff}}$, $g$ and [Fe/H]. This will be carried out across as large a range of stellar types as possible.\\*
@@ -446,7 +471,7 @@ To generate the predicted stellar flux, pre-calculated ATLAS9 model stellar atmo
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.6]{ATLAS9_grid_BaSTI_coverage_2ages_crop.png}
+\includegraphics[width=1.0\textwidth]{ATLAS9_grid_BaSTI_coverage_2ages_crop.png}
 \caption{$T_{\textnormal{eff}}$-log($g$) scatter plot for a BaSTI 50 Myr, [Fe/H] = -1 isochrone (red), a BaSTI 12 Gyr, [Fe/H] = -1 isochrone (black) and ATLAS9 model grid (blue) for $T_{\textnormal{eff}} \leq 23000$ K.}
 \label{Teff-logg coverage}
 \end{center}
@@ -480,9 +505,9 @@ In this project, three broad-band filter systems were employed. Two are systems 
 
 Reference will also be made to the Johnson-Morgan filter system (often simply known as the Johnson system) UBV \cite{1953ApJ...117..313J}, later extended as the Johnson-Cousins UBVRI \cite{1990PASP..102.1181B} system, which has been in use for decades and continues to be be the standard reference for more modern filter systems. Of particular importance are the Johnson blue ($B$) and yellow ($V$) filters, as these formed the original benchmark for observing stellar populations and evolutionary stages. \\*
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{GaiaDR2Passbands.png}
+\includegraphics[width=1.0\textwidth]{GaiaDR2Passbands.png}
 \caption{Filter response functions for Gaia photometric filters. Source: \protect\url{https://www.cosmos.esa.int/web/gaia/iow_20180316}}
 \label{Gaia_response_funcs}
 \end{center}
@@ -490,15 +515,15 @@ Reference will also be made to the Johnson-Morgan filter system (often simply kn
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.5]{ACS_Wide.png}
+\includegraphics[width=1.0\textwidth]{ACS_Wide.png}
 \caption{Filter response functions for wide-field ACS filters. Source: \protect\url{http://www.stsci.edu/hst/acs/analysis/throughputs}}
 \label{ACS_response_funcs}
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{UVIS_Wide1.jpg}
+\includegraphics[width=1.0\textwidth]{UVIS_Wide1.jpg}
 \caption{Filter response functions for wide-field WFC3 filters. Source: \protect\url{http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}}
 \label{WFC3_response_funcs1}
 \end{center}
@@ -506,7 +531,7 @@ Reference will also be made to the Johnson-Morgan filter system (often simply kn
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.5]{UVIS_Wide2.jpg}
+\includegraphics[width=1.0\textwidth]{UVIS_Wide2.jpg}
 \caption{Filter response functions for wide-field WFC3 filters. Source: \protect\url{http://www.stsci.edu/hst/wfc3/ins_performance/throughputs/UVIS_filterthru.html}}
 \label{WFC3_response_funcs2}
 \end{center}
@@ -604,7 +629,7 @@ Distance modulus / mag & 10.73 & 8.894 \\
 log(age / yr) & 8.64 & 8.78 \\
 -> Age / Myr & 437 & 603 \\
 $E(B-V)$ / mag & 0.17 & 0.272 \\
--> $A_{V}$ / mag (if $R_{V} = 3.1$) & 0.53 & 0.843**** \\
+-> $A_{V}$ / mag (if $R_{V} = 3.1$) & 0.53 & 0.843 \\
 $\textnormal{[Fe/H]}$ & ? & ? \\
 Members & ? (> 3 ACSS-2.5) & 465 (271 with Gaia photometry) \\
 \hline
@@ -645,7 +670,7 @@ Another general feature is the convergence of $A_{X}/A_{V}$ to a single maximum 
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.45]{../just_full_data/comb/AHub_FeH0p0_just_Teff_plot_lines.pdf}
+\includegraphics[width=1.0\textwidth]{../just_full_data/comb/AHub_FeH0p0_just_Teff_plot_lines.pdf}
 \caption{Solar-metallicity extinction ratio data for the WFC3 (first 13 panels) and Gaia (last 3) systems, with point-to-point lines connecting datapoints for a fixed log($g$) value.}
 \label{just_data_FeH0_WFC3gaia}
 \end{center}
@@ -653,7 +678,7 @@ Another general feature is the convergence of $A_{X}/A_{V}$ to a single maximum 
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.4]{../just_full_data/ACS/AHub_FeH0p0_just_Teff_plot_lines.pdf}
+\includegraphics[width=1.0\textwidth]{../just_full_data/ACS/AHub_FeH0p0_just_Teff_plot_lines.pdf}
 \caption{Same as Figure \ref{just_data_FeH0_WFC3gaia}, except the filters shown here are for the ACS system.}
 \label{just_data_FeH0_ACS}
 \end{center}
@@ -801,7 +826,7 @@ The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CM
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+\includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{ACS F435W-(F435W-F814W) CMD with a fixed extinction ratio equal to $(A_{X}/A_{V})_{MS}$ for each filter}
 \label{acs_isoc_T5k}
 \end{center}
@@ -809,7 +834,7 @@ The CMD chosen for the ACS was the F435W-(F435W-F814W) axis combination. This CM
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+\includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{ACS F435W-(F435W-F814W) CMD with a fixed extinction ratio equal to $(A_{X}/A_{V})_{plat}$ for each filter}
 \label{acs_isoc_T50k}
 \end{center}
@@ -827,7 +852,7 @@ As with the previous ACS CMD, this CMD shows no significant changes in isochrone
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f555w_f555wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+\includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f555w_f555wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{WFC3 F555W-(F555W-F814W) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{MS}$ for each filter}
 \label{wfc3_isoc1_T5k}
 \end{center}
@@ -835,7 +860,7 @@ As with the previous ACS CMD, this CMD shows no significant changes in isochrone
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f555w_f555wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+\includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f555w_f555wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{WFC3 F555W-(F555W-F814W) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{plat}$ for each filter}
 \label{wfc3_isoc1_T50k}
 \end{center}
@@ -845,7 +870,7 @@ The second WFC3 CMD that was studied is the F814W-(F275W-F814W) axis combination
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f814w_f275wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+\includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f814w_f275wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{WFC3 F814W-(F275W-F814W) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{MS}$ for each filter.}
 \label{wfc3_isoc2_T5k}
 \end{center}
@@ -853,7 +878,7 @@ The second WFC3 CMD that was studied is the F814W-(F275W-F814W) axis combination
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f814w_f275wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+\includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f814w_f275wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{WFC3 F814W-(F275W-F814W) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{plat}$ for each filter}
 \label{wfc3_isoc2_T50k}
 \end{center}
@@ -871,7 +896,7 @@ The photometric filters in Gaia, as shown by their respective response functions
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+\includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{MS}$ for each filter}
 \label{gaia_isoc_T5k}
 \end{center}
@@ -879,7 +904,7 @@ The photometric filters in Gaia, as shown by their respective response functions
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.25]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
+\includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD with a fixed extinction coefficient equal to $(A_{X}/A_{V})_{plat}$ for each filter}
 \label{gaia_isoc_T50k}
 \end{center}
@@ -892,17 +917,17 @@ When using $(A_{X}/A_{V})_{plat}$, there is a full-isochrone position difference
 
 \section{NGC 6793}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.45]{../NGC_6793_CMD_observational_errorbars.pdf}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_observational_errorbars.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD showing the 274 cluster members in the final dataset, with errorbars added. The color of each object is determined by its parallax-derived distance.}
 \label{NGC_6793_obs_only}
 \end{center}
 \end{figure}
 
-\begin{figure}[hbt]
+\begin{figure}[h]
 \begin{center}
-\includegraphics[scale=0.45]{../NGC_6793_distances_hist.pdf}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_distances_hist.pdf}
 \caption{Histogram of distances for the 274 stars in the final observational dataset. The bins are set to a fixed width of 10 pc.}
 \label{NGC_6793_dist_hist}
 \end{center}
@@ -918,7 +943,7 @@ Since the table of photometric fluxes did not include photometric errors, the pa
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[scale=0.45]{../NGC_6793_CMD_FeH_0p062_Av_1p1_500Myr_all_isochrones_summary.pdf}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_FeH_0p062_Av_1p1_500Myr_all_isochrones_summary.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD showing the 274 cluster members in the final dataset, corrected for their individual distances with errorbars shown. The color of each object is determined by its parallax-derived distance.}
 \label{NGC_6793_isoc_inset_1.1_500_0.062}
 \end{center}
