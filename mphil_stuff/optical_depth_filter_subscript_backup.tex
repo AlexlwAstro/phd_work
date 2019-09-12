@@ -1,0 +1,31 @@
+****When a broadband beam of light passes through a cloud, the loss of flux for a given filter $X$ due to absorption, refraction or diffraction, is related to the optical depth in the filter's wavelength range, $\tau_{X}$. The optical depth is defined along the line-of-sight via:
+
+\begin{equation}
+\tau_{X}(l) = \int_{0}^{l} \rho \kappa_{X} dl = \int_{0}^{l} n \sigma_{X} dl
+\label{optical_depth}
+\end{equation}
+
+where $l$ is the length of the path taken by the beam through the cloud, $\rho$ is the mass density of the local cloud material, $\kappa_{X}$ is the material's opacity, $n$ is the particle number density and $\sigma_{X}$ is the particle collision cross-section. It should be noted that all quantities in the integrands in Equation \ref{optical_depth} depend on local conditions at each point in the path travelled by the beam. In particular, the opacity, for a given wavelength, depends strongly on the available configurations for the atomic electrons in the cloud, which in turn depend on the chemical composition of the cloud. These quantities therefore cannot be immediately discounted as being constant along the entire path required for the integration, let alone throughout the entire cloud. Furthermore, the dependence of opacity, and subsequently optical depth, on the composition of the medium causes a variation of its value with the wavelength of photons in the beam. This necessitates the specification of the optical depth being applicable for $X$ in Equation \ref{optical_depth}.\\*
+
+The variation of the flux in $X$ of the light beam with distance travelled through the cloud is best expressed using the optical depth:
+
+\begin{equation}
+f_{X} = f_{0,X} e^{-\tau_{X}}
+\label{flux_loss_optical_depth}
+\end{equation}
+
+where $f_{X}$ is the flux of the beam after it exits the cloud and $f_{0,X}$ is the flux at the point where the beam first encounters the cloud (i.e., at $l = 0$). Returning to the equation for flux magnitudes given in Equation \ref{mags_def}, we can use the relation in Equation \ref{bol_extinc} to rewrite the definition of extinction in $X$ as:
+
+\begin{equation}
+A_{X} = m_{X} - m_{0,X} = -2.5\log\left(\frac{f_{X}}{f_{0,X}}\right) = -2.5\log(e^{-\tau_{X}})
+\label{ext_optical_depth}
+\end{equation}
+
+Therefore, we can define the extinction in terms of the distance travelled through, and the composition of, the ISM, both of which are accounted for in the optical depth:
+
+\begin{equation}
+A_{X} = 2.5\log(e) \times \tau_{X} = 1.086\tau_{X} \approx \tau_{X}
+\label{flux_loss_optical_depth}
+\end{equation}
+
+Therefore, to a first-order approximation, the extinction is equal to the optical depth. Hence, the mathematical representation of extinction is proven to be aligned with its physical definition as the flux of photons scattered and absorbed in the interstellar medium. \\*
