@@ -1,4 +1,4 @@
- \documentclass[12pt, a4paper]{report}
+\documentclass[12pt, a4paper]{report}
 % for guidance, see phd_work/mnras_guide.pdf
 %\setlength\parindent{0pt}
 %\documentclass[useAMS,usenatbib]{mn2e}
@@ -16,6 +16,7 @@
 \newcommand{\pasp}{PASP}
 \newcommand{\aapr}{A\&AR}
 \newcommand{\aaps}{A\&A Suppl. Ser.}
+%\newcommand{\jgr}{JGR: Space Physics}
 \newcommand{\procspie}{Proc. SPIE}
 \newcommand{\apss}{Ap\&SS}
 %\newcommand{\rsquo}{`}
@@ -156,55 +157,48 @@ parsec (pc) &:& 1 pc = $3.086 \times 10^{18}$ cm
 \chapter{Introduction}
 \section{Interstellar extinction} \label{ext_def}
 \subsection{Physical origin \& defintion}
-As the light emitted from a star travels towards a distant observer, its intensity, or flux, $f$ decreases with distance $d$ via an inverse-square law:
+As the light emitted from a star travels towards a distant observer, its intensity, or flux decreases with distance via an inverse-square law. Stars emit light across the full range of electromagnetic spectrum. Therefore, a beam of light from a star will consist of photons with an extremely wide range of wavelengths. \\*
+
+%, defined as the angular distance the object moves relative to the ``fixed'' background stars as the Earth moves a distance of 2 AU  (the average diameter of the Earth's orbit around the Sun) perpendicular to the line-of-sight. This allows the distance, $d$, to be calculated using the geometry of right-angled triangles, combined with a baseline of 1 AU and the small-angle approximation, as:
+
+%\begin{equation}
+%d/\textnormal{pc} = \frac{1}{(p/\textnormal{arcsec})}
+%\end{equation}
+
+%However, simply observing the flux from a star does not automatically lead to an accurate distance measurement. For a nearby star, its parallax can be determined from its proper motion to give a distance estimate independent of any photometric effects. For more dist
+
+%Parallaxes are extremely useful because, provided a star can be distinguished from bright objects near it in the sky, its parallax can be measured accurately, completely independent from its flux. For more distant stellar sources with much smaller parallaxes, a potential alternative is to view the object at very long wavelengths, in which observations are likely to be impacted much less significantly by extinction (see Sections \ref{empirical} and \ref{standard_ext}), to estimate the type of star being observed, before using theoretical models to compare with observations at different wavelengths. This is more effective for brighter stars. \\*
+
+However, the interstellar medium (ISM) is not a perfect vacuum. It contains many different structures, such as clouds of diffuse gas and dust grains, that can absorb or scatter light passing through. For a given light source, this causes its brightness to appear lower than it would otherwise and changes the distribution of the same brightness with photon wavelength. The effect of dust clouds on optical light travelling towards observers is particularly apparent when examining star clusters and galaxies (including the Milky Way), with the dust obscuring optical light from sources behind the clouds. \\*
+
+%In general, the difference between two flux measurements, $f_{1}$ and $f_{2}$, in magnitudes, is expressed as:
+
+%\begin{equation}
+%\label{mags_def}
+%m_{1} - m_{2} = -2.5\log \left( \frac{f_{1}}{f_{2}} \right)
+%\end{equation}
+
+%where $m_{1}$ and $m_{2}$ are the magnitudes for $f_{1}$ and $f_{2}$, respectively. However, the flux of a source varies intrinsically with the distance travelled by the light to the observer (see Equation \ref{flux_def}). To account for this, the distances to sufficiently close sources can be determined independently of their flux by measuring the sources' parallax from Earth. \\*
+
+%The role of distance gives each astronomical object two principal flux parameters. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source as observed by the telescope. The absolute magnitude is the predicted flux magnitude of the same source if it were to be placed at a fixed distance of 10 parsecs (pc) from the telescope with zero extinction. The absolute magnitude is defined for the purpose of stellar classification, as the corresponding flux is simply a constant multiplied by the stellar luminosity (see Equation \ref{flux_def}), which is an intrinsic physical property of the star. \\*
+
+%However, to calculate the absolute magnitude of a source, we first require its distance and extinction, $A$. To account for extinction, it is necessary to define a new quantity, known as the intrinsic apparent magnitude, $m_{0}$. This is defined as the flux magnitude of a source corrected for losses due to extinction but not due to distance. In practice, it represents the apparent magnitude for light passing through a fully-transparent medium. The relation between $m_{0}$ and $M$, can be found by combining Equations \ref{flux_def} and \ref{mags_def}:
+
+%\begin{equation}
+%\label{distance_modulus}
+%(m - M)_{0} = m_{0} - M = -2.5\log \left( \left(\frac{10\textnormal{pc}}{d}\right)^{2} \right) = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
+%\end{equation}
+
+%The quantity $(m - M)_{0}$ is known as the distance modulus. As seen in Equation \ref{distance_modulus}, it varies only with distance. The quantity $m - M$, linking the initial observed data with the final theoretical data, is known as the apparent distance modulus and varies with both distance and extinction. \\*
+
+Interstellar extinction is defined physically as the magnitude of the flux absorbed or scattered by the intervening line-of-sight ISM. Mathematically, extinction, $A$, is defined using the standard astronomical system of flux magnitudes via the following equation:
 
 \begin{equation}
-\label{flux_def}
-f = \frac{L}{4 \pi d^{2}}
+m - M = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5 + A
+\label{dist_ext_abs_app_mags}
 \end{equation}
 
-where $L$ is the star's luminosity, which is an intrinsic property of the star (i.e., independent of the observer). Equation \ref{flux_def} is a natural consequence of the same light wave expanding outwards from its source into a progressively larger spherical volume of empty space. Stars emit light across the full range of electromagnetic spectrum. Therefore, a beam of light from a star will consist of photons with an extremely wide range of wavelengths. \\*
-
-Equation \ref{flux_def} implies that simply observing the flux from a star does not automatically lead to an accurate distance measurement. For a nearby star, its parallax, $p$, can be determined from its proper motion, defined as the angular distance the object moves relative to the ``fixed'' background stars as the Earth moves a distance of 2 AU  (the average diameter of the Earth's orbit around the Sun) perpendicular to the line-of-sight. This allows the distance, $d$, to be calculated using the geometry of right-angled triangles, combined with a baseline of 1 AU and the small-angle approximation, as:
-
-\begin{equation}
-d/\textnormal{pc} = \frac{1}{(p/\textnormal{arcsec})}
-\end{equation}
-
-Parallaxes are extremely useful because, provided a star can be distinguished from bright objects near it in the sky, its parallax can be measured accurately, completely independent from its flux. For more distant stellar sources with much smaller parallaxes, a potential alternative is to view the object at very long wavelengths, in which observations are likely to be impacted much less significantly by extinction (see Sections \ref{empirical} and \ref{standard_ext}), to estimate the type of star being observed, before using theoretical models to compare with observations at different wavelengths. This is more effective for brighter stars. \\*
-
-However, the interstellar medium (ISM) is not a perfect vacuum. It contains many different structures, such as clouds of diffuse gas and dust grains, that can absorb or scatter light passing through. The effect of dust clouds on optical light travelling towards observers is particularly apparent when examining star clusters and galaxies (including the Milky Way), with the dust obscuring optical light from sources behind the clouds. \\*
-
-The incidence of absorption and scattering events depends on the wavelength of the incoming photons, the density of the medium and the quantum levels in the atoms occupied by their electrons. Although the light absorbed by an atom is re-radiated, this radiation is emitted isotropically, causing a net decrease in the flux travelling in the direction of a given observer. These absorption and scattering events are known as interstellar extinction. A beam containing photons with a sufficiently large range of wavelengths will therefore lose some of its photons, and therefore flux, due to interactions with the ISM through which it travels. The magnitude of loss is determined by the wavelength(s) of those photons, the fraction of the beam consisting of these photons and the state of the ISM. For a given source, its interstellar extinction value represents the total flux absorbed or scattered due to all extinction events along the line-of-sight between the source and the observer.\\*
-
-Interstellar extinction is greater at shorter (i.e., bluer) wavelengths, causing the source star to appear redder than its true colour (see Section \ref{standard_ext}). Therefore, the effect of extinction is sometimes referred to as ``reddening''.\\*
-
-Mathematically, interstellar extinction is defined using the standard astronomical system of flux magnitudes. In general, the difference between two flux measurements, $f_{1}$ and $f_{2}$, in magnitudes, is expressed as:
-
-\begin{equation}
-\label{mags_def}
-m_{1} - m_{2} = -2.5\log \left( \frac{f_{1}}{f_{2}} \right)
-\end{equation}
-
-where $m_{1}$ and $m_{2}$ are the magnitudes for $f_{1}$ and $f_{2}$, respectively. However, the flux of a source varies intrinsically with the distance travelled by the light to the observer (see Equation \ref{flux_def}). To account for this, the distances to sufficiently close sources can be determined independently of their flux by measuring the sources' parallax from Earth. \\*
-
-The role of distance gives each astronomical object two principal flux parameters. These are the apparent magnitude, $m$, and the absolute magnitude, $M$. The apparent magnitude is the flux magnitude of a source as observed by the telescope. The absolute magnitude is the predicted flux magnitude of the same source if it were to be placed at a fixed distance of 10 parsecs (pc) from the telescope with zero extinction. The absolute magnitude is defined for the purpose of stellar classification, as the corresponding flux is simply a constant multiplied by the stellar luminosity (see Equation \ref{flux_def}), which is an intrinsic physical property of the star. \\*
-
-However, to calculate the absolute magnitude of a source, we first require its distance and extinction, $A$. To account for extinction, it is necessary to define a new quantity, known as the intrinsic apparent magnitude, $m_{0}$. This is defined as the flux magnitude of a source corrected for losses due to extinction but not due to distance. In practice, it represents the apparent magnitude for light passing through a fully-transparent medium. The relation between $m_{0}$ and $M$, can be found by combining Equations \ref{flux_def} and \ref{mags_def}:
-
-\begin{equation}
-\label{distance_modulus}
-(m - M)_{0} = m_{0} - M = -2.5\log \left( \left(\frac{10\textnormal{pc}}{d}\right)^{2} \right) = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
-\end{equation}
-
-The quantity $(m - M)_{0}$ is known as the distance modulus. As seen in Equation \ref{distance_modulus}, it varies only with distance. The quantity $m - M$, linking the initial observed data with the final theoretical data, is known as the apparent distance modulus and varies with both distance and extinction. \\*
-
-Therefore, the extinction coefficient $A$, defined physically as the magnitude of the flux absorbed or scattered by the intervening line-of-sight medium, can be defined quantitatively as:
-
-\begin{equation}
-A = m - m_{0}
-\label{bol_extinc}
-\end{equation}
+where $m$ is the apparent magnitude of the source, $M$ is its absolute magnitude and $d$ is the distance to the source. \\*
 
 When a broadband beam of light passes through a cloud, the loss of flux due to absorption, refraction or diffraction is related to the optical depth, $\tau$. The optical depth is defined along the line-of-sight via:
 
@@ -213,7 +207,11 @@ When a broadband beam of light passes through a cloud, the loss of flux due to a
 \label{optical_depth}
 \end{equation}
 
-where $l$ is the length of the path taken by the beam through the cloud, $\rho$ is the mass density of the local cloud material, $\kappa$ is the material's opacity, $n$ is the particle number density and $\sigma$ is the particle collision cross-section. It should be noted that all quantities in the integrands in Equation \ref{optical_depth} depend on local conditions at each point in the path travelled by the beam. In particular, the opacity, for a given wavelength, depends strongly on the available configurations for the atomic electrons in the cloud, which in turn depend on the chemical composition of the cloud. These quantities therefore cannot be immediately discounted as being constant along the entire path required for the integration, let alone throughout the entire cloud. Furthermore, the dependence of opacity, and subsequently optical depth, on the composition of the medium causes a variation of its value with the wavelength of photons in the beam. This necessitates the specification of the optical depth being applicable for $X$ in Equation \ref{optical_depth}.\\*
+where $l$ is the length of the path taken by the beam through the cloud, $\rho$ is the mass density of the local cloud material, $\kappa$ is the material's opacity, $n$ is the particle number density and $\sigma$ is the particle collision cross-section.\\*
+
+It should be noted that all quantities in the integrands in Equation \ref{optical_depth} depend on local conditions at each point in the path travelled by the beam. In particular, the opacity, for a given wavelength, depends strongly on the available configurations for the atomic electrons in the cloud, which in turn depend on the chemical composition of the cloud. Although the light absorbed by atomic electrons is re-radiated, for a large number of electrons this radiation is emitted isotropically, causing a net decrease in the flux travelling in the direction of a given observer.\\*
+
+The quantities in Equation \ref{optical_depth} therefore cannot be immediately discounted as being constant along the entire path required for the integration, let alone throughout the entire cloud. Furthermore, the dependence of opacity, and subsequently optical depth, on the composition of the medium causes a variation of its value with the wavelength of photons in the beam. This necessitates the specification of the optical depth being applicable for $X$ in Equation \ref{optical_depth}.\\*
 
 The variation in flux of the light beam with distance travelled through the cloud is best expressed using the optical depth:
 
@@ -236,31 +234,88 @@ A = 2.5\log(e) \times \tau = 1.086\tau \approx \tau
 \label{flux_loss_optical_depth}
 \end{equation}
 
-In conclusion, to a first-order approximation, the extinction is equal to the optical depth. Hence, the mathematical representation of extinction is proven to be aligned with its physical definition as the flux of photons scattered and absorbed in the interstellar medium. \\*
+In conclusion, to a first-order approximation, the extinction is equal to the optical depth along the line of sight. Hence, the mathematical representation of extinction is proven to be aligned with its physical definition as the flux of photons scattered and absorbed in the interstellar medium. \\*
 
-\subsection{Application to photometric filters}
-
-No telescope can view the sky at all spectral wavelengths, as this would be wholly impractical. Therefore, modern telescopes are equipped with a system of filters, which allow only light within a narrow range of wavelengths. In a filter system, the individual filters are designed to operate best at different wavelengths. The filter system therefore covers a much wider range of spectral wavelengths than a single filter would alone. Furthermore, the filters in a given system are often designed such that the range of wavelengths in which each can detect incoming light overlaps with those of its neighbour(s). This ensures that there are no wavelength gaps in which incoming light cannot be detected.\\*
-
-Filters, although necessary, therefore present an additional complication when trying to determine stellar spectral energy distributions (SEDs) accurately. This task is further complicated by the fact that, even in the wavelength range where a filter does detect incoming flux, the fraction of light it detects, known as the transmittance, is not uniform across the range. The transmittance as a function of wavelength is known as a transmission curve, bandpass or filter response function. Examples of response functions for the three filter systems employed in this project are shown in Figures \ref{Gaia_response_funcs}-\ref{ACS_response_funcs}. These systems are the Advanced Camera System (ACS) and Wide Field Camera 3 (WFC3) instruments on the Hubble Space Telescope (HST) and the filter system mount on the Gaia space observatory. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function could have a significant impact on the observed SED if not taken into account.\\*
-
-Applying the definitions of the bolometric extinction and distance modulus given in Equations \ref{distance_modulus} and \ref{bol_extinc}, respectively, to the case of a generic filter $X$ gives the following:
+The incidence of absorption and scattering events depends on the wavelength of the incoming photons. This dependence is also incorporated into the optical depth via the scattering cross-section $\sigma$ in Equation \ref{optical_depth}. If the particles in the ISM are (naively) assumed to be spherical with radius $a$, its geometric cross-section is $\pi a^{2}$ for any incoming photon. Using the scattering and geometric cross-sections, a dimensionless extinction coefficient:
 
 \begin{equation}
-A_{X} = m_{X} - m_{X,0}
-\label{extinc_X}
+Q(\lambda) = \frac{\sigma(\lambda)}{\pi a^{2}}
+\label{ext_wavelength}
 \end{equation}
+
+can be defined. When the photon wavelength is on the order of the particle size ($\lambda \sim\ a$), \cite{1908AnP...330..377M} showed that $Q \sim\ a/\lambda$. In the limit $\lambda \gg a$, $Q$ decreases to zero, while for $\lambda \ll a$, $Q$ becomes constant with regard to wavelength. This shows that, for extinction in the UV-to-near-IR spectral range, which covers approximately a 100-1000 nm wavelength range, the scattering cross-section for relevant ISM atomic species is proportional to $1/\lambda$. Typical interstellar dust grains have radii ($a$) ranging between 100 and 1000 nm \citep{2000JGR...10510299W}, but the dominant grain size is 300 nm \citep{2003JGRA..108.8030L}. Therefore, $Q$ is greatest when the photon wavelength is in the region of 300 nm, which is located within the UV regime. The effect of extinction,is therefore significantly greater in the UV than in the IR. Although, as mentioned previously, this model is overly simplistic, its general conclusions align with observational results. Therefore, referring back to Equation \ref{flux_loss_optical_depth}, interstellar extinction is also greater at shorter wavelengths, causing the source star to appear redder than its true colour (see Section \ref{standard_ext}). Hence, the effect of extinction is sometimes referred to as ``reddening''.\\* 
+
+%****the density of the medium and the quantum levels in the atoms occupied by their electrons. Although the light absorbed by an atom is re-radiated, this radiation is emitted isotropically, causing a net decrease in the flux travelling in the direction of a given observer. 
+%These absorption and scattering events are known as interstellar extinction.
+
+A beam containing photons with a sufficiently large range of wavelengths will therefore lose some of its photons, and therefore flux, due to interactions with the ISM through which it travels. The magnitude of loss is determined by the wavelength(s) of those photons, the fraction of the beam consisting of these photons and the state of the ISM. For a given source, its interstellar extinction value represents the total flux absorbed or scattered due to all extinction events along the line-of-sight between the source and the observer.\\*
+
+
+%\subsection{Application to photometric filters}
+
+%No telescope can view the sky at all spectral wavelengths, as this would be wholly impractical. Therefore, modern telescopes are equipped with a system of filters, which allow only light within a narrow range of wavelengths. In a filter system, the individual filters are designed to operate best at different wavelengths. The filter system therefore covers a much wider range of spectral wavelengths than a single filter would alone. Furthermore, the filters in a given system are often designed such that the range of wavelengths in which each can detect incoming light overlaps with those of its neighbour(s). This ensures that there are no wavelength gaps in which incoming light cannot be detected.\\*
+
+
+
+%Applying the definitions of the bolometric extinction and distance modulus given in Equations \ref{distance_modulus} and \ref{bol_extinc}, respectively, to the case of a generic filter $X$ gives the following:
+
+%\begin{equation}
+%A_{X} = m_{X} - m_{X,0}
+%\label{extinc_X}
+%\end{equation}
+
+%\begin{equation}
+%(m - M)_{X,0} = m_{X,0} - M_{X} = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
+%\label{DM_X}
+%\end{equation}
+
+%It can be seen that, crucially, the distance modulus in $X$ shares the same relationship with distance as its bolometric counterpart in Equation \ref{distance_modulus}, despite the changes in value for $m_{X,0}$ and $M_{X}$.\\*
+
+\subsection{Empirical extinction curves} \label{empirical}
+
+The variation of extinction with wavelength discussed in the previous section has been studied for decades. Various authors have produced empirical results intended to better model the changes in the magnitude of extinction over an extended wavelength range, as explicit functions of wavelength or as values or functions unique to each in a selection of photometric filters.\\*
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{cardelli_curve_fig4_crop.png}
+\caption{Variation of the extinction, normalised to the $V$-band extinction $A_{V}$, as a function of wavelength, in spectral regions ranging from the IR (left) to the UV (right). The solid lines are calculated using Equation \ref{CCM_general} at the given $R_{V}$ values. These values represent the lines of sight for their respective source stars, which are listed alongside.  Source: \cite{1989ApJ...345..245C}}
+\label{cardelli_curve}
+\end{center}
+\end{figure}
+
+\cite{1985ApJ...288..618R} found that outside dense molecular clouds, which have high opacities and whose lines-of-sight are less frequently used as a result, all extinction laws for all Johnson filters studied were uniform between wavelengths of 1 and 13 $\mu$m when observing sources in the direction of the Galactic Centre. This result was then used to produce constant $A_{X}/A_{V}$ extinction ratios in the same filters. They also determined the now-widely used global average value of 3.08 (~3.1) for $R_{V} = A{V}/E(B-V)$, known as the total-to-selective extinction ratio,  for the diffuse ISM. \\*
+
+\cite{1989ApJ...345..245C} used observations of mostly O- and B-type main-sequence stars to produce empirical equations describing the mean ratio of extinction coefficients at a specific wavelength $\lambda$ ($A_{\lambda}$) to the extinction in the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{\lambda}/A_{V}$. They produced a basic equation of the form:
 
 \begin{equation}
-(m - M)_{X,0} = m_{X,0} - M_{X} = 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5
-\label{DM_X}
+A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
+\label{CCM_general}
 \end{equation}
 
-It can be seen that, crucially, the distance modulus in $X$ shares the same relationship with distance as its bolometric counterpart in Equation \ref{distance_modulus}, despite the changes in value for $m_{X,0}$ and $M_{X}$.\\*
+where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The significance of $R_{V}$, as noted in the same paper, comes from its usefulness as an indicator of the nature of the interstellar medium through which the observed light travels in order to reach the observer. The total wavelength range was divided into 4 sub-ranges, each with a governing pair of empirically-determined equations to calculate $a(x)$ and $b(x)$, respectively. The resulting extinction-ratio profiles for three lines of sight are displayed in Figure \ref{cardelli_curve}. This model underpins more recent studies of intrinsic effects on extinction \citep{2008PASP..120..583G,2018MNRAS.479L.102C}, and provides the basis for the synthetic $A_{X}/A_{V}$ datasets in this project. Equation \ref{CCM_general} has become a standard model for theoretical studies to employ for predictions made in the UV, optical and near-IR wavelength regions, although it is not always accurate \citep{1994ApJ...422..158O,1999PASP..111...63F}. \\*
+
+\cite{1994ApJ...422..158O} found deviations from the \cite{1985ApJ...288..618R} extinction law in the soft-UV spectral range using a sub-sample of 22 stars from the same dataset. This was attributed to the uncertainty in the short-wavelength cutoff of the UV-range Johnson $U$ filter and to the presence of the Balmer discontinuity within the limits of the filter bandpass.\\*
+
+\cite{1999PASP..111...63F} found that, due to the broadband nature of the Johnson filters and the general decrease of extinction with wavelength, the \cite{1989ApJ...345..245C} relations overestimate the extinction in the near-IR and blue-visible Johnson filters. The study put forward corrections to the equations for $a(x)$ and $b(x)$ for these wavelength regions. However, in the UV region covered by  the \cite{1989ApJ...345..245C} equations, the equations are accurate for 93\% of a homogeneous UV observational database \citep{2004ApJ...616..912V}.\\*
+
+\cite{2008PASP..120..583G} produced data tables of $A_{X}/A_{V}$ for stellar atmosphere models with parameters $T_{\textnormal{eff}}$, log($g$) and [Fe/H]. They carried this out using the same ATLAS9 data \citep{2004astro.ph..5087C} that was used to generate the data for this project, but also combined it with data from other studies \cite{2002A&A...391..195G}, resulting in data covering a parameter space extending beyond the ATLAS9 limits in all three parameters. They used the data tables to calculate the $A_{X}/A_{V}$ values for the stellar models in Padova theoretical isochrones. While determining that the values of $A_{X}/A_{V}$ varied significantly with $T_{\textnormal{eff}}$ and log($g$), the variation with metallicity was found to be ~0.17$\%$ between [Fe/H] = 0.0 and [Fe/H] = -2.5. They found that, when they set $A_{V} = 6$, there was a systematic shift for the ACS system between extinction values calculated star-wise using the tables of $A_{X}/A_{V}$ data and a constant extinction value. The constant values of $A_{X}/A_{V}$ were calculated from a yellow dwarf in the low-extinction regime. Overall, the $A_{X}/A_{V}$ tables produced a smaller extinction coefficient in the F814W filter and a larger (F475W-F814W) colour index value. It also caused a change in the shape of the curve at the MSTO. They then applied the data from the tables to the case of the globular cluster M92. They found the optimal metallicity to be $Z = 0.0004$ ([Fe/H] $\approx$ -1.6) instead of the value obtain by previous observers of $Z = 0.0001$ ([Fe/H] $\approx$ -2.2). Therefore, their use of $A_{X}/A_{V}$ data caused the estimated cluster metallicity to be greater than when using the standard one-size-fits-all approach to extinction.\\*
+
+Casagrande \& Vandenberg (2014, 2018a, 2018b) created simple  models for the parameter $R_{X}  = \frac{A_{X}}{E(B-V)}$, consisting of a quadratic variation with effective temperature and a linear variation with metallicity (they found no significant variations with surface gravity) in multiple telescope filter systems. This was based on MARCS model stellar atmospheres, which have an upper $T_{\textnormal{eff}}$ limit of 8000K \citep{2008A&A...486..951G}. The equation is independent of surface gravity and has the following form:
+
+\begin{equation}
+R_{X} = a_{0} + T_{4}(a_{1} + a_{2}T_{4}) + a_{3}\textnormal{[Fe/H]}
+\label{casagrande_ext_fit}
+\end{equation}
+
+where $T_{4} = 10^{-4} \times T_{\textnormal{eff}}$. The equation is valid for $5250\textnormal{K} \leq T_{\textnormal{eff}} \leq 7000\textnormal{K}$. Although these models are mathematically simple (with only 4 coefficients), the limited $T_{\textnormal{eff}}$ range in which they are applicable is problematic, particularly in the red giant branch (RGB) and lower main sequence of any stellar population.\\*
 
 \section{Extinction in stars \& stellar populations}
-\subsection{Stellar parameters affecting extinction} \label{params}
-This project examines the effect of extinction treatment methods on interpretations of observed stellar populations. To understand the effect of different stellar types with respect to the calculated interstellar extinction, we must first define the fundamental parameters that describe a stellar atmosphere, which will be used in this project as the input variables on which any star-to-star variations in extinction will be modelled. \\*
+
+\subsection{The effect of extinction on the observed magnitudes of different stellar types} \label{params}
+
+%To understand the effect of different stellar types with respect to the calculated interstellar extinction
+
+This project examines the effect of extinction treatment methods on interpretations of observed stellar populations. To understand how extinction affects the observed magnitudes of different stellar types, we must first define the fundamental parameters that describe a stellar atmosphere, which will be used in this project as the input variables on which any star-to-star variations in extinction will be modelled. \\*
 
 \begin{figure}[h]
 \begin{center}
@@ -322,6 +377,8 @@ When a particle, such as an electron, absorbs a photon, the absorption process i
 
 The impact of surface gravity arises via additional broadening effects upon these same absorption lines. When broadening effects are applied to an emission spectrum, such as a spectrum from a stellar surface, the result is that fewer photons pass through the surface, thereby reducing the surface flux seen by an outside observer. \\*
 
+The impact of stellar effective temperature, metallicity and surface gravity on extinction arises through their described effect on the spectral energy distribution (SED) emitted by the stellar atmosphere. Since both the SED and the magnitude of the interstellar extinction are functions of wavelength, different stellar types, with different SEDs, can be impacted to different extents by interstellar extinction at a given wavelength.
+
 \subsection{Forbes effect} \label{forbes}
 The Forbes effect occurs as a broadband beam of light, such as that passes through an extended partially-transparent medium, such as the Earth's atmosphere or an interstellar gas or dust cloud. It states that the greater the distance travelled by a light beam through the medium, the more penetrating the beam becomes \citep{1842RSPT..132..225F}. The physical basis for this effect is that those photons in the original beam with wavelengths that make them the most likely to be absorbed or refracted are separated from the beam earlier. Therefore, as the beam travels through the medium, its constituent photons are progressively less likely to be interact with the medium \citep{1995A&AS..109..293G}. Since a higher fraction of its photons are retained as the distance through the medium increases, the beam is more penetrating \citep{OHVRIL1999305}.\\*
 
@@ -378,42 +435,6 @@ M_{\textnormal{ext},X} &= M_{X} + A_{X} \textnormal{ (theoretical data)}\\
 
 This allows for direct comparison of theoretical data, whose stars are treated with theoretically-determined $A_{X}$ values, with distance-corrected observational data, whose stars have unknown $A_{X}$ values. Therefore, this provides a pathway for comparing the standard treatment of extinction (constant $A_{X}/A_{V}$ ratios) with the treatment proposed in this project ($A_{X}/A_{V}$ varying as functions of intrinsic stellar parameters). \\*
 
-\subsection{Empirical extinction curves} \label{empirical}
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=1.0\textwidth]{cardelli_curve_fig4_crop.png}
-\caption{Variation of the extinction, normalised to the $V$-band extinction $A_{V}$, as a function of wavelength, in spectral regions ranging from the IR (left) to the UV (right). The solid lines are calculated using Equation \ref{CCM_general} at the given $R_{V}$ values. These values represent the lines of sight for their respective source stars, which are listed alongside.  Source: \cite{1989ApJ...345..245C}}
-\label{cardelli_curve}
-\end{center}
-\end{figure}
-
-\cite{1985ApJ...288..618R} found that outside dense molecular clouds, which have high opacities and whose lines-of-sight are less frequently used as a result, all extinction laws for all Johnson filters studied were uniform between wavelengths of 1 and 13 $\mu$m when observing sources in the direction of the Galactic Centre. This result was then used to produce constant $A_{X}/A_{V}$ extinction ratios in the same filters. They also determined the now-widely used global average value of 3.08 (~3.1) for $R_{V} = A{V}/E(B-V)$, known as the total-to-selective extinction ratio,  for the diffuse ISM. \\*
-
-\cite{1989ApJ...345..245C} used observations of mostly O- and B-type main-sequence stars to produce empirical equations describing the mean ratio of extinction coefficients at a specific wavelength $\lambda$ ($A_{\lambda}$) to the extinction in the Johnson-$V$ filter ($A_{V}$), respectively. From this point onward, this ratio will be referred to as $A_{\lambda}/A_{V}$. They produced a basic equation of the form:
-
-\begin{equation}
-A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
-\label{CCM_general}
-\end{equation}
-
-where $x \equiv 1/\lambda$ and $R_{V} \equiv A(V)/E(B-V)$. The significance of $R_{V}$, as noted in the same paper, comes from its usefulness as an indicator of the nature of the interstellar medium through which the observed light travels in order to reach the observer. The total wavelength range was divided into 4 sub-ranges, each with a governing pair of empirically-determined equations to calculate $a(x)$ and $b(x)$, respectively. The resulting extinction-ratio profiles for three lines of sight are displayed in Figure \ref{cardelli_curve}. This model underpins more recent studies of intrinsic effects on extinction \citep{2008PASP..120..583G,2018MNRAS.479L.102C}, and provides the basis for the synthetic $A_{X}/A_{V}$ datasets in this project. Equation \ref{CCM_general} has become a standard model for theoretical studies to employ for predictions made in the UV, optical and near-IR wavelength regions, although it is not always accurate \citep{1994ApJ...422..158O,1999PASP..111...63F}. \\*
-
-\cite{1994ApJ...422..158O} found deviations from the \cite{1985ApJ...288..618R} extinction law in the soft-UV spectral range using a sub-sample of 22 stars from the same dataset. This was attributed to the uncertainty in the short-wavelength cutoff of the UV-range Johnson $U$ filter and to the presence of the Balmer discontinuity within the limits of the filter bandpass.\\*
-
-\cite{1999PASP..111...63F} found that, due to the broadband nature of the Johnson filters and the general decrease of extinction with wavelength, the \cite{1989ApJ...345..245C} relations overestimate the extinction in the near-IR and blue-visible Johnson filters. The study put forward corrections to the equations for $a(x)$ and $b(x)$ for these wavelength regions. However, in the UV region covered by  the \cite{1989ApJ...345..245C} equations, the equations are accurate for 93\% of a homogeneous UV observational database \citep{2004ApJ...616..912V}.\\*
-
-\cite{2008PASP..120..583G} produced data tables of $A_{X}/A_{V}$ for stellar atmosphere models with parameters $T_{\textnormal{eff}}$, log($g$) and [Fe/H]. They carried this out using the same ATLAS9 data \citep{2004astro.ph..5087C} that was used to generate the data for this project, but also combined it with data from other studies \cite{2002A&A...391..195G}, resulting in data covering a parameter space extending beyond the ATLAS9 limits in all three parameters. They used the data tables to calculate the $A_{X}/A_{V}$ values for the stellar models in Padova theoretical isochrones. While determining that the values of $A_{X}/A_{V}$ varied significantly with $T_{\textnormal{eff}}$ and log($g$), the variation with metallicity was found to be ~0.17$\%$ between [Fe/H] = 0.0 and [Fe/H] = -2.5. They found that, when they set $A_{V} = 6$, there was a systematic shift for the ACS system between extinction values calculated star-wise using the tables of $A_{X}/A_{V}$ data and a constant extinction value. The constant values of $A_{X}/A_{V}$ were calculated from a yellow dwarf in the low-extinction regime. Overall, the $A_{X}/A_{V}$ tables produced a smaller extinction coefficient in the F814W filter and a larger (F475W-F814W) colour index value. It also caused a change in the shape of the curve at the MSTO. They then applied the data from the tables to the case of the globular cluster M92. They found the optimal metallicity to be $Z = 0.0004$ ([Fe/H] $\approx$ -1.6) instead of the value obtain by previous observers of $Z = 0.0001$ ([Fe/H] $\approx$ -2.2). Therefore, their use of $A_{X}/A_{V}$ data caused the estimated cluster metallicity to be greater than when using the standard one-size-fits-all approach to extinction.\\*
-
-Casagrande \& Vandenberg (2014, 2018a, 2018b) created simple  models for the parameter $R_{X}  = \frac{A_{X}}{E(B-V)}$, consisting of a quadratic variation with effective temperature and a linear variation with metallicity (they found no significant variations with surface gravity) in multiple telescope filter systems. This was based on MARCS model stellar atmospheres, which have an upper $T_{\textnormal{eff}}$ limit of 8000K \citep{2008A&A...486..951G}. The equation is independent of surface gravity and has the following form:
-
-\begin{equation}
-R_{X} = a_{0} + T_{4}(a_{1} + a_{2}T_{4}) + a_{3}\textnormal{[Fe/H]}
-\label{casagrande_ext_fit}
-\end{equation}
-
-where $T_{4} = 10^{-4} \times T_{\textnormal{eff}}$. The equation is valid for $5250\textnormal{K} \leq T_{\textnormal{eff}} \leq 7000\textnormal{K}$. Although these models are mathematically simple (with only 4 coefficients), the limited $T_{\textnormal{eff}}$ range in which they are applicable is problematic, particularly in the red giant branch (RGB) and lower main sequence of any stellar population.\\*
-
 \section{The standard treatment of extinction in observed stellar populations} \label{standard_ext}
 
 In observations, the extinction for a given source is initially unknown. For a stellar population, observers must make use distinctive features of stellar populations that can be used as standard candles to estimate distance moduli to the population (see Equation \ref{distance_modulus}).
@@ -423,13 +444,26 @@ The treatment of extinction in observational surveys is usually via a constant v
 \cite{2017Galax...5...28O} used the tabulated extinction ratio tables resulting from \cite{2008PASP..120..583G}, which demonstrated the significant effect of stellar parameters on the calculated extinction ratios, to search for potential discrepancies in the predicted ages of isochrones after the addition of extinction. This was performed for isochrones with real ages between 12 and 13 Gyr and employed a small selection of Johnson ($B$,$V$ and $I$) and ACS (F606W, F775W and F814W) broadband filters. They found that, once the assumption of uniform extinction across the entire population was removed by employing the \cite{2008PASP..120..583G} data, the isochrone position in the CMD shifted such that, at $A_{V} = 1$, the MSTO of a 12 Gyr isochrone with individual stellar extinction values added is the same as the position of a 12.5 Gyr isochrone with the standard single extinction value added.\\*
 
 \section{Project objective}
-This project will study the variations of the extinction ratios $A_{X}/A_{V}$ in multiple photometric filters within multiple filter systems with changes in $T_{\textnormal{eff}}$, $g$ and [Fe/H]. This will be carried out across as large a range of stellar types as possible.\\*
+The first goal of this project is to investigate the variations of the extinction ratios $A_{X}/A_{V}$ in selected photometric filters within multiple filter systems with changes in effective temperature, surface gravity and metallicity. This will be carried out using a large library of theoretical stellar spectra covering all main stages of stellar evolution. Analytic fitting functions will be employed to model the $A_{X}/A_{V}$ variations as a function of the stellar parameters. \\*
 
-Furthermore, this project will attempt to use mathematical functions as models to describe these variations in $A_{X}/A_{V}$. The ultimate goal is to use this simplification of the variations to determine the differences in the estimated optimal ages, elemental abundances (i.e., metallicity) and extinction reference values of stellar populations between simulating extinction using values calculated for each star and using a single value for extinction across the entire population, which is the current standard method. If such differences exist and if they are of significant size, it could cause a recalculation of the properties of observed star clusters. This could potentially cause a reinterpretation of these clusters' history, including where and when they formed in the Milky Way and the chemical enrichment of the gas that formed their stars. \\*
+%This goal of this project is to first investigate how the extinction ratios Ax/Av in selected photometric filters depend on the stellar effective temperature, surface gravity and metallicity, employing a large library of theoretical stellar spectra, that cover all the main stellar evolutionary phases. Analytical fitting functions will be used to model Ax/Av as a function of the stellar parameters.
+
+%As an application of this result, the CMD of a representative open cluster affected by relatively high extinction will be fit with theoretical isochrones. In one case a constant value of the Ax/Av ratios will be applied to the whole isochrone, whilst in a second case varying Ax/Av ratios will be considered. A comparison of the ages and distances derived in the two cases will give a quantitative idea of the importance of considering in CMD fitting Ax/Av ratios that depend on the stellar parameters, instead of the common practice of using constant Ax/Av values.
+
+%Furthermore, this project will attempt to use mathematical functions as models to describe these variations in $A_{X}/A_{V}$. 
+
+%is to use this simplification of the variations to determine the differences in the estimated optimal ages, elemental abundances (i.e., metallicity) and extinction reference values of stellar populations between simulating extinction using values calculated for each star and using a single value for extinction across the entire population, which is the current standard method. If such differences exist and if they are of significant size, it could cause a recalculation of the properties of observed star clusters. This could potentially cause a reinterpretation of these clusters' history, including where and when they formed in the Milky Way and the chemical enrichment of the gas that formed their stars. \\*
+
+The results of the fitting process will then be applied to the CMD of a representative example of a relatively high-extinction open cluster. The CMD will be fitted with two theoretical isochrones. For the first case, a constant $A_{X}/A_{V}$ value will be applied to the entire isochrone. For the second, varying $A_{X}/A_{V}$ will be applied, using the fitting results. The best estimates for the ages and $A_{V}$ values in both cases will be compared, giving a quantitative illustration of the importance of the effect of the stellar parameters on $A_{X}/A_{V}$ ratios used in CMD fitting.\\*
 
 
 
 \chapter{Methodology}
+
+****
+SEDs, systems used need to go somewhere here!!!
+****Filters, although necessary, therefore present an additional complication when trying to determine stellar spectral energy distributions (SEDs) accurately. This task is further complicated by the fact that, even in the wavelength range where a filter does detect incoming flux, the fraction of light it detects, known as the transmittance, is not uniform across the range. The transmittance as a function of wavelength is known as a transmission curve, bandpass or filter response function. Examples of response functions for the three filter systems employed in this project are shown in Figures \ref{Gaia_response_funcs}-\ref{ACS_response_funcs}. These systems are the Advanced Camera System (ACS) and Wide Field Camera 3 (WFC3) instruments on the Hubble Space Telescope (HST) and the filter system mount on the Gaia space observatory. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function could have a significant impact on the observed SED if not taken into account.\\*
+
 \section{Calculating extinction ratio data}
 When observing stars through a photometric filter, only a small fraction of the bolometric stellar flux that reaches the telescope is detected, as can be seen from the filter response functions in Figures \ref{Gaia_response_funcs}-\ref{ACS_response_funcs}. The missing spectral information resulting from this observational constraint renders it difficult to determine the stellar properties, including interstellar extinction. This must be mitigated before an accurate value of the extinction coefficient can be determined. The mitigation is carried out by calculating bolometric corrections.\\*
 
