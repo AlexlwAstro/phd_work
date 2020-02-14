@@ -23,12 +23,12 @@ c****************** insert extinction A(V)*************
       write(*,*) 'Insert A(V) and Rv=A(V)/E(B-V) (standard value 3.1)'
       read(*,*) avl, rv
 c***************************************************
-c*********** read number and names filters 
-       
+c*********** read number and names filters
+
        read (11,*) nfilt ! number filters
 
        do 35 irt=1,nfilt ! number filters
-         read(11,'(a)') namein(irt)       
+         read(11,'(a)') namein(irt)
 c         write(*,*) irt, 'leggo nome',  namein(irt)
  35    continue
 
@@ -37,11 +37,11 @@ c************** read filter response curves*******************
 
       do 2222 ik=1,nfilt
 
-      open(unit=1, file=namein(ik), status='old' ) 
+      open(unit=1, file=namein(ik), status='old' )
 C loop below goes through header lines
       do 1 i=1, 5
         read(1,*)
- 1    continue  
+ 1    continue
 
        ndat(ik)=0
 
@@ -52,7 +52,7 @@ c reads row number, wavelength in angstroms, throughput
 c        write(*,*) 'arrivo qui', indp
         wavef(ik,i)=wavef(ik,i)/10.e0        ! lambda in nm
 c       write(3,*) i, wavef(ik,i), ff(ik,i)
- 2    continue       
+ 2    continue
 
  21   ndat(ik)=i-1
 
@@ -63,7 +63,7 @@ c       write(3,*) i, wavef(ik,i), ff(ik,i)
 c********** read Vega spectrum **************************
       do 13 i=1, 2
         read(4,*)
- 13    continue      
+ 13    continue
       do 14 i=1, 1221
         read(4,101) waves(i), fvega(i)    ! lambda in nm
 c        write(3,*) i, waves(i), fvega(i)
@@ -71,8 +71,8 @@ c******** convert to Flambda for integration
         fvega(i)=4.0e0*2.99792458e17*fvega(i)/(waves(i)**2.e0)
 c********* dilution factor ***********
         fvega(i)=fvega(i)*6.247e-17
-c*********************************** 
- 14   continue    
+c***********************************
+ 14   continue
 
  101  format(9x,f9.2,20x,e13.4)
       close(4)
@@ -89,34 +89,34 @@ c***interpolate S(filter) (= ff2) over the same lambda of the spectrum
       do 5 i=1, 1221
         do 6 j=1, ndat(ilj)
 C if wavelength < filter minimum
-          if(waves(i).lt.wavef(ilj,1)) then 
+          if(waves(i).lt.wavef(ilj,1)) then
              ff2(ilj,i)=0.0e0
              write(3,*) waves(i), ff2(ilj,i)
           goto 5
           end if
 C if wavelength > filter maximum = ndat(ilj)
-          if(waves(i).gt.wavef(ilj,ndat(ilj))) then 
+          if(waves(i).gt.wavef(ilj,ndat(ilj))) then
              ff2(ilj,i)=0.0e0
              write(3,*) waves(i), ff2(ilj,i)
           goto 5
           end if
 
           if(waves(i).eq.wavef(ilj,j)) then
-           ff2(ilj,i)=ff(ilj,j)     
+           ff2(ilj,i)=ff(ilj,j)
            write(3,*) waves(i), ff2(ilj,i)
            goto 5
           end if
         if(waves(i).lt.wavef(ilj,j).and.j.gt.1.and.j.lt.ndat(ilj)) then
            coe=(ff(ilj,j)-ff(ilj,j-1))/(wavef(ilj,j)-wavef(ilj,j-1))
-           ff2(ilj,i)=coe*(waves(i)-wavef(ilj,j-1))+ff(ilj,j-1)     
+           ff2(ilj,i)=coe*(waves(i)-wavef(ilj,j-1))+ff(ilj,j-1)
            write(3,*) waves(i), ff2(ilj,i)
            goto 5
           end if
  6      continue
- 5    continue  
+ 5    continue
 
  2223 continue
-c      
+c
       close(3)
 c
 c
@@ -124,7 +124,7 @@ c
 c********** read input spectra and start loop ***********
 c
 c waves(i)    wavelength in nm
-c Flambda=4*fs*c/wavelength^2  c=speed of light 
+c Flambda=4*fs*c/wavelength^2  c=speed of light
 c
 c
 c      rewind(2)
@@ -133,15 +133,15 @@ c
 c
 c     do 699 i=1,153
 c      write(*,*) 'leggo'
-c      read(2,*) 
+c      read(2,*)
 c 699  continue
 c
 C read header info (first 175 lines)
       do 698 i=1,175
-      read(2,*) 
+      read(2,*)
  698  continue
 
-  
+
 c************ loop over spectra ******************
 c
 c
@@ -150,21 +150,21 @@ c
 
 c******* read Teff and log(g)
 
-      read(2,103) teff, zlogg      
+      read(2,103) teff, zlogg
       write(*,*) teff, zlogg
- 
+
 c********** read fluxes *****************
- 
+
 c       write(*,*) 'arrivo qui', iz
 c       write(*,*), iz
 
-C number of values = (152 x 8) + 5 = 1221      
+C number of values = (152 x 8) + 5 = 1221
        do 701 j=1,152
 
 c      write(*,*) 'leggo'
 
 c       read(2,*)
- 
+
        read (2,104) (fs(8*(j-1)+il), il=1,8)
 
 c       write(*,*) (fs(8*(j-1)+il), il=1,8)
@@ -179,29 +179,29 @@ c      write(*,*) 'arrivo qui'
 c********** skip continuum fluxes ************
       do 702 ij=1,153
        read(2,*)
- 702  continue 
+ 702  continue
 
 c******** convert to Flambda for integration
-      do 703 ip=1,1221 
+      do 703 ip=1,1221
        fs(ip)=4.0e0*2.99792458e17*fs(ip)/(waves(ip)**2.e0)
- 703  continue 
+ 703  continue
 c***********************************************
 c
 c******************* Extinction law*************
 c  Cardelli et al. (1989) with Rv=3.1 ***********
-c   
+c
       do 3211 i=1, 1221
       wavemicr(i)=1.e3/waves(i) ! =(1/(lambda in micron))
 c
-      if (wavemicr(i).lt.0.3e0) ratio(i)=0.0e0 
+      if (wavemicr(i).lt.0.3e0) ratio(i)=0.0e0
 c
-      if(wavemicr(i).ge.0.3e0.and.wavemicr(i).le.1.1e0) then 
+      if(wavemicr(i).ge.0.3e0.and.wavemicr(i).le.1.1e0) then
       ratio(i)=0.574e0*((wavemicr(i))**1.61e0)-(0.527e0/3.1e0)*
-     #((wavemicr(i))**1.61e0)   
+     #((wavemicr(i))**1.61e0)
       end if
 c
       if(wavemicr(i).ge.1.1e0.and.wavemicr(i).le.3.3e0) then
-      yw(i)=wavemicr(i)-1.82e0      
+      yw(i)=wavemicr(i)-1.82e0
       app=1.e0+0.17699e0*yw(i)-0.50447e0*yw(i)**2.e0-0.02427e0*yw(i)**
      #3.e0+0.72085e0*yw(i)**4.e0+0.01979e0*yw(i)**5.e0
      #-0.7753e0*yw(i)**6.e0+0.32999e0*yw(i)**7.e0
@@ -220,7 +220,7 @@ c
      #((wavemicr(i)-5.9e0)**3.e0)
       zfb=0.2130e0*((wavemicr(i)-5.9e0)**2.e0)+0.1207e0*
      #((wavemicr(i)-5.9e0)**3.e0)
-      end if 
+      end if
       if(wavemicr(i).lt.5.9e0) then
       zfa=0.0e0
       zfb=0.0e0
@@ -232,7 +232,7 @@ c
       ratio(i)=app+(bpp/rv)
       end if
 c
-      if(wavemicr(i).ge.8.0e0.and.wavemicr(i).le.10.0e0) then 
+      if(wavemicr(i).ge.8.0e0.and.wavemicr(i).le.10.0e0) then
       app=-1.073e0-0.628e0*(wavemicr(i)-8.0e0)
      #+0.137e0*((wavemicr(i)-8.0e0)**2.e0)
      #-0.070e0*((wavemicr(i)-8.0e0)**3.e0)
@@ -247,27 +247,31 @@ c
 c**********************************************************
 c
 c***************** start Girardi et al. (2000) formulas ********
-      aa1=4.77e0 
+      aa1=4.77e0
 C originally, had aa1=4.77e0 - changed to 4.75 because this is the
 C value in the Gaia .f file
 C 23/08/2018 changed back to 4.77
       aa2a=alog10(4.e0*3.1415e0*100.e0)
+C aa2a is log10(400*pi)
       aa2c=alog10(5.67051e-5*(teff**4.e0)/(3.844e33))
+C aa2c is log10(sigma_SB*(Teff^4)/Lsun) = log10(Fbol/Lsun)
       aa2b=2.e0*(alog10(3.0857e0)+18.e0)
+C aa2c is 2*log10(1pc = 3.0857x10^18 cm)
       aa3=-2.5e0*(aa2a+aa2b+aa2c)
+C -> aa3 is equal to -2.5log10(4*pi*(Fbol/Lsun)*(10pc)^2)
       aa4=0.0e0  ! all Vega magnitudes=0 in Vegamag HST
 c      write(*,*) aa2a,aa2b,aa2c
 c************* calcolo flusso totale (not necessary for stellar BCs
 c
 c      flussotot=0.0e0
 c      do 7 i=2, 1221
-c      flussomedio=(fs(i-1)+fs(i))/2.e0 
+c      flussomedio=(fs(i-1)+fs(i))/2.e0
 c      wavemedia=(waves(i)+waves(i-1))/2.0e0
 c      flussotot=flussotot+waves(i)*
-c     #flussomedio*(waves(i)-waves(i-1))    
+c     #flussomedio*(waves(i)-waves(i-1))
 c 7    continue
 c      write(*,*) -2.5*alog10(flussotot)
-c      
+c
 c************* calcolo flusso nel filtro
 c
 
@@ -278,23 +282,24 @@ c
 
 
       do 8 i=2, 1221
-      flussomedio=(fs(i-1)+fs(i))/2.e0 
+      flussomedio=(fs(i-1)+fs(i))/2.e0
 C ff2-median-valued response function S_lambda
       rispostamedia=(ff2(ikj,i-1)+ff2(ikj,i))/2.e0
       wavemedia=(waves(i)+waves(i-1))/2.0e0
       flussotot2=flussotot2+waves(i)*flussomedio
      #*(10.e0**(-0.4e0*ratio(i)))*
-     #rispostamedia*(waves(i)-waves(i-1))    
+     #rispostamedia*(waves(i)-waves(i-1))
       flussomedio2=(fvega(i-1)+fvega(i))/2.e0
       flussotot2vega=flussotot2vega+waves(i)*flussomedio2*
-     #rispostamedia*(waves(i)-waves(i-1))    
+     #rispostamedia*(waves(i)-waves(i-1))
  8    continue
 c**********
       bcV(ikj)=aa1+aa3+aa4+2.5e0*alog10(flussotot2/flussotot2vega)
+c sum of aax coefficients is missing R^2 term -> 
 c      write(5,*) teff, zlogg, bcV
 c**********
 c     write(*,*) -2.5e0*alog10(flussotot2)
-c     write(*,*) -2.5e0*alog10(flussotot2vega) 
+c     write(*,*) -2.5e0*alog10(flussotot2vega)
 c      write(*,*) iz, 'correzione bolometrica=',bcV(ikj)
 
  2224 continue
