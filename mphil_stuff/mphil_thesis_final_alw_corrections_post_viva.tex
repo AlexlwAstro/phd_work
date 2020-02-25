@@ -239,7 +239,7 @@ A = 2.5\log(e) \times \tau = 1.086\tau \approx \tau
 \end{equation}
 In conclusion, to a first-order approximation, the extinction is equal to the optical depth along the line of sight. Hence, the mathematical representation of extinction is proven to be aligned with its physical definition as the flux of photons scattered and absorbed in the interstellar medium. \\*
 
-The incidence of absorption and scattering events depends on the wavelength of the incoming photons. This dependence is also incorporated into the optical depth via the scattering cross-section $\sigma$ in Equation \ref{optical_depth}. According to the Mie solution \citep{1908AnP...330..377M} to Maxwell's equations for scattering of EM waves by a homogeneous sphere****. If the particles in the ISM are (naively) assumed to be spherical with radius $a$, its geometric cross-section is $\pi a^{2}$ for any incoming photon. Using the scattering and geometric cross-sections, a dimensionless extinction coefficient:
+The incidence of absorption and scattering events depends on the wavelength of the incoming photons. This dependence is also incorporated into the optical depth via the scattering cross-section $\sigma$ in Equation \ref{optical_depth}.If the particles in the ISM are assumed to be spherical with radius $a$  According to the Mie solution \citep{1908AnP...330..377M} to Maxwell's equations for scattering of EM waves by homogeneous spheres****. Under this (naive) assumption, its geometric cross-section is $\pi a^{2}$ for any incoming photon. Using the scattering and geometric cross-sections, a dimensionless extinction coefficient:
 
 \begin{equation}
 Q(\lambda) = \frac{\sigma(\lambda)}{\pi a^{2}}
@@ -367,9 +367,10 @@ A greater surface gravity, as can be inferred from Equation \ref{gravity_def}, r
 
 %the effect of atomic number density on
 
-The effects of surface gravity on the stellar emission spectrum arise directly from the quantum properties of the interactions between the photons and atomic electrons in the stellar atmosphere. When a particle, such as an electron, absorbs a photon, the absorption process is not instantaneous and therefore carries an uncertainty in the time taken for the process to be completed, with a corresponding uncertainty in energy due to the Heisenberg uncertainty principle. Across a large number of absorptions for the same initial electron state, the result is a spread in the energies of the absorbed photons. The associated emission line is therefore broadened by the multiple wavelengths of the photons. This is universal and referred to as ``natural broadening''.\\*
+The effects of surface gravity on the stellar emission spectrum arise directly from the quantum mechanical properties of the interactions between the photons and atomic electrons in the stellar atmosphere. ****While spectral lines are always broadened due the Heisenberg uncertainty principle, an effect known as ``natural broadening'', the strength of addition broadening mechanisms are affected by the proximity (i.e. number density) of particles at the the stellar surface, which is described by the strength of the stellar surface gravity. \\*
 
-The impact of surface gravity arises via additional broadening effects upon these same absorption lines due to more inter-atomic interactions caused by a greater atmospheric atomic number density, which impact that states of atomic electrons. When broadening effects are applied to an emission spectrum, such as a spectrum from a stellar surface, the result is that fewer photons pass through the surface, thereby reducing the surface flux seen by an outside observer. \\*
+%****When a particle, such as an electron, absorbs a photon, the absorption process is not instantaneous and therefore carries an uncertainty in the time taken for the process to be completed, with a corresponding uncertainty in energy due to the Heisenberg uncertainty principle. Across a large number of absorptions for the same initial electron state, the result is a spread in the energies of the absorbed photons. The associated emission line is therefore broadened by the multiple wavelengths of the photons. This is universal and referred to as ``natural broadening''.\\*
+%The impact of surface gravity arises via additional broadening effects upon these same absorption lines due to more inter-atomic interactions caused by a greater atmospheric atomic number density, which impact that states of atomic electrons. When broadening effects are applied to an emission spectrum, such as a spectrum from a stellar surface, the result is that fewer photons pass through the surface, thereby reducing the surface flux seen by an outside observer. \\* ****
 
 The impact of stellar effective temperature, metallicity and surface gravity on extinction arises through their described effect on the spectral energy distribution (SED) emitted by the stellar atmosphere. Since both the SED and the magnitude of the interstellar extinction are functions of wavelength, different stellar types, with different SEDs, can be impacted to different extents by interstellar extinction at a given wavelength.
 
@@ -427,7 +428,7 @@ In observations, the extinction for a given source is initially unknown. For a s
 
 The treatment of extinction in observational surveys is usually via a constant value for the ratio of extinction in a given filter $X$, denoted by $A_{X}$, divided by the extinction in the well-studied Johnson-$V$ filter, $A_{V}$. The value used for this ratio, denoted by $A_{X}/A_{V}$, is often taken from \cite{1985ApJ...288..618R}. This approach has the significant issue of producing $A_{X}/A_{V}$ values that do not account for  variations between stellar spectra due to different physical parameter values in different stellar atmospheres when integrated over the filter's wavelength range. As shown in Figure \ref{planck_curve}, the monochromatic flux at a given wavelength varies greatly with effective temperature, as does the ratio between monochromatic fluxes of stars of different temperatures. ****This makes the notion that stars of different temperatures lose the same flux in a given filter, which is implied by the use of constant extinction ratios across all stellar types, inherently flawed. As shown in Figure \ref{planck_curve}, stars with higher effective temperatures have emission spectra with both significantly higher fluxes at all wavelengths and proportionally greater fluxes at the shorter wavelengths in the UV-IR spectral range which are most impacted by interstellar extinction. Therefore, it should be expected that hotter stars experience higher extinctions $A_{X}$ for a given filter, not equal values.\\*
 
-\cite{2008PASP..120..583G} produced data tables of $A_{X}/A_{V}$ for stellar atmosphere models with parameters $T_{\textnormal{eff}}$, log($g$) and [Fe/H]. They carried this out using the same ATLAS9 data \citep{2004astro.ph..5087C} that was used to generate the data for this project, but also combined it with data from other studies, which are listed in \cite{2002A&A...391..195G}, resulting in data covering a parameter space extending beyond the ATLAS9 limits in all three parameters. They used the data tables to calculate the $A_{X}/A_{V}$ values for the stellar models in Padova theoretical isochrones. While determining that the values of $A_{X}/A_{V}$ varied significantly with $T_{\textnormal{eff}}$ and log($g$), the variation with metallicity was found to be $\sim$0.17$\%$ between [Fe/H] = 0.0 and [Fe/H] = -2.5. They found that, when they set $A_{V} = 6$, there was a systematic shift for the ACS system between extinction values calculated star-wise using the tables of $A_{X}/A_{V}$ data and a constant extinction value applied to the entire isochrone. The constant values of $A_{X}/A_{V}$ were calculated from a yellow dwarf in the low-extinction regime. Overall, in the single ACS CMD example shown in the study, the $A_{X}/A_{V}$ tables produced a smaller extinction value in the F814W filter and a larger (F475W-F814W) colour index value. It also caused a change in the shape of the curve at the main-sequence turn-off (MSTO) point. They then applied the data from the tables to the case of the globular cluster M92. They found the optimal metallicity to be $Z = 0.0004$ ([Fe/H] $\approx$ -1.6) instead of the value obtain by previous observers of $Z = 0.0001$ ([Fe/H] $\approx$ -2.2). Therefore, their use of $A_{X}/A_{V}$ data caused the estimated cluster metallicity to be greater than when using the standard one-size-fits-all approach to extinction.\\*
+\cite{2008PASP..120..583G} produced data tables of $A_{X}/A_{V}$ for stellar atmosphere models with parameters $T_{\textnormal{eff}}$, log($g$) and [Fe/H]. They carried this out using the same ATLAS9 data \citep{2004astro.ph..5087C} that was used to generate the data for this project, but also combined it with data from other studies, which are listed in \cite{2002A&A...391..195G}, resulting in data covering a parameter space extending beyond the ATLAS9 limits in all three parameters. They used the data tables to calculate the $A_{X}/A_{V}$ values for the stellar models in Padova theoretical isochrones. While determining that the values of $A_{X}/A_{V}$ varied significantly with $T_{\textnormal{eff}}$ and log($g$), the variation with metallicity was found to be $\sim$0.17$\%$ between [Fe/H] = 0.0 and [Fe/H] = -2.5. They found that, when they set $A_{V} = 6$, there was a systematic shift for the ACS filter system between extinction values calculated star-wise using the tables of $A_{X}/A_{V}$ data and a constant extinction value applied to the entire isochrone. The constant values of $A_{X}/A_{V}$ were calculated from a yellow dwarf in the low-extinction regime. Overall, in the single ACS CMD example shown in the study, the $A_{X}/A_{V}$ tables produced a smaller extinction value in the F814W filter and a larger (F475W-F814W) colour index value. It also caused a change in the shape of the curve at the main-sequence turn-off (MSTO) point. They then applied the data from the tables to the case of the globular cluster M92. They found the optimal metallicity to be $Z = 0.0004$ ([Fe/H] $\approx$ -1.6) instead of the value obtain by previous observers of $Z = 0.0001$ ([Fe/H] $\approx$ -2.2). Therefore, their use of $A_{X}/A_{V}$ data caused the estimated cluster metallicity to be greater than when using the standard one-size-fits-all approach to extinction.\\*
 
 \cite{2017Galax...5...28O} used the tabulated extinction ratio tables resulting from \cite{2008PASP..120..583G}, which demonstrated the significant effect of stellar parameters on the calculated extinction ratios, to search for potential discrepancies in the predicted ages of isochrones after the addition of extinction. This was performed for isochrones with real ages between 12 and 13 Gyr and employed a small selection of Johnson ($B$,$V$ and $I$) and ACS (F606W, F775W and F814W) broadband filters. They found that, once the assumption of uniform extinction across the entire population was removed by employing the \cite{2008PASP..120..583G} data, the isochrone position in the CMD shifted such that, at $A_{V} = 1$, the position of the MSTO of a 12 Gyr isochrone with individual stellar extinction values added is the same as the MSTO position for a 12.5 Gyr isochrone with the standard single extinction value added.\\*
 
@@ -530,7 +531,7 @@ The Forbes effect (see Section \ref{forbes}) has an impact on the non-zero $A_{V
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{girardi_forbes_effect_figure.png}
-\caption{****Plots of $A_{X}/A_{V}$ with as functions of the initial $A_{V}$ value chosen for calculation of bolometric corrections for selected ACS filters. Solid lines represent dwarfs (log(g) = 5.0).Source: \cite{2008PASP..120..583G}}
+\caption{****Plots of $A_{X}/A_{V}$ with as functions of the initial $A_{V}$ value selected for the calculation of bolometric corrections for selected ACS filters. Solid lines represent dwarfs (log($g$) = 5.0), while dashed lines represent giants, which are defined by the relation $T_{\textnormal{eff}} = 3250 + 500\log(g)$ (i.e. log($g$) is decreasing towards the right side of the plot)****. Source: \cite{2008PASP..120..583G}}
 \end{center}
 \label{girardi_forbes}
 \end{figure}
@@ -673,7 +674,8 @@ In Table \ref{filter_basics}, all the filters used for this project are listed. 
 %\section{Describing variations in extinction ratio data} \label{desc_var}
 \section{Variations in extinction ratio data due to stellar atmospheres} \label{desc_var}
 
-There are significant variations in the $A_{X}/A_{V}$ data generated for this project via Equations \ref{BC_extinc} and \ref{BCs_diff} as the parameters describing the model stellar atmosphere are varied. The data showing variations in $A_{X}/A_V{V}$ with effective temperature are shown for the WFC3 and Gaia filters in Figure \ref{just_data_FeH0_WFC3gaia} and for the ACS filters in Figure \ref{just_data_FeH0_ACS}. This is important as these variations are independent of any effect due to interaction of the light emitted with the ISM. \\*
+There are significant variations in the $A_{X}/A_{V}$ data  as the parameters describing the model stellar atmosphere are varied.
+The data showing variations in the $A_{X}/A_{V}$ data, generated via Equations \ref{BC_extinc} and \ref{BCs_diff}, with effective temperature are shown for the WFC3 and Gaia filters in Figure \ref{just_data_FeH0_WFC3gaia} and for the ACS filters in Figure \ref{just_data_FeH0_ACS}. This is important as these variations are independent of any effect due to interaction of the light emitted with the ISM. By looking at the scales of the y-axes in these figures, it is clear that both the average value of, and the variations in, $A_{X}/A_{V}$ are of different magnitude in different filters. For example, an overall trend seems to be that bluer filters produce higher average values of $A_{X}/A_{V}$, which is expected given the variations of extinction with wavelength used fo Equation \ref{BC_extinc}, as shown in Figure \ref{cardelli_curve} ****\\*
 
 To model these data, functions of $T_{\textnormal{eff}}$, log($g$) and [Fe/H] were created which would be able to describe the variations in $A_{X}/A_{V}$ to a sufficient degree of accuracy. The aim of creating these functions is to reduce the large quantity of data present in the tables resulting from the implementation of Equation \ref{BCs_diff} across all available ATLAS9 atmospheres, with the same information being stored instead as the much smaller number of coefficients for the functions. For each filter, there was a unique combination of coefficient values and, in certain cases, a new function and number of coefficients.\\*
 
@@ -737,7 +739,7 @@ The Gaia DR2 dataset for NGC 6793, containing the parallaxes and apparent magnit
 
 To this end, restrictions on the parallax measurements were implemented, by imposing a distance-based selection range centred at 600 pc, which was treated as the centre of the cluster, in line with the GC18 estimate in Table \ref{NGC6793_obs}. The range was decreased until the remaining sample size was approximately equal to 271. When this was implemented, the final sample of observational data for NGC 6793 contained 274 objects. Some of these objects still had parallax distances further from the cluster centre than would be expected for any star cluster. The size of the final dataset balanced the need for maintaining sufficient data points, to achieve a valid comparison to the previous studies of NGC 6793, particularly GC18, and eliminating the most anomalous data.\\*
 
-The isochrone fitting to the NGC 6793 was done by eye using a plot of the cluster's observed Gaia CMD, with the position of each star corrected for its parallax distance. Using the values of $E_{B-V}$ and age from GC18, a standard-case isochrone was derived, again assuming a diffuse ISM (i.e., $R_{V} = 3.1$). The standard treatment was employed twice, creating a different isochrone each time. Each time, a different fixed value of $A_{X}/A_{V}$ was used, reflecting the significant changes in the value of $A_{X}/A_{V}$ for different stellar types, as noted in Section \ref{desc_var}. The fitting process was carried out in sequential stages:
+The isochrone fitting for NGC 6793 was done by eye using a plot of the cluster's observed Gaia CMD, with the position of each star corrected for its parallax distance. Using the values of $E_{B-V}$ and age from GC18, a standard-case isochrone was derived, again assuming a diffuse ISM (i.e., $R_{V} = 3.1$). The standard treatment was employed twice, creating a different isochrone each time. Each time, a different fixed value of $A_{X}/A_{V}$ was used, reflecting the significant changes in the value of $A_{X}/A_{V}$ for different stellar types, as noted in Section \ref{desc_var}. The fitting process was carried out in sequential stages:
 
 \begin{enumerate}
 \item First, the upper main sequence of the FBER isochrone below the MSTO region was fitted to that of the standard-case isochrone by varying the value of $A_{V}$ used to calculate the final FBER value for each stellar object.
@@ -749,6 +751,15 @@ The isochrone fitting to the NGC 6793 was done by eye using a plot of the cluste
 It should be noted that, when fitting  to the upper main sequence below the MSTO, priority was given to fainter objects, as these are most likely to be observations of single stars unaffected by photometric-unresolved companions, making them the most likely to conform to the predictions of stellar evolution models, ****which are more accurate for single, isolated stars than for more complex orbiting systems of multiple stars.****to avoid uncertainties due to unresolved photometric binary effects****, which manifests itself as an increase in the flux of the observed ``star'' depending on the luminosity ratio of the components (upper difference limit of 0.75 magnitudes for a system of two identical component stars).The colour index, being a difference of two magnitudes, is unaffected ****The isochrone with the resulting parameters was then plotted alongside the two standard-case isochrones. The resulting curves were compared to each other for accuracy with respect to the observational data. In the final stage, the FBER isochrone and the most accurate of the two standard-case isochrone were plotted over the data and their positions and isochrone parameters compared.\\*
 
 ****TALK somewhere about apparent second MS ~0.75 mags above main MS: this = binaries
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_observational_errorbars.pdf}
+\caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD of NGC 6793, showing the 274 cluster members in the final dataset, corrected for their individual distances with errorbars shown. The color of each object is determined by its parallax-derived distance.}
+\label{NGC_6793_obs_only}
+\end{center}
+\end{figure}
 
 \chapter{Results and discussion}
 
@@ -779,7 +790,7 @@ Another general feature is the convergence of $A_{X}/A_{V}$ to a single maximum 
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../just_full_data/ACS/AHub_FeH0p0_just_Teff_plot_lines.pdf}
 \caption{Same as Figure \ref{just_data_FeH0_WFC3gaia}, except the filters shown here are for the ACS system.}
@@ -932,14 +943,14 @@ Once the $A_{X}/A_{V}$ functions and the values of their associated coefficients
 
 To be able to apply extinction ratios calculated using the functions derived in the previous section to the model stars which constitute the BaSTI isochrones, the models' log($g$) values first had to be explicitly determined. The equations detailed in Section \ref{isoc_fit} were applied to the BaSTI data to do this. The $A_{X}/A_{V}$ functions created in this project could then be applied to the resulting data tables. \\*
 
-When calculating the fixed-extinction $A_{X}/A_{V}$ values to be applied to a given isochrone, the metallicity of the isochrone first had to be accounted for, particularly for UV filters. Therefore, the $A_{X}/A_{V}$ value chosen was taken from the ATLAS9 model whose metallicity best matched that of the isochrone. This ATLAS9 value will be denoted [Fe/H]$_{CM}$, where `$CM$' stands for `closest matching'. The first value was equal to $(A_{X}/A_{V})_{plat} = (A_{X}/A_{V})(T_{\textnormal{eff}} = 50,000\textnormal{K},\log(g) = 5.0,\textnormal{[Fe/H]}_{CM})$, and the second was equal to $(A_{X}/A_{V})_{MS} = (A_{X}/A_{V})(T_{\textnormal{eff}} = 5,000\textnormal{K},\log(g) = 5.0,\textnormal{[Fe/H]}_{CM})$. This was done to reflect the fact that, for the first case, the assumption of a constant extinction value is valid in the plateau region and, for the second, the fact that, given the position of the MSTO in terms of stellar $T_{\textnormal{eff}}$ values, it would be more prudent to ensure that the upper main sequences below the MSTO resulting from both extinction-calculation methods to coincide in the CMD, making it easier to see any disagreements in the turn-off ages. For each of ****these plots, $A_{V}$ was fixed at a value of 1.0.\\*
+When calculating the fixed-extinction $A_{X}/A_{V}$ values to be applied to a given isochrone, the metallicity of the isochrone first had to be accounted for, particularly for UV filters. Therefore, the $A_{X}/A_{V}$ value chosen was taken from the ATLAS9 model whose metallicity best matched that of the isochrone. This ATLAS9 value will be denoted [Fe/H]$_{CM}$, where `$CM$' stands for `closest matching'. The first value was equal to $(A_{X}/A_{V})_{plat} = (A_{X}/A_{V})(T_{\textnormal{eff}} = 50,000\textnormal{K},\log(g) = 5.0,\textnormal{[Fe/H]}_{CM})$, and the second was equal to $(A_{X}/A_{V})_{MS} = (A_{X}/A_{V})(T_{\textnormal{eff}} = 5,000\textnormal{K},\log(g) = 5.0,\textnormal{[Fe/H]}_{CM})$. This was done to reflect the fact that, for the first case, the assumption of a constant extinction value is valid in the plateau region and, for the second, the fact that, given the position of the MSTO in terms of stellar $T_{\textnormal{eff}}$ values, it would be more prudent to ensure that the upper main sequences below the MSTO resulting from both extinction-calculation methods to coincide in the CMD, making it easier to see any disagreements in the turn-off ages. For each isochrone plot for these four CMDs, shown in Figures \ref{acs_isoc_T5k}-\ref{gaia_isoc_T50k}****, $A_{V}$ was fixed at a value of 1.0.\\*
 
 In each of the CMDs, the extinction ratio functions have been applied to a solar-metallicity ([Fe/H] = 0), 500 Myr isochrone, which is shown as a solid orange line. A fixed extinction ratio has been applied to three solar-metallicity isochrones with ages of 400 (solid green), 500 (solid blue) and 600 (solid red) Myr, respectively. A solar-metallicity, 500 Myr isochrone with zero extinction is added for illustration purposes as a solid purple line.\\*
 
 \subsection{ACS} \label{ACS_isoc}
 The F435W-(F435W-F814W) CMD was chosen for the ACS. This CMD is useful as it pairs the bluest and reddest wide-field filters for the ACS in its colour index, which is the index most likely to distinguish between objects in a given dataset with a large range of effective temperatures, making it useful for modelling the main sequence and MSTO, the two most important CMD components for calculating cluster isochrone ages. This CMD corresponds, by design, to the pre-existing Johnson-Cousins $B$-($B-I$) CMD \citep{2005PASP..117.1049S}, which allows direct comparison of observed data with archive data obtained before the creation of the ACS filters.\\*
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{ACS F435W-(F435W-F814W) CMD with a fixed extinction ratio equal to $(A_{X}/A_{V})_{MS}$ for each filter}
@@ -947,7 +958,7 @@ The F435W-(F435W-F814W) CMD was chosen for the ACS. This CMD is useful as it pai
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f435wACS_f435wACSmf814wACS_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{ACS F435W-(F435W-F814W) CMD with a fixed extinction ratio equal to $(A_{X}/A_{V})_{plat}$ for each filter}
@@ -965,7 +976,7 @@ Two different CMDs were chosen whose filters are part of the WFC3 system. The fi
 
 As with the previous ACS CMD, this CMD shows no significant changes in isochrone position resulting from either employing a FBER model or changing the extinction ratio value used for the fixed-value extinction model from $(A_{X}/A_{V})_{plat}$ to $(A_{X}/A_{V})_{MS}$ or vice versa, as demonstrated in Figures \ref{wfc3_isoc1_T5k} and \ref{wfc3_isoc1_T50k}.\\*
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f555w_f555wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{WFC3 F555W-(F555W-F814W) CMD with a fixed extinction value equal to $(A_{X}/A_{V})_{MS}$ for each filter}
@@ -973,7 +984,7 @@ As with the previous ACS CMD, this CMD shows no significant changes in isochrone
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f555w_f555wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{WFC3 F555W-(F555W-F814W) CMD with a fixed extinction value equal to $(A_{X}/A_{V})_{plat}$ for each filter}
@@ -983,7 +994,7 @@ As with the previous ACS CMD, this CMD shows no significant changes in isochrone
 
 The second WFC3 CMD that was studied is the F814W-(F275W-F814W) CMD. The filters that form this CMD cover the soft-UV and near-IR spectral regions. The high baseline wavelength coverage of this combination of filters makes the colour index more sensitive to differences in $T_{\textnormal{eff}}$ in hot horizontal branch (HB) stars. These objects are important due to direct helium abundance measurements (from absorption lines) being available in globular clusters only for HB stars with 8000 $\lesssim T_{\textnormal{eff}}$ / K $\lesssim$ 11500 \citep{2018MNRAS.475.4088L}. \\*
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_f814w_f275wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{WFC3 F814W-(F275W-F814W) CMD with a fixed extinction value equal to $(A_{X}/A_{V})_{MS}$ for each filter.}
@@ -991,7 +1002,7 @@ The second WFC3 CMD that was studied is the F814W-(F275W-F814W) CMD. The filters
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_f814w_f275wmf814w_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{WFC3 F814W-(F275W-F814W) CMD with a fixed extinction value equal to $(A_{X}/A_{V})_{plat}$ for each filter}
@@ -1009,7 +1020,7 @@ Furthermore, there is a possibility of the extinction-related lower main sequenc
 
 The photometric filters in Gaia, as shown by their respective response functions in Figure \ref{Gaia_response_funcs}, are designed such that the only useful colour index is the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) index, with the widest filter ($G$) being on the vertical axis.\\*
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T5k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD with a fixed extinction value equal to $(A_{X}/A_{V})_{MS}$ for each filter}
@@ -1017,7 +1028,7 @@ The photometric filters in Gaia, as shown by their respective response functions
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../basti_isochrones_10_13Gyr/Extinction_T50k_FeH0fix_func_G_GbpmGrp_500_400_600_Myr_FeH_0p002_ref_noext_Av_1p0.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD with a fixed extinction value equal to $(A_{X}/A_{V})_{plat}$ for each filter}
@@ -1033,15 +1044,8 @@ When using $(A_{X}/A_{V})_{plat}$ for the fixed-extinction isochrones, the whole
 \section{NGC 6793}
 \subsection{Uncertainties in observational data}
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_observational_errorbars.pdf}
-\caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD of NGC 6793, showing the 274 cluster members in the final dataset, corrected for their individual distances with errorbars shown. The color of each object is determined by its parallax-derived distance.}
-\label{NGC_6793_obs_only}
-\end{center}
-\end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../NGC_6793_distances_hist.pdf}
 \caption{Histogram of distances for the 274 stars in the final observational dataset. The bins are set to a fixed width of 10 pc.}
@@ -1059,7 +1063,7 @@ Looking at the distances to the objects in the final sample shown in Figure \ref
 
 \subsection{Isochrones}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_FeH_0p062_Av_1p1_500Myr_all_xloge_correction_no_xerr_isochrones_summary_errorbars.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD of NGC 6793, showing the 274 distance-corrected cluster members in the final dataset overlaid with a isochrone treated with a fixed extinction-ratio value of $(A_{X}/A_{V})_{plat}$ and age, $A_{V}$ and [Fe/H] values taken from the GC18 results in Table \ref{NGC6793_obs} and a 500-Myr FBER isochrone (solid blue) with an $A_{V}$ value of 1.1 and a metallicity of [Fe/H] = 0.062, with the parallax-derived errorbars added. The inset panel shows a zoomed-in view of the MSTO region.}
