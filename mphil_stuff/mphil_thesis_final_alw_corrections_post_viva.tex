@@ -215,9 +215,8 @@ When a broadband beam of light passes through a cloud, the loss of flux due to a
 where $l$ is the length of the path taken by the beam through the cloud, $\rho$ is the mass density of the local cloud material, $\kappa$ is the material's opacity, $n$ is the particle number density and $\sigma$ is the particle collision cross-section.\\*
 
 
-REDO THIS PARAGRAPH, RESEARCH OPACITY IN DUST, GET RID OF ATOMIC ELECTRON TRANSITION STUFF!!!****It should be noted that all quantities in the integrands in Equation \ref{optical_depth} depend on local conditions at each point in the path travelled by the beam.****
-
-The quantities in Equation \ref{optical_depth} therefore cannot be immediately discounted as being constant along the entire path required for the integration, let alone throughout the entire cloud. Furthermore, the dependence of opacity, and subsequently optical depth, on the composition of the medium causes a variation of its value with the wavelength of photons in the beam.\\*
+REDO THIS PARAGRAPH, RESEARCH OPACITY IN DUST, GET RID OF ATOMIC ELECTRON TRANSITION STUFF!!!****
+It should be noted that all quantities in the integrands in Equation \ref{optical_depth} depend on local conditions at each point in the path travelled by the beam. These quantities therefore cannot be immediately discounted as being constant along the entire path required for the integration, let alone throughout the entire cloud. Furthermore, the dependence of opacity, and subsequently optical depth, on the composition of the medium causes a variation of its value with the wavelength of photons in the beam.\\*
 
 The variation in flux of the light beam with distance travelled through the cloud is best expressed using the optical depth:
 
@@ -225,7 +224,7 @@ The variation in flux of the light beam with distance travelled through the clou
 f = f_{0} e^{-\tau}
 \label{flux_loss_optical_depth}
 \end{equation}
-where $f$ is the flux of the beam after it exits the cloud and $f_{0}$ is the flux at the point where the beam first encounters the cloud (i.e., at $l = 0$). Returning to the equation for flux magnitudes given in Equation \ref{ext_def_app_mag}, we can use the relation in Equation \ref{flux_loss_optical_depth} to define extinction in terms of optical depth:
+where $f$ is the flux of the beam after it exits the cloud and $f_{0}$ is the flux at the point where the beam first encounters the cloud (i.e., at $l = 0$ in Equation \ref{optical_depth}). Returning to the equation for flux magnitudes given in Equation \ref{ext_def_app_mag}, we can use the relation in Equation \ref{flux_loss_optical_depth} to define extinction in terms of optical depth:
 
 \begin{equation}
 A = m - m_{0} = -2.5\log\left(\frac{f}{f_{0}}\right) = -2.5\log(e^{-\tau})
@@ -239,13 +238,20 @@ A = 2.5\log(e) \times \tau = 1.086\tau \approx \tau
 \end{equation}
 In conclusion, to a first-order approximation, the extinction is equal to the optical depth along the line of sight. Hence, the mathematical representation of extinction is proven to be aligned with its physical definition as the flux of photons scattered and absorbed in the interstellar medium. \\*
 
-The incidence of absorption and scattering events depends on the wavelength of the incoming photons. This dependence is also incorporated into the optical depth via the scattering cross-section $\sigma$ in Equation \ref{optical_depth}.If the particles in the ISM are assumed to be spherical with radius $a$  According to the Mie solution \citep{1908AnP...330..377M} to Maxwell's equations for scattering of EM waves by homogeneous spheres****. Under this (naive) assumption, its geometric cross-section is $\pi a^{2}$ for any incoming photon. Using the scattering and geometric cross-sections, a dimensionless extinction coefficient:
+The incidence of absorption and scattering events depends, in part, on the wavelength of the incoming photons. This dependence is also incorporated into the optical depth via the collision cross-section $\sigma$ in Equation \ref{optical_depth}. According to the Mie solution \citep{1908AnP...330..377M} to Maxwell's equations for scattering of EM waves by homogeneous spheres****. If a particle in the ISM is (naively) assumed to be spherical with radius $a$, its geometric cross-section is $\pi a^{2}$ for any incoming photon. Using the scattering and geometric cross-sections, a dimensionless extinction coefficient:
 
 \begin{equation}
 Q(\lambda) = \frac{\sigma(\lambda)}{\pi a^{2}}
 \label{ext_wavelength}
 \end{equation}
-can be defined. When the photon wavelength is on the order of the particle size ($\lambda \sim\ a$), \cite{1908AnP...330..377M} showed that $Q \sim\ a/\lambda$. In the limit $\lambda \gg a$, $Q$ decreases to zero, while for $\lambda \ll a$, $Q$ becomes constant with regard to wavelength. Typical interstellar dust grains have radii ($a$) ranging between 100 and 1000 nm \citep{2000JGR...10510299W}, but the dominant grain size is 300 nm \citep{2003JGRA..108.8030L}. Therefore, the condition $\lambda \sim\ a$ is satisfied for interstellar dust in the UV-to-near-IR spectral range, which covers approximately a 100-1000 nm wavelength range. Therefore, in this spectral range the scattering cross-section for relevant ISM atomic species is proportional to $1/\lambda$, meaning that the extinction is significantly greater in the UV than in the IR. \\*
+can be defined. When the photon wavelength is on the order of the particle size ($\lambda \sim\ a$), \cite{1908AnP...330..377M} showed that $Q \sim\ a/\lambda$. In the limit $\lambda \gg a$, $Q$ decreases to zero, while for $\lambda \ll a$, $Q$ becomes constant with regard to wavelength. Typical interstellar dust grains have radii ($a$) ranging between 100 and 1000 nm \citep{2000JGR...10510299W}, but the dominant grain size is 300 nm \citep{2003JGRA..108.8030L}. Therefore, the condition $\lambda \sim\ a$ is satisfied for interstellar dust in the UV-to-near-IR spectral range, which covers approximately a 100-1000 nm wavelength range. Therefore, in this spectral range the dependence of the scattering**** cross-section on wavelength for relevant ISM atomic species can be calculated:
+
+\begin{equation}
+\sigma(\lambda) = Q(\lambda){\pi a^{2}} \sim\ \frac{\pi a^{3}}{\lambda}
+\label{x_section_wavelength}
+\end{equation}
+
+meaning that, for a given dust particle with known size, the scattering**** cross-section is proportional to $1/\lambda$, meaning that for interstellar dust particles the extinction is significantly greater in the UV than in the IR. \\*
 
 
 Therefore, $Q$ is greatest when the photon wavelength is in the region of 300 nm, which is located within the UV regime. The effect of extinction,is therefore significantly greater in the UV than in the IR. Although, as mentioned previously, this model is overly simplistic, its general conclusions align with observational results. Therefore, referring back to Equation \ref{flux_loss_optical_depth}, interstellar extinction is also greater at shorter wavelengths, causing the source star to appear redder than its true colour (see Section \ref{standard_ext} for more detail on colours). Hence, the effect of extinction is sometimes referred to as ``reddening''.\\* 
@@ -316,7 +322,7 @@ where $T_{4} = 10^{-4} \times T_{\textnormal{eff}}$ and $T_{\textnormal{eff}}$ i
 
 %To understand the effect of different stellar types with respect to the calculated interstellar extinction
 
-This project examines the effect of extinction treatment methods on interpretations of observed stellar populations. To understand how extinction affects the observed magnitudes of different stellar types, we must first define the fundamental parameters that describe a stellar atmosphere, where the observed beam is first**** emitted by the star. These parameters will be used in this project as the input variables on which any star-to-star variations in extinction will be modelled. \\*
+This project examines the effect of extinction treatment methods on interpretations of observed stellar populations. To understand how extinction affects the observed magnitudes of different stellar types, we must first define the fundamental parameters that describe a stellar atmosphere, where the observed beam is first emitted by the star. These parameters will be used in this project as the input variables on which any star-to-star variations in extinction will be modelled. \\*
 
 \begin{figure}[h!]
 \begin{center}
@@ -332,7 +338,7 @@ The effective temperature ($T_{\textnormal{eff}}$) of a star is defined as the t
 \begin{equation}
 F_{\lambda,bb} = \frac{2hc^{2}}{\lambda^{5}\left(\exp\left({\frac{hc}{\lambda k_{B}T}}\right) - 1\right)}
 \label{planck_bb}
-\end{equation} 
+\end{equation}
 where $T$ is the thermodynamic temperature of the black body, $h$ is Planck's constant, $c$ is the vacuum speed of light and $k_{B}$ is Boltzmann's constant. This equation also holds if the light wave frequency is used instead of the wavelength, with the monochromatic flux $F_{\nu,bb}$ now being the black body flux per unit frequency per unit angular viewing area:
 
 \begin{equation}
@@ -349,7 +355,9 @@ L = 4 \pi R^{2} \sigma_{SB} T_{\textnormal{eff}}^{4}
 \end{equation}
 where $R$ is the (mean) stellar radius. Effective temperature has an effect on interstellar extinction due to its strong effect on the stellar luminosity and, hence, the flux, via the Planck Law in Equation \ref{planck_bb}. For a higher effective temperature, as demonstrated in Figure \ref{planck_curve}, there will be more photons in the broad beam of light with wavelengths that make them likely to interact with the local ISM. \\*
 
-Different chemical elements have different orbital configurations of atomic/ionic electron states. Each electron state absorbs and emits photons at a particular wavelength, which varies between individual states and between elements. ****Therefore, in a given wavelength range, such as that of a photometric filter, a greater proportion of light in a broadband beam is absorbed in a medium containing a mixture of many different elements than in a medium dominated by one or two elements. ****Although the light absorbed by atomic electrons is re-radiated, for a large number of electrons this radiation is emitted isotropically, causing a net decrease in the flux travelling in the direction of a given observer. From observations, it is clear that hydrogen is the most abundant element in stellar atmospheres, with helium a clear-but-distant second. The metallicity of a star is defined as the fractional abundance of heavy elements, often approximated by iron (Fe) alone, relative to the star's hydrogen (H) abundance, compared to that of the Sun. The abundances are determined by the strength of the elements' characteristic atomic absorption lines in the stellar spectra.
+Stellar interiors are physically fluid and therefore undergo mixing of their constituent elemental species. Therefore, the atmosphere of a star always contains a variety of elemental species, depending on the overall elemental composition of the star, i.e., the stellar metallicity. ****
+
+Different chemical elements have different orbital configurations of atomic/ionic electron states. Each electron state absorbs and emits photons at a particular wavelength, which varies between individual states and between elements. ****Although the light absorbed by an atomic electron is re-radiated, over a large number of electrons this radiation is emitted isotropically, causing a net decrease in the flux travelling out of the stellar atmosphere in the direction of a given observer. ****Therefore, in a given wavelength range, such as that defining a particular photometric filter, a greater proportion of light in a broadband beam is absorbed in a medium containing a mixture of many different elements than in a medium dominated by one or two elements. From observations, it is clear that hydrogen is the most abundant element in stellar atmospheres, with helium a clear-but-distant second. The metallicity of a star is defined as the fractional abundance of heavy elements, often approximated by iron (Fe) alone, relative to the star's hydrogen (H) abundance, compared to that of the Sun. The abundances are determined by the strength of the elements' characteristic atomic absorption lines in the stellar spectra.
 
 \begin{equation}
 \textnormal{[Fe/H]} = \log\left(\frac{N_{\textnormal{Fe}}}{N_{\textnormal{H}}}\right) - \log\left(\frac{N_{\textnormal{Fe},\odot}}{N_{\textnormal{H},\odot}}\right)
@@ -476,7 +484,7 @@ where $A_{\lambda}$ is the extinction as a function of wavelength (see Equation 
 
 \subsection{Bolometric corrections}
 
-For an observed star at an unknown distance $d$, Equation \ref{flux_dist_rd} cannot give the magnitude of the theoretical spectrum at the observer distance, $f_{\lambda}$ with any reasonable certainty. The uncertainty in $f_{\lambda}$ then causes uncertainty regarding the extinction $A_{\lambda}$ given its position in the same integrand in Equation \ref{app_mag_def}. This prevents putting in Stellar evolution models, such as the BaSTI model used in this project, offer predictions for the values of stellar parameters, such as the luminosity, effective temperature radius and surface isotope abundances, for as many stellar models as possible at a stellar age selected by the user. This makes these evolution models very useful for generating isochrones, meaning they are very useful for studying star clusters, whose members are generally born around the same time. However, the stellar properties generated by the evolutionary models are not described as functions of wavelength, making them useless for the integration terms in Equation \ref{flux_dist_rd}****. 
+For an observed star at an unknown distance $d$, Equation \ref{flux_dist_rd} cannot give the magnitude of the theoretical spectrum at the observer distance, $f_{\lambda}$ with any reasonable certainty. The uncertainty in $f_{\lambda}$ then causes uncertainty regarding the extinction $A_{\lambda}$ given its position in the same integrand in Equation \ref{app_mag_def}. This prevents putting in Stellar evolution models, such as the BaSTI model used in this project, offer predictions for the values of stellar parameters, such as the luminosity, effective temperature radius and surface isotope abundances, for as many stellar models as possible at a stellar age selected by the user. This makes these evolution models very useful for generating isochrones, meaning they are very useful for studying star clusters, whose members are generally born around the same time. However, the stellar properties generated by the evolutionary models are not described as functions of wavelength, making them useless for the integration terms in Equation \ref{flux_dist_rd}.****. 
 
 ****put in something about colour corrections here****
 
@@ -486,7 +494,7 @@ joinup****The equation does, however, have great value via the inclusion of the 
 M_{X} = m_{X} - 2.5 \log_{10}\left( \left( \frac{d}{10 \textnormal{pc}} \right)^{2} \right),
 \label{abs_mag_def}
 \end{equation}
-This represents the second step required for the comparison of theoretical isochrones to the observational case, and requires the calculation of bolometric corrections. This is due to the fact that theoretical quantities from stellar evolution models used ****to predict model atmospheres, such as the stellar effective temperature and luminosity are bolometric quantities, while observational data for stars, ****with initially unknown values for these parameters, ****To derive the equation linking a bolometric correction with the extinction parameter, we start with the definition of a bolometric correction for filter $X$, which is denoted by $BC_{X}$:
+This represents the second step required for the comparison of theoretical isochrones to the observational case, and requires the calculation of bolometric corrections. This is due to the fact that theoretical quantities from stellar evolution models used ****to predict model atmospheres, such as the stellar effective temperature and luminosity are bolometric quantities, while observational data for stars, ****with initially unknown values for these parameters, is determined through photometric filters with relatively narrow wavelength ranges. Therefore, bolometric data from the theoretical models must be converted into filter-based quantities in order to compare it with observational data, allowing the theoretical data to supply information about the observed objects**** that cannot be supplied by the observations alone, thereby allowing predictions to be made about the stars being observed. The quantity encompassing this conversion is known as a bolometric correction. ****To derive the equation linking a bolometric correction with the extinction parameter, we start with the definition of a bolometric correction for filter $X$, which is denoted by $BC_{X}$:
 
 \begin{equation}
 BC_{X} \equiv M_{\textnormal{bol}} - M_{X}
@@ -591,7 +599,7 @@ Once the bolometric correction tables were produced, all subsequent processes, i
 \section{Filters studied} \label{filter_desc}
 In this project, three broad-band filter systems were employed. Two are systems on board the Hubble Space Telescope (HST). These are the Advanced Camera for Surveys (ACS), installed in 2002 on the HST \citep{2007AJ....133.1658S}, and the Ultraviolet Imaging Spectrograph channel of the Wide-Field Camera 3 (WFC3/UVIS), installed on the HST in 2009 \citep{2010wfc..rept...14K,2010SPIE.7731E..0ZM}. The third is the single set of three broadband filters mounted on the Gaia space observatory \citep{2010A&A...523A..48J}, launched in 2013. \\*
 
-Examples of response functions for the three filter systems employed in this project are shown in Figures \ref{Gaia_response_funcs}-\ref{WFC3_response_funcs2}. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function has a significant impact on the observed flux, as shown in its contribution to the value of the apparent magnitude in Equation \ref{app_mag_def}.\\*
+Examples of response functions for the three filter systems employed in this project are shown in Figures \ref{Gaia_response_funcs}-\ref{WFC3_response_funcs2}. By comparing these with the filters' information in Table \ref{filter_basics}, it can be seen that the exact shape of the response function has a ****significant impact on the observed flux, as shown in its contribution to the value of the apparent magnitude in Equation \ref{app_mag_def}.\\*
 
 Reference will also be made to the Johnson-Morgan UBV filter system (often simply known as the Johnson system) \citep{1953ApJ...117..313J}, later extended as the Johnson-Cousins UBVRI \citep{1990PASP..102.1181B} system, which has been in use for decades and continues to be be the standard reference for more modern filter systems. Of particular importance are the Johnson blue ($B$) and yellow ($V$) filters, as these formed the original benchmark for observing stellar populations and evolutionary stages. \\*
 
@@ -674,11 +682,11 @@ In Table \ref{filter_basics}, all the filters used for this project are listed. 
 %\section{Describing variations in extinction ratio data} \label{desc_var}
 \section{Variations in extinction ratio data due to stellar atmospheres} \label{desc_var}
 
-There are significant variations in the $A_{X}/A_{V}$ data  as the parameters describing the model stellar atmosphere are varied.
-The data showing variations in the $A_{X}/A_{V}$ data, generated via Equations \ref{BC_extinc} and \ref{BCs_diff}, with effective temperature are shown for the WFC3 and Gaia filters in Figure \ref{just_data_FeH0_WFC3gaia} and for the ACS filters in Figure \ref{just_data_FeH0_ACS}. This is important as these variations are independent of any effect due to interaction of the light emitted with the ISM. By looking at the scales of the y-axes in these figures, it is clear that both the average value of, and the variations in, $A_{X}/A_{V}$ are of different magnitude in different filters. For example, an overall trend seems to be that bluer filters produce higher average values of $A_{X}/A_{V}$, which is expected given the variations of extinction with wavelength used fo Equation \ref{BC_extinc}, as shown in Figure \ref{cardelli_curve} ****\\*
+The data showing variations in the $A_{X}/A_{V}$ data, generated via Equations \ref{BC_extinc} and \ref{BCs_diff}, with effective temperature are shown for the WFC3 and Gaia filters in Figure \ref{just_data_FeH0_WFC3gaia} and for the ACS filters in Figure \ref{just_data_FeH0_ACS}. It can be seen that there are ****significant variations in the $A_{X}/A_{V}$ data  as the parameters describing the model stellar atmosphere are varied. This is important as these variations are independent of any effect due to interaction of the light emitted with the ISM. By looking at the scales of the vertical axes in these figures, it is clear that both the average value of, and the variations in, $A_{X}/A_{V}$ are of different magnitude in different filters. For example, an overall trend seems to be that bluer filters produce higher average values of $A_{X}/A_{V}$, which is expected given the variations of extinction with wavelength used for Equation \ref{BC_extinc}, as shown in Figure \ref{cardelli_curve}. ****Broader filters, as expected, have larger extinction overall than comparable narrower filters (****examples needed!)\\*
 
 To model these data, functions of $T_{\textnormal{eff}}$, log($g$) and [Fe/H] were created which would be able to describe the variations in $A_{X}/A_{V}$ to a sufficient degree of accuracy. The aim of creating these functions is to reduce the large quantity of data present in the tables resulting from the implementation of Equation \ref{BCs_diff} across all available ATLAS9 atmospheres, with the same information being stored instead as the much smaller number of coefficients for the functions. For each filter, there was a unique combination of coefficient values and, in certain cases, a new function and number of coefficients.\\*
 
+**** QUANTIFY THINGS IN THE PARAGRAPH BELOW!!!****
 To generate the coefficient values and errors, the form of the function was set manually after visually examining the variations in the $A_{X}/A_{V}$ data when plotted against three stellar atmosphere parameters. These functions were then fitted to the data using a least-squares fit algorithm, with the function coefficients acting as the free parameters to be fitted. The acceptable standard deviation in $A_{X}/A_{V}$ for the fit was also set manually. If a particular function form was unable to accurately describe the data, or could not be fitted without producing overly large or infeasible errors, it was modified or discarded as appropriate. This was repeated until a function could be found for each of the filters studied in this project which could  describe the data to at least a reasonable degree of accuracy, using coefficients with plausible errors.\\*
 
 \section{Isochrone CMD fitting} \label{isoc_fit} 
@@ -710,7 +718,9 @@ This procedure was employed for two values of $A_{X}/A_{V}$ for the fixed-extinc
 \section{Observational test case: NGC 6793} \label{obs_ngc_section}
 To test the effects of the two different treatments of $A_{X}/A_{V}$ on observational data, both were employed to predict the isochrone parameters (age, [Fe/H] and $A_{V}$) for the open cluster NGC 6793.\\*
 
-NGC 6793 has little information available in the literature when compared to other open clusters. Three observational studies have been published which give estimates for the properties of the cluster. The basic properties for all three studies are listed in Table \ref{NGC6793_obs}. However, it has the significant advantage of having both a very high $A_{V}$ extinction value among star clusters and a full set of Gaia parallax measurements for its member stars. The accurate distances to all its members allows for a higher degree of confidence in the position of the observed cluster CMD. Meanwhile, a high $A_{V}$ value increases any disagreement between the extinction treatments being compared for the cluster. Consequently, any resulting disagreement in estimates of the best-fit isochrone parameters for the cluster become greater and more significant. \\*
+NGC 6793 has little information available in the literature when compared to other open clusters. Three observational studies have been published which give estimates for the properties of the cluster. The basic properties for all three studies are listed in Table \ref{NGC6793_obs}.
+
+However, NGC 6793 was selected as the test case because it has the significant advantage of having both a very high $A_{V}$ extinction value among star clusters and a full set of Gaia parallax measurements for its member stars. The accurate distances to all its members allows for a higher degree of confidence in the position of the observed cluster CMD. Meanwhile, a high $A_{V}$ value increases any disagreement between the extinction treatments being compared for the cluster. Consequently, any resulting disagreement in estimates of the best-fit isochrone parameters for the cluster become greater and more significant. ****Furthermore, the presence of multiple studies, all of which disagree significantly on the values of the cluster age and metallicity, provides an opportunity****  \\*
 
 \begin{table}
 \begin{center}
@@ -748,9 +758,10 @@ The isochrone fitting for NGC 6793 was done by eye using a plot of the cluster's
 
 \end{enumerate}
 
-It should be noted that, when fitting  to the upper main sequence below the MSTO, priority was given to fainter objects, as these are most likely to be observations of single stars unaffected by photometrically-unresolved companions, making them the most likely to conform to the predictions of stellar evolution models.****to avoid uncertainties due to unresolved photometric binary effects****, which manifests itself as an increase in the flux of the observed ``star'' depending on the luminosity ratio of the components (upper difference limit of 0.75 magnitudes for a system of two identical component stars).The colour index, being a difference of two magnitudes, is unaffected ****The isochrone with the resulting parameters was then plotted alongside the two standard-case isochrones. The resulting curves were compared to each other for accuracy with respect to the observational data. In the final stage, the FBER isochrone and the most accurate of the two standard-case isochrone were plotted over the data and their positions and isochrone parameters compared.\\*
+It should be noted that, when fitting  to the upper main sequence below the MSTO, priority was given to fainter objects in the MS, as these are most likely to be observations of single stars unaffected by photometrically-unresolved binary companions, making them the most likely to conform to the predictions of stellar evolution models. This is because the effect of an unresolved photometric binary manifests itself as an increase in the flux of the observed star. The size of this increase depends on the ratio of the fluxes emitted by each of the components. The upper limit of this effect is 0.75 magnitudes, equivalent to a doubling of the observed flux, for a binary system composed of two identical stars. The colour index of the unresolved binary, being a difference of two magnitudes, is unaffected. Therefore, binary systems in a given cluster can be identified in a CMD as objects positioned up to 0.75 magnitudes directly above the actual MS and away from, and therefore not associated with, the post-MS stages of the CMD, such as.
 
-****TALK somewhere about apparent second MS ~0.75 mags above main MS: this = binaries
+
+ ****The isochrone with the resulting parameters was then plotted alongside the two standard-case isochrones. The resulting curves were compared to each other for accuracy with respect to the observational data. In the final stage, the FBER isochrone and the most accurate of the two standard-case isochrone were plotted over the data and their positions and isochrone parameters compared.\\*
 
 
 \begin{figure}[h!]
@@ -1040,6 +1051,15 @@ For the Gaia CMD, when $(A_{X}/A_{V})_{MS}$ is used for the fixed-extinction rat
 
 When using $(A_{X}/A_{V})_{plat}$ for the fixed-extinction isochrones, the whole isochrone is significantly shifted down and to the right when moving from the FBER isochrone to the fixed-extinction isochrone, as can be seen in Figure \ref{gaia_isoc_T50k}. Since all four isochrones with added extinction in this figure assume that $A_{V} = 1.0$, alignment of the upper main sequences when using $(A_{X}/A_{V})_{plat}$ can only be achieved by having a lower value of $A_{V}$ for the fixed-extinction isochrones than for the FBER case. Depending on the exact value of the fixed $A_{X}/A_{V}$ used for fitting an isochrone to a given observed cluster, the resulting value calculated for $A_{V}$ and, subsequently, $E_{B-V}$ could be significantly underestimated. \\*
 
+Figure \ref{NGC_6793_binary} shows the observed objects i  the CMD of NGC 6793 alongside the same objects shifted downwards by 0.75 magnitudes. As outlined in Section \ref{obs_ngc_section}, objects not associated with any post-MS regions of the CMD that lie 0.75 magnitudes or less directly above the actual main sequence are likely to be MS stars with unresolved binary companions. The figure shows that almost all**** of the purple points above the purple MS and below the MSTO region are either in or below the actual MS, indicating that these points are likely to represent stars in unresolved binary systems, and can therefore be ignored when positioning isochrones to the observed MS.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_FeH_0p062_Av_500Myr_binary_check.pdf}
+\caption{The observed CMD of NGC 6793 (coloured by object distance) overplotted with the same data shifted down in the $M_{\textnormal{ext},X}$-axis by 0.75. Purple points overlapping or the actual main sequence or positioned between the purple and actual main sequences are likely to represent stars being affected photometrically by flux from unresolved binary companions.}
+\label{NGC_6793_binary}
+\end{center}
+\end{figure}
 
 \section{NGC 6793}
 \subsection{Uncertainties in observational data}
@@ -1048,7 +1068,7 @@ When using $(A_{X}/A_{V})_{plat}$ for the fixed-extinction isochrones, the whole
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../NGC_6793_distances_hist.pdf}
-\caption{Histogram of distances for the 274 stars in the final observational dataset. The bins are set to a fixed width of 10 pc.}
+\caption{Histogram of distances for the 274**** stars in the final observational dataset. The bins are set to a fixed width of 10 pc.}
 \label{NGC_6793_dist_hist}
 \end{center}
 \end{figure}
@@ -1058,6 +1078,28 @@ The final Gaia observational sample of stars in NGC 6793 is shown as a distance-
 The uncertainties in the parallax data for objects assigned to NGC 6793 were significant for stars in the lower main sequence. This is trend is to be expected, since stars in the lower main sequence are the faintest objects in the data and therefore are the most difficult to track against background sources. The significance of the uncertainties persists despite this project assuming that the only sources of photometric error are the parallax measurements. This leads to uncertainties in the predicted $M_{\textnormal{ext},X}$ magnitudes, which are calculated by rearranging Equation \ref{ext_def_app_mag}.\\*
 
 Since the table of photometric magnitudes did not include photometric errors, the parallax errors alone accounted for the total error in the calculated $M_{\textnormal{ext},X}$ values. Therefore, the propagated errors for the $M_{\textnormal{ext},X}$ values were fully independent of the value of the absolute magnitude of a given star. The parallax-derived errors on the ($G_{\textnormal{bp}}-G_{\textnormal{rp}}$) colour index are zero, as an object's colour index can simply be calculated as the difference between its apparent magnitudes in both filters, and is therefore independent of the object's parallax.\\*
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_FeH_0p062_Av_500Myr_single_distance.pdf}
+\caption{****OBserved CMD of NGC6793. The distance-coloured points are cluster members whose absolute magnitudes were calculated using their individual parallax-determined observer distances. }
+\label{indiv_vs_single_distance_check}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{bossini_ngc6793_different_age_estimate.png}
+\caption{Disagreement on Gaia DR2 age estimates for NGC 6793 between GC18 (dashed red line) and ****Bossini (solid blue line). The reasons for the disagreement are summarised in the main text. Source:****Bossini}
+\label{indiv_vs_single_distance_check}
+\end{center}
+\end{figure}
+
+****Bossini claim that, in the case of NGC 6793 and other clusters, the estimated age values given by GC18 are inaccurate. In some cases the authors ascribe this as being due to the clusters being inconspicuous, while in others, including NGC 6793, they ascribe this to membership determination. For NGC 6793, they claim that a high-likelihood member at $G \sim\ 9$, as determined by ****cantat-gaudin, is missing from the cluster member dataset generated in GC18 and that this star, if taken to be a member of NGC 6793, causes the position of the MSTO in the cluster to change. The authors calculated that the new MSTO, instead of the GC18 value of log(age) = 8.78 (age = 603 Myr), gives an estimated value of log(age) = 8.65 , or a cluster age of 447 Myr. This indicates that the uncertainty in ages caused by the choice of extinction treatment can be smaller than uncertainty caused by disagreement over cluster membership, which is ****purely observational in origin. \\*
+
+However, the significance of the choice of extinction treatment is not impacted by cluster membership disagreements, as the new age estimate made by ****Bossini is still subject to the same extinction treatment as that of GC18. As shown in Figure 
+\ref{NGC_6793_isoc_inset_1.1_500_0.062}, in order to align the positions of best-fit isochrones generated using two different extinction treatments, there must be differences in the estimates for the cluster age, $A_{V}$ and metallicity between the two isochrones. Since this result is independent of the position of the isochrones in the CMD, using a new age estimate for one best-fit isochrone simply requires new estimates for the defining parameters in the other isochrone in order to realign it with the position of the first isochrone.****provide a figure with EVIDENCE!!!!
 
 Looking at the distances to the objects in the final sample shown in Figure \ref{NGC_6793_dist_hist}, it is clear that there are significant variations in the observed parallaxes of individual stars, far beyond the maximum cluster radii expected for the largest open clusters, given as 16.8$\pm$2.4 pc by \cite{2006A&A...456..523S} or even radii of compact stellar associations, given as 33.2$\pm$21.7 pc in the same paper. Some objects in the original dataset (which contains 338 members in total) were even assigned negative parallax values, which are physically impossible, as a result of measurement errors. Figure \ref{NGC_6793_dist_hist} shows a histogram of stars in the final NGC 6793 sample, binned by the parallax-derived distance. It is clear that a substantial fraction of this sample have measured parallax distances which put them outside the physical limits determined from other, better-studied open clusters, even after the distance limits outlined in Section \ref{obs_ngc_section} were imposed. On the other hand, applying stricter distance limits, in line with those given by \cite{2006A&A...456..523S}, produced a dataset with too few stars remaining to be able to reasonably determine cluster parameters. This led to the decision to impose limits resulting in a dataset of similar size to that used by GC18. In summary, therefore, there are additional uncertainties from the data due to selection of questionable sources as cluster members. \\*
 
@@ -1073,7 +1115,33 @@ Looking at the distances to the objects in the final sample shown in Figure \ref
 
 Before comparisons between the GC18 results and those for a FBER-based fit can be made, a reference isochrone, with a globally-fixed $A_{V}$ value of 0.843 and age of 600 Myr (in accordance with the GC18 values in Table \ref{NGC6793_obs}), was created. This was done to test whether or not a BaSTI isochrone constructed according to the GC18 results could produce an accurate fit to the observational data. The $A_{X}/A_{V}$ values required for this isochrone to achieve alignment with the upper main sequence below the MSTO were equal to the $(A_{X}/A_{V})_{plat}$ values for each Gaia filter. While the results from GC18 do not include a metallicity estimate for NGC 6793, it can be estimated from its age that a solar-like metallicity is likely. Therefore, the relevant isochrone has a metallicity of [Fe/H] = 0. Due to the overall red-ward shift of an isochrone when treated with an extinction ratio of $(A_{X}/A_{V})_{plat}$, rather than the physically more-realistic $(A_{X}/A_{V})_{MS}$, as demonstrated in Figure \ref{gaia_isoc_T50k}, the GC18 parameter values, in particular the listed $A_{V}$ value of 0.843, do not produce an accurate fit when using the FBER treatment in the isochrones for the NGC 6793 observational data.\\*
 
-Before making an age estimate, the main sequence of the FBER isochrone had to align with the MS of NGC 6793. It was found that the positions of MS objects in the region $1.0 \lesssim (G_{\textnormal{bp}}-G_{\textnormal{rp}}) \lesssim 1.5$, well below the MSTO, varied the least with changes in metallicity for the FBER isochrone. By contrast, changing the $A_{V}$ value applied to the isochrone produced a more homogeneous shift in positions along the entire isochrone, as would be expected. Therefore, the initial alignment of this region was achieved by placing greater importance on the isochrone $A_{V}$ value than on the metallicity. The metallicity variations were then used to align the remaining regions of the MS with the observed data. Finally, isochrones of different ages were plotted to determine the best-fit cluster age. \\*
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_FeH_0p002_Av_0p9_1p0_1p1_600Myr_isochrones_func_errorbars_T5k.pdf}
+\caption{****Illustration of the effect in the Gaia CMD of changing the value of $A_{V}$ used in the calculation of the FBER models applied to isochrones. The observed CMD of NGC 6793 is plotted, together with three FBER isochrones, all with ages of ****Myr and solar metallicity. Avvals****}
+\label{NGC_6793_Av_var}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_FeH_0p002_Av_1p1_600_500_400Myr_isochrones_func_errorbars_T5k.pdf}
+\caption{****Illustration of the effect in the Gaia CMD of changing the age of an isochrone. The observed CMD of NGC 6793 is plotted, together with three FBER isochrones, all with an $A_{V}$ value of 1.1 of and solar metallicity. agevals****}
+\label{NGC_6793_age_var}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_FeH_0p002_0p099_0p198_Av_1p1_600Myr_isochrones_func_errorbars_T5k.pdf}
+\caption{****Illustration of the effect in the Gaia CMD of changing the metallicity of an isochrones. The observed CMD of NGC 6793 is plotted, together with three FBER isochrones, all with ages of ****Myr and an $A_{V}$ value of 1.1. metalvals****}
+\label{NGC_6793_metal_var}
+\end{center}
+\end{figure}
+
+
+Before making an age estimate, the main sequence of the FBER isochrone had to align with the MS of NGC 6793. It was found that the positions of MS objects in the region $1.0 \lesssim (G_{\textnormal{bp}}-G_{\textnormal{rp}}) \lesssim 1.5$, well below the MSTO, varied the least with changes in metallicity for the FBER isochrone, as shown in Figure \ref{NGC_6793_metal_var}. By contrast, changing the $A_{V}$ value applied to the isochrone produced a more homogeneous shift in positions along the entire isochrone, as would be expected. Therefore, the initial alignment of this region was achieved by placing greater importance on the isochrone $A_{V}$ value than on the metallicity. The metallicity variations were then used to align the remaining regions of the MS with the observed data. Finally, isochrones of different ages were plotted to determine the best-fit cluster age. \\*
 
 The alignment of the MS region described above for a FBER treatment was achieved using a value of $A_{V} = 1.1$. To better align the FBER isochrones to the lower main sequence, an increase in isochrone metallicity was required. The best-fit metallicity value was found to be [Fe/H] = 0.062. However, the magnitudes of the observational errorbars in $M_{\textnormal{ext},G}$ for lower MS stars (see Figure \ref{NGC_6793_obs_only}) dwarf any isochrone position changes due to changing between extinction treatments in the main sequence. Once these parameters were determined, the isochrone with best-fitting MSTO position had an age of 500 Myr.\\*
 
