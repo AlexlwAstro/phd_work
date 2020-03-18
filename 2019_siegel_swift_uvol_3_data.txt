@@ -1,14 +1,14 @@
-Bytes Format Units   Label     Explanations
---------------------------------------------------------------------------------
-1- 13 A13    ---     Cluster   Cluster identifier
-15- 19 F5.2   mag     m-M       Distance modulus
-21- 24 F4.2   mag     E(B-V)    The (B-V) color excess
-26- 26 A1     ---   f_E(B-V)    [a] Flag on E(B-V) (1)
-28- 31 A4     ---   f_log(Age)  Limit flag on log(Age)
-33- 36 F4.2   [yr]    log(Age)  log age
-38- 42 F5.2   [Sun]   [Fe/H]    Metallicity
-44-198 A155   ---     Source    Data source(s) (1)
---------------------------------------------------------------------------------
+#Bytes Format Units   Label     Explanations
+#--------------------------------------------------------------------------------
+#1- 13 A13    ---     Cluster   Cluster identifier
+#15- 19 F5.2   mag     m-M       Distance modulus
+#21- 24 F4.2   mag     E(B-V)    The (B-V) color excess
+#26- 26 A1     ---   f_E(B-V)    [a] Flag on E(B-V) (1)
+#28- 31 A4     ---   f_log(Age)  Limit flag on log(Age)
+#33- 36 F4.2   [yr]    log(Age)  log age
+#38- 42 F5.2   [Sun]   [Fe/H]    Metallicity
+#44-198 A155   ---     Source    Data source(s) (1)
+#--------------------------------------------------------------------------------
 NGC 752        8.30 0.03        9.15 -0.03 Bocek Topcu et al. (2015), Twarog et al. (2015)
 NGC 752        8.30 0.05        9.15  0.00 This Study
 NGC 1039       8.38 0.10        8.35  0.07 Jones and Prosser (1996)
