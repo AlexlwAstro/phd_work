@@ -173,9 +173,6 @@ As the light emitted from a star travels towards a distant observer, its intensi
 %However, simply observing the flux from a star does not automatically lead to an accurate distance measurement. For a nearby star, its parallax can be determined from its proper motion to give a distance estimate independent of any photometric effects. For more dist
 
 %Parallaxes are extremely useful because, provided a star can be distinguished from bright objects near it in the sky, its parallax can be measured accurately, completely independent from its flux. For more distant stellar sources with much smaller parallaxes, a potential alternative is to view the object at very long wavelengths, in which observations are likely to be impacted much less significantly by extinction (see Sections \ref{empirical} and \ref{standard_ext}), to estimate the type of star being observed, before using theoretical models to compare with observations at different wavelengths. This is more effective for brighter stars. \\*
-
-However, the interstellar medium (ISM) is not a perfect vacuum. It contains many different structures, such as clouds of diffuse gas and dust grains, that can absorb or scatter light passing through. For a given light source, this causes its brightness to appear lower than it would otherwise and changes the distribution of the same brightness with photon wavelength. Optical extinction in the ISM is dominated by contributions from dust grains****Gontcharov reference!!. The effect of dust clouds on optical light travelling towards observers is particularly apparent when examining star clusters and galaxies (including the Milky Way), with the dust obscuring optical light from sources behind the clouds. \\*
-
 %In general, the difference between two flux measurements, $f_{1}$ and $f_{2}$, in magnitudes, is expressed as:
 
 %\begin{equation}
@@ -196,7 +193,9 @@ However, the interstellar medium (ISM) is not a perfect vacuum. It contains many
 
 %The quantity $(m - M)_{0}$ is known as the distance modulus. As seen in Equation \ref{distance_modulus}, it varies only with distance. The quantity $m - M$, linking the initial observed data with the final theoretical data, is known as the apparent distance modulus and varies with both distance and extinction. \\*
 
-Interstellar extinction is defined physically as the magnitude of the flux absorbed or scattered by the intervening line-of-sight ISM. Mathematically, extinction, $A$, is defined using the standard astronomical system of flux magnitudes via the following equation:
+However, the interstellar medium (ISM) is not a perfect vacuum. It contains many different structures, such as clouds of diffuse gas and dust grains, that can absorb or scatter light passing through. For a given light source, this causes its brightness to appear lower than it would otherwise and changes the distribution of the same brightness with photon wavelength. Optical extinction in the ISM is dominated by contributions from dust grains****Gontcharov reference!!. The effect of dust clouds on optical light travelling towards observers is particularly apparent when examining star clusters and galaxies (including the Milky Way), with the dust obscuring optical light from sources behind the clouds. \\*
+
+A beam containing photons with a sufficiently large range of wavelengths will therefore lose some of its photons, and therefore flux, due to interactions with the ISM through which it travels. The magnitude of loss is determined by the wavelength(s) of those photons, the fraction of the beam consisting of these photons and the state of the ISM. For a given source, its interstellar extinction value represents the ****fraction of its original flux absorbed or scattered due to all extinction events along the line-of-sight between the source and the observer. Mathematically, extinction, $A$, is defined using the standard astronomical system of flux magnitudes via the following equation:
 
 \begin{align}
 \begin{split}
@@ -206,6 +205,7 @@ m - M &= 5\log\left(\frac{d}{\textnormal{pc}}\right) - 5 + A \\
 \label{ext_def_app_mag}
 \end{align}
 where $m$ is the apparent magnitude of the source, $M$ is its absolute magnitude, $d$ is the distance to the source, $m_{0}$ is the intrinsic apparent magnitude and $(m_{0} - M)$ is the (true) distance modulus. \\*
+
 
 When a broadband beam of light passes through a dust cloud, the loss of flux due to absorption or scattering is related to the optical depth, $\tau$. The optical depth is defined along the line-of-sight via:
 
@@ -239,26 +239,35 @@ A = 2.5\log(e) \times \tau = 1.086\tau \approx \tau
 \end{equation}
 In conclusion, to a first-order approximation, the extinction is equal to the optical depth along the line of sight. Hence, the mathematical representation of extinction is proven to be aligned with its physical definition as the flux of photons scattered and absorbed by the interstellar dust. \\*
 
-The incidence of absorption and scattering events depends, in part, on the wavelength of the incoming photons. This dependence is also incorporated into the optical depth via the collision cross-section $\sigma$ in Equation \ref{optical_depth}. If a dust particle in the ISM is (naively) assumed to be spherical with radius $a$, the Mie solution \citep{1908AnP...330..377M} to Maxwell's equations can be used to estimate the extinction cross-section of the dust grains. The Mie solution describes the scattering of EM waves in the specific case in which the waves interact with homogeneous dielectric spheres,such as particles, and is accurate for all wavelengths. In the limit where $\lambda \gg a$, the Mie solution produces the standard theory of Rayleigh scattering for small particles. According to the Mie solution, a spherical dust particle has a geometric cross-section of $\pi a^{2}$. Using the scattering ($\sigma(\lambda)$) and geometric cross-sections, a dimensionless extinction efficiency factor:
+The incidence of absorption and scattering events depends, in part, on the wavelength of the incoming photons. This dependence is also incorporated into the optical depth via the interaction cross-section $\sigma$ in Equation \ref{optical_depth}. If a dust particle in the ISM is (naively) assumed to be spherical with radius $r$, the Mie solution \citep{1908AnP...330..377M} to Maxwell's equations can be used to estimate the extinction cross-section of the dust grains. The Mie solution describes the scattering of EM waves in the specific case in which the waves interact with homogeneous dielectric spheres, such as atoms and particles, and is accurate for all wavelengths.
 
-\begin{equation}
-Q(\lambda) = \frac{\sigma(\lambda)}{\pi a^{2}}
-\label{ext_wavelength}
-\end{equation}
-can be defined. According**** When the photon wavelength is on the order of the dust particle size ($\lambda \sim\ a$), \cite{1908AnP...330..377M} showed that $Q \sim\ a/\lambda$. In the limit $\lambda \gg a$, Rayleigh scattering means that $\sigma(\lambda) \propto \lambda^{-4}$ and, consequently $Q$ decreases towards zero, particularly for larger particles such as dust, while for $\lambda \ll a$, $Q$ becomes constant with regard to wavelength. Typical interstellar dust grains have radii ($a$) ranging between 100 and 1000 nm \citep{2000JGR...10510299W}, but the dominant grain size is 300 nm \citep{2003JGRA..108.8030L}. Therefore, the condition $\lambda \sim\ a$ is satisfied for interstellar dust in the UV-to-near-IR spectral range, which covers approximately a 100-1000 nm wavelength range. Therefore, in this spectral range the dependence of the extinction cross-section on wavelength for relevant ISM dust particles can be calculated:
 
+%\begin{equation}
+%Q_{\textnormal{ext}} = \frac{2}{\alpha^{2}} \sum_{n=1}^{\infty}
+%\label{ext_wavelength}
+%\end{equation}
+
+According to the Mie solution, the light extinguished by a dielectric sphere can be described by an infinite series of partial EM waves radiated by the electric and magnetic multipoles in the sphere \citep{Grainger:04}, with each partial wave corresponding to a given multipole order $n$. A dimensionless extinction efficiency factor $Q_{\textnormal{ext}}$, representing the ratio of the sphere's extinction cross-section to its geometric cross-section ($\pi r^{2}$) can be calculated analytically using this approach. Figure \ref{Qlambda_curve} shows the behaviour of $Q_{\textnormal{ext}}$ with changing wavelength when all other parameters, including particle type and size, are fixed. $Q$ is plotted as a function of $\alpha = (2\pi r/\lambda) \propto 1/\lambda$. For the regime in which particles are much larger than the wavelength of the incoming light ($\lambda \ll r$, which is on the right of the plot in Figure \ref{Qlambda_curve}), $Q_{\textnormal{ext}}$ becomes constant with regard to wavelength, converging to a value of 2 through the damped oscillation beginning at the graph peak at $\alpha \sim\ 6$. When the photon wavelength is on the order of the dust particle size ($\lambda \sim\ r$),  $Q_{\textnormal{ext}} \propto r/\lambda$, as seen in the straight-line region of Figure \ref{Qlambda_curve}. In the limit where $\lambda \gg r$, the Mie solution produces the standard theory of Rayleigh scattering for small particles, meaning that $Q_{\textnormal{ext}}(\lambda) \propto \lambda^{-4}$ and, consequently $Q$ decreases towards zero at progressively larger wavelengths, shown by the behaviour of the curve in Figure \ref{Qlambda_curve} between the origin and the straight-line ($\lambda \sim\ r$) region. Therefore, for a sphere of known radius $r$, the extinction cross-section $\sigma(\lambda)$ follows the
+same behaviour as $Q_{\textnormal{ext}}$:
+ 
 \begin{equation}
-\sigma(\lambda) = Q(\lambda){\pi a^{2}} \sim\ \frac{\pi a^{3}}{\lambda}
+\sigma(\lambda) = Q_{\textnormal{ext}}(\lambda){\pi r^{2}} \propto \frac{\pi r^{3}}{\lambda}
 \label{x_section_wavelength}
 \end{equation}
-
-meaning that, for a given dust particle with known size, the extinction cross-section is proportional to $1/\lambda$, meaning that for interstellar dust particles the extinction is significantly greater in the UV than in the IR. \\*
-
-
-Therefore, $Q$ is greatest when the photon wavelength is in the region of 300 nm, which is located within the UV regime. The effect of extinction,is therefore significantly greater in the UV than in the IR. Although, as mentioned previously, this model is overly simplistic, its general conclusions align with observational results. Therefore, referring back to Equation \ref{flux_loss_optical_depth}, interstellar extinction is also greater at shorter wavelengths, causing the source star to appear redder than its true colour (see Section \ref{standard_ext} for more detail on colours). Hence, the effect of extinction is sometimes referred to as ``reddening''. ****At optical wavelengths, the absorption mechanism in the ISM is dominated by \\* 
+meaning that, for a given dust particle with known size, the extinction cross-section is proportional to $1/\lambda$. \\*
 
 
-A beam containing photons with a sufficiently large range of wavelengths will therefore lose some of its photons, and therefore flux, due to interactions with the ISM through which it travels. The magnitude of loss is determined by the wavelength(s) of those photons, the fraction of the beam consisting of these photons and the state of the ISM. For a given source, its interstellar extinction value represents the total flux absorbed or scattered due to all extinction events along the line-of-sight between the source and the observer.\\*
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{grainger_ch5_Qext_vs_wavelength.png}
+\caption{The variation of $Q_{\textnormal{ext}}$ as a function of the size parameter $\alpha = (2\pi r/\lambda)$ at a fixed value (1.33) of the complex refractive index $m$. Source: http://eodg.atm.ox.ac.uk/user/grainger/research/book/protected/Chapter5.pdf}
+\label{Qlambda_curve}
+\end{center}
+\end{figure}
+
+****As mentioned earlier, at wavelengths in and around the optical spectral region, the absorption mechanism in the ISM is dominated by interstellar dust. Typical interstellar dust grains have radii ($r$) ranging between 100 and 1000 nm \citep{2000JGR...10510299W}, but the dominant grain size is 300 nm \citep{2003JGRA..108.8030L}. Therefore, the condition $\lambda \sim\ r$ is satisfied for interstellar dust in the UV-to-near-IR spectral range, which covers approximately a 100-1000 nm wavelength range. Therefore, $\sigma(\lambda)$ is greatest when the photon wavelength is in the region of 300 nm, which is located within the UV regime. The effect of extinction is therefore significantly greater in the UV than in the IR. Although, as mentioned previously, this model is somewhat simplistic, its general conclusions align with observational results.\\*
+
+If we refer back to Equations \ref{optical_depth} and \ref{flux_loss_optical_depth}, it can be seen that in the UV-to-NIR regime, the optical depth (and hence extinction) is greater at shorter wavelengths,  which causes the source star to appear redder than its true colour (see Section \ref{standard_ext} for more detail on colours). Hence, the effect of extinction is sometimes referred to as ``reddening''. \\*
 
 
 %\subsection{Application to photometric filters}
