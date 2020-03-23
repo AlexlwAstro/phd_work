@@ -800,7 +800,7 @@ Members & ? (> 3 ACSS-2.5) & 133* & 465 (271 with Gaia photometry) \\
 
 The Gaia DR2 dataset for NGC 6793, containing the parallaxes and apparent magnitudes (in all three Gaia filters) for 338 objects identified as belonging to the cluster, was obtained. The number of objects is greater than the 271 photometric Gaia objects found by \cite{2018A&A...616A..10G}, hereafter referred to as GC18. Furthermore, the range of parallax-derived distances among the 338 member stars is far greater than would be expected based on studies of other open clusters \citep{2006A&A...456..523S}. Some of the stars had parallaxes calculated as being negative (and therefore not physically feasible). Therefore, before this dataset could be used in this project, the dataset had to be reduced in size to eliminate stars whose parallaxes were negative and to reduce the range of projected distances in the final sample. \\*
 
-To this end, restrictions on the parallax measurements were implemented, by imposing a distance-based selection range centred at 600 pc, which was treated as the centre of the cluster, in line with the GC18 estimate in Table \ref{NGC6793_obs}. The range was decreased until the remaining sample size was approximately equal to 271. When this was implemented, the final sample of observational data for NGC 6793 contained 274 objects. Some of these objects still had parallax distances further from the cluster centre than would be expected for any star cluster. The size of the final dataset balanced the need for maintaining sufficient data points, to achieve a valid comparison to the previous studies of NGC 6793, particularly GC18, and eliminating the most anomalous data.\\*
+To this end, restrictions on the parallax measurements were implemented, by imposing a distance-based selection range centred at 600 pc, which was treated as the centre of the cluster, in line with the GC18 estimate in Table \ref{NGC6793_obs}. The range was decreased until the remaining sample size was approximately equal to 271. When this was implemented, the final sample of observational data for NGC 6793 contained 274**** objects. Some of these objects still had parallax distances further from the cluster centre than would be expected for any star cluster. The size of the final dataset balanced the need for maintaining sufficient data points, to achieve a valid comparison to the previous studies of NGC 6793, particularly GC18, and eliminating the most anomalous data.\\*
 
 The isochrone fitting for NGC 6793 was done by eye using a plot of the cluster's observed Gaia CMD, with the position of each star corrected for its parallax distance. Using the values of $E_{B-V}$ and age from GC18, a standard-case isochrone was derived, again assuming a diffuse ISM (i.e., $R_{V} = 3.1$). The standard treatment was employed twice, creating a different isochrone each time. Each time, a different fixed value of $A_{X}/A_{V}$ was used, reflecting the significant changes in the value of $A_{X}/A_{V}$ for different stellar types, as noted in Section \ref{desc_var}. The fitting process was carried out in sequential stages:
 
@@ -810,7 +810,7 @@ The isochrone fitting for NGC 6793 was done by eye using a plot of the cluster's
 \item Finally, the age of the FBER isochrone was varied to match the observed MSTO location in the NGC 6793 data as far as possible.
 \end{enumerate}
 
-It should be noted that, when fitting  to the upper main sequence below the MSTO, priority was given to fainter objects in the MS, as these are most likely to be observations of single stars unaffected by photometrically-unresolved binary companions, making them the most likely to conform to the predictions of stellar evolution models. This is because the effect of an unresolved photometric binary manifests itself as an increase in the flux of the observed star. The size of this increase depends on the ratio of the fluxes emitted by each of the components. The upper limit of this effect is 0.75 magnitudes, equivalent to a doubling of the observed flux, for a binary system composed of two identical stars. The colour index of the unresolved binary, being a difference of two magnitudes, is unaffected. Therefore, binary systems in a given cluster can be identified in a CMD as objects positioned up to 0.75 magnitudes directly above the actual MS and away from, and therefore not associated with, the post-MS stages of the CMD, such as.
+It should be noted that, when fitting  to the upper main sequence below the MSTO, priority was given to fainter objects in the MS, as these are most likely to be observations of single stars unaffected by photometrically-unresolved binary companions, making them the most likely to conform to the predictions of stellar evolution models.
 
 
 ****The isochrone with the resulting parameters was then plotted alongside the two standard-case isochrones. The resulting curves were compared to each other for accuracy with respect to the observational data. In the final stage, the FBER isochrone and the most accurate of the two standard-case isochrone were plotted over the data and their positions and isochrone parameters compared.\\*
@@ -818,7 +818,7 @@ It should be noted that, when fitting  to the upper main sequence below the MSTO
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_observational_errorbars.pdf}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_observational_errorbars_vizier.pdf}
 \caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD of NGC 6793, showing the 274 cluster members in the final dataset, corrected for their individual distances with errorbars shown. The color of each object is determined by its parallax-derived distance.}
 \label{NGC_6793_obs_only}
 \end{center}
@@ -1105,13 +1105,6 @@ When using $(A_{X}/A_{V})_{plat}$ for the fixed-extinction isochrones, the whole
 
 Figure \ref{NGC_6793_binary} shows the observed objects i  the CMD of NGC 6793 alongside the same objects shifted downwards by 0.75 magnitudes. As outlined in Section \ref{obs_ngc_section}, objects not associated with any post-MS regions of the CMD that lie 0.75 magnitudes or less directly above the actual main sequence are likely to be MS stars with unresolved binary companions. The figure shows that almost all**** of the purple points above the purple MS and below the MSTO region are either in or below the actual MS, indicating that these points are likely to represent stars in unresolved binary systems, and can therefore be ignored when positioning isochrones to the observed MS.
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_FeH_0p062_Av_500Myr_binary_check.pdf}
-\caption{The observed CMD of NGC 6793 (coloured by object distance) overplotted with the same data shifted down in the $M_{\textnormal{ext},X}$-axis by 0.75. Purple points overlapping or the actual main sequence or positioned between the purple and actual main sequences are likely to represent stars being affected photometrically by flux from unresolved binary companions.}
-\label{NGC_6793_binary}
-\end{center}
-\end{figure}
 
 \section{NGC 6793}
 \subsection{Uncertainties in observational data}
@@ -1133,18 +1126,37 @@ Since the table of photometric magnitudes did not include photometric errors, th
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_FeH_0p062_Av_500Myr_single_distance.pdf}
-\caption{****OBserved CMD of NGC6793. The distance-coloured points are cluster members whose absolute magnitudes were calculated using their individual parallax-determined observer distances. }
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_Myr_single_distance_plx_selected_vizier.pdf}
+\caption{****Observed CMD of NGC6793. The distance-coloured points are cluster members whose absolute magnitudes were calculated using their individual parallax-determined observer distances. The red points denote the same data, except that the absolute magnitude were calculated using the same GC18 cluster distance value for all the stars.}
 \label{indiv_vs_single_distance_check}
 \end{center}
 \end{figure}
 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_Myr_model_err_plx_selected_vizier.pdf}
+\caption{****Observed CMD of NGC6793, with three extinction scenario cases plotted over the data at the same cluster parameters, as shown in the legend. The curve treated using the $A_{X}/A_{V}$ models introduced in this project is shown in black. The uncertainties in these models, whose calculation is detailed in the text****, are shown in both axes via the purple lines.}
+\label{AxAv_model_err}
+\end{center}
+\end{figure}
+
+The uncertainties in coefficient values could have an impact on the significance of changing extinction treatment methods - if sufficiently large, they could render the FBER approach unnecessary. To model the uncertainty in the position of the resulting CMD isochrones, the standard deviation of each coefficient
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_Myr_binary_check_plx_selected_vizier.pdf}
+\caption{The observed CMD of NGC 6793 (coloured by object distance) overplotted with the same data shifted down in the $M_{\textnormal{ext},G}$ direction by 0.753. Purple points which either overlap the observed main sequence or appear between the purple and observed main sequences are likely to represent stars being affected photometrically by flux from unresolved binary companions.}
+\label{NGC_6793_binary}
+\end{center}
+\end{figure}
+
+****In Section \ref{obs_ngc_section}, it was noted that, where there was an apparent spread in the line forming the MS, the fainter of the possible MS paths was chosen as representing the ``true'' MS position. This is because the effect of an unresolved photometric binary manifests itself as an increase in the flux of the observed star. The size of this increase depends on the ratio of the fluxes emitted by each of the components. The upper limit of this effect is 0.753 magnitudes, equivalent to a doubling of the observed flux, for a binary system composed of two identical stars. The colour index of the unresolved binary, being a difference of two magnitudes, is unaffected. Therefore, binary systems in a given cluster can be identified in a CMD as objects positioned up to 0.753 magnitudes directly above the actual MS and away from, and therefore not associated with, the post-MS regions of the CMD, such as the RGB and AGB. To illustrate the potential impact on results for NGC 6793 in this project, Figure \ref{NGC_6793_binary} shows the observed CMD data for NGC6793 plotted twice. The purple points represent the data after it was shifted down by 0.753 magnitudes in the $M_{\textnormal{ext},G}$ direction. From Figure \ref{NGC_6793_binary}, it is clear that only a handful of MS stars have CMD positions which cannot be reconciled to the observed MS under the assumption of an undetected binary companion. Therefore, the use of the faintest MS path was justified on the basis that the vast majority of MS stars that appeared brighter than that path can be easily reconciled with the path by uncertainties caused by potential binary companions.\\*
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{bossini_ngc6793_different_age_estimate.png}
 \caption{Disagreement on Gaia DR2 age estimates for NGC 6793 between GC18 (dashed red line) and \cite{2019A&A...623A.108B} (solid blue line). The reasons for the disagreement are summarised in the main text****. Source:\cite{2019A&A...623A.108B}}
-\label{indiv_vs_single_distance_check}
+\label{bossini_age_cmd}
 \end{center}
 \end{figure}
 
