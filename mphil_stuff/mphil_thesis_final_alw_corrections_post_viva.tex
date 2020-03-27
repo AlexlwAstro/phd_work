@@ -496,9 +496,17 @@ where $A_{\lambda}$ is the extinction as a function of wavelength (see Equation 
 
 ****Bolometric corrections are different from colour corrections. ****Colour corrections are tools to determine the true apparent magnitudes of stars from the magnitudes observed through a particular set of filters.
 
-Observational results made using filters are often shown at the filters' effective wavelength $\lambda_{\textnormal{eff}}$, defined as an average****:
+Observational results made using filters are often shown at the filters' effective wavelength $\lambda_{\textnormal{eff}}$, defined as an average over the filter wavelength interval, weighted by the source spectrum and the filter response function:
 
-****A significant issue arises due to the fact that the value of $\lambda_{\textnormal{eff}}$ is weighted by the flux of the source itself. For different types of stars, therefore, the effective wavelength of the same filter is actually different. Therefore, when the observed stellar spectrum is calculated using the (incorrect) fixed filter $\lambda_{\textnormal{eff}}$ value, the true spectrum is obtained by multiplying the observed spectrum by a factor known as the ``colour correction''. The size of this correction is different for different filters, as they occupy different wavelength region and therefore experience different weights when calculating the true $\lambda_{\textnormal{eff}}$.
+\begin{equation}
+\lambda_{\textnormal{eff}} = \frac{ \int_{\lambda_{1}}^{\lambda_{2}} \lambda f_{\lambda} S_{\lambda} d\lambda }{ \int_{\lambda_{1}}^{\lambda_{2}} f_{\lambda} S_{\lambda} d\lambda }
+\label{eff_wavelength_def}
+\end{equation}
+where all terms take the same definitions as in Equation \ref{app_mag_def}.
+
+****However, with the source spectra initially unknown, in practice the effective wavelength is given as a single value. Together with Equation \ref{eff_wavelength_def}, this causes a significant issue due to the fact that the real value of $\lambda_{\textnormal{eff}}$ is weighted by the flux of the source itself, $f_{\lambda}$. For different types of stars, therefore, the effective wavelength of the same filter is different. 
+
+****In practice, the observed stellar spectrum is calculated using the fixed filter $\lambda_{\textnormal{eff}}$ value, the true spectrum is obtained by multiplying the observed spectrum by a factor known as the ``colour correction''. The size of this correction is different for different filters, as they occupy different wavelength region and therefore experience different weights when calculating the true $\lambda_{\textnormal{eff}}$.
 
 ****The two $A_{X}/A_{V}$ treatment methods are not impacted by this effect, as the data for the FBER approach is generated directly from known theoretical model atmospheres before encountering the filter response function in Equations \ref{app_mag_def} and \ref{BC_extinc}.
 
@@ -790,6 +798,7 @@ To test the effects of the two different treatments of $A_{X}/A_{V}$ on observat
 
 NGC 6793 has little information available in the literature when compared to other open clusters \citep{2019A&A...623A.108B}. Three observational studies have been published which give estimates for the properties of the cluster. The basic properties for all three studies are listed in Table \ref{NGC6793_obs}.
 
+
 However, NGC 6793 was selected as the test case because it has the significant advantage of having both a very high $A_{V}$ extinction value among star clusters and a full set of Gaia parallax measurements for its member stars. The accurate distances to all its members allows for a higher degree of confidence in the position of the observed cluster CMD. Meanwhile, a high $A_{V}$ value increases any disagreement between the extinction treatments being compared for the cluster. Consequently, any resulting disagreement in estimates of the best-fit isochrone parameters for the cluster become greater and more significant. ****Furthermore, the presence of multiple studies, all of which disagree on the values of the cluster age and ****metallicity, and therefore the precise location of the isochrone, provides an opportunity to test the effect of changing the method of extinction treatment for different isochrone paths while keeping the same observational dataset****  \\*
 
 \begin{table}
@@ -806,6 +815,9 @@ $E_{B-V}$ / mag & 0.17 & 0.312 & 0.272 \\
 -> $A_{V}$ / mag (if $R_{V} = 3.1$) & 0.53 & 0.967 & 0.843 \\
 $\textnormal{[Fe/H]}$ & ? & ? & ? \\
 Members & ? (> 3 ACSS-2.5) & 133* & 465 (271 with Gaia photometry) \\
+Parallax / mas & ? & ? & 1.6672 $\pm$ 0.0021 \\
+Proper motion (RA) / (mas/yr) & ? & ? & 3.8120 $\pm$ 0.0131 \\
+Proper motion (Dec) / (mas/yr) & ? & ? & 3.5622 $\pm$ 0.0136 \\
 \hline
 \multicolumn{4}{c}{*number of 1$\sigma$ objects inside MWSC "cluster corona border"} \\
 \end{tabular}
@@ -819,6 +831,14 @@ The Gaia DR2 dataset for NGC 6793, containing the parallaxes and apparent magnit
 
 To this end, restrictions on the parallax measurements were implemented, by imposing a distance-based selection range centred at 600 pc, which was treated as the centre of the cluster, in line with the GC18 estimate in Table \ref{NGC6793_obs}. The range was decreased until the remaining sample size was approximately equal to 271. When this was implemented, the final sample of observational data for NGC 6793 contained 274**** objects. Some of these objects still had parallax distances further from the cluster centre than would be expected for any star cluster. The size of the final dataset balanced the need for maintaining sufficient data points, to achieve a valid comparison to the previous studies of NGC 6793, particularly GC18, and eliminating the most anomalous data.\\*
 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{NGC6793_pm1sig_vs_plx_cuts_obs_cmd.pdf}
+\caption{CMD showing all 465 NGC 6793 cluster members. The****.}
+\label{WFC3_response_funcs2}
+\end{center}
+\end{figure}
+
 The isochrone fitting for NGC 6793 was done by eye using a plot of the cluster's observed Gaia CMD, with the position of each star corrected for its parallax distance. Using the values of $E_{B-V}$ and age from GC18, a standard-case isochrone was derived, again assuming a diffuse ISM (i.e., $R_{V} = 3.1$). The standard treatment was employed twice, creating a different isochrone each time. Each time, a different fixed value of $A_{X}/A_{V}$ was used, reflecting the significant changes in the value of $A_{X}/A_{V}$ for different stellar types, as noted in Section \ref{desc_var}. The fitting process was carried out in sequential stages:
 
 \begin{enumerate}
@@ -831,7 +851,6 @@ It should be noted that, when fitting  to the upper main sequence below the MSTO
 
 
 ****The isochrone with the resulting parameters was then plotted alongside the two standard-case isochrones. The resulting curves were compared to each other for accuracy with respect to the observational data. In the final stage, the FBER isochrone and the most accurate of the two standard-case isochrone were plotted over the data and their positions and isochrone parameters compared.\\*
-
 
 \begin{figure}[h!]
 \begin{center}
@@ -851,8 +870,16 @@ In order to generate the bolometric correction data, the Fortran software requir
 \item A value of $A_{V} = 1.0$ is also sufficiently small for the Forbes effect  (****see Section \ref{forbes}) to have a negligible impact, even for filters with the widest bandwidths.
 \item This value represents a cluster environment with an overall extinction which is high without being absurdly so.
 \end{itemize}
-The last reason itemized above is justified according to the data in Table 2 of \cite{2019AJ....158...35S}. The $A_{V}$ were obtained by multiplying the $E_{B-V}$ values by an $R_{V}$ value of 3.1, as assumed for the synthetic data in this project. This assumption as applied to the table is justified on the basis that with a small number of exceptions, the clusters were assessed as obeying the Milky Way law for extinction as a function of wavelength, which is the same as that employed in the seminal extinction-modelling studies, such as \cite{1989ApJ...345..245C}. ****Out of the 49 different open clusters in the table, only 3 have $A_{V}$ values greater than 1.0. However, the largest $A_{V}$ value calculated was 2.17 using the observational calculations made in the same paper. This result puts the $A_{V}$ value of 1.0 assumed for the data in this project near the midpoint of the total $A_{V}$ range covered by the clusters in the \cite{2019AJ....158...35S} sample.
- 
+The last reason itemized above is justified according to the data in Table 2 of \cite{2019AJ....158...35S}. The $A_{V}$ in that table were obtained by multiplying the $E_{B-V}$ values by an $R_{V}$ value of 3.1, as assumed for the synthetic data in this project. This assumption as applied to the table is justified on the basis that with a small number of exceptions, the clusters were assessed as obeying the Milky Way law for extinction as a function of wavelength, which is the same as that employed in the seminal extinction-modelling studies, such as \cite{1989ApJ...345..245C}. As shown in Figure \ref{siegel_Av_vals}, out of the 49 open clusters in the table, only 3 have $A_{V}$ values greater than 1.0. However, the largest $A_{V}$ value calculated was 2.17. This result puts the $A_{V}$ value of 1.0 assumed for this project near the midpoint of the total $A_{V}$ range covered by the clusters in the \cite{2019AJ....158...35S} sample. ****
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../siegel_clusters_Av_vals_hist.pdf}
+\caption{Histogram of $A_{V}$ values of clusters listed in Table 2 of \cite{2019AJ....158...35S}. The vertical dashed line at $A_{V}$ = 1.0 represents the value selected in this project.}
+\label{siegel_Av_vals}
+\end{center}
+\end{figure}
+
 %\subsection{****} \label{forbes}
 
 \section{Extinction ratio models} \label{ext_models}
