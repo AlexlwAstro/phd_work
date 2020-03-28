@@ -814,30 +814,66 @@ log(age / yr) & 8.64 & 8.695 & 8.78 \\
 $E_{B-V}$ / mag & 0.17 & 0.312 & 0.272 \\
 -> $A_{V}$ / mag (if $R_{V} = 3.1$) & 0.53 & 0.967 & 0.843 \\
 $\textnormal{[Fe/H]}$ & ? & ? & ? \\
-Members & ? (> 3 ACSS-2.5) & 133* & 465 (271 with Gaia photometry) \\
+Members & ? (> 3 ACSS-2.5) & 133* & 465 (271 with Gaia photometry)** \\
 Parallax / mas & ? & ? & 1.6672 $\pm$ 0.0021 \\
 Proper motion (RA) / (mas/yr) & ? & ? & 3.8120 $\pm$ 0.0131 \\
 Proper motion (Dec) / (mas/yr) & ? & ? & 3.5622 $\pm$ 0.0136 \\
 \hline
 \multicolumn{4}{c}{*number of 1$\sigma$ objects inside MWSC "cluster corona border"} \\
+\multicolumn{4}{c}{**apparent disagreement between member numbers for clusters listed in Tables 2 and A.4 in GC18.} \\
 \end{tabular}
 \caption{Observational parameters for NGC 6793, according to \cite{2005A&A...438.1163K} (K05, WEBDA archive page), \cite{2013A&A...558A..53K} (K13, VizieR archive page) and \cite{2018A&A...616A..10G} (GC18), respectively.}
 \label{NGC6793_obs}
 \end{center}
 \end{table}
 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_observational_errorbars_vizier_465.pdf}
+\caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD of NGC 6793, showing the 465 cluster members in the GC18 VizieR table, corrected for their individual distances with errorbars shown. The color of each object is determined by its parallax-derived distance, while the errorbars are calculated using both photometric and parallax errors.}
+\label{NGC_6793_obs_only_465}
+\end{center}
+\end{figure}
 
-The Gaia DR2 dataset for NGC 6793, containing the parallaxes and apparent magnitudes (in all three Gaia filters) for 338 objects identified as belonging to the cluster, was obtained. The number of objects is greater than the 271 photometric Gaia objects found by \cite{2018A&A...616A..10G}, hereafter referred to as GC18. Furthermore, the range of parallax-derived distances among the 338 member stars is far greater than would be expected based on studies of other open clusters \citep{2006A&A...456..523S}. Some of the stars had parallaxes calculated as being negative (and therefore not physically feasible). Therefore, before this dataset could be used in this project, the dataset had to be reduced in size to eliminate stars whose parallaxes were negative and to reduce the range of projected distances in the final sample. \\*
+****The Gaia DR2 dataset for NGC 6793 was obtained from the VizieR online data catalogue provided by \cite{2018A&A...616A..10G}. The data contained the parallaxes and proper motions (PMs) for both the cluster and its 465 members the members' apparent magnitudes in all three Gaia filters. All parameters came with error estimates. The resulting CMD is shown in Figure \ref{NGC_6793_obs_only_465}. However, the full dataset includes objects with distances which appear to lie far outside the expected range based on studies of other open clusters \citep{2006A&A...456..523S}. Therefore, to restrict the dataset to a more realistic stellar population, distance cuts were implemented. In line with the limits set out by \cite{2006A&A...456..523S}, the most generous**** cluster radius limit was selected initially.\\*
 
-To this end, restrictions on the parallax measurements were implemented, by imposing a distance-based selection range centred at 600 pc, which was treated as the centre of the cluster, in line with the GC18 estimate in Table \ref{NGC6793_obs}. The range was decreased until the remaining sample size was approximately equal to 271. When this was implemented, the final sample of observational data for NGC 6793 contained 274**** objects. Some of these objects still had parallax distances further from the cluster centre than would be expected for any star cluster. The size of the final dataset balanced the need for maintaining sufficient data points, to achieve a valid comparison to the previous studies of NGC 6793, particularly GC18, and eliminating the most anomalous data.\\*
+Since the Gaia data also included PMs for all objects, this information can also be used to test the feasibility of the initial sample of stars. Regarding the PM of cluster members, the membership calculation method of \cite{2003ARep...47..263K} was employed. For each object, this method gives membership probabilities of (a) 61\%,(b) 14\% and (c)$<$1\% \cite{2006A&A...446..949D} if the following conditions are satisfied:
+
+\begin{itemize}
+\item the object is within (a) 1$\sigma$, (b) 2$\sigma$ and (c) 3$\sigma$, respectively, of the mean cluster PM (given in Table \ref{NGC6793_obs}).
+\item the object is within a photometric error of 1$\sigma$ of the colour index to the left (bluer side) of the zero-age main sequence (ZAMS) in the CMD.
+\end{itemize}
+
+The first condition was tested first for the NGC 6793 data. Limits were placed on the deviation of the PM of the member stars from the cluster in both the right ascension and declination directions. The errors on the PMs for the individual stars are between one and three orders of magnitude greater than the error on the cluster PM in both directions. Therefore the $\sigma$ selected for use in both directions was that of each respective star. As with the radius criterion, a generous threshold was set for the PM of 3$\sigma$.The results of the PM and radius-based criteria were plotted together to be compared visually in the cluster CMD.
+
+The results are shown in Figure \ref{NGC_6793_cut_effects}. Despite the low threshold of success for both criteria, only 129 stars out of 465 ($\sim$28\%) fulfil both simultaneously. Looking at the results of Figure \ref{NGC_6793_cut_effects} and the distance and errors for the same objects shown in Figure \ref{NGC_6793_obs_only_465}, several conclusions can be drawn:
+
+\begin{itemize}
+\item The proper motion criterion is satisfied by a significantly higher number of stars than the radius criterion (340 and 231, respectively).
+\item The radius criterion selects almost all of the brightest MS stars in the data, but a significant portion of these are not selected using the PM criterion.
+\item The stars with the most anomalous calculated distances and the highest parallax errors in Figure \ref{NGC_6793_obs_only_465} are nearly all selected using the PM criterion only. These objects are also in the faintest region of the CMD, which likely contributes to their high parallax errors. These objects, in genera,l were also found to have higher-than-average PM errors, which is likely to be the cause of their selection by the PM criterion.
+\end{itemize}
+
+Consequently, the PM criterion was deemed unnecessary for the isochrone comparison required for testing extinction treatment methods. Even without the additional colour-index constraint from \cite{2003ARep...47..263K} and using a very low membership success threshold, the criterion results in a CMD with too few bright MS stars, which meant that the comparison of isochrone ages using the MSTO region could not be carried out.****
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=1.0\textwidth]{NGC6793_pm1sig_vs_plx_cuts_obs_cmd.pdf}
-\caption{CMD showing all 465 NGC 6793 cluster members. The****.}
-\label{WFC3_response_funcs2}
+\includegraphics[width=1.0\textwidth]{../NGC6793_pm3sig_vs_plx_cuts_obs_cmd_schilbach.pdf}
+\caption{CMD showing all 465 NGC 6793 cluster source objects from the initial dataset. The colour indicates the membership likelihood of each source. The stars with the highest likelihood (in blue) are those which satisfy both the proper motion and cluster radius criteria. Those which fulfil only the proper motion criterion are shown in red and those which fulfil only the radius criterion are in green. Purple indicates stars which fulfil neither.}
+\label{NGC_6793_cut_effects}
 \end{center}
 \end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_observational_errorbars_vizier.pdf}
+\caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD of NGC 6793 after ****cuts have been applied. The positions, colours and errors of each objects are the same as in Figure \ref{NGC_6793_obs_only_465}.}
+\label{NGC_6793_obs_only}
+\end{center}
+\end{figure}
+
+Hence, the radius criterion was implemented, giving 231 objects in the CMD tobe analysed, which is smaller than the sample of 271 members used by GC18 for their parameter determination. ****Overall, the size and composition of the final dataset adequately reflected the need for maintaining sufficient data points, to achieve a valid comparison to the previous studies of NGC 6793, particularly GC18, and eliminating the most anomalous data.\\*
+
 
 The isochrone fitting for NGC 6793 was done by eye using a plot of the cluster's observed Gaia CMD, with the position of each star corrected for its parallax distance. Using the values of $E_{B-V}$ and age from GC18, a standard-case isochrone was derived, again assuming a diffuse ISM (i.e., $R_{V} = 3.1$). The standard treatment was employed twice, creating a different isochrone each time. Each time, a different fixed value of $A_{X}/A_{V}$ was used, reflecting the significant changes in the value of $A_{X}/A_{V}$ for different stellar types, as noted in Section \ref{desc_var}. The fitting process was carried out in sequential stages:
 
@@ -848,17 +884,10 @@ The isochrone fitting for NGC 6793 was done by eye using a plot of the cluster's
 \end{enumerate}
 
 It should be noted that, when fitting  to the upper main sequence below the MSTO, priority was given to fainter objects in the MS, as these are most likely to be observations of single stars unaffected by photometrically-unresolved binary companions, making them the most likely to conform to the predictions of stellar evolution models.
+****linkage!!!!
+****The isochrone with the resulting parameters was then plotted alongside the two standard-case isochrones. The resulting curves were compared to each other for accuracy with respect to the observational data. In the final stage, the FBER isochrone and the most accurate of the two standard-case isochrone were plotted over the data and their positions and isochrone parameters compared.\\* 
 
 
-****The isochrone with the resulting parameters was then plotted alongside the two standard-case isochrones. The resulting curves were compared to each other for accuracy with respect to the observational data. In the final stage, the FBER isochrone and the most accurate of the two standard-case isochrone were plotted over the data and their positions and isochrone parameters compared.\\*
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_observational_errorbars_vizier.pdf}
-\caption{Gaia $G$-($G_{\textnormal{bp}}$-$G_{\textnormal{rp}}$) CMD of NGC 6793, showing the 274 cluster members in the final dataset, corrected for their individual distances with errorbars shown. The color of each object is determined by its parallax-derived distance.}
-\label{NGC_6793_obs_only}
-\end{center}
-\end{figure}
 
 \chapter{Results and discussion}
 \section{Choice of $R_{V}$ and $A_{V}$ values and the Forbes effect} \label{forbes}
@@ -1162,7 +1191,7 @@ Figure \ref{NGC_6793_binary} shows the observed objects i  the CMD of NGC 6793 a
 \end{center}
 \end{figure}
 
-The final Gaia observational sample of stars in NGC 6793 is shown as a distance-corrected CMD in Figure \ref{NGC_6793_obs_only}, with distances and photometric errors propagated directly from parallax measurements.\\*
+The final Gaia observational sample of stars in NGC 6793 is shown as a distance-corrected CMD in Figure \ref{NGC_6793_obs_only_465}, with distances and photometric errors propagated directly from parallax measurements.\\*
 
 The uncertainties in the parallax data for objects assigned to NGC 6793 were significant for stars in the lower main sequence. This is trend is to be expected, since stars in the lower main sequence are the faintest objects in the data and therefore are the most difficult to track against background sources. The significance of the uncertainties persists despite this project assuming that the only sources of photometric error are the parallax measurements. This leads to uncertainties in the predicted $M_{\textnormal{ext},X}$ magnitudes, which are calculated by rearranging Equation \ref{ext_def_app_mag}.\\*
 
@@ -1262,7 +1291,7 @@ Before making an age estimate, the main sequence of the FBER isochrone had to al
 
 Using the cluster parameters determined by GC18 did not produce a satisfactory fit between the isochrone and the observations. As shown in Figure \ref{NGC_6793_gc18_params_function}, the GC18 values produce an FBER isochrone whose MS lies too far beyond the blue colour-index range of the MS and thereby does not align with the position of the MSTO either, necessitating a higher value of $A_{V}$ to increase the predicted colour index of the isochrone. The metallicity was increased to realign the FBER and fixed-extinction isochrones in the lower main sequence. After this, the age of the FBER isochrone was lowered in order to realign the MSTO positions of the two isochrones.\\*
 
-The alignment of the MS region described above for a FBER treatment was achieved using a value of $A_{V} = 1.1$. To better align the FBER isochrones to the lower main sequence, an increase in isochrone metallicity was required. The best-fit metallicity value was found to be [Fe/H] = 0.062. However, the magnitudes of the observational errorbars in $M_{\textnormal{ext},G}$ for lower MS stars (see Figure \ref{NGC_6793_obs_only}) dwarf any isochrone position changes due to changing between extinction treatments in the main sequence. Once these parameters were determined, the isochrone with best-fitting MSTO position had an age of 500 Myr.\\*
+The alignment of the MS region described above for a FBER treatment was achieved using a value of $A_{V} = 1.1$. To better align the FBER isochrones to the lower main sequence, an increase in isochrone metallicity was required. The best-fit metallicity value was found to be [Fe/H] = 0.062. However, the magnitudes of the observational errorbars in $M_{\textnormal{ext},G}$ for lower MS stars (see Figure \ref{****NGC_6793_obs_only}) dwarf any isochrone position changes due to changing between extinction treatments in the main sequence. Once these parameters were determined, the isochrone with best-fitting MSTO position had an age of 500 Myr.\\*
 
 
 \begin{table}
