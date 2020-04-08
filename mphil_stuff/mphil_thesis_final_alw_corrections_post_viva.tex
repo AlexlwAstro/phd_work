@@ -162,13 +162,15 @@ parsec (pc) &:& 1 pc = $3.086 \times 10^{18}$ cm
 ****ADD TEXT LINKING PARAGRAPHS!!!
 
 \chapter{Introduction}
-\section{Interstellar extinction} \label{ext_def}
-\subsection{Physical origin \& defintion} \label{phys_origin}
+\section{****Interstellar extinction} \label{ext_def}
+\subsection{Physical origin \& definition} \label{phys_origin}
 As the light emitted from a star travels towards a distant observer, its intensity, or flux, decreases with distance via an inverse-square law. Stars emit light across the full range of the electromagnetic spectrum. Therefore, a beam of light from a star will consist of photons with an extremely wide range of wavelengths. \\*
 
-However, the interstellar medium (ISM) is not a perfect vacuum. It contains many different structures, such as clouds of diffuse gas and dust grains, that can absorb or scatter light passing through. For a given light source, this causes its brightness to appear lower than it would otherwise and changes the distribution of the same brightness with photon wavelength. Optical extinction in the ISM is dominated by contributions from dust grains \citep{2016Ap.....59..548G}. The effect of dust clouds on optical light travelling towards observers is particularly apparent when examining star clusters and galaxies (including the Milky Way), with the dust obscuring optical light from sources behind the clouds. \\*
+However, the interstellar medium (ISM) is not a perfect vacuum. It contains many different structures, such as clouds of diffuse gas and dust grains, that can absorb or scatter light passing through. For a given light source, this causes its brightness to appear lower than it would otherwise and changes the distribution of the brightness with photon wavelength. A beam containing photons with a sufficiently large range of wavelengths will therefore lose some of its photons, and therefore flux, due to interactions with the ISM through which it travels. The magnitude of loss is determined by the wavelengths of the photons, the fraction of the beam consisting of photons at those wavelengths and the state of the ISM. For a given source, its interstellar extinction value represents the fraction of its original flux absorbed or scattered due to all extinction events along the line-of-sight between the source and the observer.\\*
 
-A beam containing photons with a sufficiently large range of wavelengths will therefore lose some of its photons, and therefore flux, due to interactions with the ISM through which it travels. The magnitude of loss is determined by the wavelength(s) of those photons, the fraction of the beam consisting of these photons and the state of the ISM. For a given source, its interstellar extinction value represents the fraction of its original flux absorbed or scattered due to all extinction events along the line-of-sight between the source and the observer. Mathematically, extinction, $A$, is defined using the standard astronomical system of flux magnitudes via the following equation:
+Optical extinction in the ISM is dominated by contributions from dust grains \citep{2016Ap.....59..548G}. The effect of dust clouds on optical light travelling towards observers is particularly apparent when examining star clusters and galaxies (including the Milky Way), with the dust obscuring optical light from sources behind the clouds. One prominent example of an interstellar dust cloud extinguishing optical light from background stars is the Coalsack Nebula. \\*
+
+Mathematically, extinction, $A$, is defined using the standard astronomical system of flux magnitudes via the following equation:
 
 \begin{align}
 \begin{split}
@@ -186,17 +188,17 @@ When a broadband beam of light passes through a dust cloud, the loss of flux due
 \tau(l) = \int_{0}^{l} \rho \kappa dl = \int_{0}^{l} n \sigma dl
 \label{optical_depth}
 \end{equation}
-where $l$ is the length of the path taken by the beam through the cloud, $\rho$ is the mass density of the local cloud material, $\kappa$ is the material's opacity, $n$ is the particle number density and $\sigma$ is the particle collision cross-section.\\*
+where $l$ is the length of the path taken by the beam through the cloud, $\rho$ is the mass density of the local cloud material, $\kappa$ is the material's opacity, $n$ is the particle number density and $\sigma$ is the particle interaction cross-section.\\*
 
-It should be noted that all quantities in the integrands in Equation \ref{optical_depth} depend on local conditions at each point in the path travelled by the beam. These quantities therefore cannot be immediately discounted as being constant along the entire path required for the integration, let alone throughout the entire cloud. Furthermore, the dependence of opacity, and subsequently optical depth, on the composition of the medium causes a variation of its value with the wavelength of photons in the beam.\\*
+It should be noted that all quantities in the integrands in Equation \ref{optical_depth} depend on local conditions at each point along the path travelled by the beam. These quantities therefore cannot be immediately discounted as being constant along the entire path required for the integration, let alone throughout the entire cloud. Furthermore, the dependence**** of opacity, and subsequently optical depth, on the chemical composition of the dust causes a variation of its value with the wavelength of photons in the beam.\\*
 
-The variation in flux of the light beam with distance travelled through the cloud is best expressed using the optical depth:
+The variation in flux of the light beam with distance travelled through the cloud $l$ is best expressed using the optical depth:
 
 \begin{equation}
-f = f_{0} e^{-\tau}
+f(l) = f_{0} e^{-\tau(l)}
 \label{flux_loss_optical_depth}
 \end{equation}
-where $f$ is the flux of the beam after it exits the cloud and $f_{0}$ is the flux at the point where the beam first encounters the cloud (i.e., at $l = 0$ in Equation \ref{optical_depth}). Returning to the equation for flux magnitudes given in Equation \ref{ext_def_app_mag}, we can use the relation in Equation \ref{flux_loss_optical_depth} to define extinction in terms of optical depth:
+where $f$ is the flux of the beam after it exits the cloud and $f_{0}$ is the flux at the point where the beam first encounters the cloud (i.e., at $l = 0$). Returning to Equation \ref{ext_def_app_mag}, we can use the relation in Equation \ref{flux_loss_optical_depth}, together with the standard equation which defines the relationship between two different magnitudes, to define extinction in terms of optical depth:
 
 \begin{equation}
 A = m - m_{0} = -2.5\log\left(\frac{f}{f_{0}}\right) = -2.5\log(e^{-\tau})
@@ -208,9 +210,9 @@ Therefore, we can define the extinction in terms of the distance travelled throu
 A = 2.5\log(e) \times \tau = 1.086\tau \approx \tau
 \label{ext_optical_depth}
 \end{equation}
-In conclusion, to a first-order approximation, the extinction is equal to the optical depth along the line of sight. Hence, the mathematical representation of extinction is proven to be aligned with its physical definition as the flux of photons scattered and absorbed by the interstellar dust. \\*
+In conclusion, to a first-order approximation, the extinction is equal to the optical depth along the line of sight. Hence, the mathematical representation of extinction is proven to be aligned with its physical definition as the fraction of photons scattered and absorbed by the interstellar dust. \\*
 
-The incidence of absorption and scattering events depends, in part, on the wavelength of the incoming photons. This dependence is also incorporated into the optical depth via the interaction cross-section $\sigma$ in Equation \ref{optical_depth}. If a dust particle in the ISM is (naively) assumed to be spherical with radius $r$, the Mie solution \citep{1908AnP...330..377M} to Maxwell's equations can be used to estimate the extinction cross-section of the dust grains. The Mie solution describes the scattering of EM waves in the specific case in which the waves interact with homogeneous dielectric spheres, such as atoms and particles, and is accurate for all wavelengths.
+The incidence of absorption and scattering events depends, in part, on the wavelength of the incoming photons. This dependence is also incorporated into the optical depth via the interaction cross-section $\sigma$ in Equation \ref{optical_depth}. If a dust particle in the ISM is (naively) assumed to be spherical with radius $r$, the Mie solution \citep{1908AnP...330..377M} to Maxwell's equations can be used to estimate the extinction cross-section of the dust grains. The Mie solution describes the scattering of EM waves in the specific case in which the waves interact with homogeneous dielectric spheres, such as atoms and particles, and is accurate for all wavelengths.\\*
 
 
 %\begin{equation}
@@ -218,14 +220,18 @@ The incidence of absorption and scattering events depends, in part, on the wavel
 %\label{ext_wavelength}
 %\end{equation}
 
-According to the Mie solution, the light extinguished by a dielectric sphere can be described by an infinite series of partial EM waves radiated by the electric and magnetic multipoles in the sphere \citep{Grainger:04}, with each partial wave corresponding to a given multipole order $n$. A dimensionless extinction efficiency factor $Q_{\textnormal{ext}}$, representing the ratio of the sphere's extinction cross-section to its geometric cross-section ($\pi r^{2}$) can be calculated analytically using this approach. Figure \ref{Qlambda_curve} shows the behaviour of $Q_{\textnormal{ext}}$ with changing wavelength when all other parameters, including particle type and size, are fixed. $Q$ is plotted as a function of $\alpha = (2\pi r/\lambda) \propto 1/\lambda$. For the regime in which particles are much larger than the wavelength of the incoming light ($\lambda \ll r$, which is on the right of the plot in Figure \ref{Qlambda_curve}), $Q_{\textnormal{ext}}$ becomes constant with regard to wavelength, converging to a value of 2 through the damped oscillation beginning at the graph peak at $\alpha \sim\ 6$. When the photon wavelength is on the order of the dust particle size ($\lambda \sim\ r$),  $Q_{\textnormal{ext}} \propto r/\lambda$, as seen in the straight-line region of Figure \ref{Qlambda_curve}. In the limit where $\lambda \gg r$, the Mie solution produces the standard theory of Rayleigh scattering for small particles, meaning that $Q_{\textnormal{ext}}(\lambda) \propto \lambda^{-4}$ and, consequently $Q$ decreases towards zero at progressively larger wavelengths, shown by the behaviour of the curve in Figure \ref{Qlambda_curve} between the origin and the straight-line ($\lambda \sim\ r$) region. Therefore, for a sphere of known radius $r$, the extinction cross-section $\sigma(\lambda)$ follows the
+According to the Mie solution, the light extinguished by a dielectric sphere can be described by an infinite series of partial EM waves radiated by the electric and magnetic multipoles in the sphere \citep{Grainger:04}, with each partial wave corresponding to a given multipole order $n$. A dimensionless extinction efficiency factor $Q_{\textnormal{ext}}$, representing the ratio of the sphere's extinction cross-section to its geometric cross-section ($\pi r^{2}$) can be calculated analytically using this approach. Figure \ref{Qlambda_curve} shows the behaviour of $Q_{\textnormal{ext}}$ with changing wavelength $\lambda$ when all other parameters, including particle type and size, are fixed. $Q_{\textnormal{ext}}$ is plotted as a function of the so-called size parameter $\alpha = (2\pi r/\lambda) \propto 1/\lambda$.\\*
+
+For the regime in which particles are much larger than the wavelength of the incoming light ($\lambda \ll r$, which is on the right of the figure), $Q_{\textnormal{ext}}$ becomes constant with regard to wavelength, converging to a value of 2 through the damped oscillation beginning at the graph peak at $\alpha \sim\ 6$. In the limit where $\lambda \gg r$, the Mie solution produces the standard theory of Rayleigh scattering for small particles, meaning that $Q_{\textnormal{ext}}(\lambda) \propto \lambda^{-4}$ and, consequently $Q$ decreases towards zero at progressively larger wavelengths, shown by the behaviour of the curve in Figure \ref{Qlambda_curve} between the origin and the straight-line ($\lambda \sim\ r$) region.\\*
+
+Crucially, when the photon wavelength is on the order of the dust particle size ($\lambda \sim\ r$),  $Q_{\textnormal{ext}} \propto r/\lambda$, as seen in the straight-line region of Figure \ref{Qlambda_curve}. Therefore, for a sphere of known radius $r \sim\ \lambda$, the extinction cross-section $\sigma(\lambda)$ follows the
 same behaviour as $Q_{\textnormal{ext}}$:
  
 \begin{equation}
 \sigma(\lambda) = Q_{\textnormal{ext}}(\lambda){\pi r^{2}} \propto \frac{\pi r^{3}}{\lambda}
 \label{x_section_wavelength}
 \end{equation}
-meaning that, for a given dust particle with known size, the extinction cross-section is proportional to $1/\lambda$. \\*
+meaning that, for a given dust particle with known radius $r$, its contribution to the extinction cross-section is proportional to $1/\lambda$. \\*
 
 
 \begin{figure}[h!]
@@ -236,10 +242,9 @@ meaning that, for a given dust particle with known size, the extinction cross-se
 \end{center}
 \end{figure}
 
-As mentioned earlier, at wavelengths in and around the optical spectral region, the absorption mechanism in the ISM is dominated by interstellar dust. Typical interstellar dust grains have radii ($r$) ranging between 100 and 1000 nm \citep{2000JGR...10510299W}, but the dominant grain size is 300 nm \citep{2003JGRA..108.8030L}. Therefore, the condition $\lambda \sim\ r$ is satisfied for interstellar dust in the UV-to-near-IR spectral range, which covers approximately a 100-1000 nm wavelength range. Therefore, $\sigma(\lambda)$ is greatest when the photon wavelength is in the region of 300 nm, which is located within the UV regime. The effect of extinction is therefore significantly greater in the UV than in the IR. Although, as mentioned previously, this model is somewhat simplistic, its general conclusions align with observational results.\\*
+As mentioned earlier, at wavelengths in and around the optical spectral region, the absorption mechanism in the ISM is dominated by interstellar dust. Typical interstellar dust grains have radii ranging between 100 and 1000 nm \citep{2000JGR...10510299W}, but the dominant grain size is 300 nm \citep{2003JGRA..108.8030L}. Therefore, the condition $\lambda \sim\ r$ is satisfied for interstellar dust in the UV-to-near-IR spectral range, which covers approximately a 100-1000 nm wavelength range. Therefore, $\sigma(\lambda)$ is greatest when the photon wavelength is in the region of 300 nm, which is located within the UV wavelength regime. The effect of extinction is therefore significantly greater in the UV than in the IR. Although this spherical model is somewhat simplistic for the case of interstellar dust grains, its general conclusions align with observational results.\\*
 
-If we refer back to Equations \ref{optical_depth} and \ref{flux_loss_optical_depth}, it can be seen that in the UV-to-NIR regime, the optical depth (and hence extinction) is greater at shorter wavelengths,  which causes the source star to appear redder than its true colour (see Section \ref{standard_ext} for more detail on colours). Hence, the effect of extinction is sometimes referred to as ``reddening''. \\*
-
+If we refer back to Equations \ref{optical_depth} and \ref{flux_loss_optical_depth}, with this knowledge of the behaviour of $\sigma$, it can be seen that in the UV-to-NIR regime, the optical depth (and hence extinction) is greater at shorter, bluer wavelengths,  which causes the source star to appear redder than its true colour. Hence, the effect of extinction is sometimes referred to as ``reddening''. \\*
 
 %\subsection{Application to photometric filters}
 
@@ -263,7 +268,19 @@ If we refer back to Equations \ref{optical_depth} and \ref{flux_loss_optical_dep
 
 \subsection{Empirical extinction curves} \label{empirical}
 
-The variation of extinction with wavelength discussed in the previous section has been studied for decades. Various authors have produced empirical results intended to better model the changes in the magnitude of extinction over an extended wavelength range, as explicit functions of wavelength or as values or functions unique to each in a selection of photometric filters.\\*
+From the results of Mie scattering summarised in Section \ref{phys_origin}, it is clearly very important to both understand and measure any variations in extinction. In fact, the observed variation of extinction with wavelength discussed in the previous section has been studied for decades. Various authors have produced empirical results intended to better model the changes in the magnitude of extinction over an extended wavelength range, as explicit functions of wavelength or as values or functions unique to each one of a selection of photometric filters.\\*
+
+%Johnson-Cousins filters , which have long been the standard set of filters in UV-IR spectral observations, 
+
+\cite{1985ApJ...288..618R} found that outside dense molecular clouds, which have high opacities and whose lines-of-sight are less frequently used in observations as a result, all extinction laws for all the filters they studied were uniform between wavelengths of 1 and 13 $\mu$m when observing sources in the direction of the Galactic Centre. This result was then used to produce constant ratios of the extinction in those filters ($A_{X}$, where $X$ represents a generic photometric filter) to the extinction in the $V$ filter ($A_{V}$), part of the Johnson-Cousins \citep{1953ApJ...117..313J} filter system which has long been the standard system of filters in UV-IR spectral observations. The ratio between the extinction in $X$ and that in $V$ is denoted by $A_{X}/A_{V}$. They also determined the now-widely used global average value of 3.08 ($\sim$3.1) for $R_{V} \equiv A_{V}/E_{B-V}$, known as the total-to-selective extinction ratio,  for the diffuse ISM. \\*
+
+\cite{1989ApJ...345..245C} used observations of mostly bright, hot O- and B-type main-sequence stars to produce empirical equations describing the mean ratio of extinction values at a specific wavelength $\lambda$ ($A_{\lambda}$) to the $V$-band extinction ($A_{V}$), this ratio being denoted $A_{\lambda}/A_{V}$. The study produced a basic equation of the form:
+
+\begin{equation}
+A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
+\label{CCM_general}
+\end{equation}
+where $x \equiv 1/\lambda$. The significance of $R_{V}$, as noted in the same paper, comes from its usefulness as an indicator of the nature of the interstellar medium through which the observed light travels in order to reach the observer. The total wavelength range was divided into 4 sub-ranges, each with a governing pair of empirically-determined equations to calculate $a(x)$ and $b(x)$, respectively. The extinction-ratio profiles calculated using Equation \ref{CCM_general} for three lines of sight are displayed in Figure \ref{cardelli_curve}.\\*
 
 \begin{figure}[h!]
 \begin{center}
@@ -273,21 +290,13 @@ The variation of extinction with wavelength discussed in the previous section ha
 \end{center}
 \end{figure}
 
-\cite{1985ApJ...288..618R} found that outside dense molecular clouds, which have high opacities and whose lines-of-sight are less frequently used as a result, all extinction laws for all studied Johnson-Cousins filters \citep{1953ApJ...117..313J}, which have long been the standard set of filters in UV-IR spectral observations, were uniform between wavelengths of 1 and 13 $\mu$m when observing sources in the direction of the Galactic Centre. This result was then used to produce constant ratios of the extinction in those filters ($A_{X}$, where $X$ represents a generic photometric filter) to the extinction in the well-studied Johnson-$V$ filter ($A_{V}$). This ratio is denoted by $A_{X}/A_{V}$. They also determined the now-widely used global average value of 3.08 ($\sim$3.1) for $R_{V} \equiv A_{V}/E_{B-V}$, known as the total-to-selective extinction ratio,  for the diffuse ISM. \\*
-
-\cite{1989ApJ...345..245C} used observations of mostly bright, hot O- and B-type main-sequence stars to produce empirical equations describing the mean ratio of extinction values at a specific wavelength $\lambda$ ($A_{\lambda}$) to the $V$-band extinction, this ratio being denoted by $A_{\lambda}/A_{V}$. The study produced a basic equation of the form:
-
-\begin{equation}
-A_{\lambda}/A_{V} = a(x) + b(x)/R_{V},
-\label{CCM_general}
-\end{equation}
-where $x \equiv 1/\lambda$. The significance of $R_{V}$, as noted in the same paper, comes from its usefulness as an indicator of the nature of the interstellar medium through which the observed light travels in order to reach the observer. The total wavelength range was divided into 4 sub-ranges, each with a governing pair of empirically-determined equations to calculate $a(x)$ and $b(x)$, respectively. The resulting extinction-ratio profiles for three lines of sight are displayed in Figure \ref{cardelli_curve}. This model underpins more recent studies of intrinsic effects on extinction \citep{2008PASP..120..583G,2014MNRAS.444..392C,2018MNRAS.475.5023C,2018MNRAS.479L.102C}, and provides the basis for the synthetic $A_{X}/A_{V}$ datasets in this project. Equation \ref{CCM_general} has become a standard model for theoretical studies to employ for predictions made in the UV, optical and near-IR wavelength regions, although it is not always accurate \citep{1994ApJ...422..158O,1999PASP..111...63F}. \\*
+This model underpins more recent studies of intrinsic effects on extinction \citep{2008PASP..120..583G,2014MNRAS.444..392C,2018MNRAS.475.5023C,2018MNRAS.479L.102C}, and provides the basis for the synthetic $A_{X}/A_{V}$ datasets in this project. Equation \ref{CCM_general} has become a standard model for theoretical studies to employ for predictions made in the UV, optical and near-IR wavelength regions, although it is not always accurate \citep{1994ApJ...422..158O,1999PASP..111...63F}. \\*
 
 \cite{1994ApJ...422..158O} found deviations from the \cite{1989ApJ...345..245C} extinction law in the soft-UV spectral range using a sub-sample of 22 stars from the same dataset. This was attributed to the uncertainty in the short-wavelength cutoff of the UV-range Johnson $U$ filter and to the presence of the Balmer discontinuity within the limits of the filter bandpass.\\*
 
-\cite{1999PASP..111...63F} found that, due to the broadband nature of the Johnson filters and the general decrease of extinction with wavelength, the \cite{1989ApJ...345..245C} relations overestimate the extinction in the near-IR and blue-visible Johnson filters. The study put forward corrections to the equations for $a(x)$ and $b(x)$ for these wavelength regions. However, in the UV region covered by  the \cite{1989ApJ...345..245C} equations, the equations are accurate for 93\% of a homogeneous UV observational database \citep{2004ApJ...616..912V}.\\*
+\cite{1999PASP..111...63F} found that, due to the broadband nature of the Johnson filters and the general decrease of extinction with wavelength, the \cite{1989ApJ...345..245C} relations overestimate the extinction in the near-IR and blue-visible Johnson filters. The study put forward corrections to the equations for $a(x)$ and $b(x)$ for these wavelength regions. However, in the UV region covered by the \cite{1989ApJ...345..245C} equations, \cite{2004ApJ...616..912V} found the equations to be accurate for 93\% of a homogeneous UV observational database.\\*
 
-\cite{2014MNRAS.444..392C,2018MNRAS.475.5023C,2018MNRAS.479L.102C} created simple  models for the parameter $R_{X}  = \frac{A_{X}}{E_{B-V}}$, consisting of a quadratic variation with effective temperature and a linear variation with metallicity (they found no significant variations with surface gravity) in multiple telescope filter systems. This was based on MARCS model stellar atmospheres, which have an upper effective temperature limit of 8000K \citep{2008A&A...486..951G}. The equation is independent of surface gravity and has the following form:
+\cite{2014MNRAS.444..392C,2018MNRAS.475.5023C,2018MNRAS.479L.102C} created simple  models for the parameter $R_{X}  = (A_{X}/E_{B-V})$, consisting of a quadratic variation with effective temperature and a linear variation with metallicity (they found no significant variations with surface gravity) in multiple telescope filter systems. This was based on MARCS model stellar atmospheres, which have an upper effective temperature limit of 8000K \citep{2008A&A...486..951G}. The equation is independent of surface gravity and has the following form:
 
 \begin{equation}
 R_{X} = a_{0} + T_{4}(a_{1} + a_{2}T_{4}) + a_{3}\textnormal{[Fe/H]}
@@ -296,10 +305,13 @@ R_{X} = a_{0} + T_{4}(a_{1} + a_{2}T_{4}) + a_{3}\textnormal{[Fe/H]}
 where $T_{4} = 10^{-4} \times T_{\textnormal{eff}}$ and $T_{\textnormal{eff}}$ is the effective temperature. The equation is valid for $5250\textnormal{K} \leq T_{\textnormal{eff}} \leq 7000\textnormal{K}$. Although these models are mathematically simple (with only 4 coefficients), the limited $T_{\textnormal{eff}}$ range in which they are applicable is problematic, particularly in the red giant branch (RGB) and lower main sequence of any stellar population.\\*
 
 \section{Extinction in stars \& stellar populations}
+This project examines the effect of extinction treatment methods on interpretations of observed stellar populations. All star emits light from their surfaces, above which the photons can travel much more freely than in the stellar interior. However, the emitted photons must pass through the stellar atmosphere immediately above the surface before reaching the ISM or a distant observer. The stellar atmosphere contains atomic and ionic species which can interact with the photons. The level of interaction between the photons and the atmosphere depends not only on the photons' wavelengths but also on the nature of the atmosphere itself, which is governed by the type of star in question.****
 
 \subsection{The effect of extinction on the observed magnitudes of different stellar types} \label{params}
 
-This project examines the effect of extinction treatment methods on interpretations of observed stellar populations. To understand how extinction affects the observed magnitudes of different stellar types, we must first define the fundamental parameters that describe a stellar atmosphere, where the observed beam is first emitted by the star. This is important. These parameters will be used in this project as the input variables on which any star-to-star variations in extinction will be modelled. \\*
+To understand how extinction affects the observed magnitudes of different stellar types, we must first define the fundamental parameters that describe a stellar atmosphere, where the observed beam is first emitted by the star. This is important because these parameters will be used in this project as the input variables on which any star-to-star variations in extinction will be modelled. Stellar atmospheres are defined by three stellar parameters: the effective temperature, surface gravity and metallicity.\\*
+
+\subsubsection{Effective temperature}
 
 \begin{figure}[h!]
 \begin{center}
@@ -332,6 +344,8 @@ L = 4 \pi R^{2} \sigma_{SB} T_{\textnormal{eff}}^{4}
 \end{equation}
 where $R$ is the (mean) stellar radius. Effective temperature has an effect on interstellar extinction due to its strong effect on the stellar luminosity and, hence, the flux, via the Planck Law in Equation \ref{planck_bb}. For a higher effective temperature, as demonstrated in Figure \ref{planck_curve}, there will be more photons in the broad beam of light with wavelengths that make them likely to interact with the local ISM. \\*
 
+\subsubsection{Metallicity}
+
 The atmosphere of any given star always contains a variety of chemical species, depending on the overall composition of the star, which is quantified by the stellar metallicity. These different chemical species each have different orbital configurations of atomic/ionic electron states. Each electron state absorbs and emits photons at a particular wavelength, which varies between individual states and between different atoms. Although the light absorbed by an atomic electron is re-radiated, over a large number of electrons this radiation is emitted isotropically, causing a net decrease in the flux travelling out of the stellar atmosphere in the direction of a given observer at that wavelength. Therefore, in a given wavelength range, such as that defining a particular photometric filter, a greater proportion of light in a broadband beam is absorbed in a medium containing a mixture of many different elements than in a medium dominated by one or two elements.\\*
 
 From observations, it is clear that hydrogen is the most abundant element in stellar atmospheres, with helium a clear-but-distant second. The metallicity of a star is defined as the fractional abundance of heavy elements, often approximated by iron (Fe) alone, relative to the star's hydrogen (H) abundance, compared to that of the Sun. The abundances are determined by the strength of the elements' characteristic atomic absorption lines in the stellar spectra, and the metallicity itself is defined via the following equation:
@@ -341,6 +355,8 @@ From observations, it is clear that hydrogen is the most abundant element in ste
 \label{FeH_def}
 \end{equation}
 where $N_{E}$ represents the number density for a generic atomic species $E$. For stellar observations, $N_{E}$ is measured at the surface. Since the output of Equation \ref{FeH_def} is logarithmic, a value of [Fe/H] = 0 indicates solar metallicity. An increase in metallicity would cause the relevant metallic absorption lines to be stronger, thus reducing the observable flux. An increased metallicity also implies an increase in abundance of sub-ferrous metals. The presence of more nuclear species, each with unique absorption line configurations, inevitably creates more observable lines, further increasing the apparent extinction in the spectral flux. The effect of this reduction in flux manifests itself as a reduction in the stellar luminosity and therefore the effective temperature when all other stellar properties (such as the mass and age) are fixed.\\*
+
+\subsubsection{Surface gravity}
 
 The definition of the stellar surface gravity $g$ is simply the value of the standard Newtonian gravitational acceleration, applied to the stellar surface (the mass is the total stellar mass, $M$, and the distance is the stellar radius, $R$):
 
@@ -412,7 +428,7 @@ In observations, the extinction for a given source is initially unknown. For a s
 
 The value used for the extinction ratio $A_{X}/A_{V}$ in the standard treatment is often taken from \cite{1985ApJ...288..618R}. This approach has the issue of assuming that $A_{X}/A_{V}$ is constant for all stars in a given stellar population, meaning the fraction of flux lost between the stellar surface and the observer for any beam in the wavelength range of $X$ is always directly proportional to the fraction lost in the $V$ band for all stars. This results in  $A_{X}/A_{V}$ values that do not account for variations between spectra of different stellar classes, which is shown to be inaccurate in the data shown in Figures \ref{just_data_FeH0_WFC3gaia} and \ref{just_data_FeH0_ACS} in Section \ref{ext_ratio_data}.\\*
 
-\cite{2008PASP..120..583G} produced data tables of $A_{X}/A_{V}$ for stellar atmosphere models with parameters $T_{\textnormal{eff}}$, log($g$) and [Fe/H]. They carried this out using the same ATLAS9 data \citep{2004astro.ph..5087C} that was used to generate the data for this project, but also combined it with data from other studies, which are listed in \cite{2002A&A...391..195G}, resulting in data covering a parameter space extending beyond the ATLAS9 limits in all three parameters. They used the data tables to calculate the $A_{X}/A_{V}$ values for the stellar models in Padova theoretical isochrones. While determining that the values of $A_{X}/A_{V}$ varied significantly with $T_{\textnormal{eff}}$ and log($g$), the variation with metallicity was found to be $\sim$0.17$\%$ between [Fe/H] = 0.0 and [Fe/H] = -2.5. They found that, when they set $A_{V} = 6$, there was a systematic shift for the ACS filter system between extinction values calculated star-wise using the tables of $A_{X}/A_{V}$ data and a constant extinction value applied to the entire isochrone. The constant values of $A_{X}/A_{V}$ were calculated from a yellow dwarf in the low-extinction regime. Overall, in the single ACS CMD example shown in the study, the $A_{X}/A_{V}$ tables produced a smaller extinction value in the F814W filter and a larger (F475W-F814W) colour index value. It also caused a change in the shape of the curve at the main-sequence turn-off (MSTO) point. They then applied the data from the tables to the case of the globular cluster M92. They found the optimal metallicity to be $Z = 0.0004$ ([Fe/H] $\approx$ -1.6) instead of the value obtain by previous observers of $Z = 0.0001$ ([Fe/H] $\approx$ -2.2). Therefore, their use of $A_{X}/A_{V}$ data caused the estimated cluster metallicity to be greater than when using the standard one-size-fits-all approach to extinction.\\*
+\cite{2008PASP..120..583G} produced data tables of $A_{X}/A_{V}$ for stellar atmosphere models with parameters $T_{\textnormal{eff}}$, log($g$) and [Fe/H]. They carried this out using the same ATLAS9 data \citep{2004astro.ph..5087C} that was used to generate the data for this project, but also combined it with data from other studies, which are listed in \cite{2002A&A...391..195G}, resulting in data covering a parameter space extending beyond the ATLAS9 limits in all three parameters. They used the data tables to calculate the $A_{X}/A_{V}$ values for the stellar models in Padova theoretical isochrones \citep{1994A&AS..106..275B}. While determining that the values of $A_{X}/A_{V}$ varied significantly with $T_{\textnormal{eff}}$ and log($g$), the variation with metallicity was found to be $\sim$0.17$\%$ between [Fe/H] = 0.0 and [Fe/H] = -2.5. They found that, when they set $A_{V} = 6$, there was a systematic shift for the ACS filter system between extinction values calculated star-wise using the tables of $A_{X}/A_{V}$ data and a constant extinction value applied to the entire isochrone. The constant values of $A_{X}/A_{V}$ were calculated from a yellow dwarf in the low-extinction regime. Overall, in the single ACS CMD example shown in the study, the $A_{X}/A_{V}$ tables produced a smaller extinction value in the F814W filter and a larger (F475W-F814W) colour index value. It also caused a change in the shape of the curve at the main-sequence turn-off (MSTO) point. They then applied the data from the tables to the case of the globular cluster M92. They found the optimal metallicity to be $Z = 0.0004$ ([Fe/H] $\approx$ -1.6) instead of the value obtain by previous observers of $Z = 0.0001$ ([Fe/H] $\approx$ -2.2). Therefore, their use of $A_{X}/A_{V}$ data caused the estimated cluster metallicity to be greater than when using the standard one-size-fits-all approach to extinction.\\*
 
 \cite{2017Galax...5...28O} used the tabulated extinction ratio tables resulting from \cite{2008PASP..120..583G}, which demonstrated the effect of stellar parameters on the calculated extinction ratios, to search for potential discrepancies in the predicted ages of isochrones after the addition of extinction. This was performed for isochrones with real ages between 12 and 13 Gyr and employed a small selection of Johnson ($B$,$V$ and $I$) and ACS (F606W, F775W and F814W) broadband filters. They found that, by employing the \cite{2008PASP..120..583G} data, the position of isochrone in the CMD shifted such that, at $A_{V} = 1$, the position of the MSTO of a 12 Gyr isochrone with individual stellar extinction values added is the same as the MSTO position for a 12.5 Gyr isochrone with the standard fixed extinction value added.\\*
 
@@ -683,7 +699,7 @@ ACS & F606W & 0.865 & 0.962 & 0.097 \\
 & F275W & 0.773 & 2.065 & 1.292 \\
 & F300X & 1.323 & 2.043 & 0.720 \\
 & F336W & 1.587 & 1.647 & 0.060 \\
-& F390W & 1.39 & 1.484 & 0.094 \\
+& F390W & 1.390 & 1.484 & 0.094 \\
 WFC3 & F438W & 1.302 & 1.352 & 0.050 \\
 & F475W & 1.110 & 1.220 & 0.110 \\
 & F555W & 0.977 & 1.080 & 0.103 \\
@@ -1146,8 +1162,8 @@ Since the table of photometric magnitudes did not include photometric errors, th
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_Myr_single_distance_plx_selected_vizier.pdf}
-\caption{****Observed CMD of NGC 6793. The distance-coloured points are cluster members whose absolute magnitudes were calculated using their individual parallax-determined observer distances. The red points denote the same data, except that the absolute magnitude were calculated using the same GC18 cluster distance value for all the stars.}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_Myr_single_distance_vizier.pdf}
+\caption{Observed CMD of NGC 6793. The distance-coloured points are cluster members whose absolute magnitudes were calculated using their individual parallax-determined observer distances. The red points denote the same data, except that the absolute magnitude were calculated using the GC18 distance value for the cluster for all the stars.}
 \label{indiv_vs_single_distance_check}
 \end{center}
 \end{figure}
@@ -1156,7 +1172,7 @@ The uncertainties in coefficient values could have an impact on the significance
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_Myr_binary_check_plx_selected_vizier.pdf}
+\includegraphics[width=1.0\textwidth]{../NGC_6793_CMD_Myr_binary_check_vizier.pdf}
 \caption{The observed CMD of NGC 6793 (coloured by object distance) overplotted with the same data shifted down in the $M_{\textnormal{ext},G}$ direction by 0.753. Purple points which either overlap the observed main sequence or appear between the purple and observed main sequences are likely to represent stars being affected photometrically by flux from unresolved binary companions.}
 \label{NGC_6793_binary}
 \end{center}
@@ -1316,24 +1332,26 @@ In summary, the use of different stellar models for isochrones in GC18 and this 
 
 \chapter{Conclusion}
 
-This project aimed to use theoretical stellar atmosphere data to map variations in the extinction ratios $A_{X}/A_{V}$ in three different photometric filter systems as the atmospheric effective temperature, surface gravity and metallicity were varied. The greatest variations in $A_{X}/A_{V}$ for all filters were found to occur with variations in effective temperature, with variations due to changes in metallicity and surface gravity found to be much smaller, as expected. Within individual filters, the greatest range of $A_{X}/A_{V}$ values occurred for UV filters, with the range decreasing with increasing filter wavelength, again in line with previous predictions and observational evidence. Mathematical functions were constructed and their coefficients fitted to the $A_{X}/A_{V}$ data in each filter. The resulting functions were able to describe the data to a reasonable degree of accuracy, and are therefore a suitable, and much simpler, substitute for performing interpolation on the $A_{X}/A_{V}$ data. \\* 
+This project aimed to use theoretical stellar atmosphere data to map variations in the extinction ratios $A_{X}/A_{V}$ in three different photometric filter systems as the atmospheric effective temperature, surface gravity and metallicity were varied. The greatest variations in $A_{X}/A_{V}$ for all filters were found to occur with variations in effective temperature, with variations due to changes in metallicity and surface gravity found to be much smaller, as expected. Within individual filters, the greatest range of $A_{X}/A_{V}$ values occurred for UV filters, with the ****range decreasing with increasing filter wavelength, again in line with previous predictions and observational evidence. Mathematical functions were constructed and their coefficients fitted to the $A_{X}/A_{V}$ data in each filter. The resulting functions were able to describe the data to a reasonable degree of accuracy, and are therefore a suitable, and much simpler, substitute for performing interpolation on tables of $A_{X}/A_{V}$ data. \\* 
+
+%****0.760988925385 is the non-UV correlation coefficient
 
 The $A_{X}/A_{V}$ values generated by applying these functions to objects in an isochrone were then added to those objects (the FBER method). The isochrone was then plotted in selected CMDs alongside the same isochrone to which a fixed value of $A_{X}/A_{V}$ was applied to all objects. This allowed the effects of the FBER and fixed extinction ratio methods on the isochrone position in the CMD to be compared. \\*
 
-In all the CMDs studied in this project, applying a fixed value of $A_{X}/A_{V}$ to the entire isochrone causes the main-sequence turn-off to occur at a more luminous, bluer point in a given CMD than the MSTO point for an isochrone with extinction values derived using the FBER method. The significance of this position change is dependent on the filters used to construct the particular CMD in question. The position changes in two of the four CMDs studied are insignificant.\\*
+In all the CMDs studied in this project, applying a fixed value of $A_{X}/A_{V}$ to the entire isochrone causes the main-sequence turn-off to occur at a more luminous, bluer point in a given CMD than the MSTO point for the same isochrone with extinction values derived using the FBER method. The significance of this position change is dependent on the filters used to construct the particular CMD in question. The position changes in two of the four CMDs studied are insignificant.\\*
 
 The WFC3 F814W-(F275W-F814W) CMD shows significant differences between the positions of certain sections of isochrones treated under different extinction-calculation methods, particularly for the lower main sequence but also for the MSTO, depending on the value of $A_{X}/A_{V}$ used in the fixed-extinction case. This is a consequence of the much larger variation of extinction between different stellar types in the UV spectral range.\\*
 
 The Gaia photometric CMD is highly sensitive to both the choice of extinction-calculation method and the choice between $(A_{X}/A_{V})_{plat}$ and $(A_{X}/A_{V})_{MS}$ for the fixed-extinction ratio method. This underscores the substantial risk of incorrect assumptions being made when fitting isochrones to observational data with a single globally-fixed $A_{X}/A_{V}$ value across all constituent stellar model objects, which in turn leads to incorrect estimates of important cluster parameters, as was demonstrated in detail here for the open cluster NGC 6793. \\*
 
 \section{Future work}
-There are multiple ways to extend the applicability of the work done in this project. The most obvious examples are to utilise photometric data with known errors to better understand the significance of the choice of extinction method quantitatively, to study more CMDs in the filter systems used in this project and to utilise the filter response functions for more filter systems, particularly for more modern and more sensitive instruments, such as the James Webb Space Telescope (JWST) and the proposed WFIRST and PLATO space telescopes, to create FBER models for observations made with these instruments.\\*
+There are multiple ways to extend the applicability of the work done in this project. The most obvious examples are to study more CMDs in the filter systems used in this project and to utilise the filter response functions for more filter systems, particularly for more modern and more sensitive instruments, such as the James Webb Space Telescope (JWST) and the proposed WFIRST and PLATO space telescopes, to create FBER models for observations made with these instruments.\\*
 
-Another extension would be to apply the FBER method to observed clusters with isochrone ages determined using the fixed-extinction ratio method. If, as predicted for the limited examples studied in this project, the isochrone ages of a given cluster CMD are greater when employing a fixed-extinction method, there is the possibility of a systematic decrease in the predicted ages of these observed after comparison with ages derived using an FBER method.\\*
+Another extension would be to apply the FBER method to observed clusters with isochrone ages previously determined using the fixed-extinction ratio method. If, as predicted for the limited examples studied in this project, the isochrone ages of a given cluster CMD are greater when employing a fixed-extinction method, there is the possibility of a systematic decrease in the predicted ages of these observed clusters after comparison with ages derived using an FBER method.\\*
 
-Regarding the case of NGC 6793, follow-up observations with Johnson-Cousins filters, if feasible, could resolve the $A_{V}$ disagreement between extinction-calculation methods by providing a direct measured value upon which the Gaia extinction ratios can be calculated.\\*
+Regarding the case of NGC 6793, follow-up observations with Johnson-Cousins filters, if feasible, could resolve the $A_{V}$ disagreement between the extinction-calculation methods by providing a direct measured value upon which the Gaia extinction ratios can be calculated.\\*
 
-Finally, the limits on the accuracy of the model functions presented here require investigation, particularly the accuracy limit at the lowest $T_{\textnormal{eff}}$ values available from ATLAS9. This could be done using the same approach as that used by \cite{2008PASP..120..583G}, who use SEDs generated from sources other than ATLAS9 to extend their bolometric correction database to a minimum $T_{\textnormal{eff}}$ of $\sim$1000 K. The coolest known stellar objects (excluding brown dwarfs) have $T_{\textnormal{eff}} \sim 2500$ K. Extending the dataset would constrain the allowed behaviour of the model functions for the lowest ATLAS9 effective temperatures. The lack of data below 3500 K for this project prevents investigation of the significance of the tail-flick phenomenon, since the phenomenon, at present, extends to (and possibly beyond) the lower $T_{\textnormal{eff}}$ limit for the affected filters.\\*
+Finally, the limits on the accuracy of the model functions presented here require investigation, particularly the accuracy limit at the lowest $T_{\textnormal{eff}}$ values available from ATLAS9. This could be done using the same approach as that used by \cite{2008PASP..120..583G}, who use SEDs generated from sources other than ATLAS9 to extend their bolometric correction database to a minimum $T_{\textnormal{eff}}$ of $\sim$1000 K. The coolest known stellar objects (excluding brown dwarfs) have $T_{\textnormal{eff}} \sim 2500$ K. Extending the dataset would constrain the allowed behaviour of the model functions for the lowest ATLAS9 effective temperatures. The lack of data below 3500 K for this project prevents investigation of the significance of the tail-flick phenomenon, since the phenomenon, at present, extends to (and possibly beyond) the lower $T_{\textnormal{eff}}$ limit for the affected filters in ATLAS9.\\*
 
 %\bibliographystyle{ieeetr}
 \bibliographystyle{mnras} % unsrtnat
