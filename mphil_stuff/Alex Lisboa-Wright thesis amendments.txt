@@ -24,116 +24,163 @@ Clarifications:
 *Make the distinction between and relative contributions of interstellar dust and gas to extinction clear in
 the Introduction section, as in the discussion in the viva (esp. decide whether passages concerning atoms on
 pages 3 & 4, page 8, and similar, are appropriate and if so, explain why).
+****ALW: made more explicit the fact that the Ax/Av variations are due to stellar atmospheres, confined any gas/atomic text to stellar atmosphere metallicity paragraphs,
+ stated and explained why ISM extinction is dominated by dust (Mie theory)****
 
 *Qualitatively explain the effect under consideration (the effect of spectral slopes and added extinction in a
 broad-band filter), as per the initial moments of the viva and with a figure. Also mention that the effect is
 commonly recognised and known as colour correction.
+****ALW: added in a comparison between bolometric and colour corrections (incl. relevance of effective wavelength), explained sources & implementation
+of data involved with BCs in this project and why colour correction factors aren't needed for those calculations****
 
 *Quantify the effect that is the main subject of the thesis. It would seem that Figs 3.1 and 3.2 provide this
 information. So, a (clearer and simplified) version of Sec. 3.1, and 3.2 plus the figures should be moved
 forward to before Sec 2.2. These graphs provide the main justification for the research conducted.
+****ALW: figures moved, their results made more prominent in the text****
 
 Clarify why Bolometric Corrections need to be computed when one is interested in individual filters.
+****ALW: added in paragraphs explaining what was discussed in the viva about neediing to link data outputs of different form****
 
 *Clarify the data of the test case. In particular, discuss later Gaia DR2 results for the cluster, as these give an
 idea of the uncertainties involved, even when considering the same data.
+****ALW: added figures, discussions of the later Bossini paper results. Got the full Vizier dataset for the GC18 paper for
+ more detailed analysis (incl. figures added to thesis)****
 
 *Reconsider the order of sections in the thesis. For example, much of chapter 3 should be discussed before
 fitting isochrones are mentioned or treated.
+****ALW: a lot of rearranging done!****
 
 Check when any variables are defined and first mentioned in, especially, chapter 3. They should be defined
 and introduced before they are used. (e.g. in 3.2: introduce Fig 3.2 and then describe what it shows).
+****ALW: checked and reordered as appropriate****
 
 Clarify and make consistent Tables 3.1 and 3.2
+****ALW: done - one table is now sideways on the page as a result****
 
 Justify the choice of Av=1 as a test value (i.e. by giving the distribution of Av in known clusters of the
 appropriate type).
+****ALW: added reference to recent survey of clusters and I made a histogram to show where Av=1 lies in that sample of clusters****
 
 Identify the curves in Figure 2.2
+****ALW: edited the figure caption to ID the curves****
 
 Streamline and simplify the text and figures in sections 3.3 � 3.10
+****ALW: split up and simplified the text and reordered paragraphs and figures for easier reading****
 
 *Explain more about fitting isochrones � e.g. the fact that the MS fitting is mostly insensitive to age and
 metallicity, but very dependent on extinction.
+****ALW: added 3 figures, one for each isochrone parameter to be fitted, with accompanying text discussion****
 
 Highlight the Blue Stragglers, binaries etc.
+****ALW: blue stragglers discussed ****
 
 *Justify all qualitative judgements about results and assumptions quantitatively (e.g. �acceptable�,
 �reasonable�, �plausible� on p. 26).
+****ALW: made reference to numerical values and graphs when discussing these****
 
 *The discussions of natural line (and pressure) broadening on p.8 appear irrelevant and should be justified (in
 terms of quantified effect on the broad-band spectrum) or deleted.
+****ALW: cut down to a brief mention****
 
 *In 1.2.2, explain more carefully why the Forbes effect is relevant, since we observe extinction empirically. If
 it introduces a bias, explain how this manifests and how large the effect is, with a plot, if necessary.
+****ALW: rejigged the order of the text, placing Forbes stuff in the relevant place within the thesis topics & structure ****
 
 *In 1.3 (p12): �This makes the notion�� needs clarifying. Extinction produces relative losses, so the fraction
 lost at a given wavelength is the same. If this passage refers to the colour-correction problem, then make the
 connection clear.
+****ALW: made explicit reference to the data underlying this project, which contradicts the assumption of constant extinction, not related to CCs ****
 
 2.1.1: the discussion of Vega appears to refer to the need for a flux standard, since the magnitude scale is
 arbitrary. Vega is an A0 star with (in principle) mag = 0 at all wavelengths. Make this point.
+****ALW: added this point ****
 
 2.2.2: explain why 50Myr and 12Gyr are chosen.
+****ALW: pushed ages out to 15Myr and 15Gyr, respectively, which are basically at the limits of the BaSTI database, thereby showing the chosen model grid
+ is suitable. Also included numerical limits for these in Table 2.3 (pre-viva thesis)/Table 3.3 (new thesis)****
 
 2.3: �a significant impact� quantify significant (see above).
+****ALW: done ****
 
 2.4: para 1: �significant variations�: quantify.
+****ALW: added reference to relevant figures, some numerical detail in text****
 
 2.6: Give more information on why this cluster is chosen as the test case (especially given that it has no easily
 definable MSTO).
+****ALW: added paragraph explaining that the Gaia parallaxes and the multiple different estimates of cluster properties make NGC6793 useful for testing extinction effects
+ at multiple MSTO positions without requiring another set of observational data and thereby introducing another source of uncertainties, as examining the
+ extinction effects is the principal goal in the thesis****
 
 Add short introductions and/or linking statements to each section to lead the reader through the narrative
 (e.g., Sect 2.4 might start with The next step is to determine� )
+****ALW: made the text flow better between sections, added a brief summary at the beginning of each chapter saying what is being described in each section****
 
 Consider the order of text in some paragraphs (e.g. 3.2 p. 31: �Plots of Ax/Av against�.� should come before
 discussion of what is in the plot)
+****ALW: many rearrangements of paragraphs, esp. with newly-added ones ****
 
 Ch 3: in a Results section, it is usual to state the (numerical) results up front or refer to the relevant figure. Do
 this where possible.
+****ALW: added statements and figure references to improve the clarity ****
 
 3.2 p. 32: �a property found in the data�� explain where we see this (i.e., refer to the relevant figure. Also,
 explain more clearly and directly whether the inverted gradient is a numerical artefact and so whether it
 needs to be considered. Can it be remedied, e.g. with a finer integration grid?
+****ALW: edited the text to make note of the origin of tail-flicks as being from known ATLAS9 prediction issues at low Teff, with references****
 
 3.3: p. 32: �degeneracy between coefficients� explain which ones.
+****ALW: added examples of degenerate coefficients and more details on IDing these and actions taken after finding examples of these****
 
 *The text on p 35 etc., is impenetrable and needs cimpifying and clarifying.
+****ALW: much improved now ****
 
 Justify discussion of consideration of the range of Teff = 50,000K considered (e.g. 50,000K on p31) in terms of
 stars likely to be observed in clusters under consideration.
+****ALW: added text explaining that the plateau (incl. Teff = 50,000K) was chosen as this is the only region in
+parameter space where the standard assumption of constant extinction is actually correct, and so is worth examining. Also, it is
+only 1 of 2 values considered, plus a lot of the discussion in Section 3.4 (pre-viva thesis)/ 3.2 (new thesis) centres on the importance of the value of Ax/Av chosen,
+ which is illustrated by choosing 2 different values from the ATLAS9 data used - the effect of choice is of different magnitude for different CMDs, so 50000K makes this easier to see ****
 
 We suggest testing the placement of the MSTO in Fig 3.13 by predicting the likelihood of finding the two stars
 near the top of the MS to be MS or post-MS, given the number of stars in the cluster and therefore the
 exected number of stars in that position in the CMD.
+****ALW: done, plotted, discussed ****
 
 Additional work:
 
 *Select cluster members on proper motion as well.
+****ALW: ****
 
 *Compare results of using individual stellar parallax distances with that of putting all cluster members at
 same, mean, distance (including those with negative parallaxes).
+****ALW: done - figure, discussion ****
 
 *Check and present errors on absolute magnitudes.
+****ALW: done - figures, discussion ****
 
 *Check the photometric errorbars on Gaia data and discuss whether they are really negligible.
+****ALW: done - figure, discussion ****
 
 Discuss the potential presence of binaries in the CMD and whether they should be corected for or ignored in
 the fit.
+****ALW: done - figure, discussion ****
 
 *Get confidence intervals on the (newly) derived parameters for the cluster.
+****ALW: fitting done by eye, so instead used the uncertainties from Ax/Av models (see quantitative assessment bit below) to give isochrone confidence intervals in CMD space****
 
 *Demonstrate how other models compare to the �best fitting� model.
-
 A nice demonstration would be the GC18 isochrone computed with the new extinction values.
+****ALW: done - figure, discussion *****
 
 *Provide a quantitative assessment of the differences in the new and standard methods wth respect to the
 uncertainties and the success of and/or need for a new method. i.e., quantitatively justify your conclusions.
+****ALW: added errors to figure taken from Ax/Av model coefficient errors - plotted, discussed****
 
 *Add your key, quantified results to the Abstract.
-
+****ALW: added the numerical Ax/Av variation, NGC6793 results to the abstract****
 
 Typos and minor corrections:
+****ALW: corrected all of the issues listed below****
 
 p2 para 1: �of the electromagnetic spectrum�
 
